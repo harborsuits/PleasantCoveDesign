@@ -1,0 +1,1075 @@
+<!-- Pleasant Cove Design - Project Workspace with Billing & Design Canvas -->
+<!-- Copy ALL of this code into a Squarespace Code Block -->
+
+<div id="pleasant-cove-workspace">
+  <div style="text-align: center; padding: 40px;">
+    <div style="display: inline-block; width: 50px; height: 50px; border: 3px solid #f3f3f3; border-top: 3px solid #667eea; border-radius: 50%; animation: pcd-spin 1s linear infinite;"></div>
+    <p style="margin-top: 20px; color: #6b7280;">Loading your project workspace...</p>
+  </div>
+</div>
+
+<style>
+@keyframes pcd-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#pleasant-cove-workspace {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+#pleasant-cove-workspace * {
+  box-sizing: border-box;
+}
+
+.pcd-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.pcd-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.pcd-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.pcd-header p {
+  margin: 0;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.pcd-nav {
+  display: flex;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e2e8f0;
+  overflow-x: auto;
+}
+
+.pcd-nav button {
+  flex: 1;
+  padding: 18px 24px;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+}
+
+.pcd-nav button:hover {
+  background: #f1f3f5;
+  color: #667eea;
+}
+
+.pcd-nav button.active {
+  color: #667eea;
+  background: white;
+  border-bottom-color: #667eea;
+}
+
+.pcd-content {
+  padding: 40px 30px;
+  min-height: 500px;
+}
+
+.pcd-section {
+  display: none;
+}
+
+.pcd-section.active {
+  display: block;
+}
+
+/* Progress Styles */
+.pcd-progress-container {
+  margin-bottom: 40px;
+}
+
+.pcd-progress-bar {
+  width: 100%;
+  height: 30px;
+  background: #e2e8f0;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.pcd-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+.pcd-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.pcd-stat-card {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.pcd-stat-card h3 {
+  margin: 0 0 10px 0;
+  color: #64748b;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pcd-stat-card p {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Billing Section */
+.pcd-billing-section {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 30px;
+}
+
+.pcd-billing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.pcd-billing-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #1f2937;
+}
+
+.pcd-billing-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pcd-billing-status.paid {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.pcd-billing-status.partial {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.pcd-billing-status.pending {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.pcd-billing-breakdown {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.pcd-billing-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pcd-billing-item:last-child {
+  border-bottom: none;
+}
+
+.pcd-billing-item.total {
+  font-weight: 700;
+  font-size: 18px;
+  color: #1f2937;
+  padding-top: 20px;
+  border-top: 2px solid #e2e8f0;
+}
+
+.pcd-billing-description {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+.pcd-billing-description h4 {
+  margin: 0 0 10px 0;
+  color: #1f2937;
+}
+
+.pcd-billing-description ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.pcd-billing-description li {
+  margin: 5px 0;
+  color: #6b7280;
+}
+
+.pcd-payment-history {
+  margin-top: 20px;
+}
+
+.pcd-payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.pcd-payment-info {
+  flex: 1;
+}
+
+.pcd-payment-date {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.pcd-payment-amount {
+  font-weight: 600;
+  color: #059669;
+}
+
+/* Design Canvas Styles */
+.pcd-canvas-container {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  min-height: 600px;
+}
+
+.pcd-canvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pcd-canvas-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #1f2937;
+}
+
+.pcd-canvas-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.pcd-canvas-btn {
+  padding: 8px 16px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.pcd-canvas-btn:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.pcd-canvas-btn.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.pcd-designs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.pcd-design-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+
+.pcd-design-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.pcd-design-preview {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+}
+
+.pcd-design-info {
+  padding: 20px;
+}
+
+.pcd-design-title {
+  font-weight: 600;
+  font-size: 18px;
+  color: #1f2937;
+  margin-bottom: 5px;
+}
+
+.pcd-design-meta {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.pcd-feedback-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #667eea;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pcd-design-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.pcd-design-detail-content {
+  background: white;
+  border-radius: 12px;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.pcd-design-detail-header {
+  padding: 20px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pcd-design-detail-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.pcd-close-btn {
+  padding: 8px 16px;
+  background: #e2e8f0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.pcd-feedback-section {
+  padding: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.pcd-feedback-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.pcd-feedback-btn {
+  padding: 12px 24px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Milestones Styles */
+.pcd-milestones {
+  margin-top: 20px;
+}
+
+.pcd-milestone {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  margin-bottom: 20px;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.pcd-milestone:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+}
+
+.pcd-milestone.completed {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.pcd-milestone-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.pcd-milestone.completed .pcd-milestone-icon {
+  background: #86efac;
+  color: #166534;
+}
+
+.pcd-milestone.pending .pcd-milestone-icon {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+.pcd-milestone.current .pcd-milestone-icon {
+  background: #667eea;
+  color: white;
+}
+
+.pcd-milestone-content h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  color: #1f2937;
+}
+
+.pcd-milestone-content p {
+  margin: 0;
+  color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pcd-nav {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .pcd-nav button {
+    min-width: 120px;
+  }
+  
+  .pcd-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .pcd-billing-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .pcd-designs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Demo Mode Notice */
+.pcd-demo-notice {
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  color: #92400e;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+</style>
+
+<script>
+// Pleasant Cove Design - Project Workspace Module with Billing & Canvas
+(function() {
+  'use strict';
+
+  // Configuration
+  const CONFIG = {
+    API_URL: 'https://api.pleasantcovedesign.com',
+    USE_DEMO_MODE: true // Always demo for now
+  };
+
+  // Demo data with billing information
+  const DEMO_DATA = {
+    project: {
+      id: 1,
+      name: "Professional Website Development",
+      companyName: "Your Business",
+      progress: 65,
+      currentStage: "Design Phase",
+      estimatedCompletion: "2024-03-15",
+      startDate: "2024-01-10",
+      
+      // Billing information
+      billing: {
+        package: "Professional Plus",
+        basePrice: 3888,
+        addons: [
+          { name: "E-commerce Integration", price: 999 },
+          { name: "Advanced SEO Package", price: 499 },
+          { name: "Content Writing (5 pages)", price: 399 }
+        ],
+        subtotal: 5785,
+        tax: 0, // Maine doesn't tax services
+        total: 5785,
+        deposit: 2893, // 50% deposit
+        remaining: 2892,
+        
+        payments: [
+          {
+            date: "2024-01-10",
+            amount: 2893,
+            description: "Initial deposit (50%)",
+            method: "Credit Card"
+          }
+        ],
+        
+        breakdown: {
+          design: "Custom responsive design with up to 10 pages",
+          development: "Full website development with CMS",
+          features: [
+            "Mobile-responsive design",
+            "Contact forms with email integration",
+            "Google Maps integration",
+            "Social media integration",
+            "Basic SEO optimization",
+            "SSL certificate setup",
+            "1 year of hosting included"
+          ],
+          timeline: "6-8 weeks from project start"
+        }
+      },
+      
+      // Design mockups
+      designs: [
+        {
+          id: 1,
+          title: "Homepage Design",
+          description: "Main landing page with hero section",
+          imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%236b7280' font-family='Arial' font-size='18'%3EHomepage Design Preview%3C/text%3E%3C/svg%3E",
+          version: "v2",
+          lastUpdated: "2024-01-25",
+          feedbackCount: 3
+        },
+        {
+          id: 2,
+          title: "Services Page",
+          description: "Layout for services/products showcase",
+          imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%236b7280' font-family='Arial' font-size='18'%3EServices Page Design%3C/text%3E%3C/svg%3E",
+          version: "v1",
+          lastUpdated: "2024-01-23",
+          feedbackCount: 1
+        },
+        {
+          id: 3,
+          title: "Contact Page",
+          description: "Contact form and location information",
+          imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%236b7280' font-family='Arial' font-size='18'%3EContact Page Design%3C/text%3E%3C/svg%3E",
+          version: "v1",
+          lastUpdated: "2024-01-24",
+          feedbackCount: 0
+        }
+      ],
+      
+      milestones: [
+        {
+          id: 1,
+          title: 'Project Kickoff & Discovery',
+          description: 'Initial consultation, requirements gathering, and strategy planning',
+          status: 'completed',
+          completedDate: '2024-01-10'
+        },
+        {
+          id: 2,
+          title: 'Design & Mockups',
+          description: 'Create visual designs and get your approval',
+          status: 'current',
+          dueDate: '2024-02-01'
+        },
+        {
+          id: 3,
+          title: 'Development',
+          description: 'Build your website with all features',
+          status: 'pending',
+          dueDate: '2024-02-20'
+        },
+        {
+          id: 4,
+          title: 'Content & Testing',
+          description: 'Add content, test all features, and make revisions',
+          status: 'pending',
+          dueDate: '2024-03-01'
+        },
+        {
+          id: 5,
+          title: 'Launch & Training',
+          description: 'Deploy live and provide training on managing your site',
+          status: 'pending',
+          dueDate: '2024-03-15'
+        }
+      ]
+    }
+  };
+
+  // Main application object
+  const ProjectWorkspace = {
+    data: {
+      project: null,
+      currentTab: 'overview',
+      memberName: 'Valued Client',
+      selectedDesign: null
+    },
+
+    init() {
+      console.log('Initializing Pleasant Cove Project Workspace...');
+      this.render();
+      this.loadProject();
+    },
+
+    loadProject() {
+      // Always use demo data for now
+      this.data.project = DEMO_DATA.project;
+      
+      // Try to get the user's name from Squarespace
+      if (window.Static && window.Static.SQUARESPACE_CONTEXT && window.Static.SQUARESPACE_CONTEXT.authenticatedAccount) {
+        const account = window.Static.SQUARESPACE_CONTEXT.authenticatedAccount;
+        this.data.memberName = `${account.firstName} ${account.lastName}`.trim() || account.email || 'Valued Client';
+      }
+      
+      this.updateUI();
+    },
+
+    render() {
+      const container = document.getElementById('pleasant-cove-workspace');
+      container.innerHTML = `
+        <div class="pcd-container">
+          ${CONFIG.USE_DEMO_MODE ? '<div class="pcd-demo-notice">🎯 Demo Mode - This is a preview of your project workspace</div>' : ''}
+          
+          <div class="pcd-header">
+            <h1>Your Project Workspace</h1>
+            <p>Welcome to Pleasant Cove Design</p>
+          </div>
+          
+          <nav class="pcd-nav">
+            <button class="active" onclick="ProjectWorkspace.showTab('overview')">Overview & Billing</button>
+            <button onclick="ProjectWorkspace.showTab('canvas')">Design Canvas</button>
+            <button onclick="ProjectWorkspace.showTab('milestones')">Milestones</button>
+          </nav>
+          
+          <div class="pcd-content">
+            <div id="pcd-overview" class="pcd-section active">
+              <div class="pcd-loading">Loading project details...</div>
+            </div>
+            
+            <div id="pcd-canvas" class="pcd-section">
+              <div class="pcd-loading">Loading designs...</div>
+            </div>
+            
+            <div id="pcd-milestones" class="pcd-section">
+              <div class="pcd-loading">Loading milestones...</div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="pcd-design-modal"></div>
+      `;
+    },
+
+    updateUI() {
+      if (!this.data.project) return;
+
+      // Update header
+      const header = document.querySelector('.pcd-header h1');
+      const subtitle = document.querySelector('.pcd-header p');
+      if (header) header.textContent = this.data.project.name;
+      if (subtitle) subtitle.textContent = `Welcome, ${this.data.memberName}`;
+
+      // Update content based on current tab
+      this.showTab(this.data.currentTab);
+    },
+
+    showTab(tabName) {
+      this.data.currentTab = tabName;
+
+      // Update nav buttons
+      document.querySelectorAll('.pcd-nav button').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase().includes(tabName)) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Hide all sections
+      document.querySelectorAll('.pcd-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Show selected section and update content
+      const section = document.getElementById(`pcd-${tabName}`);
+      if (section) {
+        section.classList.add('active');
+        
+        switch(tabName) {
+          case 'overview':
+            this.renderOverview();
+            break;
+          case 'canvas':
+            this.renderCanvas();
+            break;
+          case 'milestones':
+            this.renderMilestones();
+            break;
+        }
+      }
+    },
+
+    renderOverview() {
+      const section = document.getElementById('pcd-overview');
+      const project = this.data.project;
+      const billing = project.billing;
+      
+      // Calculate payment status
+      const paidAmount = billing.payments.reduce((sum, payment) => sum + payment.amount, 0);
+      const paymentStatus = paidAmount >= billing.total ? 'paid' : 
+                           paidAmount > 0 ? 'partial' : 'pending';
+      const remainingAmount = billing.total - paidAmount;
+      
+      section.innerHTML = `
+        <div class="pcd-progress-container">
+          <h2>Project Progress</h2>
+          <div class="pcd-progress-bar">
+            <div class="pcd-progress-fill" style="width: ${project.progress}%">
+              ${project.progress}%
+            </div>
+          </div>
+        </div>
+        
+        <div class="pcd-stats">
+          <div class="pcd-stat-card">
+            <h3>Current Stage</h3>
+            <p>${project.currentStage}</p>
+          </div>
+          
+          <div class="pcd-stat-card">
+            <h3>Started</h3>
+            <p>${this.formatDate(project.startDate)}</p>
+          </div>
+          
+          <div class="pcd-stat-card">
+            <h3>Estimated Completion</h3>
+            <p>${this.formatDate(project.estimatedCompletion)}</p>
+          </div>
+          
+          <div class="pcd-stat-card">
+            <h3>Package</h3>
+            <p>${billing.package}</p>
+          </div>
+        </div>
+        
+        <div class="pcd-billing-section">
+          <div class="pcd-billing-header">
+            <h2>Project Investment</h2>
+            <span class="pcd-billing-status ${paymentStatus}">
+              ${paymentStatus === 'paid' ? '✓ Paid in Full' : 
+                paymentStatus === 'partial' ? `Balance: $${remainingAmount.toLocaleString()}` : 
+                'Payment Pending'}
+            </span>
+          </div>
+          
+          <div class="pcd-billing-breakdown">
+            <div class="pcd-billing-item">
+              <span>${billing.package} Package</span>
+              <span>$${billing.basePrice.toLocaleString()}</span>
+            </div>
+            
+            ${billing.addons.map(addon => `
+              <div class="pcd-billing-item">
+                <span>${addon.name}</span>
+                <span>$${addon.price.toLocaleString()}</span>
+              </div>
+            `).join('')}
+            
+            <div class="pcd-billing-item">
+              <span>Subtotal</span>
+              <span>$${billing.subtotal.toLocaleString()}</span>
+            </div>
+            
+            ${billing.tax > 0 ? `
+              <div class="pcd-billing-item">
+                <span>Tax</span>
+                <span>$${billing.tax.toLocaleString()}</span>
+              </div>
+            ` : ''}
+            
+            <div class="pcd-billing-item total">
+              <span>Total Investment</span>
+              <span>$${billing.total.toLocaleString()}</span>
+            </div>
+          </div>
+          
+          <div class="pcd-billing-description">
+            <h4>What's Included:</h4>
+            <p><strong>${billing.breakdown.design}</strong></p>
+            <p>${billing.breakdown.development}</p>
+            <ul>
+              ${billing.breakdown.features.map(feature => `<li>${feature}</li>`).join('')}
+            </ul>
+            <p><strong>Timeline:</strong> ${billing.breakdown.timeline}</p>
+          </div>
+          
+          ${billing.payments.length > 0 ? `
+            <div class="pcd-payment-history">
+              <h3>Payment History</h3>
+              ${billing.payments.map(payment => `
+                <div class="pcd-payment">
+                  <div class="pcd-payment-info">
+                    <div>${payment.description}</div>
+                    <div class="pcd-payment-date">${this.formatDate(payment.date)} • ${payment.method}</div>
+                  </div>
+                  <div class="pcd-payment-amount">$${payment.amount.toLocaleString()}</div>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+          
+          ${remainingAmount > 0 ? `
+            <div style="margin-top: 20px; padding: 20px; background: #fef3c7; border-radius: 8px; text-align: center;">
+              <strong>Next Payment Due:</strong> $${remainingAmount.toLocaleString()} 
+              <br><small>Due upon project completion</small>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    },
+
+    renderCanvas() {
+      const section = document.getElementById('pcd-canvas');
+      const designs = this.data.project.designs || [];
+      
+      section.innerHTML = `
+        <div class="pcd-canvas-container">
+          <div class="pcd-canvas-header">
+            <h2>Design Canvas</h2>
+            <div class="pcd-canvas-controls">
+              <button class="pcd-canvas-btn active">All Designs</button>
+            </div>
+          </div>
+          
+          <p style="color: #6b7280; margin-bottom: 20px;">
+            Click on any design to view full size and leave feedback
+          </p>
+          
+          <div class="pcd-designs-grid">
+            ${designs.map(design => `
+              <div class="pcd-design-card" onclick="ProjectWorkspace.viewDesign(${design.id})">
+                ${design.feedbackCount > 0 ? `<div class="pcd-feedback-badge">${design.feedbackCount} feedback</div>` : ''}
+                <div class="pcd-design-preview">
+                  <img src="${design.imageUrl}" alt="${design.title}" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="pcd-design-info">
+                  <div class="pcd-design-title">${design.title}</div>
+                  <div class="pcd-design-meta">${design.version} • Updated ${this.formatDate(design.lastUpdated)}</div>
+                  <div class="pcd-design-meta">${design.description}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          
+          ${designs.length === 0 ? `
+            <div style="text-align: center; padding: 60px 20px; color: #6b7280;">
+              <p style="font-size: 48px; margin-bottom: 20px;">🎨</p>
+              <p>No designs uploaded yet. Check back soon!</p>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    },
+
+    viewDesign(designId) {
+      const design = this.data.project.designs.find(d => d.id === designId);
+      if (!design) return;
+      
+      const modal = document.getElementById('pcd-design-modal');
+      modal.innerHTML = `
+        <div class="pcd-design-detail">
+          <div class="pcd-design-detail-content">
+            <div class="pcd-design-detail-header">
+              <div>
+                <h2>${design.title}</h2>
+                <p style="color: #6b7280;">${design.description}</p>
+              </div>
+              <button class="pcd-close-btn" onclick="ProjectWorkspace.closeDesign()">Close</button>
+            </div>
+            
+            <div style="padding: 20px; text-align: center; background: #f8f9fa;">
+              <img src="${design.imageUrl}" alt="${design.title}" class="pcd-design-detail-image">
+            </div>
+            
+            <div class="pcd-feedback-section">
+              <h3>Leave Feedback</h3>
+              <p style="color: #6b7280; margin-bottom: 15px;">
+                Share your thoughts on this design. What do you like? What would you change?
+              </p>
+              <textarea 
+                id="pcd-feedback-input" 
+                class="pcd-feedback-input" 
+                placeholder="Type your feedback here..."
+                rows="4"
+              ></textarea>
+              <button class="pcd-feedback-btn" onclick="ProjectWorkspace.submitFeedback(${design.id})">
+                Submit Feedback
+              </button>
+              
+              ${CONFIG.USE_DEMO_MODE ? `
+                <p style="margin-top: 10px; font-size: 14px; color: #6b7280;">
+                  Demo Mode: In the live version, your feedback will be sent to the design team.
+                </p>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    },
+
+    closeDesign() {
+      document.getElementById('pcd-design-modal').innerHTML = '';
+    },
+
+    submitFeedback(designId) {
+      const input = document.getElementById('pcd-feedback-input');
+      const feedback = input.value.trim();
+      
+      if (!feedback) {
+        alert('Please enter your feedback before submitting.');
+        return;
+      }
+      
+      // In demo mode, just show confirmation
+      alert('Thank you for your feedback! The design team will review it and respond soon.');
+      
+      // Update feedback count
+      const design = this.data.project.designs.find(d => d.id === designId);
+      if (design) {
+        design.feedbackCount = (design.feedbackCount || 0) + 1;
+      }
+      
+      this.closeDesign();
+      this.renderCanvas(); // Refresh to show updated feedback count
+    },
+
+    renderMilestones() {
+      const section = document.getElementById('pcd-milestones');
+      const milestones = this.data.project.milestones || [];
+      
+      let milestonesHTML = '<h2>Project Milestones</h2><div class="pcd-milestones">';
+      
+      milestones.forEach(milestone => {
+        milestonesHTML += `
+          <div class="pcd-milestone ${milestone.status}">
+            <div class="pcd-milestone-icon">
+              ${milestone.status === 'completed' ? '✓' : milestone.status === 'current' ? '●' : '○'}
+            </div>
+            <div class="pcd-milestone-content">
+              <h3>${milestone.title}</h3>
+              <p>${milestone.description}</p>
+              ${milestone.completedDate ? `<p style="color: #16a34a; font-size: 14px; margin-top: 5px;">Completed ${this.formatDate(milestone.completedDate)}</p>` : ''}
+              ${milestone.dueDate && milestone.status !== 'completed' ? `<p style="color: #64748b; font-size: 14px; margin-top: 5px;">Target: ${this.formatDate(milestone.dueDate)}</p>` : ''}
+            </div>
+          </div>
+        `;
+      });
+      
+      milestonesHTML += '</div>';
+      section.innerHTML = milestonesHTML;
+    },
+
+    formatDate(dateString) {
+      if (!dateString) return 'TBD';
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+    }
+  };
+
+  // Make available globally
+  window.ProjectWorkspace = ProjectWorkspace;
+
+  // Initialize immediately
+  setTimeout(() => ProjectWorkspace.init(), 100);
+})();
+</script>
