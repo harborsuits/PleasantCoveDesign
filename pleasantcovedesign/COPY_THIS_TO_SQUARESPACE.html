@@ -1,0 +1,409 @@
+<!-- 
+====================================
+COPY EVERYTHING BELOW THIS LINE
+====================================
+-->
+
+<!-- Pleasant Cove Design - Project Workspace -->
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+
+<style>
+#pcd-workspace {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #f8f9fa;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.pcd-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.pcd-tabs {
+  display: flex;
+  background: white;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.pcd-tab {
+  padding: 15px 25px;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 16px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.pcd-tab.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+.pcd-content {
+  padding: 30px;
+  background: white;
+  min-height: 400px;
+}
+
+.pcd-progress-bar {
+  width: 100%;
+  height: 24px;
+  background: #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+
+.pcd-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.pcd-messages {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+}
+
+.pcd-messages-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.pcd-message {
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  max-width: 70%;
+}
+
+.pcd-message.client {
+  background: #667eea;
+  color: white;
+  margin-left: auto;
+  text-align: right;
+}
+
+.pcd-message.team {
+  background: white;
+  color: #1f2937;
+  border: 1px solid #e2e8f0;
+}
+
+.pcd-message-input {
+  display: flex;
+  gap: 10px;
+}
+
+.pcd-message-input input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.pcd-send-btn {
+  padding: 12px 24px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.pcd-send-btn:hover {
+  background: #5a5ed8;
+}
+
+.pcd-milestone {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 15px;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.pcd-milestone.completed {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.pcd-card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.pcd-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+</style>
+
+<script>
+// CHANGE THESE TO YOUR ACTUAL SERVER URLs
+const API_URL = 'https://api.pleasantcovedesign.com';
+const WS_URL = 'wss://api.pleasantcovedesign.com';
+
+// For testing locally, use:
+// const API_URL = 'http://localhost:3000';
+// const WS_URL = 'ws://localhost:3000';
+
+const PCD = {
+  project: null,
+  memberInfo: null,
+  socket: null,
+
+  init() {
+    this.detectMember();
+    this.render();
+  },
+
+  detectMember() {
+    // Detect Squarespace member
+    if (window.Static && window.Static.SQUARESPACE_CONTEXT && window.Static.SQUARESPACE_CONTEXT.authenticatedAccount) {
+      const account = window.Static.SQUARESPACE_CONTEXT.authenticatedAccount;
+      this.memberInfo = {
+        id: account.id,
+        email: account.email,
+        name: account.firstName + ' ' + account.lastName
+      };
+      this.loadProject();
+    } else {
+      // For testing - remove this in production
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('test')) {
+        this.memberInfo = {
+          id: 'test-member',
+          email: 'test@example.com',
+          name: 'Test User'
+        };
+        this.loadProject();
+      } else {
+        document.getElementById('pcd-content').innerHTML = '<p style="text-align:center; padding:40px;">Please log in to view your project.</p>';
+      }
+    }
+  },
+
+  async loadProject() {
+    try {
+      const response = await fetch(`${API_URL}/api/workspace/member/${this.memberInfo.id}`);
+      const data = await response.json();
+      
+      if (data.success && data.project) {
+        this.project = data.project;
+        this.updateUI();
+        this.connectWebSocket();
+      } else {
+        document.getElementById('pcd-content').innerHTML = '<p style="text-align:center; padding:40px;">No active project found.</p>';
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Use mock data for demo
+      this.project = {
+        name: 'Your Website Project',
+        progress: 65,
+        currentStage: 'Design Phase',
+        estimatedCompletion: '2024-03-15',
+        messages: [
+          {sender: 'team', senderName: 'Pleasant Cove', content: 'Welcome to your project workspace!', timestamp: new Date().toISOString()},
+          {sender: 'client', senderName: 'You', content: 'Thanks! Excited to see the progress.', timestamp: new Date().toISOString()}
+        ],
+        milestones: [
+          {title: 'Discovery', description: 'Initial consultation', status: 'completed'},
+          {title: 'Design', description: 'Create mockups', status: 'in_progress'},
+          {title: 'Development', description: 'Build website', status: 'pending'},
+          {title: 'Launch', description: 'Go live!', status: 'pending'}
+        ]
+      };
+      this.updateUI();
+    }
+  },
+
+  connectWebSocket() {
+    if (!window.io) return;
+    
+    this.socket = io(WS_URL, {
+      query: {
+        projectId: this.project.id,
+        memberEmail: this.memberInfo.email
+      }
+    });
+
+    this.socket.on('message:new', (msg) => {
+      this.project.messages.push(msg);
+      if (document.querySelector('#pcd-messages-list')) {
+        this.showMessages();
+      }
+    });
+  },
+
+  render() {
+    document.getElementById('pleasant-cove-workspace').innerHTML = `
+      <div id="pcd-workspace">
+        <div class="pcd-header">
+          <h2 id="pcd-project-name">Loading...</h2>
+          <p id="pcd-welcome"></p>
+        </div>
+        
+        <div class="pcd-tabs">
+          <button class="pcd-tab active" onclick="PCD.showTab(this, 'overview')">Overview</button>
+          <button class="pcd-tab" onclick="PCD.showTab(this, 'messages')">Messages</button>
+          <button class="pcd-tab" onclick="PCD.showTab(this, 'milestones')">Milestones</button>
+        </div>
+        
+        <div class="pcd-content" id="pcd-content">
+          <p style="text-align:center; padding:40px;">Loading your project...</p>
+        </div>
+      </div>
+    `;
+  },
+
+  updateUI() {
+    document.getElementById('pcd-project-name').textContent = this.project.name;
+    document.getElementById('pcd-welcome').textContent = 'Welcome, ' + this.memberInfo.name;
+    this.showOverview();
+  },
+
+  showTab(button, tab) {
+    document.querySelectorAll('.pcd-tab').forEach(t => t.classList.remove('active'));
+    button.classList.add('active');
+    
+    switch(tab) {
+      case 'overview': this.showOverview(); break;
+      case 'messages': this.showMessages(); break;
+      case 'milestones': this.showMilestones(); break;
+    }
+  },
+
+  showOverview() {
+    document.getElementById('pcd-content').innerHTML = `
+      <h3>Project Progress</h3>
+      <div class="pcd-progress-bar">
+        <div class="pcd-progress-fill" style="width: ${this.project.progress}%"></div>
+      </div>
+      <p style="font-size: 20px; color: #667eea; margin: 20px 0;">${this.project.progress}% Complete</p>
+      
+      <div class="pcd-grid">
+        <div class="pcd-card">
+          <h4>Current Stage</h4>
+          <p style="font-size: 20px; color: #667eea;">${this.project.currentStage}</p>
+        </div>
+        
+        <div class="pcd-card">
+          <h4>Estimated Completion</h4>
+          <p style="font-size: 20px;">${new Date(this.project.estimatedCompletion).toLocaleDateString()}</p>
+        </div>
+      </div>
+    `;
+  },
+
+  showMessages() {
+    let html = '<div class="pcd-messages"><div class="pcd-messages-list" id="pcd-messages-list">';
+    
+    if (this.project.messages) {
+      this.project.messages.forEach(msg => {
+        const isClient = msg.sender === 'client';
+        html += `
+          <div class="pcd-message ${isClient ? 'client' : 'team'}">
+            <strong>${msg.senderName}</strong><br>
+            ${msg.content}
+          </div>
+        `;
+      });
+    }
+    
+    html += `</div>
+      <div class="pcd-message-input">
+        <input type="text" id="msg-input" placeholder="Type your message..." onkeypress="if(event.key==='Enter') PCD.sendMessage()">
+        <button class="pcd-send-btn" onclick="PCD.sendMessage()">Send</button>
+      </div>
+    </div>`;
+    
+    document.getElementById('pcd-content').innerHTML = html;
+  },
+
+  showMilestones() {
+    let html = '<h3>Project Milestones</h3><div style="margin-top: 20px;">';
+    
+    if (this.project.milestones) {
+      this.project.milestones.forEach(m => {
+        html += `
+          <div class="pcd-milestone ${m.status === 'completed' ? 'completed' : ''}">
+            <div style="margin-right: 20px; font-size: 24px;">
+              ${m.status === 'completed' ? '✓' : '○'}
+            </div>
+            <div>
+              <h4 style="margin: 0;">${m.title}</h4>
+              <p style="margin: 5px 0 0 0; color: #64748b;">${m.description}</p>
+            </div>
+          </div>
+        `;
+      });
+    }
+    
+    html += '</div>';
+    document.getElementById('pcd-content').innerHTML = html;
+  },
+
+  async sendMessage() {
+    const input = document.getElementById('msg-input');
+    const message = input.value.trim();
+    if (!message) return;
+
+    try {
+      await fetch(`${API_URL}/api/workspace/project/${this.project.id}/messages`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          projectId: this.project.id,
+          memberId: this.memberInfo.id,
+          memberEmail: this.memberInfo.email,
+          memberName: this.memberInfo.name,
+          content: message
+        })
+      });
+      input.value = '';
+    } catch (error) {
+      // For demo, just add to local messages
+      this.project.messages.push({
+        sender: 'client',
+        senderName: this.memberInfo.name,
+        content: message,
+        timestamp: new Date().toISOString()
+      });
+      input.value = '';
+      this.showMessages();
+    }
+  }
+};
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', () => PCD.init());
+</script>
+
+<div id="pleasant-cove-workspace"></div>
+
+<!-- 
+====================================
+COPY EVERYTHING ABOVE THIS LINE
+====================================
+-->
