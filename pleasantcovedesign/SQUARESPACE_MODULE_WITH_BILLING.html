@@ -572,39 +572,41 @@
       estimatedCompletion: "2024-03-15",
       startDate: "2024-01-10",
       
-      // Billing information
+      // Billing information - using actual system pricing
       billing: {
-        package: "Professional Plus",
-        basePrice: 3888,
+        package: "Professional Package",
+        basePrice: 4997, // Actual Professional Package price
         addons: [
-          { name: "E-commerce Integration", price: 999 },
-          { name: "Advanced SEO Package", price: 499 },
-          { name: "Content Writing (5 pages)", price: 399 }
+          { name: "Customer Messaging", price: 997 },
+          { name: "SEO Package", price: 797 },
+          { name: "Additional Page", price: 297 }
         ],
-        subtotal: 5785,
+        subtotal: 7088,
         tax: 0, // Maine doesn't tax services
-        total: 5785,
-        deposit: 2893, // 50% deposit
-        remaining: 2892,
+        total: 7088,
+        deposit: 3544, // 50% deposit
+        remaining: 3544,
         
         payments: [
           {
             date: "2024-01-10",
-            amount: 2893,
+            amount: 3544,
             description: "Initial deposit (50%)",
             method: "Credit Card"
           }
         ],
         
         breakdown: {
-          design: "Custom responsive design with up to 10 pages",
-          development: "Full website development with CMS",
+          design: "Professional Package - Complete digital presence solution",
+          development: "Full website development with advanced features",
           features: [
+            "Up to 10 custom pages",
             "Mobile-responsive design",
+            "Customer messaging portal",
+            "Professional SEO package",
+            "Additional custom page",
             "Contact forms with email integration",
-            "Google Maps integration",
             "Social media integration",
-            "Basic SEO optimization",
             "SSL certificate setup",
             "1 year of hosting included"
           ],
