@@ -948,6 +948,11 @@
       
       this.render();
       await this.loadProject();
+      
+      // Setup WebSocket for real-time updates (only in production)
+      if (!CONFIG.DEMO_MODE) {
+        this.setupWebSocket();
+      }
     },
 
     async loadProject() {
@@ -1284,7 +1289,7 @@
       document.getElementById('pcd-design-modal').innerHTML = '';
     },
 
-    submitFeedback(designId) {
+    async submitFeedback(designId) {
       const input = document.getElementById('pcd-feedback-input');
       const feedback = input.value.trim();
       
@@ -1293,17 +1298,54 @@
         return;
       }
       
-      // Demo mode confirmation
-      alert('Thank you! Your feedback has been received and our design team will review it shortly.');
-      
-      // Update local feedback count
-      const design = this.data.project.designs.find(d => d.id === designId);
-      if (design) {
-        design.feedbackCount = (design.feedbackCount || 0) + 1;
+      if (CONFIG.DEMO_MODE) {
+        // Demo mode confirmation
+        alert('Thank you! Your feedback has been received and our design team will review it shortly.');
+        
+        // Update local feedback count
+        const design = this.data.project.designs.find(d => d.id === designId);
+        if (design) {
+          design.feedbackCount = (design.feedbackCount || 0) + 1;
+        }
+        
+        this.closeDesign();
+        this.renderCanvas();
+      } else {
+        // Real mode - send to server
+        try {
+          const response = await fetch(`${CONFIG.API_URL}/api/projects/${this.data.project.id}/designs/${designId}/feedback`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${this.data.projectToken}`
+            },
+            body: JSON.stringify({
+              content: feedback,
+              author: this.data.memberName,
+              designTitle: this.data.project.designs.find(d => d.id === designId)?.title
+            })
+          });
+          
+          if (response.ok) {
+            alert('Thank you! Your feedback has been sent to the design team.');
+            
+            // The admin will receive this feedback via WebSocket in real-time
+            // Update local count
+            const design = this.data.project.designs.find(d => d.id === designId);
+            if (design) {
+              design.feedbackCount = (design.feedbackCount || 0) + 1;
+            }
+            
+            this.closeDesign();
+            this.renderCanvas();
+          } else {
+            alert('Sorry, there was an error sending your feedback. Please try again.');
+          }
+        } catch (error) {
+          console.error('Failed to submit feedback:', error);
+          alert('Sorry, there was an error sending your feedback. Please try again.');
+        }
       }
-      
-      this.closeDesign();
-      this.renderCanvas();
     },
 
     renderMilestones() {
@@ -1360,6 +1402,143 @@
           <p>Please contact us at <a href="mailto:support@pleasantcovedesign.com" style="color: #000; text-decoration: underline;">support@pleasantcovedesign.com</a> for assistance.</p>
         </div>
       `;
+    },
+
+    setupWebSocket() {
+      if (this.data.wsConnection) {
+        this.data.wsConnection.close();
+      }
+      
+      try {
+        const ws = new WebSocket(CONFIG.WS_URL);
+        this.data.wsConnection = ws;
+        
+        ws.onopen = () => {
+          console.log('WebSocket connected');
+          this.data.connectionStatus = 'connected';
+          this.updateConnectionStatus();
+          
+          // Join project room
+          if (this.data.projectToken) {
+            ws.send(JSON.stringify({
+              type: 'join',
+              projectToken: this.data.projectToken
+            }));
+            
+            // Join canvas room for design updates
+            ws.send(JSON.stringify({
+              type: 'canvas:view',
+              projectToken: this.data.projectToken
+            }));
+          }
+        };
+        
+        ws.onmessage = (event) => {
+          const message = JSON.parse(event.data);
+          this.handleRealtimeUpdate(message);
+        };
+        
+        ws.onclose = () => {
+          console.log('WebSocket disconnected');
+          this.data.connectionStatus = 'disconnected';
+          this.updateConnectionStatus();
+          
+          // Reconnect after 5 seconds
+          setTimeout(() => this.setupWebSocket(), 5000);
+        };
+        
+        ws.onerror = (error) => {
+          console.error('WebSocket error:', error);
+          this.data.connectionStatus = 'disconnected';
+          this.updateConnectionStatus();
+        };
+      } catch (error) {
+        console.error('Failed to setup WebSocket:', error);
+      }
+    },
+
+    handleRealtimeUpdate(message) {
+      switch(message.type) {
+        case 'canvas:update':
+          // Update designs when admin makes changes
+          if (message.elements && this.data.project) {
+            console.log('Received canvas update from admin');
+            // Convert canvas elements to design format
+            const designs = message.elements.filter(el => el.type === 'design').map(el => ({
+              id: el.id,
+              title: el.content.title || 'Untitled Design',
+              description: el.content.description || '',
+              imageUrl: el.content.imageUrl || '',
+              version: el.content.version || 'v1',
+              lastUpdated: el.updatedAt || new Date().toISOString(),
+              feedbackCount: el.content.feedbackCount || 0,
+              status: el.content.status || 'pending'
+            }));
+            
+            this.data.project.designs = designs;
+            if (this.data.currentTab === 'canvas') {
+              this.renderCanvas();
+            }
+          }
+          break;
+          
+        case 'design:statusUpdate':
+          // Update design status when admin approves/rejects
+          if (this.data.project && this.data.project.designs) {
+            const design = this.data.project.designs.find(d => d.id === message.designId);
+            if (design) {
+              design.status = message.status;
+              if (this.data.currentTab === 'canvas') {
+                this.renderCanvas();
+              }
+            }
+          }
+          break;
+          
+        case 'project:update':
+          // Update project progress, stage, etc.
+          if (this.data.project && message.projectId === this.data.project.id) {
+            Object.assign(this.data.project, message.updates);
+            this.updateUI();
+          }
+          break;
+          
+        case 'milestone:update':
+          // Update milestone status
+          if (this.data.project && this.data.project.milestones) {
+            const milestone = this.data.project.milestones.find(m => m.id === message.milestoneId);
+            if (milestone) {
+              Object.assign(milestone, message.updates);
+              if (this.data.currentTab === 'milestones') {
+                this.renderMilestones();
+              }
+            }
+          }
+          break;
+          
+        case 'payment:received':
+          // Update payment information
+          if (this.data.project && this.data.project.billing) {
+            this.data.project.billing.payments.push(message.payment);
+            if (this.data.currentTab === 'overview') {
+              this.renderOverview();
+            }
+          }
+          break;
+      }
+    },
+
+    updateConnectionStatus() {
+      const dot = document.querySelector('.pcd-connection-dot');
+      const text = document.querySelector('.pcd-connection-status span:last-child');
+      
+      if (dot) {
+        dot.classList.toggle('disconnected', this.data.connectionStatus !== 'connected');
+      }
+      
+      if (text) {
+        text.textContent = this.data.connectionStatus === 'connected' ? 'Live' : 'Offline';
+      }
     },
 
     formatDate(dateString) {
