@@ -56,3 +56,12 @@ venv/
 __pycache__/
 *.pyc
 *.backup
+
+# Environment files
+.env
+.env.*
+*.backup
+
+# Large files
+*.zip
+
