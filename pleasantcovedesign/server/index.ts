@@ -22,6 +22,7 @@ import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import { instrument } from '@socket.io/admin-ui';
 import { createR2Storage } from './storage/r2-storage';
+import './storage-extensions'; // Extend storage with client workspace methods
 
 console.log(
   `[BOOT] commit=${process.env.RAILWAY_GIT_COMMIT_SHA || 'local'} ` +
@@ -576,6 +577,15 @@ async function startServer() {
       // Note: Postgres router should handle its own fallbacks now
       app.use("/api/scrape-runs", scrapeRouter);
       app.use("/api/leads/verify", verifyRouter);
+      
+      // Client workspace routes
+      try {
+        const clientWorkspaceRouter = await import('./routes/client-workspace');
+        app.use("/api/projects", clientWorkspaceRouter.default);
+        console.log('✅ Client workspace routes registered');
+      } catch (error) {
+        console.log('⚠️ Client workspace router failed:', error.message);
+      }
       
       // Health endpoint
       app.get("/api/health", async (req, res) => {
