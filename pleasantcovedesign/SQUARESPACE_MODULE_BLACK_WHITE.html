@@ -1,0 +1,1383 @@
+<!-- Pleasant Cove Design - Professional Black & White Project Workspace -->
+<!-- Copy ALL of this code into a Squarespace Code Block -->
+
+<div id="pleasant-cove-workspace">
+  <div style="text-align: center; padding: 40px;">
+    <div style="display: inline-block; width: 50px; height: 50px; border: 3px solid #f3f3f3; border-top: 3px solid #000; border-radius: 50%; animation: pcd-spin 1s linear infinite;"></div>
+    <p style="margin-top: 20px; color: #6b7280;">Loading your project workspace...</p>
+  </div>
+</div>
+
+<style>
+@keyframes pcd-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#pleasant-cove-workspace {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pleasant-cove-workspace * {
+  box-sizing: border-box;
+}
+
+.pcd-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.pcd-header {
+  background: #000;
+  color: #fff;
+  padding: 32px 40px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pcd-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.pcd-header p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.pcd-nav {
+  display: flex;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  overflow-x: auto;
+}
+
+.pcd-nav button {
+  flex: 1;
+  padding: 16px 24px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+
+.pcd-nav button:hover {
+  color: #000;
+  background: #f9fafb;
+}
+
+.pcd-nav button.active {
+  color: #000;
+  border-bottom-color: #000;
+}
+
+.pcd-content {
+  padding: 40px;
+  min-height: 600px;
+  background: #fff;
+}
+
+.pcd-section {
+  display: none;
+}
+
+.pcd-section.active {
+  display: block;
+}
+
+/* Progress Styles */
+.pcd-progress-container {
+  margin-bottom: 40px;
+}
+
+.pcd-progress-container h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #000;
+}
+
+.pcd-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #f3f4f6;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.pcd-progress-fill {
+  height: 100%;
+  background: #000;
+  transition: width 0.5s ease;
+}
+
+.pcd-progress-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+  margin-top: 12px;
+  display: block;
+}
+
+.pcd-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.pcd-stat-card {
+  background: #fff;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.pcd-stat-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.pcd-stat-card h3 {
+  margin: 0 0 8px 0;
+  color: #6b7280;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.pcd-stat-card p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Billing Section */
+.pcd-billing-section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 32px;
+  margin-top: 32px;
+}
+
+.pcd-billing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pcd-billing-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #000;
+  font-weight: 600;
+}
+
+.pcd-billing-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #000;
+  border: 1px solid #e5e7eb;
+}
+
+.pcd-billing-status.paid {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.pcd-billing-status.partial {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.pcd-billing-breakdown {
+  background: #fff;
+}
+
+.pcd-billing-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 15px;
+}
+
+.pcd-billing-item:last-child {
+  border-bottom: none;
+}
+
+.pcd-billing-item.total {
+  font-weight: 700;
+  font-size: 18px;
+  color: #000;
+  padding-top: 24px;
+  margin-top: 16px;
+  border-top: 2px solid #000;
+}
+
+.pcd-billing-description {
+  margin-top: 32px;
+  padding: 24px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.pcd-billing-description h4 {
+  margin: 0 0 16px 0;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pcd-billing-description ul {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+
+.pcd-billing-description li {
+  margin: 8px 0;
+  color: #374151;
+  font-size: 14px;
+}
+
+.pcd-payment-history {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pcd-payment-history h3 {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
+.pcd-payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 12px;
+}
+
+.pcd-payment-info {
+  flex: 1;
+}
+
+.pcd-payment-date {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.pcd-payment-amount {
+  font-weight: 600;
+  color: #000;
+  font-size: 18px;
+}
+
+/* Design Canvas Styles */
+.pcd-canvas-container {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  min-height: 600px;
+}
+
+.pcd-canvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pcd-canvas-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #000;
+  font-weight: 600;
+}
+
+.pcd-canvas-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.pcd-canvas-btn {
+  padding: 6px 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.pcd-canvas-btn:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.pcd-canvas-btn.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.pcd-designs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.pcd-design-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.pcd-design-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.pcd-design-preview {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pcd-design-info {
+  padding: 20px;
+}
+
+.pcd-design-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 4px;
+}
+
+.pcd-design-meta {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.pcd-feedback-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #000;
+  color: #fff;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pcd-design-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.pcd-design-detail-content {
+  background: #fff;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.pcd-design-detail-header {
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pcd-design-detail-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.pcd-close-btn {
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.pcd-close-btn:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.pcd-feedback-section {
+  padding: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pcd-feedback-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.pcd-feedback-input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.pcd-feedback-btn {
+  padding: 10px 24px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+.pcd-feedback-btn:hover {
+  background: #1f2937;
+}
+
+/* Milestones Styles */
+.pcd-milestones {
+  margin-top: 8px;
+}
+
+.pcd-milestone {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  margin-bottom: 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.pcd-milestone:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.pcd-milestone.completed {
+  background: #f9fafb;
+}
+
+.pcd-milestone-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.pcd-milestone.completed .pcd-milestone-icon {
+  background: #000;
+  color: #fff;
+}
+
+.pcd-milestone.pending .pcd-milestone-icon {
+  background: #fff;
+  color: #e5e7eb;
+  border: 2px solid #e5e7eb;
+}
+
+.pcd-milestone.current .pcd-milestone-icon {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.pcd-milestone-content h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+}
+
+.pcd-milestone-content p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Real-time connection indicator */
+.pcd-connection-status {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+}
+
+.pcd-connection-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.pcd-connection-dot.disconnected {
+  background: #ef4444;
+}
+
+/* No project message */
+.pcd-no-project {
+  text-align: center;
+  padding: 80px 20px;
+  color: #6b7280;
+}
+
+.pcd-no-project h2 {
+  color: #000;
+  margin-bottom: 12px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pcd-nav {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .pcd-nav button {
+    min-width: 120px;
+    font-size: 14px;
+    padding: 14px 20px;
+  }
+  
+  .pcd-content {
+    padding: 24px 20px;
+  }
+  
+  .pcd-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .pcd-billing-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .pcd-designs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Loading State */
+.pcd-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+}
+
+.pcd-loading-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f4f6;
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: pcd-spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+</style>
+
+<script>
+// Pleasant Cove Design - Professional Project Workspace Module
+(function() {
+  'use strict';
+
+  // Configuration
+  const CONFIG = {
+    API_URL: window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://api.pleasantcovedesign.com',
+    WS_URL: window.location.hostname === 'localhost' ? 'ws://localhost:3000' : 'wss://api.pleasantcovedesign.com',
+    DEMO_MODE: true // Will auto-detect if no member found
+  };
+
+  // Enhanced demo projects with realistic data
+  const DEMO_PROJECTS = {
+    'sarah@lobstershack.com': {
+      id: 1,
+      name: "The Lobster Shack Website Redesign",
+      companyName: "The Lobster Shack",
+      contactName: "Sarah Mitchell",
+      progress: 65,
+      currentStage: "Design Refinement",
+      estimatedCompletion: "2024-03-15",
+      startDate: "2024-01-10",
+      billing: {
+        package: "Professional Package",
+        basePrice: 4997,
+        addons: [
+          { name: "Appointment Booking", price: 797, description: "Online reservation system" },
+          { name: "Photo Gallery", price: 297, description: "Menu & ambiance photos" },
+          { name: "Additional Page", price: 297, description: "Seasonal menu page" },
+          { name: "Video Integration", price: 397, description: "Virtual restaurant tour" }
+        ],
+        subtotal: 6785,
+        tax: 0,
+        total: 6785,
+        deposit: 3393,
+        remaining: 3392,
+        payments: [
+          {
+            date: "2024-01-10",
+            amount: 3393,
+            description: "Initial deposit (50%)",
+            method: "Credit Card",
+            transactionId: "ch_3MQoS2BXZ9wlKJ1234567890"
+          }
+        ],
+        breakdown: {
+          design: "Professional Package - Restaurant Industry Focused",
+          development: "Full-service restaurant website with online capabilities",
+          features: [
+            "10-page responsive website design",
+            "Online reservation system integrated with your calendar",
+            "Photo gallery with 50+ professional menu photos",
+            "Virtual tour video on homepage",
+            "Mobile-first design for on-the-go customers",
+            "Google Maps integration with directions",
+            "Social media feeds (Instagram, Facebook)",
+            "Email newsletter signup with Mailchimp",
+            "SEO optimization for 'Camden Maine Restaurant'",
+            "SSL security certificate",
+            "1 year premium hosting",
+            "30-day post-launch support"
+          ],
+          timeline: "8-10 weeks from project start"
+        }
+      },
+      designs: [
+        {
+          id: 1,
+          title: "Homepage - Hero & Navigation",
+          description: "Stunning coastal imagery with clear call-to-action for reservations",
+          imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect width='800' height='600' fill='%23f8f9fa'/%3E%3Crect x='0' y='0' width='800' height='80' fill='%23000'/%3E%3Ctext x='40' y='50' fill='white' font-family='Arial' font-size='24' font-weight='bold'%3EThe Lobster Shack%3C/text%3E%3Ctext x='600' y='50' fill='white' font-family='Arial' font-size='16'%3EReservations Menu About%3C/text%3E%3Crect x='0' y='80' width='800' height='400' fill='%23e5e7eb'/%3E%3Ctext x='400' y='280' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='18'%3E[Hero Image: Coastal Restaurant View]%3C/text%3E%3Crect x='250' y='350' width='300' height='60' fill='%23000'/%3E%3Ctext x='400' y='385' text-anchor='middle' fill='white' font-family='Arial' font-size='18' font-weight='bold'%3EBook Your Table%3C/text%3E%3C/svg%3E",
+          version: "v3",
+          lastUpdated: "2024-02-28",
+          feedbackCount: 5,
+          status: "approved"
+        },
+        {
+          id: 2,
+          title: "Menu Page Layout",
+          description: "Clean, appetizing menu presentation with filtering options",
+          imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect width='800' height='600' fill='%23fff'/%3E%3Ctext x='400' y='40' text-anchor='middle' fill='%23000' font-family='Arial' font-size='32' font-weight='bold'%3EOur Menu%3C/text%3E%3Crect x='100' y='80' width='600' height='40' fill='%23f3f4f6'/%3E%3Ctext x='150' y='105' fill='%23374151' font-family='Arial' font-size='14'%3EAll Appetizers Mains Seafood Desserts%3C/text%3E%3Crect x='100' y='150' width='280' height='180' fill='%23f9fafb' stroke='%23e5e7eb'/%3E%3Ctext x='240' y='180' text-anchor='middle' fill='%23000' font-family='Arial' font-size='16' font-weight='600'%3ELobster Roll%3C/text%3E%3Ctext x='240' y='210' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='14'%3EFresh Maine lobster, butter,%3C/text%3E%3Ctext x='240' y='230' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='14'%3Etoasted brioche bun%3C/text%3E%3Ctext x='240' y='290' text-anchor='middle' fill='%23000' font-family='Arial' font-size='20' font-weight='bold'%3E$32%3C/text%3E%3Crect x='420' y='150' width='280' height='180' fill='%23f9fafb' stroke='%23e5e7eb'/%3E%3Ctext x='560' y='180' text-anchor='middle' fill='%23000' font-family='Arial' font-size='16' font-weight='600'%3EClam Chowder%3C/text%3E%3Ctext x='560' y='210' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='14'%3ECreamy New England style%3C/text%3E%3Ctext x='560' y='230' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='14'%3Ewith fresh clams%3C/text%3E%3Ctext x='560' y='290' text-anchor='middle' fill='%23000' font-family='Arial' font-size='20' font-weight='bold'%3E$14%3C/text%3E%3C/svg%3E",
+          version: "v2",
+          lastUpdated: "2024-02-26",
+          feedbackCount: 3,
+          status: "in-review"
+        },
+        {
+          id: 3,
+          title: "Reservations Page",
+          description: "Integrated booking system with availability calendar",
+          imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect width='800' height='600' fill='%23fff'/%3E%3Ctext x='400' y='40' text-anchor='middle' fill='%23000' font-family='Arial' font-size='32' font-weight='bold'%3EMake a Reservation%3C/text%3E%3Crect x='50' y='80' width='350' height='400' fill='%23f9fafb' stroke='%23e5e7eb'/%3E%3Ctext x='225' y='110' text-anchor='middle' fill='%23000' font-family='Arial' font-size='18' font-weight='600'%3EMarch 2024%3C/text%3E%3Cg transform='translate(70, 140)'%3E%3Ctext x='0' y='0' fill='%236b7280' font-family='Arial' font-size='12'%3ES M T W T F S%3C/text%3E%3C/g%3E%3Crect x='450' y='80' width='300' height='400' fill='%23f9fafb' stroke='%23e5e7eb'/%3E%3Ctext x='600' y='110' text-anchor='middle' fill='%23000' font-family='Arial' font-size='18' font-weight='600'%3EReservation Details%3C/text%3E%3Ctext x='480' y='160' fill='%23374151' font-family='Arial' font-size='14'%3EDate: March 15, 2024%3C/text%3E%3Ctext x='480' y='200' fill='%23374151' font-family='Arial' font-size='14'%3ETime: 7:00 PM%3C/text%3E%3Ctext x='480' y='240' fill='%23374151' font-family='Arial' font-size='14'%3EParty Size: 4 guests%3C/text%3E%3Crect x='500' y='380' width='200' height='50' fill='%23000'/%3E%3Ctext x='600' y='410' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3EConfirm Booking%3C/text%3E%3C/svg%3E",
+          version: "v1",
+          lastUpdated: "2024-02-24",
+          feedbackCount: 1,
+          status: "pending"
+        }
+      ],
+      milestones: [
+        {
+          id: 1,
+          title: 'Discovery & Brand Analysis',
+          description: 'Menu photography, competitor research, brand positioning for coastal dining',
+          status: 'completed',
+          completedDate: '2024-01-15'
+        },
+        {
+          id: 2,
+          title: 'Content Creation',
+          description: 'Professional food photography (50+ dishes), menu descriptions, about us story',
+          status: 'completed',
+          completedDate: '2024-02-01'
+        },
+        {
+          id: 3,
+          title: 'Design & User Experience',
+          description: 'Create appetizing, coastal-themed designs optimized for hungry customers',
+          status: 'current',
+          dueDate: '2024-03-01',
+          progress: 75
+        },
+        {
+          id: 4,
+          title: 'Development & Integration',
+          description: 'Build responsive site, integrate reservation system, test ordering flow',
+          status: 'pending',
+          dueDate: '2024-03-08'
+        },
+        {
+          id: 5,
+          title: 'Launch & Marketing',
+          description: 'Deploy live, submit to Google Business, launch social media campaign',
+          status: 'pending',
+          dueDate: '2024-03-15'
+        }
+      ]
+    },
+    'robert@harborlegal.com': {
+      id: 2,
+      name: "Harbor Legal Associates Website",
+      companyName: "Harbor Legal Associates",
+      contactName: "Robert Harrison, Esq.",
+      progress: 35,
+      currentStage: "Content Development",
+      estimatedCompletion: "2024-04-01",
+      startDate: "2024-01-20",
+      billing: {
+        package: "Professional Package",
+        basePrice: 4997,
+        addons: [
+          { name: "Customer Messaging", price: 997, description: "Secure client portal" },
+          { name: "SEO Package", price: 797, description: "Legal SEO optimization" },
+          { name: "Copywriting", price: 397, description: "Personal Injury page" },
+          { name: "Copywriting", price: 397, description: "Family Law page" },
+          { name: "Copywriting", price: 397, description: "Estate Planning page" },
+          { name: "Copywriting", price: 397, description: "Business Law page" },
+          { name: "Copywriting", price: 397, description: "Real Estate Law page" },
+          { name: "Logo Design", price: 797, description: "Professional rebrand" },
+          { name: "Additional Page", price: 297, description: "Attorney profiles" },
+          { name: "Additional Page", price: 297, description: "Case results" },
+          { name: "Additional Page", price: 297, description: "Client resources" }
+        ],
+        subtotal: 10169,
+        tax: 0,
+        total: 10169,
+        deposit: 5085,
+        remaining: 5084,
+        payments: [
+          {
+            date: "2024-01-20",
+            amount: 5085,
+            description: "Initial deposit (50%)",
+            method: "Bank Transfer",
+            transactionId: "BAC-784521-HLA"
+          }
+        ],
+        breakdown: {
+          design: "Professional Package - Legal Industry Specialized",
+          development: "Secure, professional law firm website with client portal",
+          features: [
+            "13-page professional website (10 base + 3 additional)",
+            "Secure client messaging portal with encryption",
+            "Attorney-optimized SEO for local searches",
+            "5 practice area pages with professional copy",
+            "Complete brand redesign with new logo",
+            "Attorney profile pages with bios and credentials",
+            "Case results showcase with testimonials",
+            "Client resource center with downloadable forms",
+            "ADA compliant design for accessibility",
+            "SSL security with enhanced encryption",
+            "Mobile-responsive for client convenience",
+            "Integration with legal practice management software"
+          ],
+          timeline: "10-12 weeks from project start"
+        }
+      },
+      designs: [
+        {
+          id: 1,
+          title: "Homepage - Professional Trust",
+          description: "Authoritative design establishing credibility and expertise",
+          imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect width='800' height='600' fill='%23fff'/%3E%3Crect x='0' y='0' width='800' height='100' fill='%23000'/%3E%3Ctext x='40' y='60' fill='white' font-family='Georgia' font-size='28' font-weight='bold'%3EHarbor Legal Associates%3C/text%3E%3Ctext x='500' y='60' fill='white' font-family='Arial' font-size='14'%3EPractice Areas Attorneys Results Contact%3C/text%3E%3Crect x='0' y='100' width='800' height='300' fill='%23f3f4f6'/%3E%3Ctext x='400' y='200' text-anchor='middle' fill='%23000' font-family='Georgia' font-size='36' font-weight='bold'%3ETrusted Legal Counsel%3C/text%3E%3Ctext x='400' y='240' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='18'%3EServing Maine families and businesses since 1995%3C/text%3E%3Crect x='300' y='300' width='200' height='50' fill='%23000'/%3E%3Ctext x='400' y='330' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3EFree Consultation%3C/text%3E%3C/svg%3E",
+          version: "v2",
+          lastUpdated: "2024-02-20",
+          feedbackCount: 2,
+          status: "approved"
+        },
+        {
+          id: 2,
+          title: "Practice Areas Grid",
+          description: "Clear navigation to all legal services offered",
+          imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect width='800' height='600' fill='%23fff'/%3E%3Ctext x='400' y='50' text-anchor='middle' fill='%23000' font-family='Georgia' font-size='32' font-weight='bold'%3EOur Practice Areas%3C/text%3E%3Cg transform='translate(50, 100)'%3E%3Crect x='0' y='0' width='220' height='200' fill='%23f9fafb' stroke='%23e5e7eb'/%3E%3Ctext x='110' y='40' text-anchor='middle' fill='%23000' font-family='Arial' font-size='18' font-weight='600'%3EPersonal Injury%3C/text%3E%3Ctext x='110' y='100' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='14'%3ECar Accidents%3C/text%3E%3Ctext x='110' y='120' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='14'%3EMedical Malpractice%3C/text%3E%3Ctext x='110' y='140' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='14'%3ESlip & Fall%3C/text%3E%3C/g%3E%3Cg transform='translate(290, 100)'%3E%3Crect x='0' y='0' width='220' height='200' fill='%23f9fafb' stroke='%23e5e7eb'/%3E%3Ctext x='110' y='40' text-anchor='middle' fill='%23000' font-family='Arial' font-size='18' font-weight='600'%3EFamily Law%3C/text%3E%3Ctext x='110' y='100' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='14'%3EDivorce%3C/text%3E%3Ctext x='110' y='120' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='14'%3EChild Custody%3C/text%3E%3Ctext x='110' y='140' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='14'%3EAdoption%3C/text%3E%3C/g%3E%3C/svg%3E",
+          version: "v1",
+          lastUpdated: "2024-02-18",
+          feedbackCount: 0,
+          status: "pending"
+        }
+      ],
+      milestones: [
+        {
+          id: 1,
+          title: 'Legal Compliance Review',
+          description: 'Ensure all content meets Maine Bar regulations and ADA requirements',
+          status: 'completed',
+          completedDate: '2024-01-25'
+        },
+        {
+          id: 2,
+          title: 'Brand Development',
+          description: 'Create professional logo and visual identity for modern law firm',
+          status: 'completed',
+          completedDate: '2024-02-10'
+        },
+        {
+          id: 3,
+          title: 'Content Writing',
+          description: 'Professional copywriting for 5 practice areas and attorney bios',
+          status: 'current',
+          dueDate: '2024-02-28',
+          progress: 60
+        },
+        {
+          id: 4,
+          title: 'Design & Architecture',
+          description: 'Create trustworthy, professional design with secure client portal',
+          status: 'pending',
+          dueDate: '2024-03-15'
+        },
+        {
+          id: 5,
+          title: 'Development & Security',
+          description: 'Build secure platform with encrypted client communications',
+          status: 'pending',
+          dueDate: '2024-03-25'
+        },
+        {
+          id: 6,
+          title: 'Testing & Launch',
+          description: 'Security audit, compliance check, and professional launch',
+          status: 'pending',
+          dueDate: '2024-04-01'
+        }
+      ]
+    }
+  };
+
+  // Main application
+  const ProjectWorkspace = {
+    data: {
+      project: null,
+      currentTab: 'overview',
+      memberEmail: null,
+      memberName: 'Valued Client',
+      selectedDesign: null,
+      wsConnection: null,
+      connectionStatus: 'connecting',
+      projectToken: null
+    },
+
+    async init() {
+      console.log('🚀 Initializing Pleasant Cove Project Workspace...');
+      
+      // For demo, cycle between accounts
+      const demoEmails = Object.keys(DEMO_PROJECTS);
+      const randomIndex = Math.floor(Math.random() * demoEmails.length);
+      this.data.memberEmail = demoEmails[randomIndex];
+      
+      this.render();
+      await this.loadProject();
+    },
+
+    async loadProject() {
+      // Always use demo data for now
+      const project = DEMO_PROJECTS[this.data.memberEmail];
+      
+      if (project) {
+        this.data.project = project;
+        this.data.memberName = project.contactName;
+        this.updateUI();
+      } else {
+        this.showNoProject();
+      }
+    },
+
+    render() {
+      const container = document.getElementById('pleasant-cove-workspace');
+      container.innerHTML = `
+        <div class="pcd-container">
+          <div class="pcd-header">
+            <h1>Project Dashboard</h1>
+            <p>Welcome to Pleasant Cove Design</p>
+            <div class="pcd-connection-status">
+              <span class="pcd-connection-dot"></span>
+              <span>Live</span>
+            </div>
+          </div>
+          
+          <nav class="pcd-nav">
+            <button class="active" onclick="ProjectWorkspace.showTab('overview')">Overview & Billing</button>
+            <button onclick="ProjectWorkspace.showTab('canvas')">Design Canvas</button>
+            <button onclick="ProjectWorkspace.showTab('milestones')">Milestones</button>
+          </nav>
+          
+          <div class="pcd-content">
+            <div id="pcd-overview" class="pcd-section active">
+              <div class="pcd-loading">
+                <div class="pcd-loading-spinner"></div>
+                <p>Loading project details...</p>
+              </div>
+            </div>
+            
+            <div id="pcd-canvas" class="pcd-section">
+              <div class="pcd-loading">
+                <div class="pcd-loading-spinner"></div>
+                <p>Loading designs...</p>
+              </div>
+            </div>
+            
+            <div id="pcd-milestones" class="pcd-section">
+              <div class="pcd-loading">
+                <div class="pcd-loading-spinner"></div>
+                <p>Loading milestones...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="pcd-design-modal"></div>
+      `;
+    },
+
+    updateUI() {
+      if (!this.data.project) return;
+
+      // Update header
+      const header = document.querySelector('.pcd-header h1');
+      const subtitle = document.querySelector('.pcd-header p');
+      if (header) header.textContent = this.data.project.name;
+      if (subtitle) subtitle.textContent = `Welcome, ${this.data.memberName}`;
+
+      // Update content
+      this.showTab(this.data.currentTab);
+    },
+
+    showTab(tabName) {
+      this.data.currentTab = tabName;
+
+      // Update nav buttons
+      document.querySelectorAll('.pcd-nav button').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase().includes(tabName)) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Hide all sections
+      document.querySelectorAll('.pcd-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Show selected section
+      const section = document.getElementById(`pcd-${tabName}`);
+      if (section) {
+        section.classList.add('active');
+        
+        switch(tabName) {
+          case 'overview':
+            this.renderOverview();
+            break;
+          case 'canvas':
+            this.renderCanvas();
+            break;
+          case 'milestones':
+            this.renderMilestones();
+            break;
+        }
+      }
+    },
+
+    renderOverview() {
+      const section = document.getElementById('pcd-overview');
+      const project = this.data.project;
+      const billing = project.billing;
+      
+      // Calculate payment status
+      const paidAmount = billing.payments.reduce((sum, payment) => sum + payment.amount, 0);
+      const paymentStatus = paidAmount >= billing.total ? 'paid' : 
+                           paidAmount > 0 ? 'partial' : 'pending';
+      const remainingAmount = billing.total - paidAmount;
+      
+      section.innerHTML = `
+        <div class="pcd-progress-container">
+          <h2>Project Progress</h2>
+          <div class="pcd-progress-bar">
+            <div class="pcd-progress-fill" style="width: ${project.progress}%"></div>
+          </div>
+          <span class="pcd-progress-text">${project.progress}% Complete</span>
+        </div>
+        
+        <div class="pcd-stats">
+          <div class="pcd-stat-card">
+            <h3>Company</h3>
+            <p>${project.companyName}</p>
+          </div>
+          
+          <div class="pcd-stat-card">
+            <h3>Current Stage</h3>
+            <p>${project.currentStage}</p>
+          </div>
+          
+          <div class="pcd-stat-card">
+            <h3>Project Started</h3>
+            <p>${this.formatDate(project.startDate)}</p>
+          </div>
+          
+          <div class="pcd-stat-card">
+            <h3>Expected Launch</h3>
+            <p>${this.formatDate(project.estimatedCompletion)}</p>
+          </div>
+        </div>
+        
+        <div class="pcd-billing-section">
+          <div class="pcd-billing-header">
+            <h2>Project Investment Details</h2>
+            <span class="pcd-billing-status ${paymentStatus}">
+              ${paymentStatus === 'paid' ? '✓ Paid in Full' : 
+                paymentStatus === 'partial' ? `Balance Due: $${remainingAmount.toLocaleString()}` : 
+                'Payment Pending'}
+            </span>
+          </div>
+          
+          <div class="pcd-billing-breakdown">
+            <div class="pcd-billing-item">
+              <span>${billing.package}</span>
+              <span>$${billing.basePrice.toLocaleString()}</span>
+            </div>
+            
+            ${billing.addons.map(addon => `
+              <div class="pcd-billing-item">
+                <span>
+                  ${addon.name}
+                  ${addon.description ? `<br><small style="color: #6b7280; font-size: 13px;">${addon.description}</small>` : ''}
+                </span>
+                <span>$${addon.price.toLocaleString()}</span>
+              </div>
+            `).join('')}
+            
+            <div class="pcd-billing-item">
+              <span>Subtotal</span>
+              <span>$${billing.subtotal.toLocaleString()}</span>
+            </div>
+            
+            ${billing.tax > 0 ? `
+              <div class="pcd-billing-item">
+                <span>Tax</span>
+                <span>$${billing.tax.toLocaleString()}</span>
+              </div>
+            ` : ''}
+            
+            <div class="pcd-billing-item total">
+              <span>Total Investment</span>
+              <span>$${billing.total.toLocaleString()}</span>
+            </div>
+          </div>
+          
+          <div class="pcd-billing-description">
+            <h4>Project Scope & Deliverables:</h4>
+            <p><strong>${billing.breakdown.design}</strong></p>
+            <p style="margin-top: 8px; color: #374151;">${billing.breakdown.development}</p>
+            <ul>
+              ${billing.breakdown.features.map(feature => `<li>${feature}</li>`).join('')}
+            </ul>
+            <p style="margin-top: 16px;"><strong>Project Timeline:</strong> ${billing.breakdown.timeline}</p>
+          </div>
+          
+          ${billing.payments.length > 0 ? `
+            <div class="pcd-payment-history">
+              <h3>Payment History</h3>
+              ${billing.payments.map(payment => `
+                <div class="pcd-payment">
+                  <div class="pcd-payment-info">
+                    <div>${payment.description}</div>
+                    <div class="pcd-payment-date">${this.formatDate(payment.date)} • ${payment.method} • ${payment.transactionId}</div>
+                  </div>
+                  <div class="pcd-payment-amount">$${payment.amount.toLocaleString()}</div>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+          
+          ${remainingAmount > 0 ? `
+            <div style="margin-top: 32px; padding: 24px; background: #f9fafb; border: 1px solid #e5e7eb; text-align: center;">
+              <strong style="font-size: 16px;">Final Payment Due:</strong> 
+              <span style="font-size: 24px; font-weight: 700; display: block; margin-top: 8px;">$${remainingAmount.toLocaleString()}</span>
+              <small style="color: #6b7280; display: block; margin-top: 8px;">Due upon project completion and your approval</small>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    },
+
+    renderCanvas() {
+      const section = document.getElementById('pcd-canvas');
+      const designs = this.data.project.designs || [];
+      
+      section.innerHTML = `
+        <div class="pcd-canvas-container">
+          <div class="pcd-canvas-header">
+            <h2>Design Canvas</h2>
+            <div class="pcd-canvas-controls">
+              <button class="pcd-canvas-btn active">All Designs</button>
+              <button class="pcd-canvas-btn" onclick="ProjectWorkspace.filterDesigns('approved')">Approved</button>
+              <button class="pcd-canvas-btn" onclick="ProjectWorkspace.filterDesigns('in-review')">In Review</button>
+            </div>
+          </div>
+          
+          <p style="color: #6b7280; margin-bottom: 24px;">
+            Click any design to view full size and provide feedback. Your input helps us perfect your website.
+          </p>
+          
+          <div class="pcd-designs-grid">
+            ${designs.map(design => `
+              <div class="pcd-design-card" onclick="ProjectWorkspace.viewDesign(${design.id})">
+                ${design.feedbackCount > 0 ? `<div class="pcd-feedback-badge">${design.feedbackCount} comments</div>` : ''}
+                <div class="pcd-design-preview">
+                  <img src="${design.imageUrl}" alt="${design.title}" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="pcd-design-info">
+                  <div class="pcd-design-title">${design.title}</div>
+                  <div class="pcd-design-meta">
+                    ${design.version} • Last updated ${this.formatDate(design.lastUpdated)}
+                    ${design.status ? ` • <span style="text-transform: capitalize; color: ${design.status === 'approved' ? '#059669' : design.status === 'in-review' ? '#f59e0b' : '#6b7280'};">${design.status.replace('-', ' ')}</span>` : ''}
+                  </div>
+                  <div class="pcd-design-meta" style="margin-top: 4px;">${design.description}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          
+          ${designs.length === 0 ? `
+            <div style="text-align: center; padding: 80px 20px; color: #6b7280;">
+              <p style="font-size: 48px; margin-bottom: 20px;">🎨</p>
+              <p style="font-size: 18px; color: #000; font-weight: 600;">No designs uploaded yet</p>
+              <p style="margin-top: 8px;">We're working on your designs and will notify you as soon as they're ready for review.</p>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    },
+
+    filterDesigns(status) {
+      // Update button states
+      document.querySelectorAll('.pcd-canvas-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Filter designs (in a real app, this would re-render with filtered data)
+      console.log('Filter by status:', status);
+    },
+
+    viewDesign(designId) {
+      const design = this.data.project.designs.find(d => d.id === designId);
+      if (!design) return;
+      
+      const modal = document.getElementById('pcd-design-modal');
+      modal.innerHTML = `
+        <div class="pcd-design-detail">
+          <div class="pcd-design-detail-content">
+            <div class="pcd-design-detail-header">
+              <div>
+                <h2>${design.title}</h2>
+                <p style="color: #6b7280;">${design.description}</p>
+              </div>
+              <button class="pcd-close-btn" onclick="ProjectWorkspace.closeDesign()">✕ Close</button>
+            </div>
+            
+            <div style="padding: 32px; text-align: center; background: #f9fafb;">
+              <img src="${design.imageUrl}" alt="${design.title}" class="pcd-design-detail-image">
+            </div>
+            
+            <div class="pcd-feedback-section">
+              <h3>Your Feedback</h3>
+              <p style="color: #6b7280; margin-bottom: 16px;">
+                Help us perfect this design. What works well? What could be improved?
+              </p>
+              <textarea 
+                id="pcd-feedback-input" 
+                class="pcd-feedback-input" 
+                placeholder="Share your thoughts on this design..."
+                rows="4"
+              ></textarea>
+              <button class="pcd-feedback-btn" onclick="ProjectWorkspace.submitFeedback(${design.id})">
+                Submit Feedback
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    },
+
+    closeDesign() {
+      document.getElementById('pcd-design-modal').innerHTML = '';
+    },
+
+    submitFeedback(designId) {
+      const input = document.getElementById('pcd-feedback-input');
+      const feedback = input.value.trim();
+      
+      if (!feedback) {
+        alert('Please enter your feedback before submitting.');
+        return;
+      }
+      
+      // Demo mode confirmation
+      alert('Thank you! Your feedback has been received and our design team will review it shortly.');
+      
+      // Update local feedback count
+      const design = this.data.project.designs.find(d => d.id === designId);
+      if (design) {
+        design.feedbackCount = (design.feedbackCount || 0) + 1;
+      }
+      
+      this.closeDesign();
+      this.renderCanvas();
+    },
+
+    renderMilestones() {
+      const section = document.getElementById('pcd-milestones');
+      const milestones = this.data.project.milestones || [];
+      
+      let milestonesHTML = '<h2 style="margin-bottom: 24px;">Project Milestones</h2><div class="pcd-milestones">';
+      
+      milestones.forEach((milestone, index) => {
+        milestonesHTML += `
+          <div class="pcd-milestone ${milestone.status}">
+            <div class="pcd-milestone-icon">
+              ${milestone.status === 'completed' ? '✓' : index + 1}
+            </div>
+            <div class="pcd-milestone-content">
+              <h3>${milestone.title}</h3>
+              <p>${milestone.description}</p>
+              ${milestone.completedDate ? 
+                `<p style="color: #059669; font-size: 13px; margin-top: 8px;">✓ Completed ${this.formatDate(milestone.completedDate)}</p>` : 
+                milestone.dueDate ? 
+                  `<p style="color: #6b7280; font-size: 13px; margin-top: 8px;">
+                    Expected: ${this.formatDate(milestone.dueDate)}
+                    ${milestone.progress ? ` • ${milestone.progress}% complete` : ''}
+                  </p>` : 
+                  ''
+              }
+            </div>
+          </div>
+        `;
+      });
+      
+      milestonesHTML += `
+        </div>
+        <div style="margin-top: 40px; padding: 24px; background: #f9fafb; border: 1px solid #e5e7eb;">
+          <h3 style="margin: 0 0 12px 0; font-size: 16px;">Next Steps</h3>
+          <p style="color: #374151; margin: 0; line-height: 1.6;">
+            ${this.data.project.currentStage === 'Design Refinement' ? 
+              'We\'re currently refining your designs based on your feedback. Please review the designs in the Design Canvas and let us know your thoughts.' :
+              'We\'re working on your content and will have drafts ready for your review soon. You\'ll receive an email notification when they\'re ready.'
+            }
+          </p>
+        </div>
+      `;
+      
+      section.innerHTML = milestonesHTML;
+    },
+
+    showNoProject() {
+      const content = document.querySelector('.pcd-content');
+      content.innerHTML = `
+        <div class="pcd-no-project">
+          <h2>No Active Project Found</h2>
+          <p>We couldn't find an active project for your account.</p>
+          <p>Please contact us at <a href="mailto:support@pleasantcovedesign.com" style="color: #000; text-decoration: underline;">support@pleasantcovedesign.com</a> for assistance.</p>
+        </div>
+      `;
+    },
+
+    formatDate(dateString) {
+      if (!dateString) return 'TBD';
+      const date = new Date(dateString);
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    }
+  };
+
+  // Make available globally
+  window.ProjectWorkspace = ProjectWorkspace;
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => ProjectWorkspace.init());
+  } else {
+    setTimeout(() => ProjectWorkspace.init(), 100);
+  }
+})();
+</script>
