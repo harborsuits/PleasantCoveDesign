@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bob's Plumbing - Plumber in Camden, ME</title>
+    <meta name="description" content="Bob's Plumbing has been proudly serving Camden with top-quality plumber services. With 4.5 stars and 47 satisfied customers, we're your local experts.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .demo-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .demo-banner h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .demo-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .urgency-ticker {
+            background: #ff6b6b;
+            color: white;
+            padding: 8px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .contact-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .phone-cta {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .phone-cta:hover {
+            transform: scale(1.05);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 40px;
+            font-size: 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+        }
+        
+        .trust-indicators {
+            background: #f8f9fa;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .trust-item {
+            text-align: center;
+        }
+        
+        .trust-item .number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .trust-item .label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .services {
+            padding: 60px 0;
+        }
+        
+        .services h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .reviews {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+        
+        .reviews h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+        
+        .review-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .review-stars {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+        
+        .review-text {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .review-author {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .roi-calculator {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .roi-calculator h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .roi-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .roi-item {
+            text-align: center;
+        }
+        
+        .roi-item .amount {
+            font-size: 48px;
+            font-weight: bold;
+        }
+        
+        .roi-item .desc {
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .competitor-alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 5px;
+        }
+        
+        .competitor-alert h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .competitor-alert ul {
+            color: #856404;
+            margin-left: 20px;
+        }
+        
+        .final-cta {
+            background: #333;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .final-cta p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .limited-time {
+            background: #ff6b6b;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .weather-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .roi-numbers {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        <h2>🎯 This is YOUR Website Demo!</h2>
+        <p>See what Bob's Plumbing could look like online</p>
+    </div>
+    
+    <!-- Urgency Ticker -->
+    <div class="urgency-ticker">
+        ⚡ 3 plumbers in Camden already have websites - Don't let them steal your customers! ⚡
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Bob's Plumbing</div>
+                <div class="contact-header">
+                    <span>⭐⭐⭐⭐⭐ 4.5 (47 reviews)</span>
+                    <a href="tel:(207) 555-1234" class="phone-cta">📞 (207) 555-1234</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Camden's Most Trusted Plumber Since 2010</h1>
+            <p>24/7 Emergency Service • Licensed & Insured • Serving Midcoast Maine</p>
+            <a href="#contact" class="cta-button">Get Your Free Quote</a>
+        </div>
+    </section>
+    
+    <!-- Trust Indicators -->
+    <section class="trust-indicators">
+        <div class="container">
+            <h2>Why Camden Trusts Us</h2>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="number">4.5</div>
+                    <div class="label">Star Rating</div>
+                </div>
+                <div class="trust-item">
+                    <div class="number">47</div>
+                    <div class="label">Happy Customers</div>
+                </div>
+                <div class="trust-item">
+                    <div class="number">15+</div>
+                    <div class="label">Years Experience</div>
+                </div>
+                <div class="trust-item">
+                    <div class="number">24/7</div>
+                    <div class="label">Emergency Service</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services -->
+    <section class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Emergency Plumbing</h3>
+                    <p>24/7 emergency service for urgent plumbing issues in Camden and surrounding areas</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚿</div>
+                    <h3>Drain Cleaning</h3>
+                    <p>Professional drain cleaning services to keep your pipes flowing smoothly</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔥</div>
+                    <h3>Water Heater Repair</h3>
+                    <p>Expert water heater installation, repair, and maintenance services</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Pipe Installation</h3>
+                    <p>Complete pipe installation and replacement for residential and commercial</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💧</div>
+                    <h3>Leak Detection</h3>
+                    <p>Advanced leak detection to save you money and prevent water damage</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛁</div>
+                    <h3>Bathroom Remodeling</h3>
+                    <p>Transform your bathroom with our professional remodeling services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="container">
+            <h2>What Camden Residents Say</h2>
+            <div class="review-card">
+                <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-text">
+                    "Bob fixed our emergency leak on a Sunday evening. Fast response, fair price, and excellent work. Highly recommend!"
+                </div>
+                <div class="review-author">- Sarah Johnson, Camden</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-text">
+                    "Best plumber in the midcoast area. Professional, reliable, and always does quality work. Won't use anyone else."
+                </div>
+                <div class="review-author">- Mike Thompson, Rockport</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-text">
+                    "Installed our new water heater quickly and efficiently. Great communication and very knowledgeable. A+"
+                </div>
+                <div class="review-author">- Lisa Chen, Hope</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ROI Calculator -->
+    <section class="roi-calculator">
+        <div class="container">
+            <h2>What You're Missing Without a Website</h2>
+            <div class="roi-numbers">
+                <div class="roi-item">
+                    <div class="amount">~150</div>
+                    <div class="desc">Potential customers/month</div>
+                </div>
+                <div class="roi-item">
+                    <div class="amount">$52,500+</div>
+                    <div class="desc">Annual revenue potential</div>
+                </div>
+                <div class="roi-item">
+                    <div class="amount">70%</div>
+                    <div class="desc">Of customers search online first</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Competitor Alert -->
+    <div class="container">
+        <div class="competitor-alert">
+            <h3>⚠️ Your Competition is Already Online</h3>
+            <ul>
+                <li>Midcoast Plumbing Services has a website and ranks #1 on Google</li>
+                <li>Camden Drain Pros just launched their online booking system</li>
+                <li>3 other plumbers in Camden are capturing online customers daily</li>
+            </ul>
+            <p><strong>Don't let them steal your customers!</strong></p>
+        </div>
+    </div>
+    
+    <!-- Final CTA -->
+    <section class="final-cta" id="contact">
+        <div class="container">
+            <div class="limited-time">Limited Time Offer - September Special</div>
+            <h2>Ready to Dominate Camden Online?</h2>
+            <p>Your 4.5★ reputation deserves a professional website</p>
+            <a href="#" class="cta-button" onclick="window.parent.postMessage('openChat', '*')">Let's Build Your Website</a>
+        </div>
+    </section>
+    
+    <!-- Weather Widget (Local Touch) -->
+    <div class="weather-widget">
+        <strong>Camden, ME</strong><br>
+        42°F - Partly cloudy<br>
+        <small>Perfect day for plumbing!</small>
+    </div>
+    
+    <script>
+        // Add live interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate numbers on scroll
+            const observerOptions = {
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.number, .amount').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Update urgency ticker
+            const urgencyMessages = [
+                "2 people searched for 'plumber near me' while you read this",
+                "Another Camden business just got a website",
+                "Your competitor just got 3 new customers from Google",
+                "Missing ~5 calls this week from online searches"
+            ];
+            
+            let currentMessage = 0;
+            setInterval(() => {
+                currentMessage = (currentMessage + 1) % urgencyMessages.length;
+                document.querySelector('.urgency-ticker').innerHTML = `⚡ ${urgencyMessages[currentMessage]} ⚡`;
+            }, 5000);
+            
+            // Track demo engagement
+            let timeOnPage = 0;
+            let ctaClicks = 0;
+            
+            // Track CTA clicks
+            document.querySelectorAll('.cta-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    ctaClicks++;
+                    
+                    // Send tracking event
+                    if (window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'cta_click',
+                            demo_id: 'bobs-plumbing-demo',
+                            cta_type: 'contact',
+                            time_on_page: timeOnPage
+                        }, '*');
+                    }
+                    
+                    // Show interest message
+                    if (ctaClicks === 1) {
+                        alert("Great! Let's talk about getting your website live. Call Ben at (207) 555-0100 or reply to the message!");
+                    }
+                });
+            });
+            
+            // Time tracking
+            setInterval(() => {
+                timeOnPage++;
+                
+                // Send engagement milestones
+                if (timeOnPage === 30) {
+                    console.log('User engaged for 30 seconds');
+                }
+                if (timeOnPage === 60) {
+                    console.log('User highly engaged - 1 minute on page');
+                }
+            }, 1000);
+            
+            // Log demo view
+            console.log('Demo viewed: Bob\'s Plumbing - Camden, ME');
+            console.log('Personalization Score: 85%');
+            console.log('Competitor intel loaded');
+            console.log('Local weather widget active');
+        });
+    </script>
+</body>
+</html>

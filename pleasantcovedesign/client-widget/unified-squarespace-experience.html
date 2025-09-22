@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pleasant Cove Design - Unified Experience</title>
+    
+    <!-- Socket.IO for real-time updates -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    
+    <style>
+        /* Unified Pleasant Cove Design Experience */
+        #pcd-unified-container {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Progress Tracker Styles */
+        .pcd-progress-tracker {
+            background: white;
+            padding: 24px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .pcd-progress-stages {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pcd-progress-line {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #e9ecef;
+            z-index: 0;
+        }
+
+        .pcd-progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #4f46e5;
+            transition: width 0.3s ease;
+        }
+
+        .pcd-stage {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            flex: 1;
+        }
+
+        .pcd-stage-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 8px;
+            background: white;
+            border: 4px solid #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .pcd-stage.active .pcd-stage-icon {
+            border-color: #4f46e5;
+            background: #4f46e5;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .pcd-stage.completed .pcd-stage-icon {
+            border-color: #10b981;
+            background: #10b981;
+            color: white;
+        }
+
+        .pcd-stage-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .pcd-stage.active .pcd-stage-label {
+            color: #4f46e5;
+        }
+
+        .pcd-stage.completed .pcd-stage-label {
+            color: #10b981;
+        }
+
+        /* Tab Navigation */
+        .pcd-tabs {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .pcd-tab {
+            flex: 1;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #6b7280;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pcd-tab:hover {
+            background: #f3f4f6;
+        }
+
+        .pcd-tab.active {
+            color: #4f46e5;
+        }
+
+        .pcd-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #4f46e5;
+        }
+
+        .pcd-tab-icon {
+            margin-right: 8px;
+        }
+
+        /* Content Area */
+        .pcd-content {
+            background: white;
+            min-height: 600px;
+            position: relative;
+        }
+
+        .pcd-panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .pcd-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Canvas Panel */
+        .pcd-canvas-panel {
+            padding: 24px;
+            height: 600px;
+            position: relative;
+        }
+
+        .pcd-canvas {
+            width: 100%;
+            height: 100%;
+            border: 2px dashed #e9ecef;
+            border-radius: 8px;
+            position: relative;
+            background: #fafafa;
+            overflow: hidden;
+        }
+
+        .pcd-canvas-element {
+            position: absolute;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: move;
+            transition: all 0.2s ease;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .pcd-canvas-element:hover {
+            border-color: #4f46e5;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .pcd-comment-pin {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            background: #4f46e5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .pcd-comment-pin:hover {
+            transform: scale(1.1);
+        }
+
+        /* Messages Panel */
+        .pcd-messages-panel {
+            display: flex;
+            height: 600px;
+        }
+
+        .pcd-conversations-list {
+            width: 300px;
+            border-right: 1px solid #e9ecef;
+            overflow-y: auto;
+        }
+
+        .pcd-conversation-item {
+            padding: 16px;
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .pcd-conversation-item:hover {
+            background: #f9fafb;
+        }
+
+        .pcd-conversation-item.active {
+            background: #ede9fe;
+            border-left: 3px solid #4f46e5;
+        }
+
+        .pcd-conversation-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .pcd-conversation-preview {
+            font-size: 14px;
+            color: #6b7280;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .pcd-conversation-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+        }
+
+        .pcd-conversation-time {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .pcd-unread-badge {
+            background: #4f46e5;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .pcd-chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pcd-chat-header {
+            padding: 16px;
+            border-bottom: 1px solid #e9ecef;
+            background: #f9fafb;
+        }
+
+        .pcd-messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        .pcd-message {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .pcd-message.sent {
+            flex-direction: row-reverse;
+        }
+
+        .pcd-message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .pcd-message-content {
+            max-width: 70%;
+        }
+
+        .pcd-message-bubble {
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .pcd-message.received .pcd-message-bubble {
+            background: #f3f4f6;
+            color: #111827;
+        }
+
+        .pcd-message.sent .pcd-message-bubble {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .pcd-message-time {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 4px;
+        }
+
+        .pcd-message-input-container {
+            padding: 16px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .pcd-message-form {
+            display: flex;
+            gap: 12px;
+        }
+
+        .pcd-message-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 24px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+        }
+
+        .pcd-message-input:focus {
+            border-color: #4f46e5;
+        }
+
+        .pcd-send-button {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+
+        .pcd-send-button:hover {
+            transform: scale(1.05);
+        }
+
+        .pcd-send-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Activity Panel */
+        .pcd-activity-panel {
+            padding: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pcd-activity-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .pcd-activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .pcd-activity-icon.message {
+            background: #dbeafe;
+            color: #3b82f6;
+        }
+
+        .pcd-activity-icon.file {
+            background: #d1fae5;
+            color: #10b981;
+        }
+
+        .pcd-activity-icon.stage {
+            background: #ede9fe;
+            color: #4f46e5;
+        }
+
+        .pcd-activity-content {
+            flex: 1;
+        }
+
+        .pcd-activity-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .pcd-activity-description {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .pcd-activity-time {
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        /* Member Badge */
+        .pcd-member-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #4f46e5;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pcd-member-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .pcd-progress-stages {
+                gap: 8px;
+            }
+
+            .pcd-stage-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+
+            .pcd-stage-label {
+                font-size: 12px;
+            }
+
+            .pcd-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .pcd-tab {
+                white-space: nowrap;
+                min-width: 120px;
+            }
+
+            .pcd-conversations-list {
+                width: 100%;
+                height: 200px;
+                border-right: none;
+                border-bottom: 1px solid #e9ecef;
+            }
+
+            .pcd-messages-panel {
+                flex-direction: column;
+            }
+        }
+
+        /* Loading State */
+        .pcd-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            color: #6b7280;
+        }
+
+        .pcd-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f4f6;
+            border-top-color: #4f46e5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error State */
+        .pcd-error {
+            text-align: center;
+            padding: 48px;
+            color: #ef4444;
+        }
+
+        .pcd-error-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="pcd-unified-container">
+        <!-- Member Badge -->
+        <div class="pcd-member-badge" id="pcd-member-info" style="display: none;">
+            <div class="pcd-member-avatar" id="pcd-member-avatar">?</div>
+            <span id="pcd-member-name">Loading...</span>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="pcd-progress-tracker">
+            <div class="pcd-progress-stages">
+                <div class="pcd-progress-line">
+                    <div class="pcd-progress-fill" id="pcd-progress-fill" style="width: 0%;"></div>
+                </div>
+                
+                <div class="pcd-stage" data-stage="consultation">
+                    <div class="pcd-stage-icon">💬</div>
+                    <div class="pcd-stage-label">Consultation</div>
+                </div>
+                
+                <div class="pcd-stage" data-stage="design">
+                    <div class="pcd-stage-icon">🎨</div>
+                    <div class="pcd-stage-label">Design</div>
+                </div>
+                
+                <div class="pcd-stage" data-stage="feedback">
+                    <div class="pcd-stage-icon">✏️</div>
+                    <div class="pcd-stage-label">Feedback</div>
+                </div>
+                
+                <div class="pcd-stage" data-stage="development">
+                    <div class="pcd-stage-icon">🔧</div>
+                    <div class="pcd-stage-label">Development</div>
+                </div>
+                
+                <div class="pcd-stage" data-stage="launch">
+                    <div class="pcd-stage-icon">🚀</div>
+                    <div class="pcd-stage-label">Launch</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="pcd-tabs">
+            <button class="pcd-tab active" data-panel="canvas">
+                <span class="pcd-tab-icon">🎨</span>
+                Design Canvas
+            </button>
+            <button class="pcd-tab" data-panel="messages">
+                <span class="pcd-tab-icon">💬</span>
+                Messages
+                <span id="pcd-unread-count" style="display: none;"></span>
+            </button>
+            <button class="pcd-tab" data-panel="activity">
+                <span class="pcd-tab-icon">📊</span>
+                Activity
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="pcd-content">
+            <!-- Canvas Panel -->
+            <div class="pcd-panel pcd-canvas-panel active" data-panel="canvas">
+                <div class="pcd-canvas" id="pcd-canvas">
+                    <!-- Canvas elements will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Messages Panel -->
+            <div class="pcd-panel pcd-messages-panel" data-panel="messages">
+                <div class="pcd-conversations-list" id="pcd-conversations">
+                    <!-- Conversation items will be dynamically added here -->
+                </div>
+                <div class="pcd-chat-area">
+                    <div class="pcd-chat-header" id="pcd-chat-header">
+                        <div>Select a conversation</div>
+                    </div>
+                    <div class="pcd-messages-container" id="pcd-messages">
+                        <!-- Messages will be dynamically added here -->
+                    </div>
+                    <div class="pcd-message-input-container">
+                        <form class="pcd-message-form" id="pcd-message-form">
+                            <input 
+                                type="text" 
+                                class="pcd-message-input" 
+                                id="pcd-message-input" 
+                                placeholder="Type a message..."
+                                disabled
+                            />
+                            <button type="submit" class="pcd-send-button" disabled>
+                                ➤
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Panel -->
+            <div class="pcd-panel pcd-activity-panel" data-panel="activity">
+                <div id="pcd-activity-list">
+                    <!-- Activity items will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Unified Pleasant Cove Design Experience
+        class UnifiedPCDExperience {
+            constructor() {
+                this.config = {
+                    serverUrl: window.PCD_CONFIG?.serverUrl || 'https://pcd-production-clean-production-e6f3.up.railway.app',
+                    projectToken: window.PCD_CONFIG?.projectToken || this.getProjectTokenFromURL(),
+                    enableCanvas: window.PCD_CONFIG?.enableCanvas !== false,
+                    enableMessaging: window.PCD_CONFIG?.enableMessaging !== false,
+                    enableProgress: window.PCD_CONFIG?.enableProgress !== false
+                };
+
+                this.memberInfo = null;
+                this.socket = null;
+                this.currentPanel = 'canvas';
+                this.currentConversation = null;
+                this.conversations = [];
+                this.messages = [];
+                this.canvasElements = [];
+                this.projectStage = 'consultation';
+                this.activities = [];
+
+                this.init();
+            }
+
+            async init() {
+                console.log('🚀 Initializing Unified PCD Experience');
+                
+                try {
+                    // 1. Detect Squarespace member
+                    this.memberInfo = await this.detectSquarespaceMember();
+                    
+                    if (this.memberInfo) {
+                        this.displayMemberInfo();
+                        
+                        // 2. Load project data
+                        await this.loadProjectData();
+                        
+                        // 3. Initialize WebSocket
+                        this.initializeWebSocket();
+                        
+                        // 4. Set up event listeners
+                        this.setupEventListeners();
+                        
+                        // 5. Load initial content
+                        this.loadCanvas();
+                        this.loadConversations();
+                        this.loadActivities();
+                    } else {
+                        this.showGuestView();
+                    }
+                } catch (error) {
+                    console.error('❌ Initialization error:', error);
+                    this.showError('Failed to initialize. Please refresh the page.');
+                }
+            }
+
+            async detectSquarespaceMember() {
+                console.log('🔍 Detecting Squarespace member...');
+                
+                // Try multiple detection methods
+                let member = null;
+                
+                // 1. Check cookie
+                member = this.detectMemberFromCookie();
+                if (member) return member;
+                
+                // 2. Check context
+                member = this.detectMemberFromContext();
+                if (member) return member;
+                
+                // 3. Check localStorage (for testing)
+                if (localStorage.getItem('pcd_test_member')) {
+                    return JSON.parse(localStorage.getItem('pcd_test_member'));
+                }
+                
+                return null;
+            }
+
+            detectMemberFromCookie() {
+                try {
+                    const cookies = document.cookie.split(';');
+                    for (const cookie of cookies) {
+                        if (cookie.trim().startsWith('SiteUserInfo=')) {
+                            const value = decodeURIComponent(cookie.trim().substring(13));
+                            const info = JSON.parse(value);
+                            
+                            if (info.authenticated && info.id) {
+                                return {
+                                    id: info.id,
+                                    email: info.email || 'member@example.com',
+                                    name: info.firstName || 'Member'
+                                };
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error('Cookie detection error:', error);
+                }
+                return null;
+            }
+
+            detectMemberFromContext() {
+                try {
+                    if (window.Static?.SQUARESPACE_CONTEXT?.authenticatedAccount) {
+                        const account = window.Static.SQUARESPACE_CONTEXT.authenticatedAccount;
+                        return {
+                            id: account.id,
+                            email: account.email,
+                            name: account.displayName || account.firstName || 'Member'
+                        };
+                    }
+                } catch (error) {
+                    console.error('Context detection error:', error);
+                }
+                return null;
+            }
+
+            displayMemberInfo() {
+                const badge = document.getElementById('pcd-member-info');
+                const avatar = document.getElementById('pcd-member-avatar');
+                const name = document.getElementById('pcd-member-name');
+                
+                if (badge && this.memberInfo) {
+                    avatar.textContent = this.memberInfo.name.charAt(0).toUpperCase();
+                    name.textContent = this.memberInfo.name;
+                    badge.style.display = 'flex';
+                }
+            }
+
+            async loadProjectData() {
+                try {
+                    const response = await fetch(`${this.config.serverUrl}/api/public/project/${this.config.projectToken}/unified`, {
+                        headers: {
+                            'X-Squarespace-Member-Id': this.memberInfo.id,
+                            'X-Squarespace-Site': window.location.hostname
+                        }
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to load project data');
+                    
+                    const data = await response.json();
+                    this.projectStage = data.stage || 'consultation';
+                    this.updateProgressTracker();
+                    
+                } catch (error) {
+                    console.error('Failed to load project data:', error);
+                }
+            }
+
+            updateProgressTracker() {
+                const stages = ['consultation', 'design', 'feedback', 'development', 'launch'];
+                const currentIndex = stages.indexOf(this.projectStage);
+                const progress = ((currentIndex + 1) / stages.length) * 100;
+                
+                // Update progress bar
+                const progressFill = document.getElementById('pcd-progress-fill');
+                if (progressFill) {
+                    progressFill.style.width = `${progress}%`;
+                }
+                
+                // Update stage states
+                stages.forEach((stage, index) => {
+                    const stageElement = document.querySelector(`.pcd-stage[data-stage="${stage}"]`);
+                    if (stageElement) {
+                        stageElement.classList.remove('active', 'completed');
+                        if (index < currentIndex) {
+                            stageElement.classList.add('completed');
+                        } else if (index === currentIndex) {
+                            stageElement.classList.add('active');
+                        }
+                    }
+                });
+            }
+
+            initializeWebSocket() {
+                if (!this.socket) {
+                    this.socket = io(this.config.serverUrl, {
+                        transports: ['websocket', 'polling']
+                    });
+                    
+                    this.socket.on('connect', () => {
+                        console.log('✅ WebSocket connected');
+                        this.socket.emit('join', this.config.projectToken);
+                    });
+                    
+                    this.socket.on('newMessage', (message) => {
+                        this.handleNewMessage(message);
+                    });
+                    
+                    this.socket.on('canvasUpdate', (update) => {
+                        this.handleCanvasUpdate(update);
+                    });
+                    
+                    this.socket.on('stageUpdate', (stage) => {
+                        this.projectStage = stage;
+                        this.updateProgressTracker();
+                    });
+                }
+            }
+
+            setupEventListeners() {
+                // Tab switching
+                document.querySelectorAll('.pcd-tab').forEach(tab => {
+                    tab.addEventListener('click', (e) => {
+                        const panel = e.currentTarget.getAttribute('data-panel');
+                        this.switchPanel(panel);
+                    });
+                });
+                
+                // Message form
+                const messageForm = document.getElementById('pcd-message-form');
+                if (messageForm) {
+                    messageForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        this.sendMessage();
+                    });
+                }
+            }
+
+            switchPanel(panel) {
+                // Update tabs
+                document.querySelectorAll('.pcd-tab').forEach(tab => {
+                    tab.classList.toggle('active', tab.getAttribute('data-panel') === panel);
+                });
+                
+                // Update panels
+                document.querySelectorAll('.pcd-panel').forEach(p => {
+                    p.classList.toggle('active', p.getAttribute('data-panel') === panel);
+                });
+                
+                this.currentPanel = panel;
+            }
+
+            async loadCanvas() {
+                if (!this.config.enableCanvas) return;
+                
+                try {
+                    const response = await fetch(`${this.config.serverUrl}/api/canvas/${this.config.projectToken}`, {
+                        headers: {
+                            'X-Squarespace-Member-Id': this.memberInfo.id
+                        }
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to load canvas');
+                    
+                    const data = await response.json();
+                    this.renderCanvas(data.elements || []);
+                    
+                } catch (error) {
+                    console.error('Failed to load canvas:', error);
+                }
+            }
+
+            renderCanvas(elements) {
+                const canvas = document.getElementById('pcd-canvas');
+                if (!canvas) return;
+                
+                canvas.innerHTML = '';
+                
+                elements.forEach(element => {
+                    const el = document.createElement('div');
+                    el.className = 'pcd-canvas-element';
+                    el.style.left = `${element.x}px`;
+                    el.style.top = `${element.y}px`;
+                    el.style.width = `${element.width}px`;
+                    el.style.height = `${element.height}px`;
+                    
+                    // Add content based on type
+                    if (element.type === 'image') {
+                        el.innerHTML = `<div style="text-align: center;">📷 Image</div>`;
+                    } else if (element.type === 'text') {
+                        el.innerHTML = `<div>${element.content || 'Text element'}</div>`;
+                    }
+                    
+                    // Add comment pins
+                    if (element.comments) {
+                        element.comments.forEach(comment => {
+                            const pin = document.createElement('div');
+                            pin.className = 'pcd-comment-pin';
+                            pin.style.left = `${comment.x}px`;
+                            pin.style.top = `${comment.y}px`;
+                            pin.innerHTML = '💬';
+                            pin.title = comment.content;
+                            el.appendChild(pin);
+                        });
+                    }
+                    
+                    canvas.appendChild(el);
+                });
+            }
+
+            async loadConversations() {
+                if (!this.config.enableMessaging) return;
+                
+                try {
+                    const response = await fetch(`${this.config.serverUrl}/api/public/project/${this.config.projectToken}/contexts`, {
+                        headers: {
+                            'X-Squarespace-Member-Id': this.memberInfo.id
+                        }
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to load conversations');
+                    
+                    const data = await response.json();
+                    this.conversations = data.contexts || [];
+                    this.renderConversations();
+                    
+                } catch (error) {
+                    console.error('Failed to load conversations:', error);
+                }
+            }
+
+            renderConversations() {
+                const container = document.getElementById('pcd-conversations');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                this.conversations.forEach(conv => {
+                    const item = document.createElement('div');
+                    item.className = 'pcd-conversation-item';
+                    item.innerHTML = `
+                        <div class="pcd-conversation-title">${conv.title || 'General Discussion'}</div>
+                        <div class="pcd-conversation-preview">${conv.lastMessage || 'No messages yet'}</div>
+                        <div class="pcd-conversation-meta">
+                            <span class="pcd-conversation-time">${this.formatTime(conv.lastMessageTime)}</span>
+                            ${conv.unreadCount > 0 ? `<span class="pcd-unread-badge">${conv.unreadCount}</span>` : ''}
+                        </div>
+                    `;
+                    
+                    item.addEventListener('click', () => {
+                        this.selectConversation(conv);
+                    });
+                    
+                    container.appendChild(item);
+                });
+                
+                // Auto-select first conversation
+                if (this.conversations.length > 0 && !this.currentConversation) {
+                    this.selectConversation(this.conversations[0]);
+                }
+            }
+
+            async selectConversation(conversation) {
+                this.currentConversation = conversation;
+                
+                // Update UI
+                document.querySelectorAll('.pcd-conversation-item').forEach((item, index) => {
+                    item.classList.toggle('active', this.conversations[index] === conversation);
+                });
+                
+                // Update header
+                const header = document.getElementById('pcd-chat-header');
+                if (header) {
+                    header.innerHTML = `<div>${conversation.title || 'General Discussion'}</div>`;
+                }
+                
+                // Enable input
+                const input = document.getElementById('pcd-message-input');
+                const button = document.querySelector('.pcd-send-button');
+                if (input) input.disabled = false;
+                if (button) button.disabled = false;
+                
+                // Load messages
+                await this.loadMessages(conversation.id);
+            }
+
+            async loadMessages(contextId) {
+                try {
+                    const response = await fetch(`${this.config.serverUrl}/api/public/contexts/${contextId}/messages`, {
+                        headers: {
+                            'X-Squarespace-Member-Id': this.memberInfo.id
+                        }
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to load messages');
+                    
+                    const data = await response.json();
+                    this.messages = data.messages || [];
+                    this.renderMessages();
+                    
+                } catch (error) {
+                    console.error('Failed to load messages:', error);
+                }
+            }
+
+            renderMessages() {
+                const container = document.getElementById('pcd-messages');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                this.messages.forEach(msg => {
+                    const message = document.createElement('div');
+                    message.className = `pcd-message ${msg.senderType === 'admin' ? 'received' : 'sent'}`;
+                    
+                    message.innerHTML = `
+                        <div class="pcd-message-avatar">${msg.senderName.charAt(0).toUpperCase()}</div>
+                        <div class="pcd-message-content">
+                            <div class="pcd-message-bubble">${msg.content}</div>
+                            <div class="pcd-message-time">${this.formatTime(msg.createdAt)}</div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(message);
+                });
+                
+                // Scroll to bottom
+                container.scrollTop = container.scrollHeight;
+            }
+
+            async sendMessage() {
+                const input = document.getElementById('pcd-message-input');
+                if (!input || !input.value.trim() || !this.currentConversation) return;
+                
+                const message = input.value.trim();
+                input.value = '';
+                
+                try {
+                    const response = await fetch(`${this.config.serverUrl}/api/public/contexts/${this.currentConversation.id}/messages`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Squarespace-Member-Id': this.memberInfo.id
+                        },
+                        body: JSON.stringify({
+                            content: message,
+                            senderName: this.memberInfo.name,
+                            senderType: 'client'
+                        })
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to send message');
+                    
+                    // Message will be added via WebSocket
+                    
+                } catch (error) {
+                    console.error('Failed to send message:', error);
+                    input.value = message; // Restore message
+                }
+            }
+
+            handleNewMessage(message) {
+                if (message.contextId === this.currentConversation?.id) {
+                    this.messages.push(message);
+                    this.renderMessages();
+                }
+                
+                // Update conversation list
+                this.loadConversations();
+                
+                // Update unread count
+                this.updateUnreadCount();
+            }
+
+            handleCanvasUpdate(update) {
+                // Re-render canvas with updated elements
+                this.loadCanvas();
+            }
+
+            async loadActivities() {
+                try {
+                    const response = await fetch(`${this.config.serverUrl}/api/public/project/${this.config.projectToken}/activities`, {
+                        headers: {
+                            'X-Squarespace-Member-Id': this.memberInfo.id
+                        }
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to load activities');
+                    
+                    const data = await response.json();
+                    this.activities = data.activities || [];
+                    this.renderActivities();
+                    
+                } catch (error) {
+                    console.error('Failed to load activities:', error);
+                }
+            }
+
+            renderActivities() {
+                const container = document.getElementById('pcd-activity-list');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                this.activities.forEach(activity => {
+                    const item = document.createElement('div');
+                    item.className = 'pcd-activity-item';
+                    
+                    const iconClass = activity.type === 'message' ? 'message' : 
+                                     activity.type === 'file' ? 'file' : 'stage';
+                    const icon = activity.type === 'message' ? '💬' : 
+                                activity.type === 'file' ? '📎' : '📊';
+                    
+                    item.innerHTML = `
+                        <div class="pcd-activity-icon ${iconClass}">${icon}</div>
+                        <div class="pcd-activity-content">
+                            <div class="pcd-activity-title">${activity.title}</div>
+                            <div class="pcd-activity-description">${activity.description}</div>
+                        </div>
+                        <div class="pcd-activity-time">${this.formatTime(activity.createdAt)}</div>
+                    `;
+                    
+                    container.appendChild(item);
+                });
+            }
+
+            updateUnreadCount() {
+                const totalUnread = this.conversations.reduce((sum, conv) => sum + (conv.unreadCount || 0), 0);
+                const badge = document.getElementById('pcd-unread-count');
+                
+                if (badge) {
+                    if (totalUnread > 0) {
+                        badge.textContent = ` (${totalUnread})`;
+                        badge.style.display = 'inline';
+                    } else {
+                        badge.style.display = 'none';
+                    }
+                }
+            }
+
+            formatTime(timestamp) {
+                if (!timestamp) return '';
+                
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diff = now - date;
+                
+                if (diff < 60000) return 'Just now';
+                if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
+                if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
+                
+                return date.toLocaleDateString();
+            }
+
+            getProjectTokenFromURL() {
+                const params = new URLSearchParams(window.location.search);
+                return params.get('project') || params.get('token') || null;
+            }
+
+            showGuestView() {
+                const container = document.getElementById('pcd-unified-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="pcd-error">
+                            <div class="pcd-error-icon">🔒</div>
+                            <h2>Members Only</h2>
+                            <p>Please log in to your Squarespace account to view this content.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            showError(message) {
+                const container = document.getElementById('pcd-unified-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="pcd-error">
+                            <div class="pcd-error-icon">⚠️</div>
+                            <h2>Error</h2>
+                            <p>${message}</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Initialize on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                new UnifiedPCDExperience();
+            });
+        } else {
+            new UnifiedPCDExperience();
+        }
+    </script>
+</body>
+</html>

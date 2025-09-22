@@ -1,0 +1,12 @@
+--- index.ts
++++ index.ts
+@@ -539,6 +539,9 @@
+     console.log('🔧 Registering routes...');
+     try {
+       // Ensure R2-backed uploads are mounted FIRST so they take precedence over any legacy handlers
++      console.log('🔒 Mounting direct upload handler');
++      app.use(directUploadHandler);
++      
+       app.use(uploadRoutes);
+       
+       // Override any legacy upload handlers
