@@ -68,18 +68,29 @@ const __main_dirname = path.dirname(__filename);
 const app = express();
 const httpServer = createServer(app);
 
+// Configure Socket.IO CORS and transports for Railway + Squarespace
+const allowedSocketOrigins: (string | RegExp)[] = [
+  'https://www.pleasantcovedesign.com',
+  'https://pleasantcovedesign.com',
+  /squarespace\.com$/,
+  'http://localhost:5174',
+];
+
+// Add Railway public domain(s)
+if (process.env.RAILWAY_PUBLIC_DOMAIN) {
+  allowedSocketOrigins.push(`https://${process.env.RAILWAY_PUBLIC_DOMAIN}`);
+}
+// Explicitly allow current production Railway domain used in UI
+allowedSocketOrigins.push('https://pleasantcovedesign-production.up.railway.app');
+
 const io = new Server(httpServer, {
-  transports: ['websocket'],
+  transports: ['websocket', 'polling'], // allow polling fallback on Railway
   pingInterval: 25000,
   pingTimeout: 120000,
   cors: {
-    origin: [
-      'https://www.pleasantcovedesign.com',
-      'https://pleasantcovedesign.com',
-      /squarespace\.com$/,
-      'http://localhost:5174',
-    ],
-    methods: ['GET','POST'],
+    origin: allowedSocketOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true,
   },
 });
 
