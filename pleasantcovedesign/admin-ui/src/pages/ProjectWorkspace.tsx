@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Eye, Download, MessageCircle, Calendar, DollarSign, CheckCircle, Clock, AlertCircle, Paperclip, Send, TrendingUp, Palette } from 'lucide-react'
 import DesignCanvas from '../components/Canvas/DesignCanvas'
+import ProjectAccessControls from '../components/ProjectAccessControls'
 import api from '../api'
 
 interface ClientProject {
@@ -421,6 +422,29 @@ const ProjectWorkspace: React.FC = () => {
                   Open Workspace →
                 </button>
               </div>
+              
+              {/* Client Access Info */}
+              <div className="mt-4 pt-4 border-t text-xs text-gray-500">
+                {project.company?.email ? (
+                  <div className="flex items-center justify-between">
+                    <span>Client: {project.company.email}</span>
+                    {project.accessToken && (
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigator.clipboard.writeText(project.accessToken);
+                          alert('Token copied!');
+                        }}
+                        className="text-blue-600 hover:text-blue-700"
+                      >
+                        Copy Token
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  <span>No client email set</span>
+                )}
+              </div>
             </div>
           ))}
         </div>
@@ -548,6 +572,15 @@ const ProjectWorkspace: React.FC = () => {
                   )}
                 </div>
               </div>
+              
+              {/* Client Access Controls - Admin Only */}
+              {isAdminMode && (
+                <ProjectAccessControls
+                  project={project}
+                  clientEmail={clientInfo?.email}
+                  onTokenGenerated={fetchProjectData}
+                />
+              )}
             </>
           )}
 

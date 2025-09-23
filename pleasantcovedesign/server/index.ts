@@ -587,6 +587,15 @@ async function startServer() {
         console.log('⚠️ Client workspace router failed:', error.message);
       }
       
+      // Project token management routes
+      try {
+        const projectTokenRouter = await import('./routes/project-token');
+        app.use("/api", projectTokenRouter.default);
+        console.log('✅ Project token routes registered');
+      } catch (error) {
+        console.log('⚠️ Project token router failed:', error.message);
+      }
+      
       // Health endpoint
       app.get("/api/health", async (req, res) => {
         try {
