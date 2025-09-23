@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { Home, Users, TrendingUp, Calendar, Settings, Inbox, MessageCircle, Building2, Megaphone, UserCheck, Globe, FileText, Search, LogOut } from 'lucide-react'
+import { Home, Users, TrendingUp, Calendar, Settings, Inbox, MessageCircle, Building2, Megaphone, UserCheck, Globe, FileText, Search, LogOut, Wrench, FolderOpen, BarChart3, Layers } from 'lucide-react'
 import { clsx } from 'clsx'
 
 // Navigation configuration for Pleasant Cove Design dashboard
@@ -12,14 +12,16 @@ interface NavItem {
 
 const navigation: NavItem[] = [
   { path: '/dashboard', label: 'Dashboard', icon: Home },
-  { path: '/leads', label: 'Lead Management', icon: Users },
+  { path: '/leads', label: 'Leads', icon: Users },
+  { path: '/lead-scraper', label: 'Lead Scraper', icon: Search },
   { path: '/proposals', label: 'Proposals', icon: FileText },
   { path: '/outreach', label: 'Outreach', icon: Megaphone },
   { path: '/schedule', label: 'Appointments', icon: Calendar },
   { path: '/clients', label: 'Clients', icon: Building2 },
-  { path: '/workspace', label: 'Project Workspace', icon: TrendingUp },
+  { path: '/workspace', label: 'Project Workspace', icon: FolderOpen },
+  { path: '/progress', label: 'Progress', icon: TrendingUp },
   { path: '/interactions', label: 'Interactions', icon: MessageCircle },
-  { path: '/business/1/inbox', label: 'Biz Pro Inbox', icon: Inbox },
+  { path: '/inbox', label: 'Inbox', icon: Inbox },
   { path: '/demos', label: 'Demo Gallery', icon: Globe },
   { path: '/team', label: 'Team', icon: UserCheck },
   { path: '/settings', label: 'Settings', icon: Settings },
@@ -43,14 +45,15 @@ const Layout: React.FC = () => {
     <div className="min-h-screen bg-background">
       {/* Header with logo and tabs */}
       <div className="bg-white shadow-sm border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <h1 className="text-xl font-bold text-primary-600">Pleasant Cove Design</h1>
+              <span className="ml-4 text-sm text-gray-500">Complete Business System</span>
             </div>
             <div className="flex items-center gap-4">
-              <div className="text-sm text-muted">Biz Pro Dashboard</div>
+              <div className="text-sm text-muted">Admin Dashboard</div>
               <button
                 onClick={handleLogout}
                 className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
@@ -62,8 +65,8 @@ const Layout: React.FC = () => {
             </div>
           </div>
           
-          {/* Tab Navigation - Full Dashboard */}
-          <div className="flex flex-wrap gap-4 items-center -mb-px">
+          {/* Tab Navigation - Full Dashboard with all features */}
+          <div className="flex flex-wrap gap-2 items-center -mb-px overflow-x-auto">
             {navigation.map((item) => {
               const Icon = item.icon
               return (
@@ -72,7 +75,7 @@ const Layout: React.FC = () => {
                   to={item.path}
                   className={({ isActive }) =>
                     clsx(
-                      'flex items-center py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap mb-2',
+                      'flex items-center py-4 px-3 border-b-2 font-medium text-sm whitespace-nowrap',
                       isActive
                         ? 'border-primary-500 text-primary-600'
                         : 'border-transparent text-muted hover:text-foreground hover:border-gray-300'
@@ -96,4 +99,4 @@ const Layout: React.FC = () => {
   )
 }
 
-export default Layout 
+export default Layout

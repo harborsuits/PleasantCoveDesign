@@ -6,16 +6,21 @@ import CssBaseline from '@mui/material/CssBaseline'
 import Layout from './Layout'
 import Dashboard from './pages/Dashboard'
 import Leads from './pages/Leads'
+import LeadScraper from './pages/LeadScraper'
 import Proposals from './pages/Proposals'
 import Outreach from './pages/Outreach'
 import Schedule from './pages/Schedule'
 import Clients from './pages/Clients'
 import ClientProfile from './pages/ClientProfile'
+import ClientPortal from './pages/ClientPortal'
 import Workspace from './pages/Workspace'
 import ProjectWorkspace from './pages/ProjectWorkspace'
 import Interactions from './pages/Interactions'
+import Progress from './pages/Progress'
 import Inbox from './pages/Inbox'
-import Demos from './pages/Demos'
+import EnhancedInbox from './pages/EnhancedInbox'
+import ThreadedInbox from './pages/ThreadedInbox'
+import DemoGallery from './pages/DemoGallery'
 import Team from './pages/Team'
 import Settings from './pages/Settings'
 import LoginPage from './pages/Login'
@@ -57,17 +62,22 @@ function App() {
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="leads" element={<Leads />} />
+            <Route path="lead-scraper" element={<LeadScraper />} />
             <Route path="proposals" element={<Proposals />} />
             <Route path="outreach" element={<Outreach />} />
             <Route path="schedule" element={<Schedule />} />
             <Route path="clients" element={<Clients />} />
             <Route path="clients/:clientId" element={<ClientProfile />} />
+            <Route path="client-portal/:clientId" element={<ClientPortal />} />
             <Route path="workspace" element={<Workspace />} />
             <Route path="projects/:projectToken" element={<ProjectWorkspace />} />
             <Route path="interactions" element={<Interactions />} />
+            <Route path="progress" element={<Progress />} />
             <Route path="inbox" element={<Inbox />} />
+            <Route path="enhanced-inbox" element={<EnhancedInbox />} />
+            <Route path="threaded-inbox" element={<ThreadedInbox />} />
             <Route path="business/1/inbox" element={<Inbox />} />
-            <Route path="demos" element={<Demos />} />
+            <Route path="demos" element={<DemoGallery />} />
             <Route path="team" element={<Team />} />
             <Route path="settings" element={<Settings />} />
           </Route>
