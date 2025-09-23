@@ -1109,12 +1109,20 @@ const Inbox: React.FC = () => {
                             
                             // Use Railway URLs directly (server-side URLs are now fixed)
                             let displayUrl = attachment;
-                            if (isImage && attachment.includes('/uploads/') && !attachment.startsWith('https://pcd-production-clean-production-e6f3.up.railway.app')) {
-                              // Fix any remaining old Railway URLs to use the correct domain
-                              displayUrl = attachment.replace(
-                                window.location.origin,
-                                'https://pcd-production-clean-production-e6f3.up.railway.app'
-                              );
+                            if (isImage && attachment.includes('/uploads/')) {
+                              // Normalize to current origin
+                              try {
+                                const url = new URL(attachment, window.location.origin);
+                                // If it points to an old domain, rewrite to current origin
+                                if (url.hostname !== window.location.hostname) {
+                                  url.hostname = window.location.hostname;
+                                  url.protocol = window.location.protocol;
+                                  displayUrl = url.toString();
+                                }
+                              } catch (_e) {
+                                // Fallback to original
+                                displayUrl = attachment;
+                              }
                             }
                             
                             if (isImage) {

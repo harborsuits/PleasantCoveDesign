@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Eye, Download, MessageCircle, Calendar, DollarSign, CheckCircle, Clock, AlertCircle, Paperclip, Send, TrendingUp, Palette } from 'lucide-react'
+import { Eye, Download, MessageCircle, Calendar, DollarSign, CheckCircle, Clock, AlertCircle, Paperclip, Send, TrendingUp, Palette, Search, Filter, Trash2, Archive, MoreVertical, Plus } from 'lucide-react'
 import DesignCanvas from '../components/Canvas/DesignCanvas'
+import ProjectAccessControls from '../components/ProjectAccessControls'
 import api from '../api'
 
 interface ClientProject {
@@ -61,8 +62,25 @@ const ProjectWorkspace: React.FC = () => {
   const [projects, setProjects] = useState<any[]>([])
   const [isAdminMode, setIsAdminMode] = useState(!projectToken)
 
+  // Milestone management state
+  const [milestones, setMilestones] = useState<any[]>([])
+  const [showMilestoneForm, setShowMilestoneForm] = useState(false)
+  const [editingMilestone, setEditingMilestone] = useState<any>(null)
+  const [milestoneForm, setMilestoneForm] = useState({
+    title: '',
+    description: '',
+    dueDate: '',
+    order: 0
+  })
+  
+  // Project management state (for admin mode)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'completed' | 'archived'>('all')
+  const [showActions, setShowActions] = useState<number | null>(null)
+
   useEffect(() => {
-    if (projectToken) {
+    // Only proceed if we have a valid project token (not null, undefined, or 'null')
+    if (projectToken && projectToken !== 'null' && projectToken !== 'undefined') {
       setIsAdminMode(false)
       fetchProjectData()
     } else {
@@ -70,6 +88,27 @@ const ProjectWorkspace: React.FC = () => {
       fetchProjectsList()
     }
   }, [projectToken])
+
+  // Fetch milestones when project loads
+  useEffect(() => {
+    if (project?.id && !isAdminMode) {
+      fetchMilestones()
+    }
+  }, [project?.id, isAdminMode])
+  
+  // Close actions menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showActions !== null) {
+        setShowActions(null)
+      }
+    }
+    
+    if (isAdminMode && showActions !== null) {
+      document.addEventListener('click', handleClickOutside)
+      return () => document.removeEventListener('click', handleClickOutside)
+    }
+  }, [showActions, isAdminMode])
 
   const fetchProjectsList = async () => {
     try {
@@ -90,18 +129,30 @@ const ProjectWorkspace: React.FC = () => {
       
       // Try to fetch real project data using token
       try {
-        const response = await api.get(`/public/project/${projectToken}`)
-        setProject(response.data.project)
+        // Only fetch if we have a valid project ID
+        if (!projectToken || projectToken === 'null' || projectToken === 'undefined') {
+          throw new Error('Invalid project ID')
+        }
+        // Use admin endpoint to get project by ID
+        const response = await api.get(`/projects/${projectToken}`)
+        
+        // Handle both direct project response and wrapped response
+        const projectData = response.data.project || response.data
+        
+        setProject(projectData)
         setClientInfo({
-          companyName: response.data.company?.name || 'Company Name',
-          contactName: response.data.company?.name || 'Contact Name',
-          email: response.data.company?.email || 'email@example.com',
-          phone: response.data.company?.phone || '555-555-5555'
+          companyName: projectData.company?.name || response.data.company?.name || 'Company Name',
+          contactName: projectData.company?.name || response.data.company?.name || 'Contact Name',
+          email: projectData.company?.email || response.data.company?.email || 'email@example.com',
+          phone: projectData.company?.phone || response.data.company?.phone || '555-555-5555'
         })
       } catch (error: any) {
         console.log('API Error:', error.message)
-        if (error.response?.status === 404) {
-          setError('Project not found or access denied')
+        if (error.message?.includes('Invalid project') || error.response?.status === 404) {
+          setError('Project not found. Redirecting to dashboard...')
+          setTimeout(() => {
+            navigate('/')
+          }, 2000)
         } else {
           console.log('No real project data, using mock data for demonstration')
           
@@ -338,6 +389,131 @@ const ProjectWorkspace: React.FC = () => {
     }
   }
 
+  // Project Management Actions
+  const handleProjectStatusChange = async (newStatus: 'active' | 'completed' | 'archived') => {
+    if (!project?.id) return
+
+    const confirmMessage = newStatus === 'completed'
+      ? 'Are you sure you want to mark this project as completed?'
+      : newStatus === 'archived'
+      ? 'Are you sure you want to archive this project? It will be hidden from active view.'
+      : 'Are you sure you want to change the project status?'
+
+    if (!confirm(confirmMessage)) return
+
+    try {
+      await api.put(`/projects/${project.id}`, { status: newStatus })
+
+      // Update local project status
+      setProject(prev => prev ? { ...prev, status: newStatus } : null)
+
+      alert(`Project ${newStatus === 'completed' ? 'marked as complete' : newStatus === 'archived' ? 'archived' : 'status updated'} successfully!`)
+    } catch (error) {
+      console.error('Failed to update project status:', error)
+      alert('Failed to update project status. Please try again.')
+    }
+  }
+
+  // Milestone Management Functions
+  const fetchMilestones = async () => {
+    if (!project?.id) return
+
+    try {
+      const response = await api.get(`/projects/${project.id}/milestones`)
+      setMilestones(response.data)
+    } catch (error) {
+      console.error('Failed to fetch milestones:', error)
+    }
+  }
+
+  const handleCreateMilestone = async () => {
+    if (!project?.id) return
+
+    try {
+      await api.post(`/projects/${project.id}/milestones`, milestoneForm)
+      setShowMilestoneForm(false)
+      setMilestoneForm({ title: '', description: '', dueDate: '', order: milestones.length + 1 })
+      fetchMilestones()
+      alert('Milestone created successfully!')
+    } catch (error) {
+      console.error('Failed to create milestone:', error)
+      alert('Failed to create milestone. Please try again.')
+    }
+  }
+
+  const handleUpdateMilestone = async (milestoneId: number, updates: any) => {
+    if (!project?.id) return
+
+    try {
+      await api.put(`/projects/${project.id}/milestones/${milestoneId}`, updates)
+      fetchMilestones()
+    } catch (error) {
+      console.error('Failed to update milestone:', error)
+      alert('Failed to update milestone. Please try again.')
+    }
+  }
+
+  const handleDeleteMilestone = async (milestoneId: number) => {
+    if (!confirm('Are you sure you want to delete this milestone?')) return
+
+    if (!project?.id) return
+
+    try {
+      await api.delete(`/projects/${project.id}/milestones/${milestoneId}`)
+      fetchMilestones()
+      alert('Milestone deleted successfully!')
+    } catch (error) {
+      console.error('Failed to delete milestone:', error)
+      alert('Failed to delete milestone. Please try again.')
+    }
+  }
+
+  const handleEditMilestone = (milestone: any) => {
+    setEditingMilestone(milestone)
+    setMilestoneForm({
+      title: milestone.title,
+      description: milestone.description,
+      dueDate: milestone.dueDate || '',
+      order: milestone.order || 0
+    })
+    setShowMilestoneForm(true)
+  }
+
+  const handleUpdateMilestoneStatus = async (milestoneId: number, status: string) => {
+    await handleUpdateMilestone(milestoneId, { status })
+  }
+
+  const resetMilestoneForm = () => {
+    setMilestoneForm({ title: '', description: '', dueDate: '', order: 0 })
+    setEditingMilestone(null)
+    setShowMilestoneForm(false)
+  }
+
+  const handleDeleteProject = async () => {
+    if (!project?.id) return
+
+    const confirmDelete = confirm(
+      '⚠️ WARNING: This will permanently delete the project and all associated data!\n\n' +
+      'This action cannot be undone. Are you absolutely sure?'
+    )
+
+    if (!confirmDelete) return
+
+    // Additional confirmation
+    const finalConfirm = prompt('FINAL WARNING: Type "DELETE" to confirm permanent deletion:')
+    if (finalConfirm !== 'DELETE') return
+
+    try {
+      await api.delete(`/projects/${project.id}`)
+
+      alert('Project deleted successfully.')
+      navigate('/') // Redirect to dashboard
+    } catch (error) {
+      console.error('Failed to delete project:', error)
+      alert('Failed to delete project. Please try again.')
+    }
+  }
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed': return 'bg-green-100 text-green-800'
@@ -390,6 +566,77 @@ const ProjectWorkspace: React.FC = () => {
 
   // Admin Mode: Show project list
   if (isAdminMode) {
+    // Filter projects based on search and status
+    const filteredProjects = projects.filter(project => {
+      const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           project.company?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           project.company?.email?.toLowerCase().includes(searchQuery.toLowerCase())
+      
+      const matchesFilter = filterStatus === 'all' || 
+                           (filterStatus === 'active' && project.stage !== 'completed') ||
+                           (filterStatus === 'completed' && project.stage === 'completed') ||
+                           (filterStatus === 'archived' && project.status === 'archived')
+      
+      return matchesSearch && matchesFilter
+    })
+    
+    const handleDeleteProject = async (projectId: number) => {
+      if (!confirm('Are you sure you want to delete this project? This action cannot be undone.')) {
+        return
+      }
+      
+      try {
+        await api.delete(`/projects/${projectId}?token=pleasantcove2024admin`)
+        setProjects(projects.filter(p => p.id !== projectId))
+        alert('Project deleted successfully')
+      } catch (error) {
+        console.error('Failed to delete project:', error)
+        alert('Failed to delete project')
+      }
+    }
+    
+    const handleArchiveProject = async (projectId: number) => {
+      try {
+        await api.patch(`/projects/${projectId}/status`, {
+          status: 'archived'
+        })
+        
+        // Update local state
+        setProjects(projects.map(p => 
+          p.id === projectId ? { ...p, status: 'archived' } : p
+        ))
+        
+        alert('Project archived successfully')
+      } catch (error) {
+        console.error('Failed to archive project:', error)
+        alert('Failed to archive project')
+      }
+    }
+    
+    const handleCompleteProject = async (projectId: number) => {
+      if (!confirm('Mark this project as completed?')) {
+        return
+      }
+      
+      try {
+        await api.put(`/projects/${projectId}?token=pleasantcove2024admin`, {
+          stage: 'completed',
+          status: 'completed',
+          progress: 100
+        })
+        
+        // Update local state
+        setProjects(projects.map(p => 
+          p.id === projectId ? { ...p, stage: 'completed', status: 'completed', progress: 100 } : p
+        ))
+        
+        alert('Project marked as completed')
+      } catch (error) {
+        console.error('Failed to complete project:', error)
+        alert('Failed to complete project')
+      }
+    }
+    
     return (
       <div className="space-y-6">
         {/* Header */}
@@ -398,40 +645,220 @@ const ProjectWorkspace: React.FC = () => {
           <p className="text-muted mt-1">Manage and collaborate on your projects</p>
         </div>
 
+        {/* Controls Bar */}
+        <div className="bg-white rounded-lg border p-4 flex flex-col sm:flex-row gap-4">
+          {/* Search */}
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search projects, companies, or emails..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          {/* Filter */}
+          <div className="flex items-center gap-2">
+            <Filter className="h-4 w-4 text-gray-400" />
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value as any)}
+              className="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="all">All Projects</option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+              <option value="archived">Archived</option>
+            </select>
+          </div>
+          
+          {/* Stats */}
+          <div className="flex items-center gap-4 text-sm">
+            <span className="text-gray-600">
+              {filteredProjects.length} of {projects.length} projects
+            </span>
+          </div>
+        </div>
+
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <div
               key={project.id}
-              onClick={() => navigate(`/workspace/${project.accessToken}`)}
-              className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer"
+              className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow relative"
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-gray-900">{project.title}</h3>
-                <span className={`px-2 py-1 text-xs rounded-full ${project.stage === 'completed' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
-                  {project.stage}
-                </span>
-              </div>
-              <p className="text-sm text-gray-600 mb-4">{project.type}</p>
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-900">
-                  ${project.totalAmount || 0} total
-                </span>
-                <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                  Open Workspace →
+              {/* Actions Menu */}
+              <div className="absolute top-4 right-4">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setShowActions(showActions === project.id ? null : project.id)
+                  }}
+                  className="p-1 hover:bg-gray-100 rounded"
+                >
+                  <MoreVertical className="h-4 w-4 text-gray-500" />
                 </button>
+                
+                {showActions === project.id && (
+                  <div className="absolute right-0 mt-1 w-48 bg-white rounded-lg shadow-lg border z-10">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        navigate(`/workspace/${project.id}`)
+                        setShowActions(null)
+                      }}
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2"
+                    >
+                      <Eye className="h-4 w-4" />
+                      Open Workspace
+                    </button>
+                    
+                    {project.stage !== 'completed' && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleCompleteProject(project.id)
+                          setShowActions(null)
+                        }}
+                        className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2 text-green-600"
+                      >
+                        <CheckCircle className="h-4 w-4" />
+                        Mark Complete
+                      </button>
+                    )}
+                    
+                    {project.status !== 'archived' && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleArchiveProject(project.id)
+                          setShowActions(null)
+                        }}
+                        className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2 text-yellow-600"
+                      >
+                        <Archive className="h-4 w-4" />
+                        Archive
+                      </button>
+                    )}
+                    
+                    <div className="border-t my-1"></div>
+                    
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handleDeleteProject(project.id)
+                        setShowActions(null)
+                      }}
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2 text-red-600"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                      Delete Project
+                    </button>
+                  </div>
+                )}
+              </div>
+              
+              <div 
+                onClick={() => {
+                  // Always use ID for admin navigation
+                  navigate(`/workspace/${project.id}`)
+                }}
+                className="cursor-pointer"
+              >
+                <div className="flex items-center justify-between mb-4 pr-8">
+                  <h3 className="font-semibold text-gray-900">{project.title}</h3>
+                  <span className={`px-2 py-1 text-xs rounded-full ${
+                    project.status === 'archived' ? 'bg-gray-100 text-gray-800' :
+                    project.stage === 'completed' ? 'bg-green-100 text-green-800' : 
+                    'bg-blue-100 text-blue-800'
+                  }`}>
+                    {project.status === 'archived' ? 'Archived' : project.stage}
+                  </span>
+                </div>
+                
+                {/* Company Info */}
+                <div className="mb-3">
+                  <p className="text-sm font-medium text-gray-900">{project.company?.name || 'Unknown Company'}</p>
+                  <p className="text-xs text-gray-600">{project.type} • Created {new Date(project.createdAt || Date.now()).toLocaleDateString()}</p>
+                </div>
+                
+                {/* Project Details */}
+                {project.notes && (
+                  <p className="text-xs text-gray-500 mb-3 line-clamp-2">{project.notes}</p>
+                )}
+                
+                {/* Progress Bar */}
+                <div className="mb-3">
+                  <div className="flex justify-between text-xs text-gray-600 mb-1">
+                    <span>Progress</span>
+                    <span>{project.progress || 0}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      className="bg-blue-600 h-2 rounded-full transition-all duration-300" 
+                      style={{ width: `${project.progress || 0}%` }}
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-900">
+                    ${project.totalAmount || 0} total
+                  </span>
+                  <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                    Open Workspace →
+                  </button>
+                </div>
+                
+                {/* Client Access Info */}
+                <div className="mt-4 pt-4 border-t text-xs text-gray-500">
+                  {project.company?.email ? (
+                    <div className="flex items-center justify-between">
+                      <span>Client: {project.company.email}</span>
+                      {(project.accessToken || project.token) && (
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigator.clipboard.writeText(project.accessToken || project.token);
+                            alert('Token copied!');
+                          }}
+                          className="text-blue-600 hover:text-blue-700"
+                        >
+                          Copy Token
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <span>No client email set</span>
+                  )}
+                  
+                  {/* Last Activity */}
+                  {project.updatedAt && (
+                    <div className="mt-1 text-gray-400">
+                      Last updated: {new Date(project.updatedAt).toLocaleDateString()}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {projects.length === 0 && (
+        {filteredProjects.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-400 mb-4">
               <TrendingUp className="h-16 w-16 mx-auto" />
             </div>
-            <h4 className="text-lg font-medium text-gray-900 mb-2">No Projects Yet</h4>
-            <p className="text-gray-500">Projects will appear here when you start working with clients.</p>
+            <h4 className="text-lg font-medium text-gray-900 mb-2">
+              {searchQuery || filterStatus !== 'all' ? 'No Projects Found' : 'No Projects Yet'}
+            </h4>
+            <p className="text-gray-500">
+              {searchQuery || filterStatus !== 'all' 
+                ? 'Try adjusting your search or filter criteria.'
+                : 'Projects will appear here when you start working with clients.'}
+            </p>
           </div>
         )}
       </div>
@@ -510,6 +937,27 @@ const ProjectWorkspace: React.FC = () => {
         <div className="space-y-6">
           {activeTab === 'overview' && (
             <>
+              {/* Client Profile */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-medium text-gray-900 mb-6">Client Profile</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-500 mb-2">Company Information</h4>
+                    <div className="space-y-2">
+                      <p><span className="font-medium">Company:</span> {clientInfo?.companyName || 'Not provided'}</p>
+                      <p><span className="font-medium">Contact:</span> {clientInfo?.contactName || 'Not provided'}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-500 mb-2">Contact Information</h4>
+                    <div className="space-y-2">
+                      <p><span className="font-medium">Email:</span> {clientInfo?.email || 'Not provided'}</p>
+                      <p><span className="font-medium">Phone:</span> {clientInfo?.phone || 'Not provided'}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Progress Overview */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">Project Progress</h3>
@@ -548,6 +996,70 @@ const ProjectWorkspace: React.FC = () => {
                   )}
                 </div>
               </div>
+              
+              {/* Client Access Controls - Admin Only */}
+              {isAdminMode && (
+                <ProjectAccessControls
+                  project={project}
+                  clientEmail={clientInfo?.email}
+                  onTokenGenerated={fetchProjectData}
+                />
+              )}
+
+              {/* Project Management Actions - Admin Only */}
+              {isAdminMode && (
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center gap-2">
+                    <Archive className="h-5 w-5" />
+                    Project Management
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {/* Mark as Complete */}
+                    <button
+                      onClick={() => handleProjectStatusChange('completed')}
+                      disabled={project?.status === 'completed'}
+                      className="flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                    >
+                      <CheckCircle className="h-5 w-5" />
+                      <span className="font-medium">Mark Complete</span>
+                    </button>
+
+                    {/* Archive Project */}
+                    <button
+                      onClick={() => handleProjectStatusChange('archived')}
+                      disabled={project?.status === 'archived'}
+                      className="flex items-center justify-center gap-2 px-4 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                    >
+                      <Archive className="h-5 w-5" />
+                      <span className="font-medium">Archive</span>
+                    </button>
+
+                    {/* Delete Project */}
+                    <button
+                      onClick={() => handleDeleteProject()}
+                      className="flex items-center justify-center gap-2 px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                    >
+                      <Trash2 className="h-5 w-5" />
+                      <span className="font-medium">Delete</span>
+                    </button>
+                  </div>
+
+                  {/* Current Status Display */}
+                  <div className="mt-4 pt-4 border-t">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-700">Current Status:</span>
+                      <span className={`px-3 py-1 text-sm font-semibold rounded-full ${
+                        project?.status === 'completed' ? 'bg-green-100 text-green-800' :
+                        project?.status === 'archived' ? 'bg-yellow-100 text-yellow-800' :
+                        project?.status === 'active' ? 'bg-blue-100 text-blue-800' :
+                        'bg-gray-100 text-gray-800'
+                      }`}>
+                        {project?.status ? project.status.replace('_', ' ').toUpperCase() : 'ACTIVE'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </>
           )}
 
@@ -628,36 +1140,150 @@ const ProjectWorkspace: React.FC = () => {
 
           {activeTab === 'milestones' && (
             <div className="bg-white rounded-lg shadow-sm border p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-6">Project Milestones</h3>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-medium text-gray-900">Project Milestones</h3>
+                <button
+                  onClick={() => setShowMilestoneForm(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <Plus className="h-4 w-4" />
+                  Add Milestone
+                </button>
+              </div>
+
+              {/* Milestone Form */}
+              {showMilestoneForm && (
+                <div className="mb-6 p-4 bg-gray-50 rounded-lg border">
+                  <h4 className="text-md font-medium text-gray-900 mb-4">
+                    {editingMilestone ? 'Edit Milestone' : 'Create New Milestone'}
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                      <input
+                        type="text"
+                        value={milestoneForm.title}
+                        onChange={(e) => setMilestoneForm(prev => ({ ...prev, title: e.target.value }))}
+                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Milestone title"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Due Date (Optional)</label>
+                      <input
+                        type="date"
+                        value={milestoneForm.dueDate}
+                        onChange={(e) => setMilestoneForm(prev => ({ ...prev, dueDate: e.target.value }))}
+                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                    <textarea
+                      value={milestoneForm.description}
+                      onChange={(e) => setMilestoneForm(prev => ({ ...prev, description: e.target.value }))}
+                      rows={3}
+                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Describe what needs to be accomplished"
+                    />
+                  </div>
+                  <div className="flex gap-2 mt-4">
+                    <button
+                      onClick={editingMilestone ?
+                        () => handleUpdateMilestone(editingMilestone.id, milestoneForm) :
+                        handleCreateMilestone
+                      }
+                      disabled={!milestoneForm.title || !milestoneForm.description}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                    >
+                      {editingMilestone ? 'Update Milestone' : 'Create Milestone'}
+                    </button>
+                    <button
+                      onClick={resetMilestoneForm}
+                      className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Milestones List */}
               <div className="space-y-4">
-                {project?.milestones?.map((milestone, index) => (
-                  <div key={milestone.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
+                {milestones.map((milestone, index) => (
+                  <div key={milestone.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg border">
                     <div className="flex-shrink-0 mt-1">
                       {getMilestoneIcon(milestone.status)}
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
                         <h4 className="text-sm font-medium text-gray-900">{milestone.title}</h4>
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(milestone.status)}`}>
-                          {milestone.status?.replace('_', ' ') || 'Pending'}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(milestone.status)}`}>
+                            {milestone.status?.replace('_', ' ') || 'Pending'}
+                          </span>
+                          <div className="flex gap-1">
+                            {milestone.status === 'pending' && (
+                              <button
+                                onClick={() => handleUpdateMilestoneStatus(milestone.id, 'in_progress')}
+                                className="text-xs px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
+                                title="Mark as In Progress"
+                              >
+                                Start
+                              </button>
+                            )}
+                            {milestone.status === 'in_progress' && (
+                              <button
+                                onClick={() => handleUpdateMilestoneStatus(milestone.id, 'completed')}
+                                className="text-xs px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700"
+                                title="Mark as Completed"
+                              >
+                                Complete
+                              </button>
+                            )}
+                            <button
+                              onClick={() => handleEditMilestone(milestone)}
+                              className="text-xs px-2 py-1 bg-gray-600 text-white rounded hover:bg-gray-700"
+                              title="Edit Milestone"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => handleDeleteMilestone(milestone.id)}
+                              className="text-xs px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                              title="Delete Milestone"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
                       </div>
                       <p className="text-sm text-gray-600 mt-1">{milestone.description}</p>
                       <div className="flex items-center text-xs text-gray-500 mt-2">
                         <Calendar className="h-3 w-3 mr-1" />
                         <span>Due: {milestone.dueDate ? new Date(milestone.dueDate).toLocaleDateString() : 'N/A'}</span>
-                        {milestone.completedAt && (
+                        {milestone.completedDate && (
                           <>
                             <span className="mx-2">•</span>
-                            <span>Completed: {new Date(milestone.completedAt).toLocaleDateString()}</span>
+                            <span>Completed: {new Date(milestone.completedDate).toLocaleDateString()}</span>
                           </>
                         )}
                       </div>
                     </div>
                   </div>
                 ))}
-                {(!project?.milestones || project.milestones.length === 0) && (
-                  <p className="text-center text-gray-500 py-4">No milestones defined yet.</p>
+                {milestones.length === 0 && (
+                  <div className="text-center py-8">
+                    <CheckCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-500 mb-4">No milestones defined yet.</p>
+                    <button
+                      onClick={() => setShowMilestoneForm(true)}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                    >
+                      Create Your First Milestone
+                    </button>
+                  </div>
                 )}
               </div>
             </div>
