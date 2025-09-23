@@ -876,7 +876,21 @@
           this.updateUI();
           this.setupWebSocket();
         } else if (response.status === 404) {
-          this.showNoProject();
+          // Auto-create a project for this email, then retry
+          const createRes = await fetch(`${CONFIG.API_URL}/api/projects/member/${encodeURIComponent(this.data.memberEmail)}/find-or-create`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ companyName: this.data.memberName || '' })
+          });
+          if (createRes.ok) {
+            const data = await createRes.json();
+            this.data.project = data.project;
+            this.data.projectToken = data.projectToken;
+            this.updateUI();
+            this.setupWebSocket();
+          } else {
+            this.showNoProject();
+          }
         } else {
           this.showError('Failed to load project. Please try again.');
         }

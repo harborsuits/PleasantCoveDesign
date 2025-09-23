@@ -140,6 +140,128 @@ router.get('/member/:email', async (req: Request, res: Response) => {
   }
 });
 
+// Find or create a project for a member email
+router.post('/member/:email/find-or-create', async (req: Request, res: Response) => {
+  try {
+    const rawEmail = req.params.email || '';
+    const email = String(rawEmail).trim().toLowerCase();
+    const { companyName } = req.body || {};
+
+    if (!email || !email.includes('@')) {
+      return res.status(400).json({ error: 'Valid email is required' });
+    }
+
+    // 1) Find or create company by email
+    let company = await storage.getCompanyByMemberEmail(email);
+
+    if (!company) {
+      const fallbackName = companyName || email.split('@')[0].replace(/[._-]+/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()) || 'New Client';
+      company = await storage.createCompany({
+        name: fallbackName,
+        email,
+        phone: '',
+        address: '',
+        city: '',
+        state: '',
+        industry: 'General',
+        status: 'active',
+        source: 'squarespace_module'
+      } as any);
+    }
+
+    // 2) Find an active project or create one
+    let projects = await storage.getProjects({ companyId: company.id, status: 'active' });
+    let project = projects && projects.length > 0 ? projects[0] : undefined;
+
+    if (!project) {
+      const token = generateSecureProjectToken();
+      project = await storage.createProject({
+        companyId: company.id!,
+        title: `${company.name} – Website Project`,
+        type: 'website',
+        stage: 'planning',
+        status: 'active',
+        progress: 0,
+        notes: 'Auto-created from Squarespace module',
+        accessToken: token
+      } as any);
+      // Ensure client token is set
+      await storage.updateProject(project.id!, { clientToken: token });
+    }
+
+    // 3) Ensure a client token
+    let projectToken = (project as any).clientToken;
+    if (!projectToken) {
+      projectToken = generateSecureProjectToken();
+      await storage.updateProject(project.id!, { clientToken: projectToken });
+    }
+
+    // 4) Assemble response (reuse format from GET route)
+    const orders = await storage.getOrdersByCompanyId(company.id!);
+    const activeOrder = orders.find((o: any) => o.projectId === project!.id) || orders[0];
+    const milestones = await storage.getProjectMilestones(project!.id!);
+    const designs = await storage.getProjectDesigns(project!.id!);
+
+    const response = {
+      project: {
+        id: project!.id,
+        name: project!.name || `${(project as any).type || 'Website'} Development`,
+        companyName: company.name,
+        progress: (project as any).progress || 0,
+        currentStage: (project as any).stage || 'Planning',
+        estimatedCompletion: (project as any).estimatedCompletion,
+        startDate: (project as any).createdAt,
+        billing: activeOrder ? {
+          package: activeOrder.package || 'Professional',
+          basePrice: activeOrder.subtotal || 0,
+          addons: activeOrder.addons || [],
+          subtotal: activeOrder.subtotal || 0,
+          tax: activeOrder.tax || 0,
+          total: activeOrder.total || 0,
+          deposit: activeOrder.depositAmount || 0,
+          remaining: (activeOrder.total || 0) - (activeOrder.paidAmount || 0),
+          payments: activeOrder.payments || [],
+          breakdown: {
+            design: activeOrder.packageDescription || 'Custom website design',
+            development: activeOrder.developmentDescription || 'Full website development',
+            features: activeOrder.features || [
+              'Mobile-responsive design',
+              'Contact forms',
+              'SEO optimization',
+              'SSL certificate',
+              '1 year hosting'
+            ],
+            timeline: activeOrder.timeline || '6-8 weeks'
+          }
+        } : null,
+        designs: (designs || []).map((d: any) => ({
+          id: d.id,
+          title: d.title,
+          description: d.description,
+          imageUrl: d.imageUrl,
+          version: d.version || 'v1',
+          lastUpdated: d.updatedAt || d.createdAt,
+          feedbackCount: d.feedbackCount || 0
+        })),
+        milestones: (milestones || []).map((m: any) => ({
+          id: m.id,
+          title: m.title,
+          description: m.description,
+          status: m.status || 'pending',
+          completedDate: m.completedDate,
+          dueDate: m.dueDate
+        }))
+      },
+      projectToken
+    };
+
+    return res.json(response);
+  } catch (error) {
+    console.error('Error find-or-create by member email:', error);
+    return res.status(500).json({ error: 'Failed to create project' });
+  }
+});
+
 // Get project designs
 router.get('/:id/designs', validateProjectToken, async (req: Request, res: Response) => {
   try {
