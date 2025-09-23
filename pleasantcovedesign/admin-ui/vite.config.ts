@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/admin/',  // Add base path for admin UI
   server: {
     port: 5173,
     strictPort: true,      // error if 5173 is already in use
