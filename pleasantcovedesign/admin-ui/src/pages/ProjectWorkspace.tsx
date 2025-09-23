@@ -110,17 +110,22 @@ const ProjectWorkspace: React.FC = () => {
       
       // Try to fetch real project data using token
       try {
-        // Only fetch if we have a valid token
-        if (!projectToken || projectToken === 'null') {
-          throw new Error('Invalid project token')
+        // Only fetch if we have a valid project ID
+        if (!projectToken || projectToken === 'null' || projectToken === 'undefined') {
+          throw new Error('Invalid project ID')
         }
-        const response = await api.get(`/public/project/${projectToken}`)
-        setProject(response.data.project)
+        // Use admin endpoint to get project by ID
+        const response = await api.get(`/projects/${projectToken}`)
+        
+        // Handle both direct project response and wrapped response
+        const projectData = response.data.project || response.data
+        
+        setProject(projectData)
         setClientInfo({
-          companyName: response.data.company?.name || 'Company Name',
-          contactName: response.data.company?.name || 'Contact Name',
-          email: response.data.company?.email || 'email@example.com',
-          phone: response.data.company?.phone || '555-555-5555'
+          companyName: projectData.company?.name || response.data.company?.name || 'Company Name',
+          contactName: projectData.company?.name || response.data.company?.name || 'Contact Name',
+          email: projectData.company?.email || response.data.company?.email || 'email@example.com',
+          phone: projectData.company?.phone || response.data.company?.phone || '555-555-5555'
         })
       } catch (error: any) {
         console.log('API Error:', error.message)
@@ -554,7 +559,7 @@ const ProjectWorkspace: React.FC = () => {
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
-                        navigate(`/workspace/${project.accessToken || project.token || project.id}`)
+                        navigate(`/workspace/${project.id}`)
                         setShowActions(null)
                       }}
                       className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2"
@@ -609,7 +614,10 @@ const ProjectWorkspace: React.FC = () => {
               </div>
               
               <div 
-                onClick={() => navigate(`/workspace/${project.accessToken || project.token || project.id}`)}
+                onClick={() => {
+                  // Always use ID for admin navigation
+                  navigate(`/workspace/${project.id}`)
+                }}
                 className="cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-4 pr-8">
