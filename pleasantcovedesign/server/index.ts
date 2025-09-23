@@ -269,11 +269,16 @@ app.use((req, res, next) => {
 });
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// Serve static files from React build (if they exist)
-// Expecting the admin-ui build to be copied to `server/dist/client`
-const buildPath = path.join(__main_dirname, '../dist/client');
+// Serve static files for Admin UI build (if they exist)
+// Primary location (used by Railway build): `server/dist/public/admin`
+// Legacy fallback (older builds): `server/dist/client`
+const adminPublicPath = path.join(__main_dirname, 'public', 'admin');
+const legacyClientPath = path.join(__main_dirname, '../dist/client');
+const buildPath = fs.existsSync(adminPublicPath) ? adminPublicPath : legacyClientPath;
+
 if (fs.existsSync(buildPath)) {
-  console.log('📁 Serving admin UI from:', buildPath);
+  console.log('📁 Serving Admin UI static assets from:', buildPath);
+  // Serve assets at root (so /assets/* resolves regardless of mounting path)
   app.use(
     express.static(buildPath, {
       setHeaders: (res, filePath) => {
@@ -288,6 +293,14 @@ if (fs.existsSync(buildPath)) {
       },
     })
   );
+
+  // Explicitly serve Admin UI at /admin and /admin/* (SPA fallback)
+  app.get('/admin', (_req, res) => {
+    res.sendFile(path.join(buildPath, 'index.html'));
+  });
+  app.get('/admin/*', (_req, res) => {
+    res.sendFile(path.join(buildPath, 'index.html'));
+  });
 }
 
 // Serve client widget files
