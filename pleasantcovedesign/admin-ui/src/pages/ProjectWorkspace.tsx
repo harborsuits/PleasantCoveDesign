@@ -61,6 +61,11 @@ const ProjectWorkspace: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'design' | 'milestones' | 'files' | 'messages'>('overview')
   const [projects, setProjects] = useState<any[]>([])
   const [isAdminMode, setIsAdminMode] = useState(!projectToken)
+  
+  // Project management state (for admin mode)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'completed' | 'archived'>('all')
+  const [showActions, setShowActions] = useState<number | null>(null)
 
   useEffect(() => {
     if (projectToken) {
@@ -71,6 +76,20 @@ const ProjectWorkspace: React.FC = () => {
       fetchProjectsList()
     }
   }, [projectToken])
+  
+  // Close actions menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showActions !== null) {
+        setShowActions(null)
+      }
+    }
+    
+    if (isAdminMode && showActions !== null) {
+      document.addEventListener('click', handleClickOutside)
+      return () => document.removeEventListener('click', handleClickOutside)
+    }
+  }, [showActions, isAdminMode])
 
   const fetchProjectsList = async () => {
     try {
@@ -395,22 +414,6 @@ const ProjectWorkspace: React.FC = () => {
 
   // Admin Mode: Show project list
   if (isAdminMode) {
-    const [searchQuery, setSearchQuery] = useState('')
-    const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'completed' | 'archived'>('all')
-    const [showActions, setShowActions] = useState<number | null>(null)
-    
-    // Close actions menu when clicking outside
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (showActions !== null) {
-          setShowActions(null)
-        }
-      }
-      
-      document.addEventListener('click', handleClickOutside)
-      return () => document.removeEventListener('click', handleClickOutside)
-    }, [showActions])
-    
     // Filter projects based on search and status
     const filteredProjects = projects.filter(project => {
       const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -551,7 +554,7 @@ const ProjectWorkspace: React.FC = () => {
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
-                        navigate(`/workspace/${project.accessToken}`)
+                        navigate(`/workspace/${project.accessToken || project.token || project.id}`)
                         setShowActions(null)
                       }}
                       className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2"
@@ -606,7 +609,7 @@ const ProjectWorkspace: React.FC = () => {
               </div>
               
               <div 
-                onClick={() => navigate(`/workspace/${project.accessToken}`)}
+                onClick={() => navigate(`/workspace/${project.accessToken || project.token || project.id}`)}
                 className="cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-4 pr-8">
@@ -659,11 +662,11 @@ const ProjectWorkspace: React.FC = () => {
                   {project.company?.email ? (
                     <div className="flex items-center justify-between">
                       <span>Client: {project.company.email}</span>
-                      {project.accessToken && (
+                      {(project.accessToken || project.token) && (
                         <button 
                           onClick={(e) => {
                             e.stopPropagation();
-                            navigator.clipboard.writeText(project.accessToken);
+                            navigator.clipboard.writeText(project.accessToken || project.token);
                             alert('Token copied!');
                           }}
                           className="text-blue-600 hover:text-blue-700"
