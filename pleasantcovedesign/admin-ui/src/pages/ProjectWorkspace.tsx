@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Eye, Download, MessageCircle, Calendar, DollarSign, CheckCircle, Clock, AlertCircle, Paperclip, Send, TrendingUp, Palette, Search, Filter, Trash2, Archive, MoreVertical, Plus } from 'lucide-react'
 import DesignCanvas from '../components/Canvas/DesignCanvas'
+import SquarespaceCanvas from '../components/SquarespaceCanvas'
 import ProjectAccessControls from '../components/ProjectAccessControls'
 import api from '../api'
 
@@ -1067,18 +1068,29 @@ const ProjectWorkspace: React.FC = () => {
             <div className="space-y-6">
               {/* Canvas Section */}
               <div className="bg-white rounded-lg shadow-sm border overflow-hidden" style={{ height: '500px' }}>
-                <DesignCanvas
-                  projectId={project.id.toString()}
-                  isReadOnly={false}
-                  onSave={(canvasState) => {
-                    console.log('Canvas state saved locally:', canvasState)
-                    // API call is now handled directly in the DesignCanvas component
-                  }}
-                  onVersionCreate={(version, description) => {
-                    console.log('Version created locally:', { version, description })
-                    // API call is now handled directly in the DesignCanvas component
-                  }}
-                />
+                {(() => {
+                  const token = (project as any)?.accessToken || (project as any)?.token || projectToken;
+                  if (token) {
+                    return (
+                      <SquarespaceCanvas
+                        projectToken={String(token)}
+                        currentUser={{ name: 'Admin', avatar: '', role: 'admin' }}
+                      />
+                    )
+                  }
+                  return (
+                    <DesignCanvas
+                      projectId={project.id.toString()}
+                      isReadOnly={false}
+                      onSave={(canvasState) => {
+                        console.log('Canvas state saved locally:', canvasState)
+                      }}
+                      onVersionCreate={(version, description) => {
+                        console.log('Version created locally:', { version, description })
+                      }}
+                    />
+                  )
+                })()}
               </div>
 
               {/* Messages Section Below Canvas */}
