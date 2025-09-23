@@ -1,0 +1,1477 @@
+<!-- Pleasant Cove Design - Production Project Workspace -->
+<!-- Copy ALL of this code into a Squarespace Code Block -->
+
+<div id="pleasant-cove-workspace">
+  <div style="text-align: center; padding: 40px;">
+    <div style="display: inline-block; width: 50px; height: 50px; border: 3px solid #f3f3f3; border-top: 3px solid #000; border-radius: 50%; animation: pcd-spin 1s linear infinite;"></div>
+    <p style="margin-top: 20px; color: #6b7280;">Connecting to your project...</p>
+  </div>
+</div>
+
+<style>
+@keyframes pcd-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#pleasant-cove-workspace {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pleasant-cove-workspace * {
+  box-sizing: border-box;
+}
+
+.pcd-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.pcd-header {
+  background: #000;
+  color: #fff;
+  padding: 32px 40px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pcd-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.pcd-header p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.pcd-nav {
+  display: flex;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  overflow-x: auto;
+}
+
+.pcd-nav button {
+  flex: 1;
+  padding: 16px 24px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+
+.pcd-nav button:hover {
+  color: #000;
+  background: #f9fafb;
+}
+
+.pcd-nav button.active {
+  color: #000;
+  border-bottom-color: #000;
+}
+
+.pcd-content {
+  padding: 40px;
+  min-height: 600px;
+  background: #fff;
+}
+
+.pcd-section {
+  display: none;
+}
+
+.pcd-section.active {
+  display: block;
+}
+
+/* Progress Styles */
+.pcd-progress-container {
+  margin-bottom: 40px;
+}
+
+.pcd-progress-container h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #000;
+}
+
+.pcd-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #f3f4f6;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.pcd-progress-fill {
+  height: 100%;
+  background: #000;
+  transition: width 0.5s ease;
+}
+
+.pcd-progress-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+  margin-top: 12px;
+  display: block;
+}
+
+.pcd-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.pcd-stat-card {
+  background: #fff;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.pcd-stat-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.pcd-stat-card h3 {
+  margin: 0 0 8px 0;
+  color: #6b7280;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.pcd-stat-card p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Billing Section */
+.pcd-billing-section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 32px;
+  margin-top: 32px;
+}
+
+.pcd-billing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pcd-billing-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #000;
+  font-weight: 600;
+}
+
+.pcd-billing-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #000;
+  border: 1px solid #e5e7eb;
+}
+
+.pcd-billing-status.paid {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.pcd-billing-status.partial {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.pcd-billing-breakdown {
+  background: #fff;
+}
+
+.pcd-billing-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 15px;
+}
+
+.pcd-billing-item:last-child {
+  border-bottom: none;
+}
+
+.pcd-billing-item.total {
+  font-weight: 700;
+  font-size: 18px;
+  color: #000;
+  padding-top: 24px;
+  margin-top: 16px;
+  border-top: 2px solid #000;
+}
+
+.pcd-billing-description {
+  margin-top: 32px;
+  padding: 24px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.pcd-billing-description h4 {
+  margin: 0 0 16px 0;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pcd-billing-description ul {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+
+.pcd-billing-description li {
+  margin: 8px 0;
+  color: #374151;
+  font-size: 14px;
+}
+
+.pcd-payment-history {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pcd-payment-history h3 {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
+.pcd-payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 12px;
+}
+
+.pcd-payment-info {
+  flex: 1;
+}
+
+.pcd-payment-date {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.pcd-payment-amount {
+  font-weight: 600;
+  color: #000;
+  font-size: 18px;
+}
+
+/* Design Canvas Styles */
+.pcd-canvas-container {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  min-height: 600px;
+}
+
+.pcd-canvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pcd-canvas-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #000;
+  font-weight: 600;
+}
+
+.pcd-canvas-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.pcd-canvas-btn {
+  padding: 6px 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.pcd-canvas-btn:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.pcd-canvas-btn.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.pcd-designs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.pcd-design-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.pcd-design-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.pcd-design-preview {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pcd-design-info {
+  padding: 20px;
+}
+
+.pcd-design-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 4px;
+}
+
+.pcd-design-meta {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.pcd-feedback-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #000;
+  color: #fff;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pcd-design-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.pcd-design-detail-content {
+  background: #fff;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.pcd-design-detail-header {
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pcd-design-detail-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.pcd-close-btn {
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.pcd-close-btn:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.pcd-feedback-section {
+  padding: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pcd-feedback-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.pcd-feedback-input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.pcd-feedback-btn {
+  padding: 10px 24px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+.pcd-feedback-btn:hover {
+  background: #1f2937;
+}
+
+/* Milestones Styles */
+.pcd-milestones {
+  margin-top: 8px;
+}
+
+.pcd-milestone {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  margin-bottom: 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.pcd-milestone:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.pcd-milestone.completed {
+  background: #f9fafb;
+}
+
+.pcd-milestone-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.pcd-milestone.completed .pcd-milestone-icon {
+  background: #000;
+  color: #fff;
+}
+
+.pcd-milestone.pending .pcd-milestone-icon {
+  background: #fff;
+  color: #e5e7eb;
+  border: 2px solid #e5e7eb;
+}
+
+.pcd-milestone.current .pcd-milestone-icon {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.pcd-milestone-content h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+}
+
+.pcd-milestone-content p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Real-time connection indicator */
+.pcd-connection-status {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+}
+
+.pcd-connection-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.pcd-connection-dot.disconnected {
+  background: #ef4444;
+}
+
+/* No project message */
+.pcd-no-project {
+  text-align: center;
+  padding: 80px 20px;
+  color: #6b7280;
+}
+
+.pcd-no-project h2 {
+  color: #000;
+  margin-bottom: 12px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Authentication */
+.pcd-auth-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 40px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.pcd-auth-container h2 {
+  margin: 0 0 24px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+}
+
+.pcd-auth-form {
+  margin-top: 24px;
+}
+
+.pcd-auth-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #e5e7eb;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.pcd-auth-input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.pcd-auth-btn {
+  width: 100%;
+  padding: 12px;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pcd-auth-btn:hover {
+  background: #1f2937;
+}
+
+.pcd-auth-error {
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pcd-nav {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .pcd-nav button {
+    min-width: 120px;
+    font-size: 14px;
+    padding: 14px 20px;
+  }
+  
+  .pcd-content {
+    padding: 24px 20px;
+  }
+  
+  .pcd-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .pcd-billing-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .pcd-designs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Loading State */
+.pcd-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+}
+
+.pcd-loading-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f4f6;
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: pcd-spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+</style>
+
+<script>
+// Pleasant Cove Design - Production Project Workspace Module
+(function() {
+  'use strict';
+
+  // Configuration - UPDATE THESE FOR YOUR ENVIRONMENT
+  const CONFIG = {
+    API_URL: window.location.hostname === 'localhost' 
+      ? 'http://localhost:3000' 
+      : 'https://api.pleasantcovedesign.com', // Update with your production API URL
+    WS_URL: window.location.hostname === 'localhost' 
+      ? 'ws://localhost:3000' 
+      : 'wss://api.pleasantcovedesign.com',  // Update with your production WebSocket URL
+    USE_TOKEN_FROM_URL: false // Set to true if passing token in URL
+  };
+
+  // Main application
+  const ProjectWorkspace = {
+    data: {
+      project: null,
+      currentTab: 'overview',
+      memberEmail: null,
+      memberName: 'Valued Client',
+      selectedDesign: null,
+      wsConnection: null,
+      connectionStatus: 'connecting',
+      projectToken: null,
+      authMethod: null // 'email' or 'token'
+    },
+
+    async init() {
+      console.log('🚀 Initializing Pleasant Cove Project Workspace...');
+      
+      // Check for token in URL params
+      const urlParams = new URLSearchParams(window.location.search);
+      const tokenFromUrl = urlParams.get('token');
+      
+      if (tokenFromUrl && CONFIG.USE_TOKEN_FROM_URL) {
+        this.data.projectToken = tokenFromUrl;
+        this.data.authMethod = 'token';
+        this.render();
+        await this.loadProjectByToken();
+      } else {
+        // Try to detect Squarespace member
+        const memberInfo = this.detectMember();
+        
+        if (memberInfo.email) {
+          this.data.memberEmail = memberInfo.email;
+          this.data.memberName = memberInfo.name;
+          this.data.authMethod = 'email';
+          this.render();
+          await this.loadProjectByEmail();
+        } else {
+          // Show authentication form
+          this.showAuthForm();
+        }
+      }
+    },
+
+    detectMember() {
+      let email = null;
+      let name = 'Valued Client';
+      
+      // Method 1: Squarespace Static context
+      if (window.Static && window.Static.SQUARESPACE_CONTEXT) {
+        const ctx = window.Static.SQUARESPACE_CONTEXT;
+        if (ctx.authenticatedAccount) {
+          email = ctx.authenticatedAccount.email;
+          name = `${ctx.authenticatedAccount.firstName || ''} ${ctx.authenticatedAccount.lastName || ''}`.trim() || email;
+        }
+      }
+      
+      // Method 2: Y global object
+      if (!email && window.Y && window.Y.Global) {
+        const currentUser = window.Y.Global.get('currentUser');
+        if (currentUser) {
+          email = currentUser.get('email');
+          name = `${currentUser.get('firstName') || ''} ${currentUser.get('lastName') || ''}`.trim() || email;
+        }
+      }
+      
+      return { email, name };
+    },
+
+    showAuthForm() {
+      const container = document.getElementById('pleasant-cove-workspace');
+      container.innerHTML = `
+        <div class="pcd-auth-container">
+          <h2>Access Your Project</h2>
+          <p style="color: #6b7280; margin-bottom: 24px;">
+            Enter your email address or project access code to view your project.
+          </p>
+          
+          <div class="pcd-auth-form">
+            <input 
+              type="email" 
+              id="pcd-auth-email" 
+              class="pcd-auth-input" 
+              placeholder="your@email.com"
+            />
+            
+            <div style="margin: 16px 0; color: #6b7280; font-size: 14px;">— OR —</div>
+            
+            <input 
+              type="text" 
+              id="pcd-auth-token" 
+              class="pcd-auth-input" 
+              placeholder="Project Access Code"
+            />
+            
+            <button class="pcd-auth-btn" onclick="ProjectWorkspace.authenticate()">
+              Access Project
+            </button>
+            
+            <div id="pcd-auth-error" class="pcd-auth-error" style="display: none;"></div>
+          </div>
+        </div>
+      `;
+    },
+
+    async authenticate() {
+      const emailInput = document.getElementById('pcd-auth-email');
+      const tokenInput = document.getElementById('pcd-auth-token');
+      const errorDiv = document.getElementById('pcd-auth-error');
+      
+      const email = emailInput.value.trim();
+      const token = tokenInput.value.trim();
+      
+      if (!email && !token) {
+        errorDiv.textContent = 'Please enter your email or access code';
+        errorDiv.style.display = 'block';
+        return;
+      }
+      
+      errorDiv.style.display = 'none';
+      
+      if (email) {
+        this.data.memberEmail = email;
+        this.data.authMethod = 'email';
+        this.render();
+        await this.loadProjectByEmail();
+      } else if (token) {
+        this.data.projectToken = token;
+        this.data.authMethod = 'token';
+        this.render();
+        await this.loadProjectByToken();
+      }
+    },
+
+    async loadProjectByEmail() {
+      try {
+        const response = await fetch(`${CONFIG.API_URL}/api/projects/member/${encodeURIComponent(this.data.memberEmail)}`);
+        
+        if (response.ok) {
+          const data = await response.json();
+          this.data.project = data.project;
+          this.data.projectToken = data.projectToken;
+          this.updateUI();
+          this.setupWebSocket();
+        } else if (response.status === 404) {
+          this.showNoProject();
+        } else {
+          this.showError('Failed to load project. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error loading project:', error);
+        this.showError('Connection error. Please check your internet connection.');
+      }
+    },
+
+    async loadProjectByToken() {
+      try {
+        const response = await fetch(`${CONFIG.API_URL}/api/projects/token/${this.data.projectToken}`);
+        
+        if (response.ok) {
+          const data = await response.json();
+          this.data.project = data.project;
+          this.data.memberName = data.project.contactName || 'Valued Client';
+          this.updateUI();
+          this.setupWebSocket();
+        } else if (response.status === 404) {
+          this.showError('Invalid access code. Please check and try again.');
+        } else {
+          this.showError('Failed to load project. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error loading project:', error);
+        this.showError('Connection error. Please check your internet connection.');
+      }
+    },
+
+    render() {
+      const container = document.getElementById('pleasant-cove-workspace');
+      container.innerHTML = `
+        <div class="pcd-container">
+          <div class="pcd-header">
+            <h1>Loading...</h1>
+            <p>Welcome to Pleasant Cove Design</p>
+            <div class="pcd-connection-status">
+              <span class="pcd-connection-dot"></span>
+              <span>Connecting...</span>
+            </div>
+          </div>
+          
+          <nav class="pcd-nav">
+            <button class="active" onclick="ProjectWorkspace.showTab('overview')">Overview & Billing</button>
+            <button onclick="ProjectWorkspace.showTab('canvas')">Design Canvas</button>
+            <button onclick="ProjectWorkspace.showTab('milestones')">Milestones</button>
+          </nav>
+          
+          <div class="pcd-content">
+            <div id="pcd-overview" class="pcd-section active">
+              <div class="pcd-loading">
+                <div class="pcd-loading-spinner"></div>
+                <p>Loading project details...</p>
+              </div>
+            </div>
+            
+            <div id="pcd-canvas" class="pcd-section">
+              <div class="pcd-loading">
+                <div class="pcd-loading-spinner"></div>
+                <p>Loading designs...</p>
+              </div>
+            </div>
+            
+            <div id="pcd-milestones" class="pcd-section">
+              <div class="pcd-loading">
+                <div class="pcd-loading-spinner"></div>
+                <p>Loading milestones...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="pcd-design-modal"></div>
+      `;
+    },
+
+    updateUI() {
+      if (!this.data.project) return;
+
+      // Update header
+      const header = document.querySelector('.pcd-header h1');
+      const subtitle = document.querySelector('.pcd-header p');
+      if (header) header.textContent = this.data.project.name;
+      if (subtitle) subtitle.textContent = `Welcome, ${this.data.memberName}`;
+
+      // Update content
+      this.showTab(this.data.currentTab);
+    },
+
+    showTab(tabName) {
+      this.data.currentTab = tabName;
+
+      // Update nav buttons
+      document.querySelectorAll('.pcd-nav button').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase().includes(tabName)) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Hide all sections
+      document.querySelectorAll('.pcd-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Show selected section
+      const section = document.getElementById(`pcd-${tabName}`);
+      if (section) {
+        section.classList.add('active');
+        
+        switch(tabName) {
+          case 'overview':
+            this.renderOverview();
+            break;
+          case 'canvas':
+            this.renderCanvas();
+            break;
+          case 'milestones':
+            this.renderMilestones();
+            break;
+        }
+      }
+    },
+
+    renderOverview() {
+      const section = document.getElementById('pcd-overview');
+      const project = this.data.project;
+      
+      if (!project.billing) {
+        section.innerHTML = `
+          <div style="text-align: center; padding: 60px 20px; color: #6b7280;">
+            <p>Billing information will be available once your project is set up.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const billing = project.billing;
+      
+      // Calculate payment status
+      const paidAmount = billing.payments ? billing.payments.reduce((sum, payment) => sum + payment.amount, 0) : 0;
+      const paymentStatus = paidAmount >= billing.total ? 'paid' : 
+                           paidAmount > 0 ? 'partial' : 'pending';
+      const remainingAmount = billing.total - paidAmount;
+      
+      section.innerHTML = `
+        <div class="pcd-progress-container">
+          <h2>Project Progress</h2>
+          <div class="pcd-progress-bar">
+            <div class="pcd-progress-fill" style="width: ${project.progress || 0}%"></div>
+          </div>
+          <span class="pcd-progress-text">${project.progress || 0}% Complete</span>
+        </div>
+        
+        <div class="pcd-stats">
+          <div class="pcd-stat-card">
+            <h3>Company</h3>
+            <p>${project.companyName}</p>
+          </div>
+          
+          <div class="pcd-stat-card">
+            <h3>Current Stage</h3>
+            <p>${project.currentStage || 'Planning'}</p>
+          </div>
+          
+          <div class="pcd-stat-card">
+            <h3>Project Started</h3>
+            <p>${this.formatDate(project.startDate)}</p>
+          </div>
+          
+          <div class="pcd-stat-card">
+            <h3>Expected Launch</h3>
+            <p>${this.formatDate(project.estimatedCompletion)}</p>
+          </div>
+        </div>
+        
+        ${billing ? this.renderBilling(billing, paymentStatus, remainingAmount) : ''}
+      `;
+    },
+
+    renderBilling(billing, paymentStatus, remainingAmount) {
+      return `
+        <div class="pcd-billing-section">
+          <div class="pcd-billing-header">
+            <h2>Project Investment Details</h2>
+            <span class="pcd-billing-status ${paymentStatus}">
+              ${paymentStatus === 'paid' ? '✓ Paid in Full' : 
+                paymentStatus === 'partial' ? `Balance Due: $${remainingAmount.toLocaleString()}` : 
+                'Payment Pending'}
+            </span>
+          </div>
+          
+          <div class="pcd-billing-breakdown">
+            <div class="pcd-billing-item">
+              <span>${billing.package}</span>
+              <span>$${billing.basePrice.toLocaleString()}</span>
+            </div>
+            
+            ${billing.addons ? billing.addons.map(addon => `
+              <div class="pcd-billing-item">
+                <span>${addon.name}</span>
+                <span>$${addon.price.toLocaleString()}</span>
+              </div>
+            `).join('') : ''}
+            
+            <div class="pcd-billing-item">
+              <span>Subtotal</span>
+              <span>$${billing.subtotal.toLocaleString()}</span>
+            </div>
+            
+            ${billing.tax > 0 ? `
+              <div class="pcd-billing-item">
+                <span>Tax</span>
+                <span>$${billing.tax.toLocaleString()}</span>
+              </div>
+            ` : ''}
+            
+            <div class="pcd-billing-item total">
+              <span>Total Investment</span>
+              <span>$${billing.total.toLocaleString()}</span>
+            </div>
+          </div>
+          
+          ${billing.breakdown ? `
+            <div class="pcd-billing-description">
+              <h4>Project Scope & Deliverables:</h4>
+              <p><strong>${billing.breakdown.design}</strong></p>
+              <p style="margin-top: 8px; color: #374151;">${billing.breakdown.development}</p>
+              ${billing.breakdown.features ? `
+                <ul>
+                  ${billing.breakdown.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+              ` : ''}
+              <p style="margin-top: 16px;"><strong>Project Timeline:</strong> ${billing.breakdown.timeline}</p>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    },
+
+    renderCanvas() {
+      const section = document.getElementById('pcd-canvas');
+      const designs = this.data.project.designs || [];
+      
+      section.innerHTML = `
+        <div class="pcd-canvas-container">
+          <div class="pcd-canvas-header">
+            <h2>Design Canvas</h2>
+            <div class="pcd-canvas-controls">
+              <button class="pcd-canvas-btn active">All Designs</button>
+            </div>
+          </div>
+          
+          <p style="color: #6b7280; margin-bottom: 24px;">
+            Click any design to view full size and provide feedback. Your input helps us perfect your website.
+          </p>
+          
+          <div class="pcd-designs-grid">
+            ${designs.map(design => `
+              <div class="pcd-design-card" onclick="ProjectWorkspace.viewDesign(${design.id})">
+                ${design.feedbackCount > 0 ? `<div class="pcd-feedback-badge">${design.feedbackCount} comments</div>` : ''}
+                <div class="pcd-design-preview">
+                  ${design.imageUrl ? 
+                    `<img src="${design.imageUrl}" alt="${design.title}" style="width: 100%; height: 100%; object-fit: cover;">` :
+                    `<div style="text-align: center; color: #9ca3af;">Design preview coming soon</div>`
+                  }
+                </div>
+                <div class="pcd-design-info">
+                  <div class="pcd-design-title">${design.title}</div>
+                  <div class="pcd-design-meta">
+                    ${design.version} • Last updated ${this.formatDate(design.lastUpdated)}
+                  </div>
+                  <div class="pcd-design-meta" style="margin-top: 4px;">${design.description}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          
+          ${designs.length === 0 ? `
+            <div style="text-align: center; padding: 80px 20px; color: #6b7280;">
+              <p style="font-size: 48px; margin-bottom: 20px;">🎨</p>
+              <p style="font-size: 18px; color: #000; font-weight: 600;">No designs uploaded yet</p>
+              <p style="margin-top: 8px;">We're working on your designs and will notify you as soon as they're ready for review.</p>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    },
+
+    viewDesign(designId) {
+      const design = this.data.project.designs.find(d => d.id === designId);
+      if (!design) return;
+      
+      const modal = document.getElementById('pcd-design-modal');
+      modal.innerHTML = `
+        <div class="pcd-design-detail">
+          <div class="pcd-design-detail-content">
+            <div class="pcd-design-detail-header">
+              <div>
+                <h2>${design.title}</h2>
+                <p style="color: #6b7280;">${design.description}</p>
+              </div>
+              <button class="pcd-close-btn" onclick="ProjectWorkspace.closeDesign()">✕ Close</button>
+            </div>
+            
+            <div style="padding: 32px; text-align: center; background: #f9fafb;">
+              ${design.imageUrl ? 
+                `<img src="${design.imageUrl}" alt="${design.title}" class="pcd-design-detail-image">` :
+                `<div style="padding: 100px 20px; color: #9ca3af;">Design preview not available</div>`
+              }
+            </div>
+            
+            <div class="pcd-feedback-section">
+              <h3>Your Feedback</h3>
+              <p style="color: #6b7280; margin-bottom: 16px;">
+                Help us perfect this design. What works well? What could be improved?
+              </p>
+              <textarea 
+                id="pcd-feedback-input" 
+                class="pcd-feedback-input" 
+                placeholder="Share your thoughts on this design..."
+                rows="4"
+              ></textarea>
+              <button class="pcd-feedback-btn" onclick="ProjectWorkspace.submitFeedback(${design.id})">
+                Submit Feedback
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    },
+
+    closeDesign() {
+      document.getElementById('pcd-design-modal').innerHTML = '';
+    },
+
+    async submitFeedback(designId) {
+      const input = document.getElementById('pcd-feedback-input');
+      const feedback = input.value.trim();
+      
+      if (!feedback) {
+        alert('Please enter your feedback before submitting.');
+        return;
+      }
+      
+      try {
+        const response = await fetch(`${CONFIG.API_URL}/api/projects/${this.data.project.id}/designs/${designId}/feedback`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.data.projectToken}`
+          },
+          body: JSON.stringify({
+            content: feedback,
+            author: this.data.memberName,
+            designTitle: this.data.project.designs.find(d => d.id === designId)?.title
+          })
+        });
+        
+        if (response.ok) {
+          alert('Thank you! Your feedback has been sent to the design team.');
+          
+          // Update local feedback count
+          const design = this.data.project.designs.find(d => d.id === designId);
+          if (design) {
+            design.feedbackCount = (design.feedbackCount || 0) + 1;
+          }
+          
+          this.closeDesign();
+          this.renderCanvas();
+        } else {
+          alert('Sorry, there was an error sending your feedback. Please try again.');
+        }
+      } catch (error) {
+        console.error('Failed to submit feedback:', error);
+        alert('Sorry, there was an error sending your feedback. Please try again.');
+      }
+    },
+
+    renderMilestones() {
+      const section = document.getElementById('pcd-milestones');
+      const milestones = this.data.project.milestones || [];
+      
+      let milestonesHTML = '<h2 style="margin-bottom: 24px;">Project Milestones</h2><div class="pcd-milestones">';
+      
+      if (milestones.length === 0) {
+        milestonesHTML += `
+          <div style="text-align: center; padding: 60px 20px; color: #6b7280;">
+            <p>Milestones will be added as your project progresses.</p>
+          </div>
+        `;
+      } else {
+        milestones.forEach((milestone, index) => {
+          milestonesHTML += `
+            <div class="pcd-milestone ${milestone.status}">
+              <div class="pcd-milestone-icon">
+                ${milestone.status === 'completed' ? '✓' : index + 1}
+              </div>
+              <div class="pcd-milestone-content">
+                <h3>${milestone.title}</h3>
+                <p>${milestone.description}</p>
+                ${milestone.completedDate ? 
+                  `<p style="color: #059669; font-size: 13px; margin-top: 8px;">✓ Completed ${this.formatDate(milestone.completedDate)}</p>` : 
+                  milestone.dueDate ? 
+                    `<p style="color: #6b7280; font-size: 13px; margin-top: 8px;">Expected: ${this.formatDate(milestone.dueDate)}</p>` : 
+                    ''
+                }
+              </div>
+            </div>
+          `;
+        });
+      }
+      
+      milestonesHTML += '</div>';
+      section.innerHTML = milestonesHTML;
+    },
+
+    showNoProject() {
+      const content = document.querySelector('.pcd-content');
+      content.innerHTML = `
+        <div class="pcd-no-project">
+          <h2>No Active Project Found</h2>
+          <p>We couldn't find an active project for your account.</p>
+          <p>Please contact us at <a href="mailto:support@pleasantcovedesign.com" style="color: #000; text-decoration: underline;">support@pleasantcovedesign.com</a> for assistance.</p>
+        </div>
+      `;
+    },
+
+    showError(message) {
+      const content = document.querySelector('.pcd-content') || document.getElementById('pleasant-cove-workspace');
+      content.innerHTML = `
+        <div class="pcd-no-project">
+          <h2>Error</h2>
+          <p>${message}</p>
+          <button class="pcd-auth-btn" style="max-width: 200px; margin: 20px auto 0;" onclick="location.reload()">
+            Try Again
+          </button>
+        </div>
+      `;
+    },
+
+    setupWebSocket() {
+      if (this.data.wsConnection) {
+        this.data.wsConnection.close();
+      }
+      
+      try {
+        const ws = new WebSocket(CONFIG.WS_URL);
+        this.data.wsConnection = ws;
+        
+        ws.onopen = () => {
+          console.log('WebSocket connected');
+          this.data.connectionStatus = 'connected';
+          this.updateConnectionStatus();
+          
+          // Join project room
+          if (this.data.projectToken) {
+            ws.send(JSON.stringify({
+              type: 'join',
+              projectToken: this.data.projectToken
+            }));
+            
+            // Join canvas room for design updates
+            ws.send(JSON.stringify({
+              type: 'canvas:view',
+              projectToken: this.data.projectToken
+            }));
+          }
+        };
+        
+        ws.onmessage = (event) => {
+          const message = JSON.parse(event.data);
+          this.handleRealtimeUpdate(message);
+        };
+        
+        ws.onclose = () => {
+          console.log('WebSocket disconnected');
+          this.data.connectionStatus = 'disconnected';
+          this.updateConnectionStatus();
+          
+          // Reconnect after 5 seconds
+          setTimeout(() => this.setupWebSocket(), 5000);
+        };
+        
+        ws.onerror = (error) => {
+          console.error('WebSocket error:', error);
+          this.data.connectionStatus = 'disconnected';
+          this.updateConnectionStatus();
+        };
+      } catch (error) {
+        console.error('Failed to setup WebSocket:', error);
+      }
+    },
+
+    handleRealtimeUpdate(message) {
+      switch(message.type) {
+        case 'canvas:update':
+          // Update designs when admin makes changes
+          if (message.elements && this.data.project) {
+            console.log('Received canvas update from admin');
+            // Convert canvas elements to design format
+            const designs = message.elements.filter(el => el.type === 'design').map(el => ({
+              id: el.id,
+              title: el.content.title || 'Untitled Design',
+              description: el.content.description || '',
+              imageUrl: el.content.imageUrl || '',
+              version: el.content.version || 'v1',
+              lastUpdated: el.updatedAt || new Date().toISOString(),
+              feedbackCount: el.content.feedbackCount || 0,
+              status: el.content.status || 'pending'
+            }));
+            
+            this.data.project.designs = designs;
+            if (this.data.currentTab === 'canvas') {
+              this.renderCanvas();
+            }
+          }
+          break;
+          
+        case 'design:statusUpdate':
+          // Update design status when admin approves/rejects
+          if (this.data.project && this.data.project.designs) {
+            const design = this.data.project.designs.find(d => d.id === message.designId);
+            if (design) {
+              design.status = message.status;
+              if (this.data.currentTab === 'canvas') {
+                this.renderCanvas();
+              }
+            }
+          }
+          break;
+          
+        case 'project:update':
+          // Update project progress, stage, etc.
+          if (this.data.project && message.projectId === this.data.project.id) {
+            Object.assign(this.data.project, message.updates);
+            this.updateUI();
+          }
+          break;
+          
+        case 'milestone:update':
+          // Update milestone status
+          if (this.data.project && this.data.project.milestones) {
+            const milestone = this.data.project.milestones.find(m => m.id === message.milestoneId);
+            if (milestone) {
+              Object.assign(milestone, message.updates);
+              if (this.data.currentTab === 'milestones') {
+                this.renderMilestones();
+              }
+            }
+          }
+          break;
+          
+        case 'payment:received':
+          // Update payment information
+          if (this.data.project && this.data.project.billing) {
+            this.data.project.billing.payments.push(message.payment);
+            if (this.data.currentTab === 'overview') {
+              this.renderOverview();
+            }
+          }
+          break;
+      }
+    },
+
+    updateConnectionStatus() {
+      const dot = document.querySelector('.pcd-connection-dot');
+      const text = document.querySelector('.pcd-connection-status span:last-child');
+      
+      if (dot) {
+        dot.classList.toggle('disconnected', this.data.connectionStatus !== 'connected');
+      }
+      
+      if (text) {
+        text.textContent = this.data.connectionStatus === 'connected' ? 'Live' : 'Offline';
+      }
+    },
+
+    formatDate(dateString) {
+      if (!dateString) return 'TBD';
+      const date = new Date(dateString);
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    }
+  };
+
+  // Make available globally
+  window.ProjectWorkspace = ProjectWorkspace;
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => ProjectWorkspace.init());
+  } else {
+    setTimeout(() => ProjectWorkspace.init(), 100);
+  }
+})();
+</script>
