@@ -91,6 +91,10 @@ const ProjectWorkspace: React.FC = () => {
       
       // Try to fetch real project data using token
       try {
+        // Only fetch if we have a valid token
+        if (!projectToken || projectToken === 'null') {
+          throw new Error('Invalid project token')
+        }
         const response = await api.get(`/public/project/${projectToken}`)
         setProject(response.data.project)
         setClientInfo({
@@ -615,7 +619,32 @@ const ProjectWorkspace: React.FC = () => {
                     {project.status === 'archived' ? 'Archived' : project.stage}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600 mb-4">{project.type}</p>
+                
+                {/* Company Info */}
+                <div className="mb-3">
+                  <p className="text-sm font-medium text-gray-900">{project.company?.name || 'Unknown Company'}</p>
+                  <p className="text-xs text-gray-600">{project.type} • Created {new Date(project.createdAt || Date.now()).toLocaleDateString()}</p>
+                </div>
+                
+                {/* Project Details */}
+                {project.notes && (
+                  <p className="text-xs text-gray-500 mb-3 line-clamp-2">{project.notes}</p>
+                )}
+                
+                {/* Progress Bar */}
+                <div className="mb-3">
+                  <div className="flex justify-between text-xs text-gray-600 mb-1">
+                    <span>Progress</span>
+                    <span>{project.progress || 0}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      className="bg-blue-600 h-2 rounded-full transition-all duration-300" 
+                      style={{ width: `${project.progress || 0}%` }}
+                    />
+                  </div>
+                </div>
+                
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-gray-900">
                     ${project.totalAmount || 0} total
@@ -645,6 +674,13 @@ const ProjectWorkspace: React.FC = () => {
                     </div>
                   ) : (
                     <span>No client email set</span>
+                  )}
+                  
+                  {/* Last Activity */}
+                  {project.updatedAt && (
+                    <div className="mt-1 text-gray-400">
+                      Last updated: {new Date(project.updatedAt).toLocaleDateString()}
+                    </div>
                   )}
                 </div>
               </div>
