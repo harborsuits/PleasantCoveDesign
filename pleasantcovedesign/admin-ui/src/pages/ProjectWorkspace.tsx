@@ -445,7 +445,7 @@ const ProjectWorkspace: React.FC = () => {
     
     const handleArchiveProject = async (projectId: number) => {
       try {
-        await api.put(`/projects/${projectId}?token=pleasantcove2024admin`, {
+        await api.patch(`/projects/${projectId}/status`, {
           status: 'archived'
         })
         
