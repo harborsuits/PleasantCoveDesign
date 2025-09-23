@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Filter, MoreVertical, Copy, Archive, Trash2, CheckCircle, Clock, AlertCircle, ChevronRight } from 'lucide-react';
-import axios from 'axios';
+import api from '../api';
 
 const Workspace: React.FC = () => {
   const navigate = useNavigate();
@@ -17,11 +17,7 @@ const Workspace: React.FC = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get('/api/projects', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('admin_token')}`
-        }
-      });
+      const response = await api.get('/projects');
       setProjects(response.data);
     } catch (error) {
       console.error('Error fetching projects:', error);
@@ -43,14 +39,7 @@ const Workspace: React.FC = () => {
   const handleArchive = async (e: React.MouseEvent, projectId: string) => {
     e.stopPropagation();
     try {
-      await axios.patch(`/api/projects/${projectId}`, 
-        { status: 'archived' },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('admin_token')}`
-          }
-        }
-      );
+      await api.patch(`/projects/${projectId}`, { status: 'archived' });
       fetchProjects();
     } catch (error) {
       console.error('Error archiving project:', error);
@@ -61,11 +50,7 @@ const Workspace: React.FC = () => {
     e.stopPropagation();
     if (window.confirm('Are you sure you want to permanently delete this project?')) {
       try {
-        await axios.delete(`/api/projects/${projectId}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('admin_token')}`
-          }
-        });
+        await api.delete(`/projects/${projectId}`);
         fetchProjects();
       } catch (error) {
         console.error('Error deleting project:', error);

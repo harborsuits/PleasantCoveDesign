@@ -82,7 +82,7 @@ const DesignCanvas: React.FC<DesignCanvasProps> = ({
         setIsLoading(true)
         
         try {
-          const response = await fetch(`/api/projects/${projectId}/canvas`, {
+          const response = await fetch(`/api/projects/${projectId}/canvas?token=pleasantcove2024admin`, {
             headers: {
               'Authorization': `Bearer pleasantcove2024admin`,
             }
@@ -195,7 +195,7 @@ const DesignCanvas: React.FC<DesignCanvasProps> = ({
       
       try {
         // Try to save to the server API
-        const response = await fetch(`/api/projects/${projectId}/canvas`, {
+        const response = await fetch(`/api/projects/${projectId}/canvas?token=pleasantcove2024admin`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -238,7 +238,7 @@ const DesignCanvas: React.FC<DesignCanvasProps> = ({
       
       try {
         // Try to save version to the server API
-        const response = await fetch(`/api/projects/${projectId}/canvas/versions`, {
+        const response = await fetch(`/api/projects/${projectId}/canvas/versions?token=pleasantcove2024admin`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -83,6 +83,7 @@ function App() {
               <Route path="interactions" element={<Interactions />} />
               <Route path="progress" element={<Progress />} />
               <Route path="inbox" element={<Inbox />} />
+              <Route path="inbox/:projectToken" element={<Inbox />} />
               <Route path="enhanced-inbox" element={<EnhancedInbox />} />
               <Route path="threaded-inbox" element={<ThreadedInbox />} />
               <Route path="business/1/inbox" element={<Inbox />} />
