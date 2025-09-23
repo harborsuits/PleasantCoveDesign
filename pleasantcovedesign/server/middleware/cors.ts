@@ -28,6 +28,9 @@ export function createCorsMiddleware() {
     productionDomains.push(`https://${process.env.RAILWAY_PUBLIC_DOMAIN}`);
   }
 
+  // Add new Railway URL
+  productionDomains.push('https://pleasantcovedesign-production.up.railway.app');
+  
   // Legacy Railway URL (can be removed once env is updated)
   if (!process.env.RAILWAY_PUBLIC_DOMAIN) {
     productionDomains.push('https://pcd-production-clean-production-e6f3.up.railway.app');
