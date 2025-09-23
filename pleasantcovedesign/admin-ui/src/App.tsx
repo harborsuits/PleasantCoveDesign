@@ -22,6 +22,7 @@ import Inbox from './pages/Inbox'; // Use Inbox instead of Conversations
 import Settings from './pages/Settings';
 import Team from './pages/Team';
 import LoginPage from './pages/Login';
+import ProjectWorkspace from './pages/ProjectWorkspace';
 
 import { useAuth } from './contexts/AuthContext';
 
