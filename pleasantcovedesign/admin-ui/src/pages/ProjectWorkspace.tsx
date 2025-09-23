@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Eye, Download, MessageCircle, Calendar, DollarSign, CheckCircle, Clock, AlertCircle, Paperclip, Send, TrendingUp, Palette } from 'lucide-react'
+import { Eye, Download, MessageCircle, Calendar, DollarSign, CheckCircle, Clock, AlertCircle, Paperclip, Send, TrendingUp, Palette, Search, Filter, Trash2, Archive, MoreVertical } from 'lucide-react'
 import DesignCanvas from '../components/Canvas/DesignCanvas'
 import ProjectAccessControls from '../components/ProjectAccessControls'
 import api from '../api'
@@ -391,6 +391,93 @@ const ProjectWorkspace: React.FC = () => {
 
   // Admin Mode: Show project list
   if (isAdminMode) {
+    const [searchQuery, setSearchQuery] = useState('')
+    const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'completed' | 'archived'>('all')
+    const [showActions, setShowActions] = useState<number | null>(null)
+    
+    // Close actions menu when clicking outside
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (showActions !== null) {
+          setShowActions(null)
+        }
+      }
+      
+      document.addEventListener('click', handleClickOutside)
+      return () => document.removeEventListener('click', handleClickOutside)
+    }, [showActions])
+    
+    // Filter projects based on search and status
+    const filteredProjects = projects.filter(project => {
+      const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           project.company?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           project.company?.email?.toLowerCase().includes(searchQuery.toLowerCase())
+      
+      const matchesFilter = filterStatus === 'all' || 
+                           (filterStatus === 'active' && project.stage !== 'completed') ||
+                           (filterStatus === 'completed' && project.stage === 'completed') ||
+                           (filterStatus === 'archived' && project.status === 'archived')
+      
+      return matchesSearch && matchesFilter
+    })
+    
+    const handleDeleteProject = async (projectId: number) => {
+      if (!confirm('Are you sure you want to delete this project? This action cannot be undone.')) {
+        return
+      }
+      
+      try {
+        await api.delete(`/projects/${projectId}?token=pleasantcove2024admin`)
+        setProjects(projects.filter(p => p.id !== projectId))
+        alert('Project deleted successfully')
+      } catch (error) {
+        console.error('Failed to delete project:', error)
+        alert('Failed to delete project')
+      }
+    }
+    
+    const handleArchiveProject = async (projectId: number) => {
+      try {
+        await api.put(`/projects/${projectId}?token=pleasantcove2024admin`, {
+          status: 'archived'
+        })
+        
+        // Update local state
+        setProjects(projects.map(p => 
+          p.id === projectId ? { ...p, status: 'archived' } : p
+        ))
+        
+        alert('Project archived successfully')
+      } catch (error) {
+        console.error('Failed to archive project:', error)
+        alert('Failed to archive project')
+      }
+    }
+    
+    const handleCompleteProject = async (projectId: number) => {
+      if (!confirm('Mark this project as completed?')) {
+        return
+      }
+      
+      try {
+        await api.put(`/projects/${projectId}?token=pleasantcove2024admin`, {
+          stage: 'completed',
+          status: 'completed',
+          progress: 100
+        })
+        
+        // Update local state
+        setProjects(projects.map(p => 
+          p.id === projectId ? { ...p, stage: 'completed', status: 'completed', progress: 100 } : p
+        ))
+        
+        alert('Project marked as completed')
+      } catch (error) {
+        console.error('Failed to complete project:', error)
+        alert('Failed to complete project')
+      }
+    }
+    
     return (
       <div className="space-y-6">
         {/* Header */}
@@ -399,63 +486,185 @@ const ProjectWorkspace: React.FC = () => {
           <p className="text-muted mt-1">Manage and collaborate on your projects</p>
         </div>
 
+        {/* Controls Bar */}
+        <div className="bg-white rounded-lg border p-4 flex flex-col sm:flex-row gap-4">
+          {/* Search */}
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search projects, companies, or emails..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          {/* Filter */}
+          <div className="flex items-center gap-2">
+            <Filter className="h-4 w-4 text-gray-400" />
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value as any)}
+              className="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="all">All Projects</option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+              <option value="archived">Archived</option>
+            </select>
+          </div>
+          
+          {/* Stats */}
+          <div className="flex items-center gap-4 text-sm">
+            <span className="text-gray-600">
+              {filteredProjects.length} of {projects.length} projects
+            </span>
+          </div>
+        </div>
+
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <div
               key={project.id}
-              onClick={() => navigate(`/workspace/${project.accessToken}`)}
-              className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer"
+              className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow relative"
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-gray-900">{project.title}</h3>
-                <span className={`px-2 py-1 text-xs rounded-full ${project.stage === 'completed' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
-                  {project.stage}
-                </span>
-              </div>
-              <p className="text-sm text-gray-600 mb-4">{project.type}</p>
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-900">
-                  ${project.totalAmount || 0} total
-                </span>
-                <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                  Open Workspace →
+              {/* Actions Menu */}
+              <div className="absolute top-4 right-4">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setShowActions(showActions === project.id ? null : project.id)
+                  }}
+                  className="p-1 hover:bg-gray-100 rounded"
+                >
+                  <MoreVertical className="h-4 w-4 text-gray-500" />
                 </button>
-              </div>
-              
-              {/* Client Access Info */}
-              <div className="mt-4 pt-4 border-t text-xs text-gray-500">
-                {project.company?.email ? (
-                  <div className="flex items-center justify-between">
-                    <span>Client: {project.company.email}</span>
-                    {project.accessToken && (
-                      <button 
+                
+                {showActions === project.id && (
+                  <div className="absolute right-0 mt-1 w-48 bg-white rounded-lg shadow-lg border z-10">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        navigate(`/workspace/${project.accessToken}`)
+                        setShowActions(null)
+                      }}
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2"
+                    >
+                      <Eye className="h-4 w-4" />
+                      Open Workspace
+                    </button>
+                    
+                    {project.stage !== 'completed' && (
+                      <button
                         onClick={(e) => {
-                          e.stopPropagation();
-                          navigator.clipboard.writeText(project.accessToken);
-                          alert('Token copied!');
+                          e.stopPropagation()
+                          handleCompleteProject(project.id)
+                          setShowActions(null)
                         }}
-                        className="text-blue-600 hover:text-blue-700"
+                        className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2 text-green-600"
                       >
-                        Copy Token
+                        <CheckCircle className="h-4 w-4" />
+                        Mark Complete
                       </button>
                     )}
+                    
+                    {project.status !== 'archived' && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleArchiveProject(project.id)
+                          setShowActions(null)
+                        }}
+                        className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2 text-yellow-600"
+                      >
+                        <Archive className="h-4 w-4" />
+                        Archive
+                      </button>
+                    )}
+                    
+                    <div className="border-t my-1"></div>
+                    
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handleDeleteProject(project.id)
+                        setShowActions(null)
+                      }}
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2 text-red-600"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                      Delete Project
+                    </button>
                   </div>
-                ) : (
-                  <span>No client email set</span>
                 )}
+              </div>
+              
+              <div 
+                onClick={() => navigate(`/workspace/${project.accessToken}`)}
+                className="cursor-pointer"
+              >
+                <div className="flex items-center justify-between mb-4 pr-8">
+                  <h3 className="font-semibold text-gray-900">{project.title}</h3>
+                  <span className={`px-2 py-1 text-xs rounded-full ${
+                    project.status === 'archived' ? 'bg-gray-100 text-gray-800' :
+                    project.stage === 'completed' ? 'bg-green-100 text-green-800' : 
+                    'bg-blue-100 text-blue-800'
+                  }`}>
+                    {project.status === 'archived' ? 'Archived' : project.stage}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">{project.type}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-900">
+                    ${project.totalAmount || 0} total
+                  </span>
+                  <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                    Open Workspace →
+                  </button>
+                </div>
+                
+                {/* Client Access Info */}
+                <div className="mt-4 pt-4 border-t text-xs text-gray-500">
+                  {project.company?.email ? (
+                    <div className="flex items-center justify-between">
+                      <span>Client: {project.company.email}</span>
+                      {project.accessToken && (
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigator.clipboard.writeText(project.accessToken);
+                            alert('Token copied!');
+                          }}
+                          className="text-blue-600 hover:text-blue-700"
+                        >
+                          Copy Token
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <span>No client email set</span>
+                  )}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {projects.length === 0 && (
+        {filteredProjects.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-400 mb-4">
               <TrendingUp className="h-16 w-16 mx-auto" />
             </div>
-            <h4 className="text-lg font-medium text-gray-900 mb-2">No Projects Yet</h4>
-            <p className="text-gray-500">Projects will appear here when you start working with clients.</p>
+            <h4 className="text-lg font-medium text-gray-900 mb-2">
+              {searchQuery || filterStatus !== 'all' ? 'No Projects Found' : 'No Projects Yet'}
+            </h4>
+            <p className="text-gray-500">
+              {searchQuery || filterStatus !== 'all' 
+                ? 'Try adjusting your search or filter criteria.'
+                : 'Projects will appear here when you start working with clients.'}
+            </p>
           </div>
         )}
       </div>

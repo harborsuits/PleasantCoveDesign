@@ -3850,6 +3850,43 @@ ${meetingNotes.special_instructions}
       res.status(500).json({ error: "Failed to update project" });
     }
   });
+  
+  // Delete project
+  app.delete("/api/projects/:id", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const projectId = parseInt(req.params.id);
+      
+      // Get project first to log activity
+      const project = await storage.getProjectById(projectId);
+      if (!project) {
+        return res.status(404).json({ error: "Project not found" });
+      }
+      
+      // Delete related data first
+      await storage.deleteProjectMessages(projectId);
+      await storage.deleteProjectFiles(projectId);
+      await storage.deleteProjectActivities(projectId);
+      
+      // Delete the project
+      const deleted = await storage.deleteProject(projectId);
+      
+      if (!deleted) {
+        return res.status(500).json({ error: "Failed to delete project" });
+      }
+      
+      // Log activity on the company
+      await storage.createActivity({
+        type: 'project_deleted',
+        description: `Project deleted: ${project.title}`,
+        companyId: project.companyId
+      });
+      
+      res.json({ message: "Project deleted successfully" });
+    } catch (error) {
+      console.error("Failed to delete project:", error);
+      res.status(500).json({ error: "Failed to delete project" });
+    }
+  });
 
   // Archive/reactivate project
   app.patch("/api/projects/:id/status", async (req: Request, res: Response) => {
