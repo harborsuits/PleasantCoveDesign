@@ -725,10 +725,10 @@
   const CONFIG = {
     API_URL: window.location.hostname === 'localhost' 
       ? 'http://localhost:3000' 
-      : 'https://api.pleasantcovedesign.com', // Update with your production API URL
+      : 'https://pcd-production-clean-production-e6f3.up.railway.app', // Your Railway API URL
     WS_URL: window.location.hostname === 'localhost' 
       ? 'ws://localhost:3000' 
-      : 'wss://api.pleasantcovedesign.com',  // Update with your production WebSocket URL
+      : 'wss://pcd-production-clean-production-e6f3.up.railway.app',  // Your Railway WebSocket URL
     USE_TOKEN_FROM_URL: false // Set to true if passing token in URL
   };
 
@@ -1300,8 +1300,20 @@
       content.innerHTML = `
         <div class="pcd-no-project">
           <h2>No Active Project Found</h2>
-          <p>We couldn't find an active project for your account.</p>
-          <p>Please contact us at <a href="mailto:support@pleasantcovedesign.com" style="color: #000; text-decoration: underline;">support@pleasantcovedesign.com</a> for assistance.</p>
+          <p>We couldn't find an active project associated with <strong>${this.data.memberEmail || 'your email'}</strong>.</p>
+          <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: left;">
+            <h3 style="margin: 0 0 10px 0; font-size: 16px;">How to create a project:</h3>
+            <ol style="margin: 10px 0; padding-left: 20px;">
+              <li>Log into your admin dashboard</li>
+              <li>Go to Leads or Dashboard</li>
+              <li>Select a lead or create a new company</li>
+              <li>Click "Create Project"</li>
+              <li>Make sure the company email matches: <strong>${this.data.memberEmail || 'your email'}</strong></li>
+              <li>Save the project</li>
+              <li>Return here to see your project</li>
+            </ol>
+          </div>
+          <p>Need help? Contact us at <a href="mailto:support@pleasantcovedesign.com" style="color: #000; text-decoration: underline;">support@pleasantcovedesign.com</a></p>
         </div>
       `;
     },
