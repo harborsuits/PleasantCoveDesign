@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import Layout from './Layout'
 import Dashboard from './pages/Dashboard'
 import Leads from './pages/Leads'
+import LeadsUnified from './pages/LeadsUnified'
 import Proposals from './pages/Proposals'
 import Outreach from './pages/Outreach'
 import Schedule from './pages/Schedule'
@@ -56,7 +57,8 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="leads" element={<Leads />} />
+            <Route path="leads" element={<LeadsUnified />} />
+            <Route path="lead-scraper" element={<LeadsUnified />} />
             <Route path="proposals" element={<Proposals />} />
             <Route path="outreach" element={<Outreach />} />
             <Route path="schedule" element={<Schedule />} />
@@ -66,6 +68,7 @@ function App() {
             <Route path="projects/:projectToken" element={<ProjectWorkspace />} />
             <Route path="interactions" element={<Interactions />} />
             <Route path="inbox" element={<Inbox />} />
+            <Route path="inbox/:projectToken" element={<Inbox />} />
             <Route path="business/1/inbox" element={<Inbox />} />
             <Route path="demos" element={<Demos />} />
             <Route path="team" element={<Team />} />
