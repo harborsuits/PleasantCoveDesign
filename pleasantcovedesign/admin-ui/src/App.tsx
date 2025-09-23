@@ -17,11 +17,9 @@ import Dashboard from './pages/Dashboard';
 import Leads from './pages/Leads';
 import SimpleLeads from './pages/SimpleLeads'; // Import the SimpleLeads component
 import SuperSimpleLeads from './pages/SuperSimpleLeads'; // Import the SuperSimpleLeads component
-import LeadScraper from './pages/LeadScraper';
-import Conversations from './pages/Conversations';
+import { LeadScraper } from './pages/LeadScraper';
+import Inbox from './pages/Inbox'; // Use Inbox instead of Conversations
 import Settings from './pages/Settings';
-import Orders from './pages/Orders';
-import Websites from './pages/Websites';
 import Team from './pages/Team';
 import LoginPage from './pages/Login';
 
@@ -95,25 +93,11 @@ function App() {
           <ListItemText primary="Lead Scraper" />
         </ListItem>
         
-        <ListItem button component={Link} to="/conversations">
+        <ListItem button component={Link} to="/inbox">
           <ListItemIcon>
             <ChatIcon />
           </ListItemIcon>
-          <ListItemText primary="Conversations" />
-        </ListItem>
-        
-        <ListItem button component={Link} to="/orders">
-          <ListItemIcon>
-            <ReceiptIcon />
-          </ListItemIcon>
-          <ListItemText primary="Orders" />
-        </ListItem>
-        
-        <ListItem button component={Link} to="/websites">
-          <ListItemIcon>
-            <WebIcon />
-          </ListItemIcon>
-          <ListItemText primary="Websites" />
+          <ListItemText primary="Inbox" />
         </ListItem>
         
         <ListItem button component={Link} to="/team">
@@ -211,10 +195,9 @@ function App() {
                 <Route path="/simple-leads" element={<SimpleLeads />} />
                 <Route path="/super-simple-leads" element={<SuperSimpleLeads />} />
                 <Route path="/lead-scraper" element={<LeadScraper />} />
-                <Route path="/conversations" element={<Conversations />} />
+                <Route path="/inbox" element={<Inbox />} />
+                <Route path="/projects/:projectToken" element={<ProjectWorkspace />} />
                 <Route path="/settings" element={<Settings />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/websites" element={<Websites />} />
                 <Route path="/team" element={<Team />} />
               </Routes>
             </Container>

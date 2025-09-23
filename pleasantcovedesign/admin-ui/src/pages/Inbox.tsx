@@ -639,8 +639,11 @@ const Inbox: React.FC = () => {
           formData.append('files', file)
         })
         
-        response = await fetch(`${getWebSocketUrl()}/api/public/project/${selectedConversation.projectToken}/messages`, {
+        response = await fetch(`/api/projects/${selectedConversation.projectId}/messages`, {
           method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${import.meta.env.VITE_ADMIN_TOKEN || 'pleasantcove2024admin'}`
+          },
           body: formData
         })
         
@@ -650,13 +653,11 @@ const Inbox: React.FC = () => {
         
         response = { data: await response.json() }
       } else {
-        // Use unified messaging API for text-only messages
-        response = await api.post(`/messages`, {
-          projectToken: selectedConversation.projectToken,
-          sender: 'Pleasant Cove Design',
-          body: newMessage,
-          attachmentKeys: [],
-          hasFiles: false
+        // Use admin messaging endpoint for text-only messages
+        response = await api.post(`/projects/${selectedConversation.projectId}/messages`, {
+          content: newMessage,
+          senderName: 'Pleasant Cove Design',
+          senderType: 'admin'
         })
       }
 

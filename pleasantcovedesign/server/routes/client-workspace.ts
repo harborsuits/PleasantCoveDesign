@@ -3,6 +3,7 @@
 
 import express, { Router, Request, Response } from 'express';
 import { storage } from '../storage';
+import { memoryDb } from '../db';
 import { generateSecureProjectToken } from '../utils/tokenGenerator';
 import { validateTokenFormat } from '../utils/tokenGenerator';
 
@@ -323,34 +324,303 @@ router.post('/:id/designs/:designId/feedback', validateProjectToken, async (req:
   }
 });
 
-// WebSocket authentication for project updates
-router.post('/ws-auth', async (req: Request, res: Response) => {
+// Get project by token (for direct access)
+router.get('/token/:token', async (req: Request, res: Response) => {
   try {
-    const { token } = req.body;
-    
+    const { token } = req.params;
+
     if (!token || !validateTokenFormat(token)) {
-      return res.status(401).json({ error: 'Invalid token' });
+      return res.status(400).json({ error: 'Invalid token format' });
     }
-    
+
+    // Get project by token
     const project = await storage.getProjectByToken(token);
     if (!project) {
       return res.status(404).json({ error: 'Project not found' });
     }
-    
+
+    // Get company information
+    const company = await storage.getCompanyById(project.companyId);
+    if (!company) {
+      return res.status(404).json({ error: 'Company not found' });
+    }
+
+    // Get order/billing information
+    const orders = await storage.getOrdersByCompanyId(company.id);
+    const activeOrder = orders.find((o: any) => o.projectId === project.id) || orders[0];
+
+    // Get milestones
+    const milestones = await storage.getProjectMilestones(project.id);
+
+    // Get designs
+    const designs = await storage.getProjectDesigns(project.id);
+
+    // Format response (same as member email route)
+    const response = {
+      project: {
+        id: project.id,
+        name: project.name || `${project.type} Development`,
+        companyName: company.name,
+        contactName: company.name,
+        progress: project.progress || 0,
+        currentStage: project.stage || 'Planning',
+        estimatedCompletion: project.estimatedCompletion,
+        startDate: project.createdAt,
+
+        billing: activeOrder ? {
+          package: activeOrder.package || 'Professional',
+          basePrice: activeOrder.subtotal || 0,
+          addons: activeOrder.addons || [],
+          subtotal: activeOrder.subtotal || 0,
+          tax: activeOrder.tax || 0,
+          total: activeOrder.total || 0,
+          deposit: activeOrder.depositAmount || 0,
+          remaining: (activeOrder.total || 0) - (activeOrder.paidAmount || 0),
+          payments: activeOrder.payments || [],
+          breakdown: {
+            design: activeOrder.packageDescription || 'Custom website design',
+            development: activeOrder.developmentDescription || 'Full website development',
+            features: activeOrder.features || [
+              'Mobile-responsive design',
+              'Contact forms',
+              'SEO optimization',
+              'SSL certificate',
+              '1 year hosting'
+            ],
+            timeline: activeOrder.timeline || '6-8 weeks'
+          }
+        } : null,
+
+        designs: designs.map((d: any) => ({
+          id: d.id,
+          title: d.title,
+          description: d.description,
+          imageUrl: d.imageUrl,
+          version: d.version || 'v1',
+          lastUpdated: d.updatedAt || d.createdAt,
+          feedbackCount: d.feedbackCount || 0
+        })),
+
+        milestones: milestones.map((m: any) => ({
+          id: m.id,
+          title: m.title,
+          description: m.description,
+          status: m.status || 'pending',
+          completedDate: m.completedDate,
+          dueDate: m.dueDate
+        }))
+      }
+    };
+
+    res.json(response);
+  } catch (error) {
+    console.error('Error fetching project by token:', error);
+    res.status(500).json({ error: 'Failed to fetch project' });
+  }
+});
+
+// WebSocket authentication for project updates
+router.post('/ws-auth', async (req: Request, res: Response) => {
+  try {
+    const { token } = req.body;
+
+    if (!token || !validateTokenFormat(token)) {
+      return res.status(401).json({ error: 'Invalid token' });
+    }
+
+    const project = await storage.getProjectByToken(token);
+    if (!project) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
     // Generate temporary WebSocket token
     const wsToken = generateSecureProjectToken();
-    
+
     // Store in temporary cache (expires in 1 hour)
     await storage.cacheWebSocketToken(wsToken, {
       projectId: project.id,
       companyId: project.companyId,
       expires: Date.now() + 3600000 // 1 hour
     });
-    
+
     res.json({ wsToken, projectId: project.id });
   } catch (error) {
     console.error('Error authenticating WebSocket:', error);
     res.status(500).json({ error: 'Failed to authenticate' });
+  }
+});
+
+// ==========================================
+// MILESTONE MANAGEMENT ENDPOINTS
+// ==========================================
+
+// Get all milestones for a project
+router.get('/:projectId/milestones', async (req: Request, res: Response) => {
+  try {
+    const { projectId } = req.params;
+    const project = await storage.getProject(parseInt(projectId));
+
+    if (!project) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    const milestones = await storage.getProjectMilestones(parseInt(projectId));
+    res.json(milestones);
+  } catch (error) {
+    console.error('Error fetching milestones:', error);
+    res.status(500).json({ error: 'Failed to fetch milestones' });
+  }
+});
+
+// Create new milestone
+router.post('/:projectId/milestones', async (req: Request, res: Response) => {
+  try {
+    const { projectId } = req.params;
+    const { title, description, dueDate, order } = req.body;
+
+    if (!title || !description) {
+      return res.status(400).json({ error: 'Title and description are required' });
+    }
+
+    const project = await storage.getProject(parseInt(projectId));
+    if (!project) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    const milestoneData = {
+      id: Date.now(),
+      projectId: parseInt(projectId),
+      title,
+      description,
+      status: 'pending',
+      dueDate: dueDate || null,
+      order: order || 0,
+      createdAt: new Date().toISOString()
+    };
+
+    // Add to storage
+    if (!storage.createMilestone) {
+      // Fallback for in-memory storage
+      if (!memoryDb.milestones) memoryDb.milestones = [];
+      memoryDb.milestones.push(milestoneData);
+    } else {
+      await storage.createMilestone(milestoneData);
+    }
+
+    res.status(201).json(milestoneData);
+  } catch (error) {
+    console.error('Error creating milestone:', error);
+    res.status(500).json({ error: 'Failed to create milestone' });
+  }
+});
+
+// Update milestone
+router.put('/:projectId/milestones/:milestoneId', async (req: Request, res: Response) => {
+  try {
+    const { projectId, milestoneId } = req.params;
+    const { title, description, status, dueDate, order } = req.body;
+
+    const project = await storage.getProject(parseInt(projectId));
+    if (!project) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    // Update milestone in storage
+    if (storage.updateMilestone) {
+      const updatedMilestone = await storage.updateMilestone(parseInt(milestoneId), {
+        title,
+        description,
+        status,
+        dueDate,
+        order,
+        ...(status === 'completed' ? { completedDate: new Date().toISOString() } : {})
+      });
+      res.json(updatedMilestone);
+    } else {
+      // Fallback for in-memory storage
+      const milestoneIndex = memoryDb.milestones.findIndex(m => m.id === parseInt(milestoneId));
+      if (milestoneIndex === -1) {
+        return res.status(404).json({ error: 'Milestone not found' });
+      }
+
+      memoryDb.milestones[milestoneIndex] = {
+        ...memoryDb.milestones[milestoneIndex],
+        title,
+        description,
+        status,
+        dueDate,
+        order,
+        ...(status === 'completed' ? { completedDate: new Date().toISOString() } : {})
+      };
+
+      res.json(memoryDb.milestones[milestoneIndex]);
+    }
+  } catch (error) {
+    console.error('Error updating milestone:', error);
+    res.status(500).json({ error: 'Failed to update milestone' });
+  }
+});
+
+// Delete milestone
+router.delete('/:projectId/milestones/:milestoneId', async (req: Request, res: Response) => {
+  try {
+    const { projectId, milestoneId } = req.params;
+
+    const project = await storage.getProject(parseInt(projectId));
+    if (!project) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    // Delete milestone from storage
+    if (storage.deleteMilestone) {
+      await storage.deleteMilestone(parseInt(milestoneId));
+    } else {
+      // Fallback for in-memory storage
+      const milestoneIndex = memoryDb.milestones.findIndex(m => m.id === parseInt(milestoneId));
+      if (milestoneIndex !== -1) {
+        memoryDb.milestones.splice(milestoneIndex, 1);
+      }
+    }
+
+    res.status(200).json({ message: 'Milestone deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting milestone:', error);
+    res.status(500).json({ error: 'Failed to delete milestone' });
+  }
+});
+
+// Reorder milestones
+router.post('/:projectId/milestones/reorder', async (req: Request, res: Response) => {
+  try {
+    const { projectId } = req.params;
+    const { milestoneIds } = req.body; // Array of milestone IDs in new order
+
+    if (!Array.isArray(milestoneIds)) {
+      return res.status(400).json({ error: 'milestoneIds must be an array' });
+    }
+
+    const project = await storage.getProject(parseInt(projectId));
+    if (!project) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    // Update order for each milestone
+    if (storage.reorderMilestones) {
+      await storage.reorderMilestones(parseInt(projectId), milestoneIds);
+    } else {
+      // Fallback for in-memory storage
+      milestoneIds.forEach((milestoneId, index) => {
+        const milestoneIndex = memoryDb.milestones.findIndex(m => m.id === milestoneId);
+        if (milestoneIndex !== -1) {
+          memoryDb.milestones[milestoneIndex].order = index + 1;
+        }
+      });
+    }
+
+    res.json({ message: 'Milestones reordered successfully' });
+  } catch (error) {
+    console.error('Error reordering milestones:', error);
+    res.status(500).json({ error: 'Failed to reorder milestones' });
   }
 });
 

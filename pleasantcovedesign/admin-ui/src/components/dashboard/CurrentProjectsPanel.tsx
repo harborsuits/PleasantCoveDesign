@@ -7,6 +7,8 @@ import type { Project, Company } from '../../../../shared/schema'
 
 interface ProjectWithCompany extends Project {
   company?: Company
+  accessToken?: string
+  clientToken?: string
 }
 
 const CurrentProjectsPanel: React.FC = () => {
@@ -31,7 +33,9 @@ const CurrentProjectsPanel: React.FC = () => {
           .filter(project => project.status === 'active')
           .map(project => ({
             ...project,
-            company: companyMap.get(project.companyId)
+            company: companyMap.get(project.companyId),
+            accessToken: project.accessToken,
+            clientToken: project.clientToken
           }))
           .sort((a, b) => {
             // Sort by scheduled time if available, otherwise by creation date
@@ -81,25 +85,28 @@ const CurrentProjectsPanel: React.FC = () => {
         <div className="text-center py-4 text-gray-500">No active projects</div>
       ) : (
         <div className="space-y-3">
-          {projects.map((project) => (
-            <Link
-              key={project.id}
-              to="/progress"
-              className="block hover:bg-gray-50 -mx-2 px-2 py-2 rounded transition-colors cursor-pointer"
-            >
-              <div className="space-y-1">
-                <p className="font-medium truncate">
-                  {project.title}
-                  <span className="text-sm text-gray-500 ml-2">
-                    ({project.stage})
-                  </span>
-                </p>
-                <p className="text-sm text-gray-600">
-                  {formatDate(project.scheduledTime)} • {project.company?.name || 'Unknown Client'}
-                </p>
-              </div>
-            </Link>
-          ))}
+          {projects.map((project) => {
+            const projectToken = project.clientToken || project.accessToken
+            return (
+              <Link
+                key={project.id}
+                to={projectToken ? `/projects/${projectToken}` : "/progress"}
+                className="block hover:bg-gray-50 -mx-2 px-2 py-2 rounded transition-colors cursor-pointer"
+              >
+                <div className="space-y-1">
+                  <p className="font-medium truncate">
+                    {project.title}
+                    <span className="text-sm text-gray-500 ml-2">
+                      ({project.stage})
+                    </span>
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    {formatDate(project.scheduledTime)} • {project.company?.name || 'Unknown Client'}
+                  </p>
+                </div>
+              </Link>
+            )
+          })}
         </div>
       )}
 

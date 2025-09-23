@@ -1,6 +1,9 @@
 <!-- Pleasant Cove Design - Production Project Workspace -->
 <!-- Copy ALL of this code into a Squarespace Code Block -->
 
+<!-- Socket.io Client Library -->
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
 <div id="pleasant-cove-workspace">
   <div style="text-align: center; padding: 40px;">
     <div style="display: inline-block; width: 50px; height: 50px; border: 3px solid #f3f3f3; border-top: 3px solid #000; border-radius: 50%; animation: pcd-spin 1s linear infinite;"></div>
@@ -1347,54 +1350,107 @@
 
     setupWebSocket() {
       if (this.data.wsConnection) {
-        this.data.wsConnection.close();
+        this.data.wsConnection.disconnect();
       }
-      
+
       try {
-        const ws = new WebSocket(CONFIG.WS_URL);
-        this.data.wsConnection = ws;
-        
-        ws.onopen = () => {
-          console.log('WebSocket connected');
+        // Use Socket.io instead of raw WebSocket
+        const socket = io(CONFIG.WS_URL, {
+          transports: ['websocket', 'polling'],
+          upgrade: true
+        });
+
+        this.data.wsConnection = socket;
+
+        socket.on('connect', () => {
+          console.log('Socket.io connected');
           this.data.connectionStatus = 'connected';
           this.updateConnectionStatus();
-          
+
           // Join project room
           if (this.data.projectToken) {
-            ws.send(JSON.stringify({
-              type: 'join',
-              projectToken: this.data.projectToken
-            }));
-            
-            // Join canvas room for design updates
-            ws.send(JSON.stringify({
-              type: 'canvas:view',
-              projectToken: this.data.projectToken
-            }));
+            socket.emit('join', this.data.projectToken, (response) => {
+              if (response.success) {
+                console.log('Successfully joined project room:', response.room);
+
+                // Join canvas room for design updates
+                socket.emit('canvas:view', this.data.projectToken);
+              } else {
+                console.error('Failed to join project room:', response);
+              }
+            });
           }
-        };
-        
-        ws.onmessage = (event) => {
-          const message = JSON.parse(event.data);
-          this.handleRealtimeUpdate(message);
-        };
-        
-        ws.onclose = () => {
-          console.log('WebSocket disconnected');
+        });
+
+        socket.on('disconnect', (reason) => {
+          console.log('Socket.io disconnected:', reason);
           this.data.connectionStatus = 'disconnected';
           this.updateConnectionStatus();
-          
-          // Reconnect after 5 seconds
+
+          // Auto-reconnect after 5 seconds
           setTimeout(() => this.setupWebSocket(), 5000);
-        };
-        
-        ws.onerror = (error) => {
-          console.error('WebSocket error:', error);
+        });
+
+        socket.on('connect_error', (error) => {
+          console.error('Socket.io connection error:', error);
           this.data.connectionStatus = 'disconnected';
           this.updateConnectionStatus();
-        };
+        });
+
+        // Listen for real-time updates
+        socket.on('joined', (data) => {
+          console.log('Joined room:', data);
+        });
+
+        socket.on('new_feedback', (data) => {
+          console.log('New feedback received:', data);
+          this.handleRealtimeUpdate({
+            type: 'feedback:update',
+            designId: data.designId,
+            content: data.content,
+            author: data.author
+          });
+        });
+
+        socket.on('design:update', (data) => {
+          console.log('Design update received:', data);
+          this.handleRealtimeUpdate({
+            type: 'design:update',
+            designId: data.designId,
+            updates: data.updates
+          });
+        });
+
+        socket.on('milestone:update', (data) => {
+          console.log('Milestone update received:', data);
+          this.handleRealtimeUpdate({
+            type: 'milestone:update',
+            milestoneId: data.milestoneId,
+            updates: data.updates
+          });
+        });
+
+        socket.on('project:update', (data) => {
+          console.log('Project update received:', data);
+          this.handleRealtimeUpdate({
+            type: 'project:update',
+            projectId: data.projectId,
+            updates: data.updates
+          });
+        });
+
+        socket.on('payment:received', (data) => {
+          console.log('Payment received:', data);
+          this.handleRealtimeUpdate({
+            type: 'payment:received',
+            payment: data.payment
+          });
+        });
+
       } catch (error) {
-        console.error('Failed to setup WebSocket:', error);
+        console.error('Failed to setup Socket.io:', error);
+        this.data.connectionStatus = 'disconnected';
+        this.updateConnectionStatus();
       }
     },
 
