@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Debug Admin UI</title>
+</head>
+<body>
+    <h1>Pleasant Cove Design - Debug Mode</h1>
+    <div id="results"></div>
+    
+    <h2>Quick Links:</h2>
+    <ul>
+        <li><a href="/api/health">Health Check</a></li>
+        <li><a href="/api/projects?token=pleasantcove2024admin">Projects API</a></li>
+    </ul>
+    
+    <h2>Direct Access to Projects:</h2>
+    <div id="projects-list"></div>
+    
+    <script>
+        async function debug() {
+            const results = document.getElementById('results');
+            const projectsList = document.getElementById('projects-list');
+            
+            // Test API
+            try {
+                const res = await fetch('/api/projects?token=pleasantcove2024admin');
+                const projects = await res.json();
+                
+                results.innerHTML = `<p>✅ Found ${projects.length} projects in database</p>`;
+                
+                // Create links to each project
+                projects.forEach(p => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <h3>${p.title}</h3>
+                        <p>Company ID: ${p.companyId}</p>
+                        <p>Stage: ${p.stage}</p>
+                        <p>Token: ${p.token || p.accessToken}</p>
+                        <a href="/workspace/${p.id}" target="_blank">Open in Admin Workspace</a>
+                    `;
+                    projectsList.appendChild(div);
+                });
+                
+            } catch (err) {
+                results.innerHTML = `<p>❌ Error: ${err.message}</p>`;
+            }
+        }
+        
+        debug();
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Test</title>
+</head>
+<body>
+    <h1>Testing Admin Access</h1>
+    <div id="test-results"></div>
+    
+    <script>
+        async function testAPI() {
+            const results = document.getElementById('test-results');
+            
+            try {
+                // Test health endpoint
+                const healthRes = await fetch('https://pleasantcovedesign-production.up.railway.app/api/health');
+                const health = await healthRes.json();
+                results.innerHTML += `<p>✅ Health Check: ${JSON.stringify(health)}</p>`;
+                
+                // Test projects endpoint
+                const projectsRes = await fetch('https://pleasantcovedesign-production.up.railway.app/api/projects?token=pleasantcove2024admin');
+                const projects = await projectsRes.json();
+                results.innerHTML += `<p>✅ Projects: Found ${projects.length} projects</p>`;
+                
+                // List project titles
+                projects.forEach(p => {
+                    results.innerHTML += `<p>- ${p.title || p.name}</p>`;
+                });
+                
+            } catch (error) {
+                results.innerHTML += `<p>❌ Error: ${error.message}</p>`;
+            }
+        }
+        
+        testAPI();
+    </script>
+</body>
+</html>
