@@ -8,4 +8,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <AuthProvider>
     <App />
   </AuthProvider>
-) 
+) // Force rebuild Tue Sep 23 21:33:35 EDT 2025
