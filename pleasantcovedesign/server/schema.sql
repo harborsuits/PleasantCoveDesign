@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS projects (
     type VARCHAR(100) NOT NULL,
     stage VARCHAR(100) NOT NULL,
     status VARCHAR(50) DEFAULT 'active',
+    progress INTEGER DEFAULT 0,
     score INTEGER DEFAULT 0,
     notes TEXT,
     total_amount DECIMAL(10,2) DEFAULT 0,
@@ -194,18 +195,6 @@ CREATE INDEX IF NOT EXISTS idx_appointments_project_id ON appointments(project_i
 CREATE INDEX IF NOT EXISTS idx_orders_company_id ON orders(company_id);
 CREATE INDEX IF NOT EXISTS idx_orders_status ON orders(status);
 
--- Leads indexes for performance
-CREATE INDEX IF NOT EXISTS idx_leads_dedup_key ON leads(dedup_key);
-CREATE INDEX IF NOT EXISTS idx_leads_website_status ON leads(website_status);
-CREATE INDEX IF NOT EXISTS idx_leads_city ON leads(city);
-CREATE INDEX IF NOT EXISTS idx_leads_phone_normalized ON leads(phone_normalized);
-CREATE INDEX IF NOT EXISTS idx_leads_created_at ON leads(created_at);
-CREATE INDEX IF NOT EXISTS idx_leads_has_contact_form ON leads(has_contact_form);
-CREATE INDEX IF NOT EXISTS idx_leads_website_confidence ON leads(website_confidence);
-CREATE UNIQUE INDEX IF NOT EXISTS idx_leads_dedup_unique ON leads(dedup_key) WHERE dedup_key IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_scrape_runs_status ON scrape_runs(status);
-CREATE INDEX IF NOT EXISTS idx_scrape_runs_started_at ON scrape_runs(started_at);
-
 -- Leads table (unified scraper pipeline)
 CREATE TABLE IF NOT EXISTS leads (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -300,3 +289,15 @@ CREATE TABLE IF NOT EXISTS canvas_versions (
 );
 
 CREATE INDEX IF NOT EXISTS idx_canvas_versions_project_id ON canvas_versions(project_id);
+
+-- Leads indexes for performance
+CREATE INDEX IF NOT EXISTS idx_leads_dedup_key ON leads(dedup_key);
+CREATE INDEX IF NOT EXISTS idx_leads_website_status ON leads(website_status);
+CREATE INDEX IF NOT EXISTS idx_leads_city ON leads(city);
+CREATE INDEX IF NOT EXISTS idx_leads_phone_normalized ON leads(phone_normalized);
+CREATE INDEX IF NOT EXISTS idx_leads_created_at ON leads(created_at);
+CREATE INDEX IF NOT EXISTS idx_leads_has_contact_form ON leads(has_contact_form);
+CREATE INDEX IF NOT EXISTS idx_leads_website_confidence ON leads(website_confidence);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_leads_dedup_unique ON leads(dedup_key) WHERE dedup_key IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_scrape_runs_status ON scrape_runs(status);
+CREATE INDEX IF NOT EXISTS idx_scrape_runs_started_at ON scrape_runs(started_at);
