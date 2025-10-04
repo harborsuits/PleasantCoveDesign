@@ -1,0 +1,4958 @@
+{
+  "smoke-spy-001": {
+    "id": "paper_V9MT-7Y_jnMjBzYDTPSFk",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "smoke-spy-002": {
+    "id": "paper_dGGraaRiWF_3kxAqCjzo0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "smoke-spy-003": {
+    "id": "paper_qgLv0F2PZj7PVsxsvJos4",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ziZSp4": {
+    "id": "paper_pKwXw9dG3NoaJ97PC2fl1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-7VXyrz": {
+    "id": "paper_tAqY6M9ymG_RtZ14Ngmk2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-yCimoI": {
+    "id": "paper_CKLRMOHprCjWMDK8ilTSG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-uZQ18F": {
+    "id": "paper_SuyArlZlExJ0aFDC1Fyr5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-PPfbp9": {
+    "id": "paper_7niW7MXWT_OgC0reOglpz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-uk_pdh": {
+    "id": "paper_781eh0Mu5u2-fX8TR-aaz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Tk2FUv": {
+    "id": "paper_a-eoP3J3QtKQJQPKQB6L4",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-rpJAPB": {
+    "id": "paper_kuHG_hkf5f3Wgp_e5ZM0E",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-vYnYjt": {
+    "id": "paper_XfqjwU12z6qLpg2SScXsA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-xM6G8U": {
+    "id": "paper_ZFniv_kiZQXouQWtsEThz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-tIMaps": {
+    "id": "paper_y8h65ET29-fXOv5VTzaKz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-3i5Vxr": {
+    "id": "paper_2nVkBVHP-2-hjnFoyVPNq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-SE4yRA": {
+    "id": "paper_XeF_oCyZNgEgS645FJKHU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-XzsfTX": {
+    "id": "paper_MjYk1wIP55Jk9sP_l5zeO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-EgP-K4": {
+    "id": "paper_-BE9CWssl1Nj88zwnyTNX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Sz5mCD": {
+    "id": "paper_Y-AJvqVSsg-hlAtiIxmh0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-xLeh8n": {
+    "id": "paper_nVlWRkxFezTne9Zax52Hf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-zx0s_g": {
+    "id": "paper_obbPiPLZP4WgQox5Y-2RJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-5I6YvE": {
+    "id": "paper_RsTIi-1xR6GhzjKVGRuSV",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-K60oEl": {
+    "id": "paper_jI_zk8ng1Laj-BtyGBMd9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-g3lKOJ": {
+    "id": "paper_5zktoZCPBuclfqRJ-4kAX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Y-YsKC": {
+    "id": "paper_k_CynW_b2TD4SyRUyw11L",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-N1W3VZ": {
+    "id": "paper_vb2LDNv3ryMJGYTKyfGYh",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-JxJKhs": {
+    "id": "paper_dvAeJEYTR8W08EYvHDX8A",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-q06Keu": {
+    "id": "paper_8NjCRWS9BtPRaPUuJp4lP",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-6BZO3h": {
+    "id": "paper_FEztF4-9HE995fCkBqCWp",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-WKDjkT": {
+    "id": "paper_EHo48W372rQLA5fnTp_ip",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-X5k-uA": {
+    "id": "paper_Z6a_w8mv4EzvZoo9vPtV_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Bd1hS7": {
+    "id": "paper_9gnC-JWs2QL0vL8M4IgeH",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-QFgRk0": {
+    "id": "paper_gcNTld-jfGYH_hNIeaAl6",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-XAwGz-": {
+    "id": "paper_sxGrPzMvEqOZRIJgWFEJ8",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-d60_Ck": {
+    "id": "paper_zAUtZDui5trgXxpAWAYZj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Mzg47F": {
+    "id": "paper_zI7WrMCbuOfL2ThzfTL0e",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-uWk3p8": {
+    "id": "paper_c-USBiF-spSaN6lSgc29a",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-gQtOKQ": {
+    "id": "paper_9AvuH29LLSsjXiZxpOTey",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-bEnlZi": {
+    "id": "paper_qCFZocsJR_npNTxkjx-u3",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-WtkQLJ": {
+    "id": "paper_myh1wq2IG9SrNbaJ7Z6Qc",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-JWBUjg": {
+    "id": "paper_1tljTdqpflfkMKxdHoOlO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IkdgTd": {
+    "id": "paper_Fpp0WkRhrBmDPqTL4W3zU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-H9ycpn": {
+    "id": "paper_PtEmAOmpTphKPEBYApgRb",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-y6OpCx": {
+    "id": "paper_pwqo1SQiQet7cziHEYZfu",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-qLkizP": {
+    "id": "paper_6VvHhTuGuF9P9pHsGLnT_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-j3s0c7": {
+    "id": "paper_soga50eF0CHAWlhZRkF44",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-qySlRd": {
+    "id": "paper_BHi2PLlZsHQt7PjLCfJ1Q",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-f2o-aR": {
+    "id": "paper_1_MjlxvKtxUTHUs2zszKj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-NsJgfd": {
+    "id": "paper_YPiV0qGSXAdPeomqvR6Df",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Ir_Iyr": {
+    "id": "paper_u7HbaL2FtTv2mNdQ0x93L",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-PNEDh6": {
+    "id": "paper_RvMoOW3OmFv2Ah4ea_tR4",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-8zgSZ8": {
+    "id": "paper_4wF8eeL5559nHpu8_C2iQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-J_FO4Y": {
+    "id": "paper_8QQgyCmXxAFliX3YfXpIz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-wNbMEf": {
+    "id": "paper_g8gVHvDy6sCTcJP6jIOw5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-93w_X3": {
+    "id": "paper_jnSS3uECQzTspsuKtqiiN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-5JWd_n": {
+    "id": "paper_spX2oFZt2emhmgqE3luyA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-HJlu2_": {
+    "id": "paper_6I3WOEs4dHT_FG5pRSfh-",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-CJ9t_w": {
+    "id": "paper_64f8BP7AHEEPVtf28PRcC",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-z0UzDf": {
+    "id": "paper_MaYg63gqcaTb9mHksfdwc",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-84EcVM": {
+    "id": "paper_uJYlO4ShD6RlBUcqabVmn",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-d2pAKM": {
+    "id": "paper_cGpsTWXfus_L7bER9iVES",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-YWEuBs": {
+    "id": "paper_4jSmj47TGDsdqgs35FC2p",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-fljzAD": {
+    "id": "paper_1zWX6GlLtcwNSO-6-ZMmh",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-GuE3E2": {
+    "id": "paper_okV87jQnZeDI2-X1kDBCf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IF7f4f": {
+    "id": "paper_hhqJIK99IWLxOwL3zIqsB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-AuErUt": {
+    "id": "paper_0xZIEOp7dKwdzFEXPaNFA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-5WOs-a": {
+    "id": "paper_V1kqwNlevA4HtoQdHcBvG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-0FsA9u": {
+    "id": "paper_CfTgwY28Gry0MiwlAacLJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-frvYbu": {
+    "id": "paper_A1vPvdDvhst0BV5bjUM2e",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-tinhuE": {
+    "id": "paper_iSz6nRJk0y2ZUZh7M2yNv",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IxoNho": {
+    "id": "paper_UnL2C-ppaeSx1xDp3FpKF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-7BsH89": {
+    "id": "paper_CtCkZ3hSknZcMQ5gRVSjB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Yxbvmv": {
+    "id": "paper_Ssqc68SYuZDbDeycwBbEr",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-PlNCGc": {
+    "id": "paper_uGPjv36aave_McDfjB4-r",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-qlqewJ": {
+    "id": "paper_wqDGE7Gfmi-zbEZpDmoZm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-223aUT": {
+    "id": "paper_KyAdlMsHye0ZGLLRb6kXb",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-nR15Rd": {
+    "id": "paper_AXQjcGWsNJ7TxHpmTNcdw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-WUkEWD": {
+    "id": "paper_hGmVGV0PhTGhRqIkoz-P1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-CPMBOa": {
+    "id": "paper_8g5l9aPNr-YqbLnBlx8sP",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-OwscuW": {
+    "id": "paper_tRN_ItSFE-spxpwhaZxGa",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-VJlJJU": {
+    "id": "paper_cG0ohA4Zbo_BOnY9Hf7FO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-n9ZSzE": {
+    "id": "paper_QAuNmjlX7j4CsiTrY-NJf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-yrQiim": {
+    "id": "paper_Hyv1i3fcYaSLC-4YvLFlU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-qLMv4v": {
+    "id": "paper_YQSgvdb-Sa-1z3i8UB1q1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-R-MpT0": {
+    "id": "paper_-SA8_35-x2CqqpqD5B3nG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-j6p7ge": {
+    "id": "paper_w6MdWKtywPWsOUTqMtKcF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-3U_Zah": {
+    "id": "paper_lCiRPQcyZlpaAwuEYlZAf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-OkQV_0": {
+    "id": "paper_3b8qhAeEo5oaw_jXe29ic",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-4A-7HX": {
+    "id": "paper__MZmTfpQ-wztdtPdsXu2w",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-78zbop": {
+    "id": "paper_DlcTiuSjjak-45eZqQF6N",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-9R42-Z": {
+    "id": "paper_UpROdkuMjsjXD-EyLES45",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-adrXl6": {
+    "id": "paper_YER2kl48BJWEbZu6LXplk",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-xuRdny": {
+    "id": "paper_xh1kXxwBSsS8o26kjhFo_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-mYoDj5": {
+    "id": "paper_jghpqNcTzLCjpXDXIVAdO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-367Fwx": {
+    "id": "paper_yfs1zL0UEFeOQkNXrUiGt",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-_Ro47n": {
+    "id": "paper_H8RSMssnzxUeLoeSSJEIR",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-NnV5hn": {
+    "id": "paper_ZcUFshQcdhb-PJqdxBcWW",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-7mEC5X": {
+    "id": "paper_hNuPkKXw7l9dnV6aMJyRU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-8DjNfl": {
+    "id": "paper_9r-iDFG23or1g6a8h2fL-",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Ws_Vui": {
+    "id": "paper_uV7y0QMJCyB_ZHY59iz25",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-QWKJxK": {
+    "id": "paper_Oju6XN8G_aKdXIFAAfNFT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-eyZGdN": {
+    "id": "paper_e1YU3FV_kPYNcSxzDgcKb",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-bcjNSD": {
+    "id": "paper_n7qo5S8tLgVB1ifw0U_Iq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-PqaqkA": {
+    "id": "paper_8cV4f6JvFs2RUBm0fqJic",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-hTpjoQ": {
+    "id": "paper_S4i1DYUd30d2HnlDn5pUy",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-li4ukU": {
+    "id": "paper_Mtd33J1nxI34DAoBrTD1f",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-MELxAu": {
+    "id": "paper_fprUTOp0gvEIyQ0lHYPCq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-uR_0gn": {
+    "id": "paper_iW14ejz9LIDBAbBfbEU6S",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-DuHvDk": {
+    "id": "paper_zM2KbTOy_riLSZuDZBlhG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-qJkA15": {
+    "id": "paper_GgCtLSYRinixgLQk3lROK",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-nWUJs6": {
+    "id": "paper_bEX1LWf5d6KZakmZekyWn",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-2b4m4u": {
+    "id": "paper_jLc8YIZbD3zHSMdbghZCi",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-sh96np": {
+    "id": "paper_GfzR5_lw52IBDhqeZzd_6",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-k0N31G": {
+    "id": "paper_Qzcic3ujjzUuZvE-X6VAF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-2T7k6s": {
+    "id": "paper_uIEzGqwvwb8H8Tgoe_39i",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-p9dlK9": {
+    "id": "paper_5wbEKQkUlZPSkbeIIsSfz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-8snzNP": {
+    "id": "paper_4pCboPX-WivRgneufR77T",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ZnMTiE": {
+    "id": "paper_KPBkuj-UkhQQLgD6NUFmZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Spt-sS": {
+    "id": "paper_wzyfwcGmzqUbhVFlSLQHD",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-y2mIbJ": {
+    "id": "paper_yvT1JXl9NUs14rPf1QxA0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-LLFOQm": {
+    "id": "paper_gke5v7yMkUdyNWfCL7eow",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-V7HiWP": {
+    "id": "paper_pItVY9zCvl8C4EmcLDGht",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-rhbfGQ": {
+    "id": "paper_IBAerWmwOSRdrJhshW5Wi",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-iHqPlB": {
+    "id": "paper_XCBR3fywHE5uzmHbmBAAf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Wzn7UK": {
+    "id": "paper_l5VE2F9e3cevZ-2qUERmN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-lquxzb": {
+    "id": "paper_kKI874YQfrDX650YC0zb5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-5Ca_aV": {
+    "id": "paper_RVxbfPXHWbScAeCd8eQAe",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-twMINY": {
+    "id": "paper_KUeWPs7AZZHR7t-sLaHi3",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-iwjyLq": {
+    "id": "paper_vxjfqYSwhbsfUUMa5Inmb",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-wNyICr": {
+    "id": "paper_5dn38p4ti1e1aLpOPKv5Q",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-b_Nfng": {
+    "id": "paper_TX7okzp94RYuFCHdoA8Q_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-aWqGgB": {
+    "id": "paper_ZoZR3CG8hKlK7-cx_MKxH",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-HTvBaF": {
+    "id": "paper_sWsDrCSartPNfXYD0n3fG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-qn0h2F": {
+    "id": "paper_QGdwikY2SWVe8a2NAVc60",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IdOf6_": {
+    "id": "paper_OGJjIhwdEwrYuEj7FqmAT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-LRbX2O": {
+    "id": "paper_JwmsOdQsRJmBGoLdLaW7Q",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-jzjBPC": {
+    "id": "paper_61b--xFH8wZbPoU2B7ttY",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-JUyjt0": {
+    "id": "paper_SqjHiwVzKr7DhKQzH0Aw0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-xjwRK-": {
+    "id": "paper_gG8p6FCP3we5un6jtafX4",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-7FfowV": {
+    "id": "paper_Lad2dj12akf2H0S8r488v",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-m76WG8": {
+    "id": "paper_Lb9GzTiwrOijjHEO6rgHs",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-XSdqBP": {
+    "id": "paper_4Reu8QckpRQSWBAHEPwgl",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-jbZxwY": {
+    "id": "paper_JfYve5dHyCL3u0LE52d0i",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-VKibb9": {
+    "id": "paper_bD7RSsSY0yae0yUVBXw7l",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-K72wQY": {
+    "id": "paper_9dvab3HK48FDRKZ9S6sDl",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ee-oQG": {
+    "id": "paper_9Pqrw5trvY6H62EB2SMSk",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-c07fMs": {
+    "id": "paper_iwX_on76v--meemYeM7HA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Fho_SB": {
+    "id": "paper_3kr8kOnbnO07abZflb7Xd",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-2j4ehE": {
+    "id": "paper_RydEHBO_nYVswc95avBml",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-JXTszt": {
+    "id": "paper_1Zj5l1pwHYHXmn7zgJ_s9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-xb9ZRU": {
+    "id": "paper_W8iolzutOIrwIAsTkoRMS",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-bGe4SC": {
+    "id": "paper_TuxUv9-8_clHgvWjJzPWy",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-XGG8Y7": {
+    "id": "paper_wige4qrYDhVqMcWyf0i5K",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-wqVYzz": {
+    "id": "paper_FnNAg1dqSO3JTRSmUPVii",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-zYZAb4": {
+    "id": "paper_hOtMfCx1OptWryt854fIv",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-G3zBPt": {
+    "id": "paper_Yzks1ii0X9v2nHDgsw9tY",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-w9L7Ws": {
+    "id": "paper_juUq1Vmt6Ui632abTcam0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-v8f2iW": {
+    "id": "paper_G7RxxwN-6wG2phogSkd3O",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-JfT9wJ": {
+    "id": "paper_jHj3ebSLcJAWQRH7gLlqw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-agVOjX": {
+    "id": "paper_I3C2ZF5SF3Po-Lgz2KcJU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-hMF35f": {
+    "id": "paper_Gi4p63FuIMxPFGciJ4On7",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-0kp1Es": {
+    "id": "paper_FQ9FFA2mzyVElzf9olKcS",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-F9YWcs": {
+    "id": "paper_aj2QbmUNQ1eupZ5rmDkJ1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-0mbvwK": {
+    "id": "paper_rPwkxx9sKiQNOg5Y8aDAh",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-GYNnqb": {
+    "id": "paper_7q92MZvceFxOdBxjiWUYt",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-bJl7hh": {
+    "id": "paper_bFMcFVnLKDtf1ElKT3qtX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-gJwhBo": {
+    "id": "paper_Q7Qgjzi-uLoWAxEwkLhbo",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-d16Q8U": {
+    "id": "paper_Iun5GRSwdhVr9ApzI33F5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ShZefd": {
+    "id": "paper_dUQTLRFcVhVTfYBo-HVvB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-HojC9C": {
+    "id": "paper_S-fBFq4V69PL_Kap-blLd",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-svnWSf": {
+    "id": "paper_zAGcC0LiWP3HKAICR7oui",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-iWc0kd": {
+    "id": "paper_wFRfEh0a8WB6ry4yJriV_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-rbG9ww": {
+    "id": "paper_AZeAPhabcPMIpqa4HXCeA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-2fbrAJ": {
+    "id": "paper_TFlF2vhdGJoJ0UPKd0Yqz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-XaQegW": {
+    "id": "paper_PJRlIUq6dyJBjKe4uMsdR",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell--5PUIE": {
+    "id": "paper_bCnykK0VhNRn_WEJOQpnZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-zjvB8C": {
+    "id": "paper_yGUb1navkDM33nv4sOu5x",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ou5m4m": {
+    "id": "paper_z6ZEwqLW_dAFcSW-7P1am",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-cKSaoo": {
+    "id": "paper_jTiwf6YO_uyWhTxnHlwLS",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-a6yGlA": {
+    "id": "paper_Lc9IIcobGILupalDOwU0m",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-8QJDaH": {
+    "id": "paper_TuPur0P63YiswasZVE_oJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-fWviUb": {
+    "id": "paper_Sy1EsrAHgLN7XG86Md4qT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-HB4rcr": {
+    "id": "paper_PZdehPiaV3ZxTw0Jr4zlV",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-YyCKbj": {
+    "id": "paper_exvIkzqD0VFsBcRvmganZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-lpC_Er": {
+    "id": "paper_oT64FeMhhB9Igu1gmpTLi",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Z9VgQq": {
+    "id": "paper_H_3XcYwKZCA9OjfwhdVXB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Cz8Yqq": {
+    "id": "paper_vRGKCZcorHid3mNHJ7rnA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-MailX0": {
+    "id": "paper_W_DamgnI6wGggPZiVzHcP",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-TwgVVZ": {
+    "id": "paper_lhsAyjhnRcHEWm3n_dY2A",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-VTIghA": {
+    "id": "paper_axFdaXt5kBAxk6btI_mUc",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-daYUes": {
+    "id": "paper_gYnd4ZaRrCuzt7EtqzKAC",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-U9_uJS": {
+    "id": "paper_kWLfPekk_PDmeZbJ_nkoO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-jOnviv": {
+    "id": "paper_SWLWkiyaV07ddobjjUQuY",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-DW2al3": {
+    "id": "paper_m93CHf3Zkr-_97VQ5BxOg",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Gkvwah": {
+    "id": "paper__Wl_T9pufDiFyNoVFrd3f",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-A7KNDX": {
+    "id": "paper_qP8uw39BGeti73J1Dx1y4",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-CSltHd": {
+    "id": "paper_2wvqenF3VryzBm-KdQ_dp",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-O7xFXL": {
+    "id": "paper_Nk54IkRPpImUpwzqPFxo_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-oGFCjc": {
+    "id": "paper_siDthQXLv2aDpj5euXnay",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-9lieV9": {
+    "id": "paper_xnyCSISTM6SOcW1occ-nB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-e2gQVK": {
+    "id": "paper_ld0g-u_5eguwFWhNlHvOl",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-d92npG": {
+    "id": "paper_DCChMWmcsl79lRBU44nm4",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-q8wW0-": {
+    "id": "paper_rB4EPxQZqPNdfhEbnxBw9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-slQLAd": {
+    "id": "paper_IzQNg-MuA_exygQ75C0Xk",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-tM0JZe": {
+    "id": "paper_QkmFqzP-GWfk8WGsuY_ZS",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Ic9Rpj": {
+    "id": "paper_p9XU5LSg0cuwvEVJWwSbB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-wU1yRa": {
+    "id": "paper_yYNT3XBjPNxrv_T33FAZ8",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-qq0Af0": {
+    "id": "paper_QjKJRcQ9ny-dEPNxPN25y",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-2tkxcP": {
+    "id": "paper_9bUyHFyOy6vwD0lxaRrOx",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-NoWlxy": {
+    "id": "paper_UPWU9GHsCFPNts3y7Y_RX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-MVbi-U": {
+    "id": "paper_9UXOKzVDXL5G4CpK19PgF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Mbevm1": {
+    "id": "paper_XNZJx2AlPZFAiLf44TX5_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Q-a-U_": {
+    "id": "paper_swefeBjQzog5HqQc5dN6m",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-EfVK3x": {
+    "id": "paper_TqT6q35warHIZd1e6Sxh5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-8X2G2c": {
+    "id": "paper_cJwSMDL1XTNcPClGL-HCW",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-mvZYQq": {
+    "id": "paper_m00xHgxEbq7j5i-opsTBH",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-yRyNpL": {
+    "id": "paper_VXsTEZFE1HbjXn57VdUDK",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-jMXS3w": {
+    "id": "paper_sgyQNkaa7YEER6vRHAgTg",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-kkW3BE": {
+    "id": "paper_ayP2VQBdLXMLmiCaIjDGM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-tZHngb": {
+    "id": "paper_Cn5KIxVwAka9yhw3Ms0Ex",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-4Aogn4": {
+    "id": "paper_OU2_S_t-0_cQlJcpxFkLj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-n9BuMc": {
+    "id": "paper_0oy-_WXx6N5xxE_4YVFyC",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Teh7YX": {
+    "id": "paper_zShWUnG8ldK6ILVWkA9k_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-GjhErG": {
+    "id": "paper_ON17vcCayfHWbH_FDkKLs",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-m4niqZ": {
+    "id": "paper_f2LNNKQ8K1FtfJNMTVLEK",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-j9lxfe": {
+    "id": "paper_pjMSEpIwW7GONmnWmQDdM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-rfM-5c": {
+    "id": "paper_HeroNyn0dQbFSDAC3PASw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-9FdRGT": {
+    "id": "paper_bwGmJB5okPCI8jRydTPRp",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-MU-kHT": {
+    "id": "paper_b-0ZqmJYqfTTR3FnE6sdO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-hGjseK": {
+    "id": "paper_ZGNBonpiNQUwqVyeANoLU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-TcrViq": {
+    "id": "paper_UtNqINdzWlBr-aNE8FQLX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-iZTRVC": {
+    "id": "paper_M4OudxrbBT0JdNU3jUWxF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-NyqurF": {
+    "id": "paper_Oj-iI0vv_Y15oz_bLENKB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-DSsb5W": {
+    "id": "paper_pxX9BA4ctcZ8cCM3XocRV",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-MU1W8t": {
+    "id": "paper_f6rJRvktseSoEnSGPJlPA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-BlPd3B": {
+    "id": "paper_y6aBOK0z0ui_9PsJeUOfM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-8ow_3w": {
+    "id": "paper_G5TbEl38HoLDmzpZrlP-4",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-NzJCjH": {
+    "id": "paper_d_jl34bD2_6WV1rvqJ9N7",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-umsVNj": {
+    "id": "paper_gTjc9ECwG0Mlh8aRudwpk",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-btMk1s": {
+    "id": "paper_THxTRhVDze0PTmzN4MIDM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-8aXo7z": {
+    "id": "paper_TLwXbGs3VICdmbB7V8TEX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-MzWeI2": {
+    "id": "paper_X2j52KQ5qJI0h8RJU0goh",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-VIUjwQ": {
+    "id": "paper_kQqrjhL_YQA16hdUi4Wh_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-XqYENC": {
+    "id": "paper_IojY3af_8yMX8-qfbeKAB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-DWovop": {
+    "id": "paper_01-FW7H9AowoQfwOm5oAI",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-tGcUkp": {
+    "id": "paper_4X1jyBT-9zj1w7qNs6E94",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-htRxD8": {
+    "id": "paper_r0788iikf7e8jiQjhlMaQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Kg1ZAY": {
+    "id": "paper_iEIr9BaXo_DAuvzqnLcSn",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-B1mcLq": {
+    "id": "paper_94ofrHEI8J9dSx1A-YJyW",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-WDfWa3": {
+    "id": "paper_7dZAeZkZG-bTsuncKy6vA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-v52dS3": {
+    "id": "paper_8bXOziS755UtgZG-dMi6T",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-zyULx5": {
+    "id": "paper_48qvJSf1hMNX7v0TjR0rv",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ybnsej": {
+    "id": "paper_Xue0aoq9q1KOTK_sLS6r_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-06Y2Xm": {
+    "id": "paper__j_1ArE0GnzXURttMPRwh",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-2haylo": {
+    "id": "paper_Gahe2NWHq4Tdh2ScKyOhw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-xUkdFd": {
+    "id": "paper_EKRkhPpd5X2GkrFonBBTX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-OHsDPs": {
+    "id": "paper_3l0vI1PASXdWLrbL4TPl4",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-8xhOnz": {
+    "id": "paper_s9rZlmU6VQgR5wzm3XSr6",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-fobsgm": {
+    "id": "paper_uZRk9zffHnGxE76Vy6oSA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-_e8Aha": {
+    "id": "paper_z_2dXlEFwGd9XeRmk_1VL",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-MmJhzL": {
+    "id": "paper_ups_AvRXygGCv_3elPJ2G",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-KipIwV": {
+    "id": "paper_DjGs4PHIpMzl-uvEh4OiS",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-F_ckpg": {
+    "id": "paper_bt-VvxDobeYKvKV9k7XQF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-mJVpAo": {
+    "id": "paper_nbYhtu2tMA-gLV96tmGw3",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-1w8No3": {
+    "id": "paper_K5mFtEOwcUWM3Y2gwycpq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ElXtrm": {
+    "id": "paper_AHpgxiZk81P3uktiizROW",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-3TZ8Lh": {
+    "id": "paper_raaZg3UiuvYCfF5Sebr-h",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-K5jcXC": {
+    "id": "paper_wIGWSbbc-bJeiNR5qehHy",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-OV0VDV": {
+    "id": "paper_xkjPHIupG95PnJPPwzf9I",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-oZAxc7": {
+    "id": "paper_61CEbubE3Fb3Wn89uNOlv",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-u9OQjo": {
+    "id": "paper_p1Xdg9xtxf2Vx2Lj8C5_s",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-NyXVXq": {
+    "id": "paper_Qsd_iJLqlytJexhXfJF6L",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-qxqTZa": {
+    "id": "paper_PBh0e6iuLCM2w7sIBVZR1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-OmM9SZ": {
+    "id": "paper_6yskcKSBxXxxeBa7LZZ_K",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-nr6PNl": {
+    "id": "paper_r6VanZlOzXtUt_crwscup",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-9Zn0ym": {
+    "id": "paper_SGINyMrDLNiDUeZkBGFFK",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-_v9zFj": {
+    "id": "paper_6emxtnhiyzL5xQ6v1qXj7",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-eKL7EG": {
+    "id": "paper_C71RHy3aoo1A5R1xgUpW9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IsOZKq": {
+    "id": "paper_Xay5dwVPce4Kps4YjI_iO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-XIXv6U": {
+    "id": "paper_zhm0kkPYXD4SlJ9QkA98y",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-UFO9mG": {
+    "id": "paper_lc6VjVWewc_LJj9Y-Z3f0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-96awRM": {
+    "id": "paper_8U7iOKcdPDYax20gX5bNF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-agBi0s": {
+    "id": "paper_eKSg5Pwolxei7lGY6x6xX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-1eKLti": {
+    "id": "paper_lOAhC3AFIkMa1UpmG20Ih",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-cl3Qyt": {
+    "id": "paper_G_vboSy3sJ2TU3DzU-kRb",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-IubTZ9": {
+    "id": "paper_IYOsEXzeYou6N6VjURLnI",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-tYFdiH": {
+    "id": "paper_VozEAUm7PLOkeP8J9KJrF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-jpAypZ": {
+    "id": "paper_aZ6JRwxS7-Rz5MuNZJ8nD",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-greBXV": {
+    "id": "paper_JUV7SznM9sW2H4CUnmFIx",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-JqGV-G": {
+    "id": "paper_H3kFzTIgEqDqbT7UodBOQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-4qG5Dy": {
+    "id": "paper_LyGqpmLXSHFHYtypF3skw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-8-xjnX": {
+    "id": "paper_1z4idIC8P6g8ZyFxeNdAi",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-e8qI0K": {
+    "id": "paper_AFU7_k9RSyB00ifj6_3kZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-AkO1iE": {
+    "id": "paper__q35aJCgv9qK-BEqLmhoN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-AVshUt": {
+    "id": "paper_GjN_5hfbFVtWFLFzF57Sq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-scykRr": {
+    "id": "paper_O29beEN-nhEpMjir1gY9s",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-c_BNln": {
+    "id": "paper_rXYFAx2FuEDFR0OOhni1t",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-KPoKKx": {
+    "id": "paper_Kod-JHhb2-RE-Kwwyj0Mr",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-zsY7Cy": {
+    "id": "paper_Q-jPx_vW5buVrx9EyIEaa",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-IxZ7pS": {
+    "id": "paper_A_g_Kymoc9UTVZw-a0whz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-wuVRgH": {
+    "id": "paper_m-fJnQ6-_s-vhzheTxT-U",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-SgTTX1": {
+    "id": "paper_Dsu7fLbiVEdExoAprztb_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-BLmCxo": {
+    "id": "paper_TuKugfOrpQopXfywzs78-",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-K_VEKk": {
+    "id": "paper_n2uov3EGEhJ4lacWqBs3c",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-wZ1GgF": {
+    "id": "paper_CUX1Rfh_ZpQW28cwZa6fF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Xlt0NX": {
+    "id": "paper_yKRjR-conXb7nCauuXmjT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy---ZZcg": {
+    "id": "paper_w_9dUtCPYzTQEBv4ZqCGE",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-1j01SQ": {
+    "id": "paper_fWwLGldK1vBBigvIx8h-w",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-TEdMXq": {
+    "id": "paper_WvA0gFKQpGEpP14vowrT_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-BBeMCs": {
+    "id": "paper_B8DOA9rvx2q-YNrGkNe_G",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-6q_laS": {
+    "id": "paper_GkCQyWBz6GMjfaf_6DiSO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-FyloOT": {
+    "id": "paper_lQ5otupCRyafoM4vAFMFm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-hDokYh": {
+    "id": "paper_lu8RmXxpdjUVfJmYrm1RL",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-QxQDc_": {
+    "id": "paper_T6FHAvCXTFbhTnXZjgZuw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-MEbJlN": {
+    "id": "paper_eGWwfSVUN7demNEUt4t2e",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-UtY0Oz": {
+    "id": "paper_3Tx6LVePC4XyySZYoI4hk",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IjTNMt": {
+    "id": "paper_0AR3UkxbrmQcX5EwwSZ0c",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-cdtvm3": {
+    "id": "paper_cAETfsVXnCnqJxPEVo1O0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-enE96q": {
+    "id": "paper_CuZfNTdFZ5afIwRBQazP0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-GlPRa4": {
+    "id": "paper_4jMgPo6jaWB1DYJ8UHG1I",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Ht4UhX": {
+    "id": "paper_A3AO2HFjwv6TEQ1CnYV3G",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-KOI_tu": {
+    "id": "paper_01cVxNnmselxwczs3hQps",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-51THOJ": {
+    "id": "paper_d3pmfvUB76XoVro6jxUz7",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-9Vz71D": {
+    "id": "paper_wjzFzD5w2Y0C6qwfoekWZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ZIFuhB": {
+    "id": "paper_zIxAakKwrcjp2JfI4DlFm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Qtczz1": {
+    "id": "paper_XvObGH2FPNRLD3GDVl2In",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-N-jwWF": {
+    "id": "paper_OcpZl5ptx2VKTEJM5ZPbo",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-30UjMZ": {
+    "id": "paper_n72mlMMm2obiz0dHOneTm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-hPXgAp": {
+    "id": "paper_eisMjIGihDK_cmFhI5oLw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-g-9-5P": {
+    "id": "paper_insNXLp49hjzTj42Au3ew",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-jdFZ98": {
+    "id": "paper_CCC1BOdOpRLOQDHxyBrF5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-SUrJ-v": {
+    "id": "paper_6_aGnYozzPd_ZzanRHwPq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IZy_i3": {
+    "id": "paper_8p54KrGHt8G7YPiJfyyO0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-SR2w9Y": {
+    "id": "paper_bTZ7WQcY4_9_F8h7kJqFG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-a4dCN-": {
+    "id": "paper_mYyAATJzSZnftHvdswYom",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-oz9wUg": {
+    "id": "paper_GDZJH7OL2DvllyW5UbrKS",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-SAdSAv": {
+    "id": "paper_8jS9wx4ggyiPiF9pyvT_z",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-i3krN_": {
+    "id": "paper_HouUOsNmlL21W2SyFiCRJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-fvNIuj": {
+    "id": "paper_GDl4-cW1Bc4h1BicKqyUM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-SYNfO3": {
+    "id": "paper_bGJch-g4XcuTRKMHuuK2C",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-j-6gzB": {
+    "id": "paper_r2q7SchGZdemv3PTnUIxG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-u6VzwR": {
+    "id": "paper_pXqgwElWHhKc0qZ7vjBjC",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-w4Wm57": {
+    "id": "paper_FNyjtNytPgtEPXhMtIv58",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-mjCFKM": {
+    "id": "paper_qtZKaI_glz0g0j5u5r1rk",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-XPD8rv": {
+    "id": "paper_Dltyi1EirUZBBi17Q6wvU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-oq6uPR": {
+    "id": "paper_RLifncAPkFAeovP2cxyf-",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy--wnwGb": {
+    "id": "paper_9x_EJZrgc1I8wt8rDOSxT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-0mh8Sf": {
+    "id": "paper__viA_R82d7qX1Mm-DCvke",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-fcAU4M": {
+    "id": "paper_NFOQZLblYnvSTVzdzohI8",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-QbkBPC": {
+    "id": "paper_177PpT3fDxXIeIwYE6vAp",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-TIv1Dr": {
+    "id": "paper_LDK_eJPuQc81bA1_onf6d",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-oNlYFE": {
+    "id": "paper_w5SElcMx2IfBEMD9gm_ve",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-gIm-Uj": {
+    "id": "paper_voAU6SxVqEhJ1862HbGK8",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Hd5ZIi": {
+    "id": "paper_iq6-5Ho5bdMicXKDrjfTY",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-PyVic_": {
+    "id": "paper_iT-9YlmoUBEJ63zKN4iLj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-4r8NK8": {
+    "id": "paper_1iNgX5BxU4c-rHKh_qlim",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Z6yb7C": {
+    "id": "paper_Lh-goYjCmXNGWyQV0gvin",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-eMyzTQ": {
+    "id": "paper_iOP8Pfpsm5rgT-XkWXB-2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-sR9MgU": {
+    "id": "paper_7f-HDeRF8ApUtbGYJNDUZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ST5PqJ": {
+    "id": "paper_HVEAlRD3CQiExKJQc0ia5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-_BBW0i": {
+    "id": "paper_LnHJ5UT_ZEurIx6AOL_BO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-1t6TNx": {
+    "id": "paper_K4-lbcAblk7IUNNCz9GuJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-O7yT1E": {
+    "id": "paper_EtFyM59-M8jPJkVXB7kf5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-s75L_E": {
+    "id": "paper_cPe2wMJoiHT3EhTvI7fPJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-z-SHvs": {
+    "id": "paper_YxvQywO-MFG9w4tP3xVO8",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-dtK0LL": {
+    "id": "paper__esRHyak8yAIbilvNkpPf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-5xXszt": {
+    "id": "paper_RsqcKa8ouJhAob-eCwYTJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-mHJnH2": {
+    "id": "paper_Io3lOAwEi2Qa8P_MpKie5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-nU5MPW": {
+    "id": "paper_kWBln8WpAVSE1EmRbxwjj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-msrQF2": {
+    "id": "paper_UEnOAE7Xj3bW4l2OgFnVN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-_bD0M7": {
+    "id": "paper_enWOqiguHaECIDulx-CRs",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-5gVsr9": {
+    "id": "paper_QsejxyWyg34QxXU7lI_oq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-sDj2mu": {
+    "id": "paper_Ziw2zYKTB6QGfXfrna2Os",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Cs7ObX": {
+    "id": "paper_bBbYxAIz7M2CbYosctNlS",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-lAYER1": {
+    "id": "paper_rG8RklcR0GjvwbmLRDbaB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-WBGHiQ": {
+    "id": "paper_GaDR-cAjP-ON2Fn4kKCki",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-XPZ9W5": {
+    "id": "paper_eBbNMnYydMSjlmKKq4L6g",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-NuX4Uw": {
+    "id": "paper_n0Ktc6kV1hSIHyAHGCIHn",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-9GGEik": {
+    "id": "paper_1wMne2vcta-aqQcfHYv2J",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-amcGZb": {
+    "id": "paper_GwKKj37fDAAbO9WGfpkGy",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-0rhUE7": {
+    "id": "paper_HBjXA4TZnpFOvX0lOWZRT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Gysm-m": {
+    "id": "paper_sL9SI8QLUGz87NADesjun",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-EHIzY1": {
+    "id": "paper_A56EXlNjn-zk9Lg-9oKJ_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-A4qGP1": {
+    "id": "paper_ILWHS1SWHFb_mGA4ggPMz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Y2boPJ": {
+    "id": "paper_0-uxTMeLxG-Io6zP05ukx",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-kCxoEg": {
+    "id": "paper_811uLzJbmddtoyI1omw-C",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-7MjZtM": {
+    "id": "paper_4qPwvjW7sP5rvhuA8fOXy",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-YAWhtR": {
+    "id": "paper_c9zMF7AjTog2n5n43dFWm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-726hMX": {
+    "id": "paper_jwjK-QEj5VDU87u3VBJxD",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-k5QaLC": {
+    "id": "paper_bJdvNQ6t5OknDLwAlHj0f",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-J4MkZj": {
+    "id": "paper_DVvJkcwyHsKGtJQPEMzKD",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-5VxDq0": {
+    "id": "paper_N9JXBrcVrCuvRiGleHP4J",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-RFyiPa": {
+    "id": "paper_IywbGBzvqiJwCTRiN2cLl",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-qzpVw9": {
+    "id": "paper_Ico-XXpyjEVZql6LLlQ7y",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-rDem-z": {
+    "id": "paper_OYxB9guY5y_6Yh4wGDkvB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-cuzg6Y": {
+    "id": "paper_kjMplmucfJT8nYpWqfZhY",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-iKtk2s": {
+    "id": "paper_JwB3woQyPqtFqQpdBDa6Q",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-8vLWQ7": {
+    "id": "paper_Joa9ijvPFps1URCT1EszL",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ka4gKw": {
+    "id": "paper_zQNWDHJ8VW5g-x-uGNeNJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-6HMkEN": {
+    "id": "paper_lyxJQrFd2-cfzLdMDBmg5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-bFLuty": {
+    "id": "paper_rCfIhwi4HxtoqPTON24_N",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-BfHNOY": {
+    "id": "paper_q-j6Bgu6UrFjSGgSuF48M",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-sRTuQB": {
+    "id": "paper_1krOlsB9oEmip16kDE4Ed",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ltAb7b": {
+    "id": "paper_SjCcIWg7dVQ5wHTkAHc8K",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-1imxfT": {
+    "id": "paper_Fq5stOY4-I6MphfGl6m7M",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-F7E_24": {
+    "id": "paper_kk5eT2dwagkWisw5VsyLi",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-cvuO_q": {
+    "id": "paper_79xUD5_reUE_HgQCf0Joc",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-194O8a": {
+    "id": "paper_WU6eG4IAhufUKwyAzfXag",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-wvHEfN": {
+    "id": "paper_AQ1sAorjTFywCsQx6baEJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-FfEXpA": {
+    "id": "paper_ewnWaApi88946Dl4Q0AFI",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-87IlST": {
+    "id": "paper_PjjkXEpL4pAs_FcKnBTvr",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-pU05Ht": {
+    "id": "paper_r9iGTejy3WrUkl1pWIC6r",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-asyITG": {
+    "id": "paper_DGFuQdKHwNuGsGEjQnJWN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-V7llHz": {
+    "id": "paper_TyuB0mZzP1LdUrMGVXikR",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-lDHUra": {
+    "id": "paper_cy1ZN7M50S6w22n_lvhEX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-W16smr": {
+    "id": "paper_0tpsihhPNO3uGuwASs0qK",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-mB95sX": {
+    "id": "paper_Mv4itleJJKaXJ3taywHna",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-nXsy1K": {
+    "id": "paper_iY9zrVKfDQ24ppp3Pg0Za",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-eaPt5U": {
+    "id": "paper_oEkmjHe4iIgNF7A9xFn4M",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-T-0tG5": {
+    "id": "paper_afbxKS1XZ8w65b4CArOyt",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-xGxWpc": {
+    "id": "paper_l0PN_kC57ZXlouRJKBDcj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Lg3ngN": {
+    "id": "paper__xyBwIR4gfDbiVZ4Tn0kk",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Uu33Gp": {
+    "id": "paper_iTf730fDx-eEAoNa7GFD7",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-RsPbUi": {
+    "id": "paper_3Qzs564O_CQ48dD9d8zaZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-i6xk1p": {
+    "id": "paper_jcyNb9DTAuHQD0Xw9cSBs",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-HTgPbR": {
+    "id": "paper_bUgivVk6NkE2uX6JHpnRG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-XddEiz": {
+    "id": "paper_0ZK24UCDQa2Vu4-guzH2H",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-yIuhge": {
+    "id": "paper_N7wEZUQfeI2qZdJCxU56u",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-1mCifv": {
+    "id": "paper_TiWQjJucYPhTWhes0HeRQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-aq5AgX": {
+    "id": "paper_8zJUHXsymEWlZTXmTP51M",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-HoEWgD": {
+    "id": "paper_dBwyhgPKe5jvzynX4qQ21",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-eRMem3": {
+    "id": "paper_MBTHifif3qJSPmZLFvaFb",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-HrWon_": {
+    "id": "paper_7PKzhXrgwRp1e-D4H6iit",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-UXEdOc": {
+    "id": "paper_0CyPlJshujjin4y-AZkE5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-NrWD8q": {
+    "id": "paper_VfjamH9riDwuodCNLMFx2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-LmH6bf": {
+    "id": "paper_956hKGKZMWnyjgKqS_xAx",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ixUgXR": {
+    "id": "paper_qaSkeNWJi8L58eFzINkc0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-_1oVoE": {
+    "id": "paper_iEsJQzfleIfRjJeQKbvPZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-SudW_-": {
+    "id": "paper_dkn-EDhhP0mFbMpJ2V3hg",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-uvQLbE": {
+    "id": "paper_hbUZ6Wlaod7CouJO4d7qO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-MEHXI4": {
+    "id": "paper_LMjDnhY_-w78DMYpVSPcF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-E1sQbr": {
+    "id": "paper_LvTrka7YiaWOKRSWQMS8P",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IJZzks": {
+    "id": "paper_vREgQwGPbkZ_sxBqu5V2_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-1OKXvv": {
+    "id": "paper_TbaJBMXWSyq2p-mo64Uki",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Fu4BHa": {
+    "id": "paper_M-hqs25jjPXNIwyKkUkDi",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-O9Okix": {
+    "id": "paper_Erd0WR9jfvkQqLyQD_nW2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-GRyAC1": {
+    "id": "paper_N7OXhdiU7esdaYb55XJp3",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-b9QqwK": {
+    "id": "paper_4g1-x3oYtyMRyHnU5Xn3c",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-z4y1eb": {
+    "id": "paper_7uEoLf2WGWH5bWKqTV-Ag",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-yH6FAs": {
+    "id": "paper_YK5cxRO7FYUaagoiKaE7X",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-lhFZHL": {
+    "id": "paper_22Gem3lrP0-_FGeXi0Klg",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-vQ2zqW": {
+    "id": "paper_d2HYDGMmA4npNvIVxmNMX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-e-rcdG": {
+    "id": "paper_8i2XUSqTo5ICGAq6pmqFA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-b4dye-": {
+    "id": "paper__Mb69vefChlKxetUmWhrj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-A_59ZX": {
+    "id": "paper_CvoKwVUHvbZXVQovYoekS",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ulaffA": {
+    "id": "paper_wfY6g1DKeO2MrGP4xprZG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-KbVvUm": {
+    "id": "paper_l86UkbzheNrzY4o4F14mf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-8IJFR4": {
+    "id": "paper_t5zsUO2UZrbgxyd47Uwc0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-_0bK1-": {
+    "id": "paper_joiXMx7x-EKOVxUNZpD7z",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-KjWZcH": {
+    "id": "paper_yFR8BS9P7gmTpoht2BPEf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-QYNKXa": {
+    "id": "paper_uw7NwXd5PQ9pwUtquSP5o",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-eS3j-H": {
+    "id": "paper_nK_aQ0-mSGsg8cHxsN9Pq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-E7eSfc": {
+    "id": "paper_GV525PqyN8ATA2rwg6vF_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-8CBO6a": {
+    "id": "paper_jjO4RpICxbyDklYfIDV2F",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-AswPXx": {
+    "id": "paper_tx5l628MSWxYAMOO4hREZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Einvpo": {
+    "id": "paper_lhBnWRSLUjsD0jUAC2-Wu",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-xHqkHV": {
+    "id": "paper_JDECULXBEK5AxATzWOeGf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-nVWOeF": {
+    "id": "paper_MJSV9ElZ6Btrtc6OLn3R7",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-O34llG": {
+    "id": "paper_EBjrofqobzk4f69O3Qia9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-5-NIVR": {
+    "id": "paper_YKt6cepI4m0PCQZRAMJsV",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-tcqjp5": {
+    "id": "paper_hs6LKbhsXVAf7FJdjY4RJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-unXTzY": {
+    "id": "paper_MthqVgLSFleCUkvDA42Tj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-DCYYv2": {
+    "id": "paper_ZAkRtnlyMfJC8Qp-kiP2F",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-_16Ne1": {
+    "id": "paper_jbvp4py8uX0AfIjKkk-IN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-oCLokJ": {
+    "id": "paper_mvEIcoPvsbVU-qrz5hgKY",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-RU34h4": {
+    "id": "paper_kiJhX6HG5HAx2f8TANXbt",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ErzwLR": {
+    "id": "paper_AhVKrAXhe33qvinZ3i6gH",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-710kOi": {
+    "id": "paper_AphfNf37HbKh3M-xFNGrR",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-tmxOEy": {
+    "id": "paper_sQsbPrPgtP9pF2czx2tXI",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-FtOVYm": {
+    "id": "paper_BpEZLgIWnhsUMsrKzqQN2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-hBf5l9": {
+    "id": "paper_FI1K2NTBGlS407A9bU9hN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-8c5xch": {
+    "id": "paper_rXNlFXk2s8lSLuC7GcKSF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-2Ry2YR": {
+    "id": "paper_-m1sNtJE5_U59Uxhb5X-X",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-RjymJo": {
+    "id": "paper_abuojV42eG8qzCMMbAXz3",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-apY-ms": {
+    "id": "paper_Xwq-rUybtfGi6WFrch6WO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-RpYHS1": {
+    "id": "paper_-OMHoVAwQh2v8MyeEJo-k",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-yd0oCq": {
+    "id": "paper_pSwK4QYNqc2ldbb6whFCw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-BQebhQ": {
+    "id": "paper_GZ5qm_oWCaHSzhz6RDOTL",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-8br1a4": {
+    "id": "paper_5ZOwS7Zu_IYcly7CGvTih",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-60WBqW": {
+    "id": "paper_8QPSfAYmVL_cRXIo6uwSe",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ofgStj": {
+    "id": "paper_c_FqtDotAQtaj7UslueD3",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-bI4K-C": {
+    "id": "paper_biQ8JIccSnDVz5QRVsTyW",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-3qUx_N": {
+    "id": "paper_631mDY7uetOHE40UfAjQN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-j48Uia": {
+    "id": "paper_lwz7zOAxl2E28CEsgbX0A",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-dfMwJ1": {
+    "id": "paper_EwXJRKuHJVsTF-uxDIW1f",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-EP6Hsk": {
+    "id": "paper_MaYue0F9iWteU_5vR7rG0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-JI04y6": {
+    "id": "paper_7H9jG8Qtw01A2F5U8_1dC",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-VOQ6OB": {
+    "id": "paper_IxxUenzVheFq5KoNUeybc",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-HkMeBq": {
+    "id": "paper_EEADSrJAM6BZB9Zf4PJ8l",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-g_kQeo": {
+    "id": "paper_BeRDZpK_xZ7fxfOY7abvG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-GU5gXs": {
+    "id": "paper_wtKkKX7YOHB5KkPtJV0rA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ivjCnq": {
+    "id": "paper_6o2Xu-wswf5TSWASjGv0b",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-A_vRmC": {
+    "id": "paper_TMIur6D_5g7slds3nhnJq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-tL_ANk": {
+    "id": "paper_IBOqyR37vrFxuZ_EKAzmm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-7a4RId": {
+    "id": "paper_nz5O2_qfpfLqMW_93MApr",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-JmyU7N": {
+    "id": "paper_EGi83q9rLmL4ymAFc6_3Z",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-VYAbdc": {
+    "id": "paper_xuoaErFhxDx3evbVm948H",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Ev_aQf": {
+    "id": "paper_d5xN2Z-o9197qC6ExrV8g",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ExXDTY": {
+    "id": "paper_2O5n8SGQS16AoSDwxbkvP",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-jq7fpH": {
+    "id": "paper_BfCf_-qUAdIj4Gx_btO1I",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-CNawJN": {
+    "id": "paper_3UTLOcNi_KX7OnI7RpjyR",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-8ntcfv": {
+    "id": "paper_Q8dWK5ytp2gLLNFIPhiKw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-HHSRgT": {
+    "id": "paper_FZmknMweVHihlMMZEnIeH",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-uLTp0C": {
+    "id": "paper_W2EcY9gz7Ayazt8EreULB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-2lEaOA": {
+    "id": "paper_hz0GRIaiJIDIL8Z9uRJf9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-WGives": {
+    "id": "paper_9FkjiivS0S5pqLijUnrTp",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-uEF0xQ": {
+    "id": "paper_zftSjbzRJqrOl8dnm2GYm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-hQVlin": {
+    "id": "paper_3-aLC6Mm0HWwD03Pn-6RQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-327dpK": {
+    "id": "paper_8amG_Q8u3_NtdS4O0k2kr",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-BXPHlB": {
+    "id": "paper_O-Bc0WZZsYnusXXlbvQxv",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-C8QlPJ": {
+    "id": "paper_M9hNyI6B0Fy-WyQ3yWxWi",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-4ltqFu": {
+    "id": "paper_xIu6XvAPB0q7jtgouSTpm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-TBnvU5": {
+    "id": "paper_-OGHsje78G5_yS7KYQ50c",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-xgZ3z1": {
+    "id": "paper_fd01lNIfufFbh6f-a4THE",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-qnh6T2": {
+    "id": "paper__InFJ06zH_jblKuCFbpXF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-jOPaCG": {
+    "id": "paper_35b4XhP_BwumrUMVl_fgM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-zsTNQd": {
+    "id": "paper_ktGeBeHekkQxmfAgObWVw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-oL42qV": {
+    "id": "paper_DXyt5t9wv8gy2De35iGJo",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-CjKG6x": {
+    "id": "paper_yIMXejMeu6mJUVvaYTE8U",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-vo2lpu": {
+    "id": "paper_3ziB9eQkAtVdORDFjAgVH",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Ha4saA": {
+    "id": "paper_0qQzbDz74e67xk2b-Xn88",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-vKXx9P": {
+    "id": "paper_gdbjzidsJlTnszTIjym_f",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-T1gGG4": {
+    "id": "paper_vzi5sObF87HhlKJJmv9Kj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-A3pab-": {
+    "id": "paper_6VCW-gzY1BhUuFJOsu1z1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-F4XM3h": {
+    "id": "paper__DoxLLh2i9W07SkVTxrtW",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-zIoF8W": {
+    "id": "paper_KPx1HDzEOm49Bn_C_izyM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-6Jt8T1": {
+    "id": "paper_ZOzKGeuizotjfkGJQwwU1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-mS5LyY": {
+    "id": "paper__qrfpeeXYlFWPxYi6nIdT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-2fNjFw": {
+    "id": "paper_P53xvNm6grkaFSnkmzKI_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Wruksf": {
+    "id": "paper_SJVuxnwqt8CMZ7PbjmUGG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-luBgM8": {
+    "id": "paper_QR0-TjWKVqfP0xwtg5Y01",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-buAZ1I": {
+    "id": "paper_LiGuVkOFcS38FZ7foxrVu",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-FilK7r": {
+    "id": "paper_YtX9_fnooCDi8Ovl93wrN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-1rH6ic": {
+    "id": "paper_BO041fA0ig5yGv_nmL1DS",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-BnNPMx": {
+    "id": "paper_W9cOq1E_2S9dX7pf_EIC6",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-wP-0pq": {
+    "id": "paper_4GCJWtf1lnhxl5rUc9HTt",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-y8Fk16": {
+    "id": "paper_-Vay3yr-cAr79NRHHXVFe",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-iP2ir3": {
+    "id": "paper_1aFKfOrdpWd-ooEWdX1UQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ytxzxD": {
+    "id": "paper_3pKGNg92n88JRo6NcFCTK",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-6R8ieN": {
+    "id": "paper_EIgtqLc6GrpsDmCDNC8Eu",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-yzAplZ": {
+    "id": "paper_lFziQft7mvXSlGM6DmsIZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-rDK9K7": {
+    "id": "paper_9TsfqKY3wmBcufawqBWIy",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IN9ZeR": {
+    "id": "paper_18aAMhkb-UwXyY3hk6Xpn",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-eatIEW": {
+    "id": "paper_qym-IgFI-ppJT_dbW0HMX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-5-n3DS": {
+    "id": "paper_v4fklM3ITsPDkhfNOvPPu",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-_kIxj2": {
+    "id": "paper_rAOGZu1t2prvvJ6rPi5iE",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-8lEK9G": {
+    "id": "paper_5wtRS5lUL8vo01wrwe5CR",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-nNhXv0": {
+    "id": "paper_Kzaw4JizCpKjgonJrq84P",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Wc6PrJ": {
+    "id": "paper_rD7jlrHGAYRd8iWbnYtlV",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ddu4bh": {
+    "id": "paper_juXaKbtV8qK7OZyEjYlmq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-0nkPZd": {
+    "id": "paper_8RNFwBjEp8RKJQcFTI3qg",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-2Si9HZ": {
+    "id": "paper_9cDKinszdpdu51So9v1uM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ESni7k": {
+    "id": "paper_KTnJz-dvnWZxRdrhVxCai",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Q8tGif": {
+    "id": "paper_bbu-LO2hqLnph2-cEDHPe",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-J6xE0B": {
+    "id": "paper_qDceRLOpNSwHY30XKMe4n",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ELk6T_": {
+    "id": "paper__jiVz0LjHqDLe7-8BB3m_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-aM3UDk": {
+    "id": "paper_TIkFPpo3Yz8q_FBg7py-t",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-58jAkW": {
+    "id": "paper_d7YTaO8Job7jVG_wGbRzP",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IYZPsu": {
+    "id": "paper_tGDjzBe-PVTvDa0C4bQ0i",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-iFoHQ_": {
+    "id": "paper_oaerWYTKR6HzOtXwUza8P",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-dY06B8": {
+    "id": "paper_nJyRepBfb79SBxQdYMt29",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-3tnEvG": {
+    "id": "paper_YNCY7yPY0RTFCtyQC_MHa",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-hLbAvL": {
+    "id": "paper_zYlewO7m2Tv7Xvw9wPUYQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-v_N6iR": {
+    "id": "paper_c3GwfcQaSwZtAh0C4UJGZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ELisHp": {
+    "id": "paper_HDzWMi3vBtdsZmSjuHlw2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-IPOQGJ": {
+    "id": "paper_prRMqrq9poQ27kDFzmQsy",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-UQyRcS": {
+    "id": "paper_6bmKEbGnR2TFJhtqx_KSM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-rkyCm4": {
+    "id": "paper_Vn4lyAybnwvV67aUu-cR6",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-vfmB1O": {
+    "id": "paper_-h5SdYOlc4mL8ft6qL1tF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-vlG0_M": {
+    "id": "paper_yrFc5TCE9FcdZaj_tsC_q",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-PUoTIc": {
+    "id": "paper_75gBBBeOvZiCEzidxiXVA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-l5fWzo": {
+    "id": "paper_GQN-wWDdSLo_7CNkTwaKy",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-WpHCsI": {
+    "id": "paper_hnp4Bx3V-hUuiX1IPmcJN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-UgIx9a": {
+    "id": "paper_KvjDD88V4H-t8YzHG6keQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-OFtBI2": {
+    "id": "paper_O3k6K012431mS0HqtFyNl",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-siwd_S": {
+    "id": "paper_kBJnyJz4MzLV-ZHyPJw7T",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-HBGwV6": {
+    "id": "paper_P-coEBuUqMqH5_y8Nb7ZM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell--pg8u6": {
+    "id": "paper_82aS07GFJFK2bjYfmaKZ2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-gwQxKG": {
+    "id": "paper_Af3GtX8_CKkir5YZeG_N5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-l9jd--": {
+    "id": "paper_iGJ_aTbYg6cJIDp4aMRyg",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Bh0dNN": {
+    "id": "paper_wBLthU0ssRMNyx8PPhTpY",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-29gAAC": {
+    "id": "paper_15Qi0X7J6WLBgCRAvoKXd",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ZKAp4y": {
+    "id": "paper_UhglrIfBUIOZ17LLN6kvL",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-mI2McE": {
+    "id": "paper_uWiO0zGOeOrrLVSoLLIg6",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Uu1j9c": {
+    "id": "paper_aDK2VNUGydAqK06gLX9gT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-2cdBGO": {
+    "id": "paper_bopNT-KYmRfaYTBVhdcvR",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-w5CSzC": {
+    "id": "paper_uT_fY3a8RNgNxVu2T67ju",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-zSSz3f": {
+    "id": "paper_-TRMETjO9GycJIGI0nouu",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-01rjqe": {
+    "id": "paper_jiTyuPtZE10bvk6p06yAV",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-51Qcv0": {
+    "id": "paper_Kyd1CQpHVCxRyXIyyx1n8",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-vvF_wf": {
+    "id": "paper_1kP3LhUN1HV6BlXWMElBz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-4Bs0Zr": {
+    "id": "paper_qQAXVrHpOYH0Xj09l0DN5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-6jwsm2": {
+    "id": "paper_NwLWOeQbKMU_LO_sxxAZG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-PG7MnH": {
+    "id": "paper_AZyL7e6TvUx1LOy3Uv2t9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-PxVb2P": {
+    "id": "paper_7fhvmeUoJJVot6vZqa1rF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-IwtopS": {
+    "id": "paper_QODucXK75s_DtXanYRRif",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-GwNJWr": {
+    "id": "paper_AGsV28iKCbsouOmun56He",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-po96So": {
+    "id": "paper_kHlbzsbezdGTlLZu6wEem",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-rcj41k": {
+    "id": "paper_T1BtdVJppk6xPqYoYYYKV",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-MCs5bq": {
+    "id": "paper_w2ATXGZAHHFnHAJdpXPP2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-xXYEvq": {
+    "id": "paper_p4ONQBuu5FmSkPgbFTbAw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-3msjP-": {
+    "id": "paper_7xp_X5Np2Tj5q_2hp-26c",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-stFVl7": {
+    "id": "paper_clV-WcczjZCS4C_HqcEu0",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-hGVDu8": {
+    "id": "paper_7LpeVJiUX79Slsoq4caOU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-y9X_Zl": {
+    "id": "paper_-y-KotuZn8dRukPGCCBcd",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-81dAFQ": {
+    "id": "paper_INDqa9TY88tKevjqVx08H",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-a-IqfE": {
+    "id": "paper_ew80sxhl3JAzIkyfi7Bwh",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ay83lH": {
+    "id": "paper_BQX0NMk81RoEVyL9e6q1F",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-brTYxZ": {
+    "id": "paper_lu237FCuiSqnPyM4vJkl_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-uF-MG_": {
+    "id": "paper_xZkYFPpg-9mGq0ritncAt",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-d1DHGh": {
+    "id": "paper_aysOpEqs2qWZavBoUAplR",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-yEX0do": {
+    "id": "paper_HmruWRu6pQ_U-cIq53JqV",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-TwXTHy": {
+    "id": "paper_W22qgFZvYJfAkotZOzNS-",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-pZnolW": {
+    "id": "paper_iEzwdhCA7_vsws5sRYQoT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-58MH8h": {
+    "id": "paper_smJetSFrxWXF-PYJCs7q9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-EB9jJK": {
+    "id": "paper_jvDAIA0Flk7EHaNvaYlXq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-GjUB-8": {
+    "id": "paper_V0vB_q6IKPuZjasXPA4kf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-BPgx_c": {
+    "id": "paper_wf7kq-XR0eOxUPNEtGSty",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-KHJzuu": {
+    "id": "paper_uRWC3NDslqEQBwmblDs6R",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-GNrVhI": {
+    "id": "paper_yk0IQncbFTclJQi-PGnTm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-dSQICE": {
+    "id": "paper_27qH6ZwSIC300SLpyyWQO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-zjjsMH": {
+    "id": "paper_SPoyhZELQHbIRGt1uGV7L",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-hQnMUU": {
+    "id": "paper_-R9crYzjymE4uJi-08Wlv",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-PyvaTD": {
+    "id": "paper_OC1FsmiiOT16S1w8WA4O7",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-apGwdk": {
+    "id": "paper_p_y8qALkt1_Mvx0q6zopX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-6pcWJv": {
+    "id": "paper_ssbcdz2nYvA713CQkSxLJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-rQF2t0": {
+    "id": "paper_TeF9GUTSVgewfKIyNGh6G",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-V9fV6S": {
+    "id": "paper_JUDMJw9zMyLbBAdzEnTEz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-vAMvkn": {
+    "id": "paper_3IT6kkVkTaPZwpmXcleqn",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-mnb5-G": {
+    "id": "paper_ugrmgndCFh02KVvDaP2iz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-7lt6Bi": {
+    "id": "paper_2HVSz1hcZeXplQ_w36v9k",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-pidZw9": {
+    "id": "paper_VlyCdmb90Jd7U6_0bxeT9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-JIHCCl": {
+    "id": "paper_7gs_eh0LcC4uPUe43NHRm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-S-l1AT": {
+    "id": "paper_TIRvkFGaSEOg7wPoayrvJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Ri21g7": {
+    "id": "paper_E2YuWJfsK4P8n69JP9t2Q",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-gHUzrS": {
+    "id": "paper_gWUCOD6lE7M-V7Mg7S4NU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IcBzVv": {
+    "id": "paper_5vMf8s--Be7vjhFjMG08o",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-glWJsn": {
+    "id": "paper_X4LUYixqTf-zantuLX8Oq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ECQuC_": {
+    "id": "paper_-OdbcMF3klTAdCV9By-RH",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-NlzysN": {
+    "id": "paper_idY-Yd7UzpHYUrnLTF2nt",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Uka21-": {
+    "id": "paper_mfwpwG1vv2dnrzJDdyKkk",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-1QCuMd": {
+    "id": "paper_SFnjjet7QRmAcndDFLN0A",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-0sKr7t": {
+    "id": "paper_q8D138V6KUL7mjRtooMNB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-dp5Xh6": {
+    "id": "paper_taLp18frGTfVhVQX139B2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-IBa1uZ": {
+    "id": "paper_lLccbqi4z74iCPuGcJIGe",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-bMW4Ls": {
+    "id": "paper_TZQ7lg-sF8TR6B0fPmmN7",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-0ZSI7I": {
+    "id": "paper_q7SW5BlppnEdHVy6TnxgP",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-xN9CWV": {
+    "id": "paper_v2Qci-15Vnu5iMrNGkI7A",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-VKM-L-": {
+    "id": "paper_zKzDIZ6phmQDHZQQLFwuZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-i9xyen": {
+    "id": "paper_9P8RpGI5xsklvqnWK02K_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-R2ZiAW": {
+    "id": "paper_m5Erp1MiE5it3zFtvSnH6",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-GycgXo": {
+    "id": "paper_PbPe-J4hl4gffm210TzLT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-BZGXrM": {
+    "id": "paper_xGGPIuOAdw1R86PhWVd8C",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-zRLJcE": {
+    "id": "paper_UGeuJh-NSg_jqsJ_eOV7N",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-nQcZ3Z": {
+    "id": "paper_9OCCA5HULgppAANW-3KUq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-qu6g6n": {
+    "id": "paper_bqyezDFmehP_CMwM-N86A",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-pHVj7m": {
+    "id": "paper_yeo8Cm_293cn5rD6xvzCo",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-VwSG-P": {
+    "id": "paper_CkYbjrpDWwyPhGs2pmypb",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-sdQ2gR": {
+    "id": "paper_R0F5cglgpJCCV-_pJg0e_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-A9NoZj": {
+    "id": "paper_TxWlkbhj4fg2vuf1DfoR6",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-_4ndSh": {
+    "id": "paper_MeGgBsyzbFgxhqu8u6nNG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-GD0jkK": {
+    "id": "paper_yZ0VhjsiR9hYdspNKwTE1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-FL586d": {
+    "id": "paper_WNA-EohYBk77mpOdOJ1e6",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-1InpWE": {
+    "id": "paper_BxIKF58_9Ph4eKpCbC0B1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-LEz3ow": {
+    "id": "paper_K8EYLqbaFJLazU2J6bnBv",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ah9DMH": {
+    "id": "paper_BkPNCP9iUQjAbBGvHIZEF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Si0mXP": {
+    "id": "paper_1e5Tf4EWvderpCCdu_O_n",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Qapl-e": {
+    "id": "paper_t4sdZkJLrKc-mYeG-1QQg",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-tTOXvf": {
+    "id": "paper_PfotXvALACcE7pXFSIUQ7",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-HR-mPj": {
+    "id": "paper_EnzY_eLUqU4kx8Exp-2ZC",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-6KHycQ": {
+    "id": "paper_cls74XqgaQdbmGY5csX2u",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-1VAGrP": {
+    "id": "paper_8DbSeEsx3Zeyre2kF3J6P",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-v2fDLB": {
+    "id": "paper_zYE7EREqFbZCgXFwvxTwh",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-vkeCMd": {
+    "id": "paper_0kWJmrtfi1NtSzLGylMq3",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-G4TB7O": {
+    "id": "paper_lx_AXLBVUK2ku_zxn_hKP",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-lFXOpu": {
+    "id": "paper_lClvZQQe5OcaQwGbDOpOP",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Qc8UjF": {
+    "id": "paper_1NwcKspiTlxm6ynguAIT2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-LUpBWN": {
+    "id": "paper_QbIp1f4XY2K9tgEwRxz8D",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-tbSKAO": {
+    "id": "paper_kww7VMOQ39LfrXbH6RhGJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-eMdG9D": {
+    "id": "paper_NcT9D_1wFFDxnp5eI7VFf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-nCVIBv": {
+    "id": "paper_oyodbcjkZBe302NhgPfnb",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-QAM0Qe": {
+    "id": "paper_XCs0SPhaqodDLGjOkIili",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-kBqe4r": {
+    "id": "paper_TbHhq6gZmAzHQc5oLJV14",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-oLVocW": {
+    "id": "paper_7aU8CELOYtzXW7Li_FVxr",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ZK4ICd": {
+    "id": "paper_McRqRSdk-nWmBh9uUBJ9w",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-T1pelu": {
+    "id": "paper_YvUAMQOHHOIxh7fmJfEeT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-5QSwBj": {
+    "id": "paper__zBG4UOhTEzA2WGXf6soT",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-afVPq1": {
+    "id": "paper_2Vz1ZO6KSNqwFVjlEwQVe",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy--81FEL": {
+    "id": "paper_YkncxgawSJk0NlAq8uhw9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-TD77Jd": {
+    "id": "paper_kMVxJtoFD7Y0H6uSYCCzo",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-y8uYfZ": {
+    "id": "paper_fqJ9TQS_r3x9btgvCzOEH",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-eO7s9f": {
+    "id": "paper_LAmoZMiUDGPhYgZEf1Voi",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ApLyxN": {
+    "id": "paper_n3gq1_KW19Vy_-rgsFFkZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-1aI3M2": {
+    "id": "paper_l3o4_NAWY7Pmls77QSNVx",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-JahXbt": {
+    "id": "paper_dh2lTzpoGP0e27LU-cXYc",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-LV9B3D": {
+    "id": "paper_XdQ5kW2b7DlxvxRpJ7T00",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-E3kQQ5": {
+    "id": "paper_O77mVHxS6gM5KSPJhZ8An",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-eb5ydN": {
+    "id": "paper_o4ZuRGn3tHo8S7jzA1ROJ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Enyj8E": {
+    "id": "paper_4V1XGsKv8YCZi8GcG6xU8",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-VNDkna": {
+    "id": "paper_YQun_Q_mzgN2Md01Sb3Lc",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-_25vfg": {
+    "id": "paper_48afJ6Wql2hCCdHlBhbur",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-M61M96": {
+    "id": "paper_8_j_MY79ECS6OOJiR24t7",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-YMeE_q": {
+    "id": "paper_9h9juHy2pa2KsJafJOqAU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-1XZRaa": {
+    "id": "paper_s1sU76hUqMdfv2cvdZ3Li",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-mIyYk2": {
+    "id": "paper_iNaFA1-AyXQWNoPrk_65J",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-vSzLFO": {
+    "id": "paper_QoKZ5Pc5Dlv84R1ROKLHO",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-1nJyE1": {
+    "id": "paper_Qb9kw1BlyVbP5YMz0pjuA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-xJ5MFW": {
+    "id": "paper_Ypunu0ZAcMhYgxzKLa8HX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-F_O3rO": {
+    "id": "paper_WmlN7EIpeEvHAhqJZtCic",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-6UFQ8R": {
+    "id": "paper_jswETYg6Y9dSLCyqIUqCB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-CJ5kpn": {
+    "id": "paper_JekA-jToZTGCGqcl-VN1a",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-rxoW7L": {
+    "id": "paper__FOJtevv69wd8GjbdKr-h",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-l8ciIa": {
+    "id": "paper_0UtomKYh51LYLbtaD6w4c",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-pTreg9": {
+    "id": "paper_sgz-1S72wEApOqBhnYQ-8",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-1Y42Yo": {
+    "id": "paper_eZMV4vUgObvUWX4AlRCZQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-SOJ503": {
+    "id": "paper_nlgnCc33V5ikSXDB8Zwfv",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-5bVWg0": {
+    "id": "paper_0fWrc7k2FumaGdSu8mfUK",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-wAV2sU": {
+    "id": "paper_T7qsUmIiEN-qG7xx0smOI",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-3gY8ny": {
+    "id": "paper_4EMp3Op0FVvwwS4uhODaf",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-fwRkGt": {
+    "id": "paper_DADt2awAv6J30fZlU9k_m",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Yjj_kz": {
+    "id": "paper_OEZCsGHFMBmcR1MyOns_d",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-MNJBhb": {
+    "id": "paper_WfNRQStDXxAcz8ZhGVLrQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-MDw6es": {
+    "id": "paper_q6GaW5k-Op2lRXyA0Bgn4",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-j22x9u": {
+    "id": "paper_YNQxktl6jm21PRxz1MTDo",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-QptfBr": {
+    "id": "paper_JBVTCCRwaKEoGYCy31ihm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-TH9Ozv": {
+    "id": "paper_l36BN-Mc5cjAbJUZF5ajG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-R3-c8x": {
+    "id": "paper_YfA9rof0CdikSNfEt4yiC",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Hlrivc": {
+    "id": "paper_su_PWIUXQDM7Pn4tG0cB5",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-xpiOcU": {
+    "id": "paper_lNoEOXmXifJmYOl_DH6AF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-h3ovZq": {
+    "id": "paper_3rYOsFyBjIwMBl--j-02E",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-zg5wXE": {
+    "id": "paper_QTKyc3Dw-_2_SsOcUd4fK",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ZEgac3": {
+    "id": "paper_Kw41UD_4STzZi957gcanm",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ncFWBG": {
+    "id": "paper_7zUaH8iMuBiGFMl7WFptF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-fM93tQ": {
+    "id": "paper_nGHxzPS_dGiNRfucnlSD3",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-M_34YZ": {
+    "id": "paper_sPZl7ZSxtfRjWBO6eGgBp",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-y7LUvY": {
+    "id": "paper_mTVQefT0Byn2O7LOswLoY",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-T8r3WP": {
+    "id": "paper_AAOF9Sy8AWxzNpiHBGPjj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-EYgZGs": {
+    "id": "paper_FWiCTu5oo_PEIqQKXiD6z",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-7UNei8": {
+    "id": "paper_WlrnGkyt6hFrE-8KFZhhB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-YWXZjS": {
+    "id": "paper_Mh7x8VDx5qD91iuhW5ffM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-moBzDB": {
+    "id": "paper_DkL6NbeX38_sI6a64mOsz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-q8mW0s": {
+    "id": "paper_NP4sTkNx1OSYTrGtmcAC_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-m304S5": {
+    "id": "paper_uFh9zENlSgnPwY3eNMlxa",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-gWO4Rj": {
+    "id": "paper_fN3oVly82FC7e4mj5VDhv",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-1ySzAa": {
+    "id": "paper_bTMvW1Cr11IGmv7JPIUlj",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ilxYWU": {
+    "id": "paper_anFh_dYfrXu8LIPwAFia1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-rKOK5w": {
+    "id": "paper_c3HGiVflCH9hreAn6NefN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-_R8hMC": {
+    "id": "paper_4XMgzp75aYgDDDoU46X4K",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-qZh-hV": {
+    "id": "paper_OuIWxHcOc4Z64rBLc1H8i",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-fU9Sng": {
+    "id": "paper_egTY5w2sE4vC1x2eECtyA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-6LnvJM": {
+    "id": "paper_DXBQ9NvkaCwKKf2Y8m5Mq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-2y545q": {
+    "id": "paper_Zbk5XqPGu23LrsfENYYGW",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-Vb3I8C": {
+    "id": "paper_7NAYb0sFsn3nV09K87TJz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-zYkATN": {
+    "id": "paper_eeB-ePiXM14apn1ifi3l-",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-unzNGg": {
+    "id": "paper_1ejKk4sz8E84z6yjSTs8r",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-8qF4Fn": {
+    "id": "paper_rxzLv1zRHXqgq5Y4MXyqD",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-7y837w": {
+    "id": "paper_SD-nhyZiLNnEVNz86ybhQ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-JnzWoA": {
+    "id": "paper_oCV8DapK02JDCSPVAxVvG",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-a6Ke5K": {
+    "id": "paper_TO8wMDVvu2Ux6vCXLnaui",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-qhuoPF": {
+    "id": "paper_FvSoWLEkGFbuZ3TZKTnLs",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-tLwWYt": {
+    "id": "paper_KgtpF3IO6YC0bPinQbL5W",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-0uEaX_": {
+    "id": "paper_yCDXkxIERkofVicISlbPB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-vgtWIf": {
+    "id": "paper_HmRdhVoWFZPg3T52egpZ3",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-vEcw2k": {
+    "id": "paper_AYTCeWUQ6CT422AfI2Uhg",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-3VUO0J": {
+    "id": "paper_T-JX7NRhbrjnWafyVgQof",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-au4xCr": {
+    "id": "paper_ikcWfzRS11skSMgVbdm6k",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-sP4K75": {
+    "id": "paper_iAv5SJgPHcy7aonVUrG1j",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-VJc_cu": {
+    "id": "paper_ZnCie2lRwzLBRc2tNoZaI",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-nOGT_n": {
+    "id": "paper_qT3wlV1jacAqJfriShRPC",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-IR4tj0": {
+    "id": "paper_nL8Iwkal9gw78UQnZxXbu",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-59MPtI": {
+    "id": "paper_CpXFVbrVc6Xveg4L71PzK",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-0fnlKg": {
+    "id": "paper_wlMYecuI6MhQo7moLhKK9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-xvwrv-": {
+    "id": "paper_E-9-fHcOrffHridM4lUj2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-7x3rVg": {
+    "id": "paper_WMzCvVVtUh1jFsR5qS0SS",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-zLd6zj": {
+    "id": "paper_YeO-s1awNoQ0AkqjC2QKL",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-MVoDPA": {
+    "id": "paper_hGVFNjlXG24hGY-jQj0T-",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-s-RW-A": {
+    "id": "paper_5FHwlVnUgn0RYiGeCDBc-",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-fuDHMJ": {
+    "id": "paper_UoJv_A3RQ7ORiHij9fyhR",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-YDDNrR": {
+    "id": "paper_Imhp8sxoLkchlSEKGu1Jq",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Cg1FZl": {
+    "id": "paper_3cTurpzW2P28ppFwjv6RX",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-4MHBrg": {
+    "id": "paper_7HLhNOEve2gGakkk5YwTF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-D_ZTZu": {
+    "id": "paper_dCU7j2kZgsvCIvqODue6s",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-vzHheV": {
+    "id": "paper_iqpyE2Ei6W4Vahh8tacxb",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-9pBMY4": {
+    "id": "paper_MOx1ydSOPTWkVNJq_TTFU",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy--e7jd0": {
+    "id": "paper_MbxmSWtKCTWJESjFA5a4K",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-yrkjzA": {
+    "id": "paper_qDnpX62W3qTIYVZbrdLY2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-ODht7w": {
+    "id": "paper_ljONF00AFp_eoTLRoUzkx",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-qRc7mS": {
+    "id": "paper_v-8V__fhiNMOd1Lrxe0JZ",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-RgjTaj": {
+    "id": "paper_XL3r-8LC3qB1N7qPFmZE1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-w32G8v": {
+    "id": "paper_sKU1HMw7HKI5KVNiK7Ymu",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-XKCmKG": {
+    "id": "paper_7moJQYidnQi0uOCT6WATi",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-TVQf85": {
+    "id": "paper_646MqkBUKvcWwa7Cx1jnD",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-I_wTj2": {
+    "id": "paper_xkzzXte555ymVxyVDVdeC",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-TzC8Rk": {
+    "id": "paper_ixhoRn9kDhJGjSH0I4Bm1",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-OichSE": {
+    "id": "paper_zyFb-VedmoVXlT7Hg4PGv",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Qe90kX": {
+    "id": "paper_M6cj877HLAhLww9ARsXK9",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-QTGiig": {
+    "id": "paper_iCKu_sIasUDbyQ3lwdkHF",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-H09xSg": {
+    "id": "paper_qYyd99Ij_sJCaWTbLaTOK",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-iJiFEq": {
+    "id": "paper_zNCaolbEH_8W4B21qFHYu",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-OPkGl3": {
+    "id": "paper_2BHW06fTGsgb_EmzdZQIa",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-QHkfCk": {
+    "id": "paper_xBTTNW2x9MaNsY3KNYlKw",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-lsUzYu": {
+    "id": "paper_nEOs6htjwoWACmb7oAXKz",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-OtSXQl": {
+    "id": "paper_qbew9vz7dHK0HYjrP_sV3",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-frL7m6": {
+    "id": "paper_c_auO1xfn7T16lHrz3bVl",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-QLKdCw": {
+    "id": "paper_gkv6HCjBpVA9mecnfZ-Cc",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-pT8pWr": {
+    "id": "paper_y7Pgsc_Gilqi4eKRONZwl",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-rbLQBP": {
+    "id": "paper_xKirR0e_7HOkCOZ26b9_2",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-AGWtp8": {
+    "id": "paper_4XnoQTd3C_X-Tju6YPOSB",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-7MY1WG": {
+    "id": "paper_sJtg-wwvVlbeqgv81IfMh",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-tj6R5S": {
+    "id": "paper_aCGVoFzi8mIvUx6jkZVP_",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-lO6Bnl": {
+    "id": "paper_85Q10fJ1NLZ1cT4_uEWCA",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-fTWQjn": {
+    "id": "paper_afZdGAB_8U_nXJDZLBbHM",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-xbLfc6": {
+    "id": "paper_K8dic37Yz9__8x2xfp4Sh",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-ZyyLg2": {
+    "id": "paper_Ft73PYqCSpjXnkDgNQfle",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-buy-A6xYiv": {
+    "id": "paper_zhg4OBznXkuR4z8ZYy1JR",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  },
+  "autoloop-SPY-sell-Rwu_tc": {
+    "id": "paper_tO74Fb5yRBkdjIZIOukjN",
+    "status": "filled",
+    "avgPrice": 100,
+    "filledQty": 0.7224999999999999
+  }
+}

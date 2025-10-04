@@ -1,0 +1,35 @@
+{
+  "currentId": "active_movers",
+  "items": [
+    {
+      "id": "default",
+      "name": "Default",
+      "symbols": ["SPY", "QQQ", "AAPL", "MSFT", "NVDA", "TSLA", "META", "GOOGL", "AMZN", "NFLX"]
+    },
+    {
+      "id": "penny_movers",
+      "name": "Penny Stocks",
+      "symbols": ["SNDL", "TELL", "GSAT", "BNGO", "SENS", "OCGN", "PROG", "ATOS", "XELA", "CEI", "BBIG", "ANY", "MMAT", "WKHS", "RIDE", "NNDM", "IDEX", "ZOM", "CTRM", "SHIP", "TOPS", "NAKD", "JAGX", "TXMD", "ONTX", "SOLO", "GNUS", "VISL", "XSPA", "IBIO"]
+    },
+    {
+      "id": "small_caps_liquid",
+      "name": "Small Cap Liquid",
+      "symbols": ["SOFI", "PLTR", "BB", "NOK", "F", "GE", "AAL", "CCL", "NCLH", "DKNG", "PENN", "SNAP", "LYFT", "UBER", "HOOD", "COIN", "RBLX", "U", "PATH", "AFRM", "WISH", "CLOV", "SPCE", "RKT", "SKLZ", "PSFE", "OPEN", "POSH", "ROOT", "MILE"]
+    },
+    {
+      "id": "volume_movers",
+      "name": "High Volume",
+      "symbols": ["MSFT", "NVDA", "AMD", "INTC", "BAC", "WFC", "JPM", "C", "XOM", "CVX", "PFE", "MRNA", "T", "VZ", "CSCO", "ORCL", "IBM", "GE", "BA", "GM", "VALE", "RIG", "MRO", "OXY", "HAL", "SLB", "FCX", "NEM", "GOLD", "KGC"]
+    },
+    {
+      "id": "volatility_plays",
+      "name": "High Volatility",
+      "symbols": ["GME", "AMC", "BBBY", "KOSS", "EXPR", "NAKD", "SNDL", "TLRY", "ACB", "CRON", "CGC", "APHA", "OGI", "HEXO", "ZNGA", "FUBO", "VIAC", "DISCA", "SKLZ", "HYLN", "NKLA", "RIDE", "WKHS", "GOEV", "FSR", "LCID", "RIVN", "QS", "CHPT", "BLNK"]
+    },
+    {
+      "id": "active_movers",
+      "name": "Active Today",
+      "symbols": ["TSLA", "AAPL", "NVDA", "AMD", "META", "GOOGL", "MSFT", "AMZN", "NFLX", "DIS", "PYPL", "SQ", "ROKU", "SHOP", "SNAP", "PINS", "TWTR", "UBER", "LYFT", "DASH", "ABNB", "RBLX", "COIN", "HOOD", "SOFI", "UPST", "AFRM", "PLTR", "U", "NET"]
+    }
+  ]
+}

@@ -1,13 +1,15 @@
-# Pleasant Cove Design Server
+# live-api
 
-Production-ready Node.js server for Pleasant Cove Design.
 
-## Build Status
-- All TypeScript fixes applied ✅
-- Dependencies updated ✅
-- Ready for deployment ✅
+## Development
 
-Last updated: July 28, 2025
+```bash
+npm install
+npm run dev   # builds TS and starts API at :4000
+```
 
----
-Deployment triggered: July 28, 2025 @ 10:28 PM EST 
+- UI runs at :3003 (Vite).
+- API base is proxied via Vite (/api, /metrics, /ws -> :4000).
+- To run full server: `npm start` (server.js).
+- Minimal mock server: `node minimal_server.js` (also :4000).
+

@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": "2025-09-14T20:05:07.525Z",
+    "intent_id": "RIOT:BUY:news_momo_v2",
+    "symbol": "RIOT",
+    "strategy_id": "news_momo_v2",
+    "reason": "HEALTH_CHECK_FAILED",
+    "check": "health",
+    "details": "stale_broker",
+    "context": {}
+  },
+  {
+    "timestamp": "2025-09-14T20:05:07.524Z",
+    "intent_id": "SOFI:BUY:news_momo_v2",
+    "symbol": "SOFI",
+    "strategy_id": "news_momo_v2",
+    "reason": "HEALTH_CHECK_FAILED",
+    "check": "health",
+    "details": "stale_broker",
+    "context": {}
+  },
+  {
+    "timestamp": "2025-09-14T20:04:37.614Z",
+    "intent_id": "RIOT:BUY:news_momo_v2",
+    "symbol": "RIOT",
+    "strategy_id": "news_momo_v2",
+    "reason": "HEALTH_CHECK_FAILED",
+    "check": "health",
+    "details": "stale_broker",
+    "context": {}
+  }
+]

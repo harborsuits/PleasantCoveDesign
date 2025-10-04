@@ -1,0 +1,2242 @@
+{
+  "test_phenotype_001": {
+    "id": "test_phenotype_001",
+    "name": "MAxRSI[v12.g5.i43]",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-12T01:28:29.159Z",
+    "config": {
+      "name": "MAxRSI[v12.g5.i43]",
+      "parameters": {
+        "ma_fast": 12,
+        "ma_slow": 50,
+        "rsi": 21,
+        "sl": 0.018,
+        "tp": 0.032
+      },
+      "constraints": {
+        "universe": [
+          "SPY",
+          "QQQ",
+          "AAPL"
+        ],
+        "tf": "5m"
+      },
+      "promotion_criteria": {
+        "minSharpe": 0.9,
+        "minPf": 1.15,
+        "maxDd": 0.08,
+        "maxBreaches": 0
+      },
+      "tournament_stage": "R1",
+      "allocated_capital": 25000,
+      "source": "evotester",
+      "generation": 1,
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ]
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "minSharpe": 0.9,
+      "minPf": 1.15,
+      "maxDd": 0.08,
+      "maxBreaches": 0
+    },
+    "last_updated": "2025-09-14T06:13:24.547Z"
+  },
+  "enhanced_straddle_strangle_strategy": {
+    "id": "enhanced_straddle_strangle_strategy",
+    "name": "Enhanced Volatility Spread",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.966Z",
+    "config": {
+      "name": "Enhanced Volatility Spread",
+      "description": "Advanced options volatility strategies with dynamic positioning",
+      "asset_class": "options",
+      "strategy_type": "volatility",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "max_position_size": 0.05,
+        "volatility_threshold": 0.15,
+        "min_iv_rank": 0.2,
+        "max_iv_rank": 0.8,
+        "max_holding_period_days": 45,
+        "profit_target_pct": 0.25,
+        "stop_loss_pct": 0.15
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.6,
+        "min_sharpe_ratio": 1.2,
+        "max_drawdown": 0.1,
+        "min_total_return": 0.15
+      },
+      "id": "enhanced_straddle_strangle_strategy",
+      "source": "trading_bot",
+      "category": "options/volatility_spreads",
+      "allocated_capital": 50000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.6,
+      "min_sharpe_ratio": 1.2,
+      "max_drawdown": 0.1,
+      "min_total_return": 0.15
+    },
+    "last_updated": "2025-09-14T06:13:21.996Z"
+  },
+  "straddle_strangle_strategy": {
+    "id": "straddle_strangle_strategy",
+    "name": "Enhanced Volatility Spread",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.968Z",
+    "config": {
+      "name": "Enhanced Volatility Spread",
+      "description": "Advanced options volatility strategies with dynamic positioning",
+      "asset_class": "options",
+      "strategy_type": "volatility",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "max_position_size": 0.05,
+        "volatility_threshold": 0.15,
+        "min_iv_rank": 0.2,
+        "max_iv_rank": 0.8,
+        "max_holding_period_days": 45,
+        "profit_target_pct": 0.25,
+        "stop_loss_pct": 0.15
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.6,
+        "min_sharpe_ratio": 1.2,
+        "max_drawdown": 0.1,
+        "min_total_return": 0.15
+      },
+      "id": "straddle_strangle_strategy",
+      "source": "trading_bot",
+      "category": "options/volatility_spreads",
+      "allocated_capital": 50000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.6,
+      "min_sharpe_ratio": 1.2,
+      "max_drawdown": 0.1,
+      "min_total_return": 0.15
+    },
+    "last_updated": "2025-09-14T06:13:22.098Z"
+  },
+  "straddle_strategy": {
+    "id": "straddle_strategy",
+    "name": "Enhanced Volatility Spread",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.968Z",
+    "config": {
+      "name": "Enhanced Volatility Spread",
+      "description": "Advanced options volatility strategies with dynamic positioning",
+      "asset_class": "options",
+      "strategy_type": "volatility",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "max_position_size": 0.05,
+        "volatility_threshold": 0.15,
+        "min_iv_rank": 0.2,
+        "max_iv_rank": 0.8,
+        "max_holding_period_days": 45,
+        "profit_target_pct": 0.25,
+        "stop_loss_pct": 0.15
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.6,
+        "min_sharpe_ratio": 1.2,
+        "max_drawdown": 0.1,
+        "min_total_return": 0.15
+      },
+      "id": "straddle_strategy",
+      "source": "trading_bot",
+      "category": "options/volatility_spreads",
+      "allocated_capital": 50000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.6,
+      "min_sharpe_ratio": 1.2,
+      "max_drawdown": 0.1,
+      "min_total_return": 0.15
+    },
+    "last_updated": "2025-09-14T06:13:21.589Z"
+  },
+  "strangle_strategy": {
+    "id": "strangle_strategy",
+    "name": "Enhanced Volatility Spread",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.969Z",
+    "config": {
+      "name": "Enhanced Volatility Spread",
+      "description": "Advanced options volatility strategies with dynamic positioning",
+      "asset_class": "options",
+      "strategy_type": "volatility",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "max_position_size": 0.05,
+        "volatility_threshold": 0.15,
+        "min_iv_rank": 0.2,
+        "max_iv_rank": 0.8,
+        "max_holding_period_days": 45,
+        "profit_target_pct": 0.25,
+        "stop_loss_pct": 0.15
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.6,
+        "min_sharpe_ratio": 1.2,
+        "max_drawdown": 0.1,
+        "min_total_return": 0.15
+      },
+      "id": "strangle_strategy",
+      "source": "trading_bot",
+      "category": "options/volatility_spreads",
+      "allocated_capital": 50000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.6,
+      "min_sharpe_ratio": 1.2,
+      "max_drawdown": 0.1,
+      "min_total_return": 0.15
+    },
+    "last_updated": "2025-09-14T06:13:21.690Z"
+  },
+  "market_analysis": {
+    "id": "market_analysis",
+    "name": "Enhanced Volatility Spread",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.969Z",
+    "config": {
+      "name": "Enhanced Volatility Spread",
+      "description": "Advanced options volatility strategies with dynamic positioning",
+      "asset_class": "options",
+      "strategy_type": "volatility",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "max_position_size": 0.05,
+        "volatility_threshold": 0.15,
+        "min_iv_rank": 0.2,
+        "max_iv_rank": 0.8,
+        "max_holding_period_days": 45,
+        "profit_target_pct": 0.25,
+        "stop_loss_pct": 0.15
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.6,
+        "min_sharpe_ratio": 1.2,
+        "max_drawdown": 0.1,
+        "min_total_return": 0.15
+      },
+      "id": "market_analysis",
+      "source": "trading_bot",
+      "category": "options/volatility_spreads",
+      "allocated_capital": 50000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.6,
+      "min_sharpe_ratio": 1.2,
+      "max_drawdown": 0.1,
+      "min_total_return": 0.15
+    },
+    "last_updated": "2025-09-14T06:13:22.200Z"
+  },
+  "option_selection": {
+    "id": "option_selection",
+    "name": "Enhanced Volatility Spread",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.969Z",
+    "config": {
+      "name": "Enhanced Volatility Spread",
+      "description": "Advanced options volatility strategies with dynamic positioning",
+      "asset_class": "options",
+      "strategy_type": "volatility",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "max_position_size": 0.05,
+        "volatility_threshold": 0.15,
+        "min_iv_rank": 0.2,
+        "max_iv_rank": 0.8,
+        "max_holding_period_days": 45,
+        "profit_target_pct": 0.25,
+        "stop_loss_pct": 0.15
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.6,
+        "min_sharpe_ratio": 1.2,
+        "max_drawdown": 0.1,
+        "min_total_return": 0.15
+      },
+      "id": "option_selection",
+      "source": "trading_bot",
+      "category": "options/volatility_spreads",
+      "allocated_capital": 50000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.6,
+      "min_sharpe_ratio": 1.2,
+      "max_drawdown": 0.1,
+      "min_total_return": 0.15
+    },
+    "last_updated": "2025-09-14T06:13:22.302Z"
+  },
+  "risk_management": {
+    "id": "risk_management",
+    "name": "Enhanced Volatility Spread",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.969Z",
+    "config": {
+      "name": "Enhanced Volatility Spread",
+      "description": "Advanced options volatility strategies with dynamic positioning",
+      "asset_class": "options",
+      "strategy_type": "volatility",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "max_position_size": 0.05,
+        "volatility_threshold": 0.15,
+        "min_iv_rank": 0.2,
+        "max_iv_rank": 0.8,
+        "max_holding_period_days": 45,
+        "profit_target_pct": 0.25,
+        "stop_loss_pct": 0.15
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.6,
+        "min_sharpe_ratio": 1.2,
+        "max_drawdown": 0.1,
+        "min_total_return": 0.15
+      },
+      "id": "risk_management",
+      "source": "trading_bot",
+      "category": "options/volatility_spreads",
+      "allocated_capital": 50000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.6,
+      "min_sharpe_ratio": 1.2,
+      "max_drawdown": 0.1,
+      "min_total_return": 0.15
+    },
+    "last_updated": "2025-09-14T06:13:22.404Z"
+  },
+  "volatility_spread_factory": {
+    "id": "volatility_spread_factory",
+    "name": "Enhanced Volatility Spread",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.969Z",
+    "config": {
+      "name": "Enhanced Volatility Spread",
+      "description": "Advanced options volatility strategies with dynamic positioning",
+      "asset_class": "options",
+      "strategy_type": "volatility",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "max_position_size": 0.05,
+        "volatility_threshold": 0.15,
+        "min_iv_rank": 0.2,
+        "max_iv_rank": 0.8,
+        "max_holding_period_days": 45,
+        "profit_target_pct": 0.25,
+        "stop_loss_pct": 0.15
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.6,
+        "min_sharpe_ratio": 1.2,
+        "max_drawdown": 0.1,
+        "min_total_return": 0.15
+      },
+      "id": "volatility_spread_factory",
+      "source": "trading_bot",
+      "category": "options/volatility_spreads",
+      "allocated_capital": 50000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.6,
+      "min_sharpe_ratio": 1.2,
+      "max_drawdown": 0.1,
+      "min_total_return": 0.15
+    },
+    "last_updated": "2025-09-14T06:13:22.507Z"
+  },
+  "covered_call_strategy": {
+    "id": "covered_call_strategy",
+    "name": "Options Income Engine",
+    "status": "active",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.970Z",
+    "config": {
+      "name": "Options Income Engine",
+      "description": "Systematic options selling for income generation",
+      "asset_class": "options",
+      "strategy_type": "income",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "target_premium_pct": 0.02,
+        "max_dte": 45,
+        "min_dte": 7,
+        "delta_target": 0.2,
+        "position_limit_pct": 0.1
+      },
+      "promotion_criteria": {
+        "min_trades": 50,
+        "min_win_rate": 0.75,
+        "min_sharpe_ratio": 1.8,
+        "max_drawdown": 0.05
+      },
+      "id": "covered_call_strategy",
+      "source": "trading_bot",
+      "category": "options/income_strategies",
+      "allocated_capital": 75000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 50,
+      "min_win_rate": 0.75,
+      "min_sharpe_ratio": 1.8,
+      "max_drawdown": 0.05
+    },
+    "last_updated": "2025-09-14T06:13:21.487Z"
+  },
+  "covered_call_strategy_new": {
+    "id": "covered_call_strategy_new",
+    "name": "Options Income Engine",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.970Z",
+    "config": {
+      "name": "Options Income Engine",
+      "description": "Systematic options selling for income generation",
+      "asset_class": "options",
+      "strategy_type": "income",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "target_premium_pct": 0.02,
+        "max_dte": 45,
+        "min_dte": 7,
+        "delta_target": 0.2,
+        "position_limit_pct": 0.1
+      },
+      "promotion_criteria": {
+        "min_trades": 50,
+        "min_win_rate": 0.75,
+        "min_sharpe_ratio": 1.8,
+        "max_drawdown": 0.05
+      },
+      "id": "covered_call_strategy_new",
+      "source": "trading_bot",
+      "category": "options/income_strategies",
+      "allocated_capital": 75000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 50,
+      "min_win_rate": 0.75,
+      "min_sharpe_ratio": 1.8,
+      "max_drawdown": 0.05
+    },
+    "last_updated": "2025-09-14T06:13:22.608Z"
+  },
+  "bear_call_spread_strategy": {
+    "id": "bear_call_spread_strategy",
+    "name": "Enhanced Mean Reversion",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.971Z",
+    "config": {
+      "name": "Enhanced Mean Reversion",
+      "description": "Statistical mean reversion across multiple timeframes",
+      "asset_class": "stocks",
+      "strategy_type": "mean_reversion",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "lookback_periods": [
+          20,
+          50,
+          200
+        ],
+        "entry_threshold": 2,
+        "exit_threshold": 0.5,
+        "max_holding_period": 20,
+        "position_size_pct": 0.03
+      },
+      "promotion_criteria": {
+        "min_trades": 30,
+        "min_win_rate": 0.55,
+        "min_sharpe_ratio": 1,
+        "max_drawdown": 0.08
+      },
+      "id": "bear_call_spread_strategy",
+      "source": "trading_bot",
+      "category": "options/vertical_spreads",
+      "allocated_capital": 30000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 30,
+      "min_win_rate": 0.55,
+      "min_sharpe_ratio": 1,
+      "max_drawdown": 0.08
+    },
+    "last_updated": "2025-09-14T06:13:24.241Z"
+  },
+  "bear_put_spread_strategy": {
+    "id": "bear_put_spread_strategy",
+    "name": "Enhanced Mean Reversion",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.971Z",
+    "config": {
+      "name": "Enhanced Mean Reversion",
+      "description": "Statistical mean reversion across multiple timeframes",
+      "asset_class": "stocks",
+      "strategy_type": "mean_reversion",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "lookback_periods": [
+          20,
+          50,
+          200
+        ],
+        "entry_threshold": 2,
+        "exit_threshold": 0.5,
+        "max_holding_period": 20,
+        "position_size_pct": 0.03
+      },
+      "promotion_criteria": {
+        "min_trades": 30,
+        "min_win_rate": 0.55,
+        "min_sharpe_ratio": 1,
+        "max_drawdown": 0.08
+      },
+      "id": "bear_put_spread_strategy",
+      "source": "trading_bot",
+      "category": "options/vertical_spreads",
+      "allocated_capital": 30000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 30,
+      "min_win_rate": 0.55,
+      "min_sharpe_ratio": 1,
+      "max_drawdown": 0.08
+    },
+    "last_updated": "2025-09-14T06:13:21.894Z"
+  },
+  "bull_call_spread_strategy": {
+    "id": "bull_call_spread_strategy",
+    "name": "Enhanced Mean Reversion",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.971Z",
+    "config": {
+      "name": "Enhanced Mean Reversion",
+      "description": "Statistical mean reversion across multiple timeframes",
+      "asset_class": "stocks",
+      "strategy_type": "mean_reversion",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "lookback_periods": [
+          20,
+          50,
+          200
+        ],
+        "entry_threshold": 2,
+        "exit_threshold": 0.5,
+        "max_holding_period": 20,
+        "position_size_pct": 0.03
+      },
+      "promotion_criteria": {
+        "min_trades": 30,
+        "min_win_rate": 0.55,
+        "min_sharpe_ratio": 1,
+        "max_drawdown": 0.08
+      },
+      "id": "bull_call_spread_strategy",
+      "source": "trading_bot",
+      "category": "options/vertical_spreads",
+      "allocated_capital": 30000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 30,
+      "min_win_rate": 0.55,
+      "min_sharpe_ratio": 1,
+      "max_drawdown": 0.08
+    },
+    "last_updated": "2025-09-14T06:13:21.793Z"
+  },
+  "bull_call_spread_strategy_new": {
+    "id": "bull_call_spread_strategy_new",
+    "name": "Enhanced Mean Reversion",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.971Z",
+    "config": {
+      "name": "Enhanced Mean Reversion",
+      "description": "Statistical mean reversion across multiple timeframes",
+      "asset_class": "stocks",
+      "strategy_type": "mean_reversion",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "lookback_periods": [
+          20,
+          50,
+          200
+        ],
+        "entry_threshold": 2,
+        "exit_threshold": 0.5,
+        "max_holding_period": 20,
+        "position_size_pct": 0.03
+      },
+      "promotion_criteria": {
+        "min_trades": 30,
+        "min_win_rate": 0.55,
+        "min_sharpe_ratio": 1,
+        "max_drawdown": 0.08
+      },
+      "id": "bull_call_spread_strategy_new",
+      "source": "trading_bot",
+      "category": "options/vertical_spreads",
+      "allocated_capital": 30000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 30,
+      "min_win_rate": 0.55,
+      "min_sharpe_ratio": 1,
+      "max_drawdown": 0.08
+    },
+    "last_updated": "2025-09-14T06:13:24.343Z"
+  },
+  "bull_put_spread_strategy": {
+    "id": "bull_put_spread_strategy",
+    "name": "Enhanced Mean Reversion",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.971Z",
+    "config": {
+      "name": "Enhanced Mean Reversion",
+      "description": "Statistical mean reversion across multiple timeframes",
+      "asset_class": "stocks",
+      "strategy_type": "mean_reversion",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "lookback_periods": [
+          20,
+          50,
+          200
+        ],
+        "entry_threshold": 2,
+        "exit_threshold": 0.5,
+        "max_holding_period": 20,
+        "position_size_pct": 0.03
+      },
+      "promotion_criteria": {
+        "min_trades": 30,
+        "min_win_rate": 0.55,
+        "min_sharpe_ratio": 1,
+        "max_drawdown": 0.08
+      },
+      "id": "bull_put_spread_strategy",
+      "source": "trading_bot",
+      "category": "options/vertical_spreads",
+      "allocated_capital": 30000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 30,
+      "min_win_rate": 0.55,
+      "min_sharpe_ratio": 1,
+      "max_drawdown": 0.08
+    },
+    "last_updated": "2025-09-14T06:13:24.444Z"
+  },
+  "__init__": {
+    "id": "__init__",
+    "name": "Multi-Timeframe Momentum",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.971Z",
+    "config": {
+      "name": "Multi-Timeframe Momentum",
+      "description": "Momentum-based trading with regime adaptation",
+      "asset_class": "stocks",
+      "strategy_type": "momentum",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "fast_ma": 20,
+        "slow_ma": 50,
+        "rsi_period": 14,
+        "momentum_threshold": 0.02,
+        "volume_multiplier": 1.5
+      },
+      "promotion_criteria": {
+        "min_trades": 25,
+        "min_win_rate": 0.58,
+        "min_sharpe_ratio": 1.1,
+        "max_drawdown": 0.09
+      },
+      "id": "__init__",
+      "source": "trading_bot",
+      "category": "forex/momentum",
+      "allocated_capital": 40000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 25,
+      "min_win_rate": 0.58,
+      "min_sharpe_ratio": 1.1,
+      "max_drawdown": 0.09
+    },
+    "last_updated": "2025-09-14T06:13:22.710Z"
+  },
+  "stocks_mean_reversion_strategy": {
+    "id": "stocks_mean_reversion_strategy",
+    "name": "Enhanced Mean Reversion",
+    "status": "active",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.971Z",
+    "config": {
+      "name": "Enhanced Mean Reversion",
+      "description": "Statistical mean reversion across multiple timeframes",
+      "asset_class": "stocks",
+      "strategy_type": "mean_reversion",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "lookback_periods": [
+          20,
+          50,
+          200
+        ],
+        "entry_threshold": 2,
+        "exit_threshold": 0.5,
+        "max_holding_period": 20,
+        "position_size_pct": 0.03
+      },
+      "promotion_criteria": {
+        "min_trades": 30,
+        "min_win_rate": 0.55,
+        "min_sharpe_ratio": 1,
+        "max_drawdown": 0.08
+      },
+      "id": "stocks_mean_reversion_strategy",
+      "source": "trading_bot",
+      "category": "stocks/mean_reversion",
+      "allocated_capital": 30000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 30,
+      "min_win_rate": 0.55,
+      "min_sharpe_ratio": 1,
+      "max_drawdown": 0.08
+    },
+    "last_updated": "2025-09-14T06:13:21.486Z"
+  },
+  "vwap_mean_reversion_strategy": {
+    "id": "vwap_mean_reversion_strategy",
+    "name": "Enhanced Mean Reversion",
+    "status": "active",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.971Z",
+    "config": {
+      "name": "Enhanced Mean Reversion",
+      "description": "Statistical mean reversion across multiple timeframes",
+      "asset_class": "stocks",
+      "strategy_type": "mean_reversion",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "lookback_periods": [
+          20,
+          50,
+          200
+        ],
+        "entry_threshold": 2,
+        "exit_threshold": 0.5,
+        "max_holding_period": 20,
+        "position_size_pct": 0.03
+      },
+      "promotion_criteria": {
+        "min_trades": 30,
+        "min_win_rate": 0.55,
+        "min_sharpe_ratio": 1,
+        "max_drawdown": 0.08
+      },
+      "id": "vwap_mean_reversion_strategy",
+      "source": "trading_bot",
+      "category": "stocks/mean_reversion",
+      "allocated_capital": 30000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 30,
+      "min_win_rate": 0.55,
+      "min_sharpe_ratio": 1,
+      "max_drawdown": 0.08
+    },
+    "last_updated": "2025-09-14T06:13:21.487Z"
+  },
+  "stocks_momentum_strategy": {
+    "id": "stocks_momentum_strategy",
+    "name": "Multi-Timeframe Momentum",
+    "status": "active",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.972Z",
+    "config": {
+      "name": "Multi-Timeframe Momentum",
+      "description": "Momentum-based trading with regime adaptation",
+      "asset_class": "stocks",
+      "strategy_type": "momentum",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "fast_ma": 20,
+        "slow_ma": 50,
+        "rsi_period": 14,
+        "momentum_threshold": 0.02,
+        "volume_multiplier": 1.5
+      },
+      "promotion_criteria": {
+        "min_trades": 25,
+        "min_win_rate": 0.58,
+        "min_sharpe_ratio": 1.1,
+        "max_drawdown": 0.09
+      },
+      "id": "stocks_momentum_strategy",
+      "source": "trading_bot",
+      "category": "stocks/momentum",
+      "allocated_capital": 40000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 25,
+      "min_win_rate": 0.58,
+      "min_sharpe_ratio": 1.1,
+      "max_drawdown": 0.09
+    },
+    "last_updated": "2025-09-14T06:13:21.486Z"
+  },
+  "stocks_breakout_strategy": {
+    "id": "stocks_breakout_strategy",
+    "name": "Volume-Weighted Breakout",
+    "status": "active",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.972Z",
+    "config": {
+      "name": "Volume-Weighted Breakout",
+      "description": "Breakout trading with volume confirmation",
+      "asset_class": "stocks",
+      "strategy_type": "breakout",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "consolidation_period": 20,
+        "breakout_threshold": 0.03,
+        "volume_threshold": 1.2,
+        "stop_distance": 0.05,
+        "target_distance": 0.1
+      },
+      "promotion_criteria": {
+        "min_trades": 15,
+        "min_win_rate": 0.62,
+        "min_sharpe_ratio": 1.3,
+        "max_drawdown": 0.07
+      },
+      "id": "stocks_breakout_strategy",
+      "source": "trading_bot",
+      "category": "stocks/breakout",
+      "allocated_capital": 35000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 15,
+      "min_win_rate": 0.62,
+      "min_sharpe_ratio": 1.3,
+      "max_drawdown": 0.07
+    },
+    "last_updated": "2025-09-14T06:13:21.487Z"
+  },
+  "stocks_trend_strategy": {
+    "id": "stocks_trend_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "active",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.972Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "stocks_trend_strategy",
+      "source": "trading_bot",
+      "category": "stocks/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:21.487Z"
+  },
+  "enhanced_prop_trend_following_strategy": {
+    "id": "enhanced_prop_trend_following_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "active",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.972Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "enhanced_prop_trend_following_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:21.488Z"
+  },
+  "forex_breakout_strategy": {
+    "id": "forex_breakout_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.972Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_breakout_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:22.915Z"
+  },
+  "forex_carry_trade_strategy": {
+    "id": "forex_carry_trade_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.972Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_carry_trade_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:23.017Z"
+  },
+  "forex_counter_trend_strategy": {
+    "id": "forex_counter_trend_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.972Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_counter_trend_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:23.119Z"
+  },
+  "forex_day_trading_strategy": {
+    "id": "forex_day_trading_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.973Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_day_trading_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:23.221Z"
+  },
+  "forex_grid_trading_strategy": {
+    "id": "forex_grid_trading_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.973Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_grid_trading_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:23.323Z"
+  },
+  "forex_momentum_strategy": {
+    "id": "forex_momentum_strategy",
+    "name": "Multi-Timeframe Momentum",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.973Z",
+    "config": {
+      "name": "Multi-Timeframe Momentum",
+      "description": "Momentum-based trading with regime adaptation",
+      "asset_class": "stocks",
+      "strategy_type": "momentum",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "fast_ma": 20,
+        "slow_ma": 50,
+        "rsi_period": 14,
+        "momentum_threshold": 0.02,
+        "volume_multiplier": 1.5
+      },
+      "promotion_criteria": {
+        "min_trades": 25,
+        "min_win_rate": 0.58,
+        "min_sharpe_ratio": 1.1,
+        "max_drawdown": 0.09
+      },
+      "id": "forex_momentum_strategy",
+      "source": "trading_bot",
+      "category": "forex/momentum",
+      "allocated_capital": 40000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 25,
+      "min_win_rate": 0.58,
+      "min_sharpe_ratio": 1.1,
+      "max_drawdown": 0.09
+    },
+    "last_updated": "2025-09-14T06:13:22.813Z"
+  },
+  "forex_position_trading_strategy": {
+    "id": "forex_position_trading_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.973Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_position_trading_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:23.425Z"
+  },
+  "forex_range_trading_strategy": {
+    "id": "forex_range_trading_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.973Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_range_trading_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:23.527Z"
+  },
+  "forex_retracement_strategy": {
+    "id": "forex_retracement_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.974Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_retracement_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:23.630Z"
+  },
+  "forex_scalping_strategy": {
+    "id": "forex_scalping_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.974Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_scalping_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:23.732Z"
+  },
+  "forex_swing_trading_strategy": {
+    "id": "forex_swing_trading_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.974Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_swing_trading_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:23.834Z"
+  },
+  "forex_trend_following_strategy": {
+    "id": "forex_trend_following_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.974Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "forex_trend_following_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:23.936Z"
+  },
+  "prop_trend_following_strategy": {
+    "id": "prop_trend_following_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.974Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "prop_trend_following_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:24.038Z"
+  },
+  "trend_following_strategy": {
+    "id": "trend_following_strategy",
+    "name": "Adaptive Trend Following",
+    "status": "idle",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.974Z",
+    "config": {
+      "name": "Adaptive Trend Following",
+      "description": "Trend following with dynamic position sizing",
+      "asset_class": "stocks",
+      "strategy_type": "trend_following",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "trend_period": 50,
+        "confirmation_period": 20,
+        "trend_strength_threshold": 0.015,
+        "position_scaling": true,
+        "max_pyramiding": 3
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.65,
+        "min_sharpe_ratio": 1.4,
+        "max_drawdown": 0.06
+      },
+      "id": "trend_following_strategy",
+      "source": "trading_bot",
+      "category": "forex/trend",
+      "allocated_capital": 45000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.65,
+      "min_sharpe_ratio": 1.4,
+      "max_drawdown": 0.06
+    },
+    "last_updated": "2025-09-14T06:13:24.139Z"
+  },
+  "enhanced_straddle_strangle": {
+    "id": "enhanced_straddle_strangle",
+    "name": "Enhanced Straddle/Strangle Strategy",
+    "status": "active",
+    "broker": "paper",
+    "created_at": "2025-09-14T06:12:37.975Z",
+    "config": {
+      "name": "Enhanced Straddle/Strangle Strategy",
+      "description": "Advanced volatility spreads with machine learning and risk management",
+      "asset_class": "options",
+      "strategy_type": "volatility",
+      "universe": [
+        "SPY",
+        "QQQ",
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "TSLA",
+        "NVDA",
+        "META",
+        "NFLX"
+      ],
+      "parameters": {
+        "max_position_size": 0.05,
+        "volatility_threshold": 0.15,
+        "min_iv_rank": 0.2,
+        "max_iv_rank": 0.8,
+        "max_holding_period_days": 45,
+        "profit_target_pct": 0.25,
+        "stop_loss_pct": 0.15,
+        "ml_enabled": true,
+        "dynamic_positioning": true,
+        "volatility_regime_adaptation": true,
+        "greeks_monitoring": true,
+        "adaptive_expiration": true
+      },
+      "promotion_criteria": {
+        "min_trades": 20,
+        "min_win_rate": 0.6,
+        "min_sharpe_ratio": 1.2,
+        "max_drawdown": 0.1,
+        "min_total_return": 0.15
+      },
+      "id": "enhanced_straddle_strangle",
+      "source": "trading_bot",
+      "category": "options/volatility_spreads",
+      "allocated_capital": 50000
+    },
+    "performance": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown": 0,
+      "total_return": 0,
+      "avg_trade_pnl": 0
+    },
+    "promotion_criteria": {
+      "min_trades": 20,
+      "min_win_rate": 0.6,
+      "min_sharpe_ratio": 1.2,
+      "max_drawdown": 0.1,
+      "min_total_return": 0.15
+    },
+    "last_updated": "2025-09-14T06:13:21.485Z"
+  }
+}
