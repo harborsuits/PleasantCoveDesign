@@ -22,18 +22,18 @@ const navigation: NavItem[] = [
 
 const Layout: React.FC = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gray-50">
       {/* Header with logo and tabs */}
-      <div className="bg-white shadow-sm border-b border-border">
+      <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <h1 className="text-xl font-bold text-primary-600">Pleasant Cove Design</h1>
+              <h1 className="text-xl font-bold text-blue-600">Pleasant Cove Design</h1>
             </div>
-            <div className="text-sm text-muted">Biz Pro Dashboard</div>
+            <div className="text-sm text-gray-600">Biz Pro Dashboard</div>
           </div>
-          
+
           {/* Tab Navigation - Full Dashboard */}
           <div className="flex space-x-8 -mb-px">
             {navigation.map((item) => {
@@ -43,12 +43,9 @@ const Layout: React.FC = () => {
                   key={item.path}
                   to={item.path}
                   className={({ isActive }) =>
-                    clsx(
-                      'flex items-center py-4 px-1 border-b-2 font-medium text-sm',
-                      isActive
-                        ? 'border-primary-500 text-primary-600'
-                        : 'border-transparent text-muted hover:text-foreground hover:border-gray-300'
-                    )
+                    isActive
+                      ? 'flex items-center py-4 px-1 border-b-2 font-medium text-sm border-blue-500 text-blue-600'
+                      : 'flex items-center py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-900 hover:border-gray-300'
                   }
                 >
                   <Icon className="h-5 w-5 mr-2" />

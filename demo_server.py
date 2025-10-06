@@ -10,7 +10,7 @@ import os
 import sys
 from urllib.parse import urlparse, parse_qs
 
-PORT = 8005
+PORT = int(os.getenv('DEMO_PORT', 8010))
 DEMO_DIR = "demos"
 
 class DemoHandler(http.server.SimpleHTTPRequestHandler):

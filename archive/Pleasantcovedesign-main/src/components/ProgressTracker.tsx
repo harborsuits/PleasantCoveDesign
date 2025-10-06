@@ -28,7 +28,10 @@ interface ProgressTrackerProps {
 
 const ProgressTracker: React.FC<ProgressTrackerProps> = ({ project }) => {
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    if (!dateString) return 'No date';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return 'Invalid date';
+    return date.toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
     })
@@ -52,7 +55,9 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ project }) => {
     }
   }
 
-  const paymentProgress = (project.paidAmount / project.totalValue) * 100
+  const paymentProgress = project.totalValue && project.totalValue > 0
+    ? (project.paidAmount / project.totalValue) * 100
+    : 0
 
   return (
     <div className="border border-border rounded-lg p-6">
@@ -68,7 +73,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ project }) => {
             getStatusColor(project.status)
           )}>
             {getStatusIcon(project.status)}
-            <span className="ml-1 capitalize">{project.status.replace('-', ' ')}</span>
+            <span className="ml-1 capitalize">{project.status?.replace('-', ' ') || 'Unknown'}</span>
           </span>
         </div>
       </div>
@@ -91,7 +96,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ project }) => {
       <div className="mb-4">
         <h5 className="text-sm font-medium text-foreground mb-3">Timeline</h5>
         <div className="flex items-center space-x-4">
-          {project.timeline.map((item, index) => (
+          {project.timeline?.map((item, index) => (
             <div key={index} className="flex flex-col items-center">
               <div className={clsx(
                 "w-3 h-3 rounded-full border-2",
@@ -119,14 +124,14 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ project }) => {
             Total Value
           </div>
           <div className="font-semibold text-foreground">
-            ${project.totalValue.toLocaleString()}
+            ${project.totalValue?.toLocaleString() || '0'}
           </div>
         </div>
 
         <div className="text-center">
           <div className="text-muted mb-1">Paid</div>
           <div className="font-semibold text-success">
-            ${project.paidAmount.toLocaleString()}
+            ${project.paidAmount?.toLocaleString() || '0'}
           </div>
           <div className="text-xs text-muted">
             {paymentProgress.toFixed(0)}% collected
@@ -139,7 +144,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ project }) => {
             Next Payment
           </div>
           <div className="font-semibold text-warning">
-            ${project.nextPayment.toLocaleString()}
+            ${project.nextPayment?.toLocaleString() || '0'}
           </div>
           <div className="text-xs text-muted">
             Due {formatDate(project.dueDate)}

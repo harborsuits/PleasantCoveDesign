@@ -2,22 +2,21 @@
 
 // Test script for Acuity Appointment Webhook
 const testAcuityWebhook = async () => {
-    const webhookUrl = 'http://localhost:5174/api/acuity-appointment';
+    const webhookUrl = 'http://localhost:3000/api/acuity-webhook'; // Updated to new secure endpoint
     
-    // Sample Acuity webhook payload
+    // Sample Acuity webhook payload (matches actual Acuity API format)
     const sampleAppointment = {
-        id: '12345678',
+        id: 12345678, // Number, not string
         firstName: 'John',
         lastName: 'Doe',
-        email: 'john.doe@example.com',
-        phone: '555-123-4567',
         datetime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // Tomorrow
-        endTime: new Date(Date.now() + 24 * 60 * 60 * 1000 + 30 * 60 * 1000).toISOString(), // +30 minutes
-        duration: 30,
-        appointmentTypeID: '1234',
-        appointmentType: 'Design Consultation',
+        duration: 30, // minutes
+        type: 'Design Consultation', // appointment type name
+        calendarID: 1234,
+        location: 'Zoom',
         notes: 'Client wants to discuss website redesign for their business',
-        action: 'scheduled'
+        email: 'john.doe@example.com', // Optional - Acuity may or may not include
+        phone: '555-123-4567' // Optional
     };
     
     console.log('🧪 Testing Acuity webhook with sample data...');

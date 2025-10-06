@@ -30,6 +30,6 @@ class HealthHandler(http.server.BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         pass  # Suppress logs
 
-print("Minimal health server running on :5000")
-server = http.server.HTTPServer(("", 5000), HealthHandler)
+print("Minimal health server running on :8003")
+server = http.server.HTTPServer(("", 8003), HealthHandler)
 server.serve_forever()

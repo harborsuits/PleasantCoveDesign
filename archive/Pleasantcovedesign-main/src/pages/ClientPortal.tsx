@@ -299,11 +299,11 @@ export default function ClientPortal() {
               {project.totalAmount && (
                 <div className="text-right">
                   <p className="text-2xl font-bold text-gray-900">
-                    ${project.totalAmount.toLocaleString()}
+                    ${project.totalAmount?.toLocaleString() || '0'}
                   </p>
                   {project.paidAmount !== undefined && (
                     <p className="text-sm text-gray-600">
-                      ${project.paidAmount.toLocaleString()} paid
+                      ${project.paidAmount?.toLocaleString() || '0'} paid
                     </p>
                   )}
                 </div>

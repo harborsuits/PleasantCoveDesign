@@ -630,7 +630,7 @@ export default function ClientProfile() {
                 </SelectTrigger>
                 <SelectContent>
                   {templates.filter(t => t.businessType !== 'email').map(template => (
-                    <SelectItem key={template.id} value={template.id!.toString()}>
+                    <SelectItem key={template.id} value={template.id ? template.id.toString() : ''}>
                       {template.name}
                     </SelectItem>
                   ))}

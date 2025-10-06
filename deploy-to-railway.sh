@@ -11,15 +11,16 @@ git add .
 
 # Step 2: Commit with deployment message
 echo "💾 Step 2: Committing changes..."
-git commit -m "🚀 PRODUCTION DEPLOYMENT: Complete system ready for Railway
+git commit -m "🚀 PRODUCTION DEPLOYMENT: Lovable UI with Real-Time WebSocket Notifications
 
 ✅ Features Deployed:
-- Unified client management system (scraped leads + companies)
-- Fixed unread message notifications (server-side calculation)
+- Modern React Admin Dashboard (Lovable UI)
+- Real-time WebSocket notifications for leads/appointments
+- Squarespace webhook integration (lead processing)
+- Acuity webhook integration (appointment booking)
+- Unified client management system
 - Smart client attribution system for Squarespace widget
 - Production-ready widget (points to Railway)
-- Admin UI (points to Railway API)
-- Health check endpoint for Railway
 - Complete API endpoints for all features
 - Client portal functionality
 - Secure .gitignore for sensitive files
@@ -50,5 +51,6 @@ echo "4. Update Stripe webhook URL to production"
 echo ""
 echo "🌐 Expected URLs:"
 echo "- Health: https://[your-railway-url].up.railway.app/api/health"
+echo "- Lovable UI Admin: https://[your-railway-url].up.railway.app/admin/"
 echo "- Widget: https://[your-railway-url].up.railway.app/widget/messaging-widget-unified.html"
 echo "- Admin API: https://[your-railway-url].up.railway.app/api/*" 

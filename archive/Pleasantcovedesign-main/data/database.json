@@ -277,6 +277,117 @@
       ],
       "id": 239,
       "createdAt": "2025-06-20T16:35:27.133Z"
+    },
+    {
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "address": "",
+      "city": "",
+      "state": "",
+      "industry": "Web Design Client",
+      "tags": [
+        "squarespace",
+        "lead"
+      ],
+      "priority": "medium",
+      "id": 336,
+      "createdAt": "2025-10-06T02:57:32.028Z"
+    },
+    {
+      "name": "Smith Web Solutions",
+      "email": "jane.smith@example.com",
+      "phone": "555-987-6543",
+      "address": "",
+      "city": "",
+      "state": "",
+      "industry": "Web Design Client",
+      "tags": [
+        "squarespace",
+        "lead"
+      ],
+      "priority": "medium",
+      "id": 337,
+      "createdAt": "2025-10-06T02:57:37.820Z"
+    },
+    {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "555-1234",
+      "address": "",
+      "city": "",
+      "state": "",
+      "industry": "Web Design Client",
+      "tags": [
+        "squarespace",
+        "lead"
+      ],
+      "priority": "medium",
+      "id": 346,
+      "createdAt": "2025-10-06T03:20:21.710Z"
+    },
+    {
+      "name": "John Test",
+      "email": "john.test@example.com",
+      "phone": "555-9999",
+      "address": "",
+      "city": "",
+      "state": "",
+      "industry": "Web Design Client",
+      "tags": [
+        "squarespace",
+        "lead"
+      ],
+      "priority": "medium",
+      "id": 351,
+      "createdAt": "2025-10-06T03:25:40.448Z"
+    },
+    {
+      "name": "Frontend Test",
+      "email": "frontend.test@example.com",
+      "phone": "555-TEST",
+      "address": "",
+      "city": "",
+      "state": "",
+      "industry": "Web Design Client",
+      "tags": [
+        "squarespace",
+        "lead"
+      ],
+      "priority": "medium",
+      "id": 354,
+      "createdAt": "2025-10-06T03:28:47.327Z"
+    },
+    {
+      "name": "WebSocket Test",
+      "email": "websocket@example.com",
+      "phone": "555-TEST",
+      "address": "",
+      "city": "",
+      "state": "",
+      "industry": "Web Design Client",
+      "tags": [
+        "squarespace",
+        "lead"
+      ],
+      "priority": "medium",
+      "id": 357,
+      "createdAt": "2025-10-06T03:31:32.974Z"
+    },
+    {
+      "name": "Final Test User",
+      "email": "final.test@example.com",
+      "phone": "555-FINAL",
+      "address": "",
+      "city": "",
+      "state": "",
+      "industry": "Web Design Client",
+      "tags": [
+        "squarespace",
+        "lead"
+      ],
+      "priority": "medium",
+      "id": 360,
+      "createdAt": "2025-10-06T03:32:44.435Z"
     }
   ],
   "projects": [
@@ -701,6 +812,126 @@
       "accessToken": "mc516tr5_CSU4OUADdSIHB3AXxZPpbw",
       "id": 240,
       "createdAt": "2025-06-20T16:35:27.137Z"
+    },
+    {
+      "companyId": null,
+      "title": "Jane Smith - Lead 1759719481259",
+      "type": "consultation",
+      "stage": "discovery",
+      "status": "active",
+      "totalAmount": 0,
+      "paidAmount": 0,
+      "accessToken": "mgejjlpl_WXm23y_DiMf7ikjwI6BcZw",
+      "id": 338,
+      "createdAt": "2025-10-06T02:58:01.259Z"
+    },
+    {
+      "companyId": null,
+      "title": "Jane Smith - Lead 1759719484892",
+      "type": "consultation",
+      "stage": "discovery",
+      "status": "active",
+      "totalAmount": 0,
+      "paidAmount": 0,
+      "accessToken": "mgejjoik_Ov-qqXQjmrUbIVB5ZYcrzQ",
+      "id": 340,
+      "createdAt": "2025-10-06T02:58:04.892Z"
+    },
+    {
+      "companyId": null,
+      "title": "Jane Smith - Lead 1759719749610",
+      "type": "consultation",
+      "stage": "discovery",
+      "status": "active",
+      "totalAmount": 0,
+      "paidAmount": 0,
+      "accessToken": "mgejpcrt_PuWxQwB8OXedDwmV6MRUAg",
+      "id": 342,
+      "createdAt": "2025-10-06T03:02:29.610Z"
+    },
+    {
+      "companyId": null,
+      "title": "Jane Smith - Lead 1759719752979",
+      "type": "consultation",
+      "stage": "discovery",
+      "status": "active",
+      "totalAmount": 0,
+      "paidAmount": 0,
+      "accessToken": "mgejpfdf_9ULdi2hMBF57X5WqFrkFIA",
+      "id": 344,
+      "createdAt": "2025-10-06T03:02:32.979Z"
+    },
+    {
+      "companyId": 346,
+      "title": "John Doe - Lead 1759720821712",
+      "type": "consultation",
+      "stage": "discovery",
+      "status": "active",
+      "totalAmount": 0,
+      "paidAmount": 0,
+      "accessToken": "mgekcc0g_kS0e2PKjd2Cc7I6iPknJ0Q",
+      "id": 347,
+      "createdAt": "2025-10-06T03:20:21.712Z"
+    },
+    {
+      "companyId": null,
+      "title": "Jane Smith - Lead 1759720848762",
+      "type": "consultation",
+      "stage": "discovery",
+      "status": "active",
+      "totalAmount": 0,
+      "paidAmount": 0,
+      "accessToken": "mgekcwvu_ecpJMzYIdBOCBrWrTuZIsA",
+      "id": 349,
+      "createdAt": "2025-10-06T03:20:48.762Z"
+    },
+    {
+      "companyId": 351,
+      "title": "John Test - Lead 1759721140449",
+      "type": "consultation",
+      "stage": "discovery",
+      "status": "active",
+      "totalAmount": 0,
+      "paidAmount": 0,
+      "accessToken": "mgekj5y9_fx5qh1DMq2iB-BRlDGq54w",
+      "id": 352,
+      "createdAt": "2025-10-06T03:25:40.449Z"
+    },
+    {
+      "companyId": 354,
+      "title": "Frontend Test - Lead 1759721327328",
+      "type": "consultation",
+      "stage": "discovery",
+      "status": "active",
+      "totalAmount": 0,
+      "paidAmount": 0,
+      "accessToken": "mgekn65c_ZMwg4s5RX1MqgnUcxWcn_A",
+      "id": 355,
+      "createdAt": "2025-10-06T03:28:47.328Z"
+    },
+    {
+      "companyId": 357,
+      "title": "WebSocket Test - Lead 1759721492975",
+      "type": "consultation",
+      "stage": "discovery",
+      "status": "active",
+      "totalAmount": 0,
+      "paidAmount": 0,
+      "accessToken": "mgekqpym_FEjnPngMDrzRvUSGYsEyZA",
+      "id": 358,
+      "createdAt": "2025-10-06T03:31:32.975Z"
+    },
+    {
+      "companyId": 360,
+      "title": "Final Test User - Lead 1759721564436",
+      "type": "consultation",
+      "stage": "discovery",
+      "status": "active",
+      "totalAmount": 0,
+      "paidAmount": 0,
+      "accessToken": "mgeks93o_B_sor8_Q_26rqPlH_mJ-PA",
+      "id": 361,
+      "createdAt": "2025-10-06T03:32:44.436Z"
     }
   ],
   "projectMessages": [
@@ -2147,6 +2378,114 @@
       "attachments": [],
       "createdAt": "2025-07-01T03:10:41.736Z",
       "id": 331
+    },
+    {
+      "projectId": 1,
+      "senderType": "admin",
+      "senderName": "Test User",
+      "content": "Test message from smoke test",
+      "attachments": [],
+      "id": 332,
+      "createdAt": "2025-10-05T04:26:20.416Z"
+    },
+    {
+      "projectId": 1,
+      "senderType": "admin",
+      "senderName": "Test User",
+      "content": "Logging sanity test message",
+      "attachments": [],
+      "id": 334,
+      "createdAt": "2025-10-05T04:32:10.713Z"
+    },
+    {
+      "projectId": 338,
+      "senderType": "client",
+      "senderName": "Jane Smith",
+      "content": "New lead from Squarespace form:\n\nHi, I'm interested in a new website for my business. Can we schedule a consultation?",
+      "attachments": [],
+      "createdAt": "2025-10-06T02:58:01.260Z",
+      "id": 339
+    },
+    {
+      "projectId": 340,
+      "senderType": "client",
+      "senderName": "Jane Smith",
+      "content": "New lead from Squarespace form:\n\nHi, I'm interested in a new website for my business. Can we schedule a consultation?",
+      "attachments": [],
+      "createdAt": "2025-10-06T02:58:04.894Z",
+      "id": 341
+    },
+    {
+      "projectId": 342,
+      "senderType": "client",
+      "senderName": "Jane Smith",
+      "content": "New lead from Squarespace form:\n\nHi, I'm interested in a new website for my business. Can we schedule a consultation?",
+      "attachments": [],
+      "createdAt": "2025-10-06T03:02:29.611Z",
+      "id": 343
+    },
+    {
+      "projectId": 344,
+      "senderType": "client",
+      "senderName": "Jane Smith",
+      "content": "New lead from Squarespace form:\n\nHi, I'm interested in a new website for my business. Can we schedule a consultation?",
+      "attachments": [],
+      "createdAt": "2025-10-06T03:02:32.980Z",
+      "id": 345
+    },
+    {
+      "projectId": 347,
+      "senderType": "client",
+      "senderName": "John Doe",
+      "content": "New lead from Squarespace form:\n\nI need a website",
+      "attachments": [],
+      "createdAt": "2025-10-06T03:20:21.712Z",
+      "id": 348
+    },
+    {
+      "projectId": 349,
+      "senderType": "client",
+      "senderName": "Jane Smith",
+      "content": "New lead from Squarespace form:\n\nNeed a Squarespace website",
+      "attachments": [],
+      "createdAt": "2025-10-06T03:20:48.763Z",
+      "id": 350
+    },
+    {
+      "projectId": 352,
+      "senderType": "client",
+      "senderName": "John Test",
+      "content": "New lead from Squarespace form:\n\nTesting WebSocket toasts!",
+      "attachments": [],
+      "createdAt": "2025-10-06T03:25:40.450Z",
+      "id": 353
+    },
+    {
+      "projectId": 355,
+      "senderType": "client",
+      "senderName": "Frontend Test",
+      "content": "New lead from Squarespace form:\n\nTesting if Lovable UI receives WebSocket toasts",
+      "attachments": [],
+      "createdAt": "2025-10-06T03:28:47.329Z",
+      "id": 356
+    },
+    {
+      "projectId": 358,
+      "senderType": "client",
+      "senderName": "WebSocket Test",
+      "content": "New lead from Squarespace form:\n\nTesting if Lovable UI receives this WebSocket event",
+      "attachments": [],
+      "createdAt": "2025-10-06T03:31:32.975Z",
+      "id": 359
+    },
+    {
+      "projectId": 361,
+      "senderType": "client",
+      "senderName": "Final Test User",
+      "content": "New lead from Squarespace form:\n\nThis should trigger a toast notification!",
+      "attachments": [],
+      "createdAt": "2025-10-06T03:32:44.436Z",
+      "id": 362
     }
   ],
   "projectFiles": [],
@@ -3214,6 +3553,22 @@
       "projectId": 151,
       "id": 322,
       "createdAt": "2025-06-28T13:08:18.663Z"
+    },
+    {
+      "type": "admin_message",
+      "description": "Admin message sent: Test message from smoke test",
+      "companyId": 1,
+      "projectId": 1,
+      "id": 333,
+      "createdAt": "2025-10-05T04:26:20.420Z"
+    },
+    {
+      "type": "admin_message",
+      "description": "Admin message sent: Logging sanity test message",
+      "companyId": 1,
+      "projectId": 1,
+      "id": 335,
+      "createdAt": "2025-10-05T04:32:10.715Z"
     }
   ],
   "campaigns": [],
@@ -3250,5 +3605,5 @@
     "appointments": 0,
     "progressEntries": 0
   },
-  "nextId": 332
+  "nextId": 363
 }

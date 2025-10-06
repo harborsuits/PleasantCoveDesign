@@ -81,8 +81,8 @@ export default function Inbox() {
   const getConversations = (business: Business): Message[] => {
     // Filter messages for the selected business - include both businessId and business ID formats
     const businessMessages = messages.filter(m => {
-      const messageBusinessId = m.businessId?.toString();
-      const targetBusinessId = business.id?.toString();
+      const messageBusinessId = m.businessId ? m.businessId.toString() : '';
+      const targetBusinessId = business.id ? business.id.toString() : '';
       return messageBusinessId === targetBusinessId;
     });
     
@@ -241,7 +241,7 @@ export default function Inbox() {
     const firstName = (selectedBusiness.name || 'there').split(' ')[0];
     const score = selectedBusiness.score || 0;
     const stage = selectedBusiness.stage;
-    const leadId = selectedBusiness.id?.toString() || "0";
+    const leadId = selectedBusiness.id ? selectedBusiness.id.toString() : "0";
     
     // If lead is qualified and hasn't scheduled yet
     if (score >= 70 && (stage === 'contacted' || stage === 'scraped' || stage === 'interested')) {

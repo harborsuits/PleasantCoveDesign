@@ -177,7 +177,7 @@ const EntitySummaryCard: React.FC<EntitySummaryCardProps> = ({
             {totalPaid > 0 && (
               <span className="text-green-600 font-medium">
                 <DollarSign className="w-4 h-4 inline mr-1" />
-                ${totalPaid.toLocaleString()}
+                ${totalPaid?.toLocaleString() || '0'}
               </span>
             )}
           </div>
@@ -294,12 +294,12 @@ const EntitySummaryCard: React.FC<EntitySummaryCardProps> = ({
           <div className="flex items-center space-x-4">
             {project.totalAmount && (
               <span className="text-gray-600">
-                Total: ${project.totalAmount.toLocaleString()}
+                Total: ${project.totalAmount?.toLocaleString() || '0'}
               </span>
             )}
             {project.paidAmount && project.paidAmount > 0 && (
               <span className="text-green-600 font-medium">
-                Paid: ${project.paidAmount.toLocaleString()}
+                Paid: ${project.paidAmount?.toLocaleString() || '0'}
               </span>
             )}
           </div>

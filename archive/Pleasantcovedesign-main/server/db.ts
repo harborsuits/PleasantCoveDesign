@@ -540,7 +540,7 @@ class InMemoryDatabase {
 
   // Create new company
   async createCompany(data: any): Promise<number> {
-    const newId = Math.max(...this.companies.map(c => c.id), 0) + 1;
+    const newId = Math.max(...this.companies.map(c => c.id || 0), 0) + 1;
     const company = {
       id: newId,
       name: data.name,
@@ -567,7 +567,7 @@ class InMemoryDatabase {
 
   // Create new project
   async createProject(data: any): Promise<number> {
-    const newId = Math.max(...this.projects.map(p => p.id), 0) + 1;
+    const newId = Math.max(...this.projects.map(p => p.id || 0), 0) + 1;
     const project = {
       id: newId,
       companyId: data.companyId,

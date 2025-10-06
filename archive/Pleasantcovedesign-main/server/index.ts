@@ -6,7 +6,7 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import { registerRoutes } from "./routes.js";
 import { storage } from './storage.js';
-import { Server } from 'socket.io';
+import { attachSocket } from './socket.js';
 
 // Load environment variables FIRST before importing anything else
 dotenv.config({ path: resolve(process.cwd(), '.env') });
@@ -24,48 +24,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const server = createServer(app);
 
-// Initialize Socket.io with Railway Pro WebSocket support
-const io = new Server(server, {
-  path: '/socket.io',
-  transports: ['websocket', 'polling'],
-  allowEIO3: true,
-  pingTimeout: 60000,
-  pingInterval: 25000,
-  upgradeTimeout: 30000,
-  maxHttpBufferSize: 1e6,
-  cors: {
-    origin: [
-      'http://localhost:3000',
-      'http://localhost:5173',
-      'https://localhost:5173', 
-      'http://localhost:5174',
-      'https://localhost:5174',
-      // SquareSpace domains
-      /\.squarespace\.com$/,
-      /\.squarespace-cdn\.com$/,
-      'https://www.pleasantcovedesign.com',
-      'http://www.pleasantcovedesign.com',
-      'https://pleasantcovedesign.com',
-      'http://pleasantcovedesign.com',
-      /pleasantcove/,
-      // Railway production
-      'https://pleasantcovedesign-production.up.railway.app',
-      // Local IP for mobile access
-      'http://192.168.1.87:3000',
-      // ngrok support
-      /\.ngrok-free\.app$/,
-      /\.ngrok\.io$/,
-      // Current ngrok URL
-      'https://1ce2-2603-7080-e501-3f6a-59ca-c294-1beb-ddfc.ngrok-free.app',
-    ],
-    methods: ['GET', 'POST'],
-    credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
-  },
-  // Railway Pro specific settings
-  serveClient: false,
-  cookie: false
-});
+// Initialize Socket.io with robust configuration
+const io = attachSocket(server);
 
 const PORT = process.env.PORT || 3000;
 

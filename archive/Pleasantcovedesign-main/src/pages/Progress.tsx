@@ -6,9 +6,9 @@ const Progress: React.FC = () => {
   // No mock project data - start with empty state to see real data clearly
   const projects: any[] = []
 
-  const totalRevenue = projects.reduce((sum, project) => sum + project.totalValue, 0)
-  const totalPaid = projects.reduce((sum, project) => sum + project.paidAmount, 0)
-  const totalPending = projects.reduce((sum, project) => sum + project.nextPayment, 0)
+  const totalRevenue = projects.reduce((sum, project) => sum + (project?.totalValue || 0), 0)
+  const totalPaid = projects.reduce((sum, project) => sum + (project?.paidAmount || 0), 0)
+  const totalPending = projects.reduce((sum, project) => sum + (project?.nextPayment || 0), 0)
 
   return (
     <div className="space-y-6">
@@ -24,7 +24,7 @@ const Progress: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-muted">Total Revenue</p>
-              <p className="text-2xl font-bold text-foreground">${totalRevenue.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-foreground">${totalRevenue?.toLocaleString() || '0'}</p>
             </div>
             <DollarSign className="h-8 w-8 text-primary-500" />
           </div>
@@ -34,7 +34,7 @@ const Progress: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-muted">Payments Received</p>
-              <p className="text-2xl font-bold text-success">${totalPaid.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-success">${totalPaid?.toLocaleString() || '0'}</p>
             </div>
             <CheckCircle className="h-8 w-8 text-success" />
           </div>
@@ -44,7 +44,7 @@ const Progress: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-muted">Pending Payments</p>
-              <p className="text-2xl font-bold text-warning">${totalPending.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-warning">${totalPending?.toLocaleString() || '0'}</p>
             </div>
             <Clock className="h-8 w-8 text-warning" />
           </div>

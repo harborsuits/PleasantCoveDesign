@@ -541,7 +541,7 @@ const ClientProfile: React.FC = () => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-semibold">${payment.amount.toLocaleString()}</p>
+                      <p className="font-semibold">${payment.amount?.toLocaleString() || '0'}</p>
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPaymentStatusColor(payment.status)}`}>
                         {payment.status}
                       </span>

@@ -13,16 +13,19 @@ import fs from 'fs';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import uploadRoutes from './uploadRoutes.js';
-import { 
-  generateSecureProjectToken, 
-  generateConversationMetadata, 
-  validateTokenFormat 
+import {
+  generateSecureProjectToken,
+  generateConversationMetadata,
+  validateTokenFormat
 } from './utils/tokenGenerator.js';
-import { 
-  validateChatToken, 
-  securityLoggingMiddleware, 
-  rateLimitConversations 
+import {
+  validateChatToken,
+  securityLoggingMiddleware,
+  rateLimitConversations
 } from './middleware/validateToken.js';
+import { verifyHmacSha256, isTrustedIp, parseRawJson } from './utils/webhooks.js';
+import { AcuityWebhook, mapAcuityToAppointment } from './schemas/acuity.js';
+import { SquarespaceForm, mapSquarespaceToLead } from './schemas/squarespace.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -239,7 +242,9 @@ const PUBLIC_API_ROUTES = [
   "/api/scheduling/appointment-updated",
   "/api/scheduling/appointment-cancelled",
   "/api/new-lead",
+  "/api/squarespace-webhook",
   "/api/acuity-appointment",
+  "/api/acuity-webhook",
   "/api/public/project",
   "/api/book-appointment",
   "/api/availability",
@@ -798,6 +803,108 @@ export async function registerRoutes(app: Express, io: any) {
   });
 
   // Enhanced new lead handler with better processing (PUBLIC - no auth required)
+  // Squarespace Lead Webhook (NEW - with proper field mapping and member detection)
+  console.log('🔗 Registering /api/squarespace-webhook route');
+  app.post("/api/squarespace-webhook", parseRawJson, async (req: any, res: Response) => {
+    try {
+      // Optional IP allow-list
+      if (!isTrustedIp(req.ip, process.env.SQUARESPACE_TRUSTED_IPS)) {
+        return res.status(403).json({ error: "Untrusted source IP" });
+      }
+
+      // Optional HMAC verification (if you proxy through your own function)
+      const ok = verifyHmacSha256(req.rawBody, req.header("X-Signature"), process.env.SQUARESPACE_WEBHOOK_SECRET);
+      if (!ok) return res.status(401).json({ error: "Invalid signature" });
+
+      const parsed = SquarespaceForm.safeParse(req.rawJson);
+      if (!parsed.success) {
+        return res.status(400).json({ error: parsed.error.flatten() });
+      }
+
+      const lead = mapSquarespaceToLead(parsed.data);
+
+      // Smart matching: try email first, then phone, then name
+      let companyId = null;
+      let existingCompany = null;
+
+      if (lead.email) {
+        existingCompany = await storage.findClientByEmail(lead.email);
+      }
+      if (!existingCompany && lead.phone) {
+        // You'd need to add findClientByPhone to storage.ts
+        existingCompany = await storage.findClientByPhone?.(lead.phone);
+      }
+      if (!existingCompany && lead.first_name && lead.last_name) {
+        // Name matching is trickier, would need fuzzy matching
+      }
+
+      if (existingCompany) {
+        companyId = existingCompany.id;
+        console.log(`✅ Found existing company for lead: ${existingCompany.name}`);
+      } else {
+        // Create new company
+        const newCompany = await storage.createCompany({
+          name: lead.company || `${lead.first_name} ${lead.last_name}`.trim() || "Unknown Client",
+          email: lead.email || undefined,
+          phone: lead.phone || undefined,
+          website: lead.website || undefined,
+          address: "",
+          city: "",
+          state: "",
+          industry: lead.service || "Web Design Client",
+          tags: ["squarespace", "lead"],
+          priority: "medium"
+        });
+        companyId = newCompany.id;
+        console.log(`✅ Created new company for lead: ${newCompany.name}`);
+      }
+
+      // Create a new project for this lead (always create new conversation for privacy)
+      const secureToken = generateSecureProjectToken('squarespace_lead', lead.email);
+      const newProject = await storage.createProject({
+        companyId: parseInt(companyId),
+        title: `${lead.first_name} ${lead.last_name} - Lead ${Date.now()}`,
+        type: 'consultation',
+        stage: 'discovery',
+        status: 'active',
+        totalAmount: 0,
+        paidAmount: 0,
+        accessToken: secureToken.token
+      });
+
+      const projectToken = newProject.accessToken;
+
+      // Add the lead message as an initial conversation
+      if (lead.message) {
+        await storage.addMessage({
+          projectId: newProject.id!,
+          senderType: 'client',
+          senderName: `${lead.first_name} ${lead.last_name}`.trim(),
+          content: `New lead from Squarespace form:\n\n${lead.message}`,
+          attachments: []
+        });
+      }
+
+      // Emit WebSocket events
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("lead.new", { company_id: companyId, lead });
+        io.to("admin-room").emit("activity:new", {
+          type: "lead.new",
+          company_id: companyId,
+          message: `New lead: ${lead.first_name} ${lead.last_name}`
+        });
+      }
+
+      console.log("🎯 Squarespace lead processed:", lead.email || lead.first_name);
+      res.json({ success: true, company_id: companyId, project_id: newProject.id, project_token: projectToken });
+    } catch (error) {
+      console.error("Failed to process Squarespace lead:", error);
+      res.status(500).json({ error: "Failed to process lead" });
+    }
+  });
+
+  // Squarespace Lead Webhook (LEGACY - keeping for compatibility)
   app.post("/api/new-lead", rateLimitConversations, securityLoggingMiddleware, async (req: Request, res: Response) => {
     const ipAddress = req.ip || req.connection.remoteAddress || 'unknown';
     const userAgent = req.get('User-Agent') || 'unknown';
@@ -1542,12 +1649,12 @@ export async function registerRoutes(app: Express, io: any) {
         action = 'scheduled'
       } = webhookData;
       
-      // Validate required fields
-      if (!acuityId || !email) {
-        console.log("❌ Missing required fields: acuityId or email");
-        return res.status(400).json({ 
-          success: false, 
-          error: "Missing required fields: acuityId or email" 
+      // Basic validation - acuityId is required, email is optional
+      if (!acuityId) {
+        console.log("❌ Missing required field: acuityId");
+        return res.status(400).json({
+          success: false,
+          error: "Missing required field: acuityId"
         });
       }
       
@@ -1614,7 +1721,7 @@ export async function registerRoutes(app: Express, io: any) {
       
       // Prepare appointment data
       const appointmentData = {
-        acuityId: acuityId.toString(),
+        acuityId: acuityId?.toString() || '',
         email,
         firstName,
         lastName,
@@ -2568,7 +2675,7 @@ export async function registerRoutes(app: Express, io: any) {
             },
             body: JSON.stringify({
               client_email: company.email,
-              project_id: projectId.toString(),
+              project_id: projectId?.toString() || '',
               content: content || '',
               attachments,
               sender_name: senderName
@@ -2640,6 +2747,728 @@ export async function registerRoutes(app: Express, io: any) {
     }
   });
 
+  // Phase 2: Dashboard KPIs
+  app.get("/api/stats/kpis", async (req: Request, res: Response) => {
+    try {
+      // Mock data for Phase 2 - replace with real calculations later
+      const stats = {
+        totalLeads: 247,
+        totalRevenue: 32500,
+        activeProjects: 18,
+        totalDemos: 64,
+        conversionRate: 32,
+        avgProjectValue: 2850
+      };
+      res.json(stats);
+    } catch (error) {
+      console.error("Failed to fetch KPIs:", error);
+      res.status(500).json({ error: "Failed to fetch KPIs" });
+    }
+  });
+
+  // Phase 2: Revenue chart data
+  app.get("/api/stats/revenueByMonth", async (req: Request, res: Response) => {
+    try {
+      // Mock revenue data for charts
+      const data = [
+        { month: "Jan", revenue: 12000 },
+        { month: "Feb", revenue: 15000 },
+        { month: "Mar", revenue: 18000 },
+        { month: "Apr", revenue: 22000 },
+        { month: "May", revenue: 28000 },
+        { month: "Jun", revenue: 32000 },
+      ];
+      res.json(data);
+    } catch (error) {
+      console.error("Failed to fetch revenue data:", error);
+      res.status(500).json({ error: "Failed to fetch revenue data" });
+    }
+  });
+
+  // Phase 2: Lead sources chart data
+  app.get("/api/stats/leadsBySource", async (req: Request, res: Response) => {
+    try {
+      // Mock leads data for charts
+      const data = [
+        { week: "W1", leads: 45 },
+        { week: "W2", leads: 52 },
+        { week: "W3", leads: 48 },
+        { week: "W4", leads: 61 },
+      ];
+      res.json(data);
+    } catch (error) {
+      console.error("Failed to fetch leads data:", error);
+      res.status(500).json({ error: "Failed to fetch leads data" });
+    }
+  });
+
+  // Phase 2: Companies CRUD
+  app.get("/api/companies", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const { query = "", status = "", page = "1", pageSize = "20", sort = "created_at:desc" } = req.query as any;
+      const pageNum = parseInt(page);
+      const pageSizeNum = parseInt(pageSize);
+
+      // Mock companies data for Phase 2 - replace with real database calls later
+      const mockCompanies = [
+        {
+          id: "1",
+          name: "Harbor View Restaurant",
+          contact_name: "John Smith",
+          email: "john@harborview.com",
+          phone: "(555) 123-4567",
+          website: "https://harborview.com",
+          source: "Google Search",
+          status: "active",
+          tags: ["restaurant", "hospitality", "local"],
+          address: "123 Main St, Harbor City, CA",
+          notes: "High-value client, needs website redesign",
+          created_at: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+        {
+          id: "2",
+          name: "Coastal Cafe",
+          contact_name: "Sarah Johnson",
+          email: "sarah@coastalcafe.com",
+          phone: "(555) 234-5678",
+          website: "https://coastalcafe.com",
+          source: "Referral",
+          status: "prospect",
+          tags: ["cafe", "hospitality"],
+          address: "456 Beach Ave, Coastal Town, CA",
+          notes: "Interested in e-commerce integration",
+          created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+        {
+          id: "3",
+          name: "Seaside Boutique",
+          contact_name: "Mike Wilson",
+          email: "mike@seasideboutique.com",
+          phone: "(555) 345-6789",
+          website: "https://seasideboutique.com",
+          source: "Facebook Ads",
+          status: "lead",
+          tags: ["retail", "boutique"],
+          address: "789 Ocean Dr, Seaside, CA",
+          notes: "New lead, needs follow-up",
+          created_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+      ];
+
+      // Apply filters
+      let filtered = mockCompanies;
+
+      if (query) {
+        filtered = filtered.filter(c =>
+          c.name.toLowerCase().includes(query.toLowerCase()) ||
+          c.contact_name?.toLowerCase().includes(query.toLowerCase()) ||
+          c.email?.toLowerCase().includes(query.toLowerCase())
+        );
+      }
+
+      if (status) {
+        filtered = filtered.filter(c => c.status === status);
+      }
+
+      // Apply sorting
+      if (sort === "created_at:desc") {
+        filtered.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      } else if (sort === "created_at:asc") {
+        filtered.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
+      }
+
+      // Apply pagination
+      const startIndex = (pageNum - 1) * pageSizeNum;
+      const endIndex = startIndex + pageSizeNum;
+      const paginatedItems = filtered.slice(startIndex, endIndex);
+
+      res.json({
+        items: paginatedItems,
+        total: filtered.length,
+        page: pageNum,
+        pageSize: pageSizeNum,
+        hasMore: endIndex < filtered.length,
+      });
+    } catch (error) {
+      console.error("Failed to fetch companies:", error);
+      res.status(500).json({ error: "Failed to fetch companies" });
+    }
+  });
+
+  app.get("/api/companies/:id", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+
+      // Mock company lookup
+      const mockCompanies = [
+        {
+          id: "1",
+          name: "Harbor View Restaurant",
+          contact_name: "John Smith",
+          email: "john@harborview.com",
+          phone: "(555) 123-4567",
+          website: "https://harborview.com",
+          source: "Google Search",
+          status: "active",
+          tags: ["restaurant", "hospitality", "local"],
+          address: "123 Main St, Harbor City, CA",
+          notes: "High-value client, needs website redesign",
+          created_at: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+        {
+          id: "2",
+          name: "Coastal Cafe",
+          contact_name: "Sarah Johnson",
+          email: "sarah@coastalcafe.com",
+          phone: "(555) 234-5678",
+          website: "https://coastalcafe.com",
+          source: "Referral",
+          status: "prospect",
+          tags: ["cafe", "hospitality"],
+          address: "456 Beach Ave, Coastal Town, CA",
+          notes: "Interested in e-commerce integration",
+          created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+        {
+          id: "3",
+          name: "Seaside Boutique",
+          contact_name: "Mike Wilson",
+          email: "mike@seasideboutique.com",
+          phone: "(555) 345-6789",
+          website: "https://seasideboutique.com",
+          source: "Facebook Ads",
+          status: "lead",
+          tags: ["retail", "boutique"],
+          address: "789 Ocean Dr, Seaside, CA",
+          notes: "New lead, needs follow-up",
+          created_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+      ];
+
+      const company = mockCompanies.find(c => c.id === id);
+      if (!company) {
+        return res.status(404).json({ error: "Company not found" });
+      }
+
+      res.json(company);
+    } catch (error) {
+      console.error("Failed to fetch company:", error);
+      res.status(500).json({ error: "Failed to fetch company" });
+    }
+  });
+
+  app.post("/api/companies", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const companyData = req.body;
+
+      // Basic validation
+      if (!companyData.name) {
+        return res.status(400).json({ error: "Company name is required" });
+      }
+
+      // Mock company creation
+      const newCompany = {
+        id: Date.now().toString(),
+        ...companyData,
+        status: companyData.status || "lead",
+        tags: companyData.tags || [],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+
+      // Emit WebSocket activity
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("activity:new", {
+          type: "company.created",
+          id: newCompany.id,
+          name: newCompany.name,
+          description: `New company added: ${newCompany.name}`,
+          createdAt: new Date().toISOString(),
+        });
+      }
+
+      res.status(201).json(newCompany);
+    } catch (error) {
+      console.error("Failed to create company:", error);
+      res.status(500).json({ error: "Failed to create company" });
+    }
+  });
+
+  app.put("/api/companies/:id", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const updates = req.body;
+
+      // Mock company update (in real app, find and update in database)
+      const updatedCompany = {
+        id,
+        ...updates,
+        updated_at: new Date().toISOString(),
+      };
+
+      // Emit WebSocket activity
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("activity:new", {
+          type: "company.updated",
+          id: updatedCompany.id,
+          name: updatedCompany.name,
+          description: `Company updated: ${updatedCompany.name}`,
+          createdAt: new Date().toISOString(),
+        });
+      }
+
+      res.json(updatedCompany);
+    } catch (error) {
+      console.error("Failed to update company:", error);
+      res.status(500).json({ error: "Failed to update company" });
+    }
+  });
+
+  app.delete("/api/companies/:id", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+
+      // Mock deletion (in real app, remove from database)
+      // Emit WebSocket activity
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("activity:new", {
+          type: "company.deleted",
+          id,
+          description: `Company deleted: ${id}`,
+          createdAt: new Date().toISOString(),
+        });
+      }
+
+      res.status(204).end();
+    } catch (error) {
+      console.error("Failed to delete company:", error);
+      res.status(500).json({ error: "Failed to delete company" });
+    }
+  });
+
+  app.get("/api/companies/:id/projects", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+
+      // Mock projects for company (in real app, query database)
+      const mockProjects = [
+        {
+          id: "1",
+          title: "Website Redesign",
+          status: "active",
+          type: "website",
+          createdAt: new Date().toISOString(),
+        }
+      ];
+
+      res.json({ items: mockProjects });
+    } catch (error) {
+      console.error("Failed to fetch company projects:", error);
+      res.status(500).json({ error: "Failed to fetch company projects" });
+    }
+  });
+
+
+  // Phase 3: Calendar-specific endpoint (separate from legacy appointments API)
+  app.get("/api/appointments/calendar", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const { startDate, endDate, project_id, company_id, type, status = "confirmed" } = req.query as any;
+      const start = startDate ? new Date(startDate) : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000); // 30 days ago
+      const end = endDate ? new Date(endDate) : new Date(Date.now() + 90 * 24 * 60 * 60 * 1000); // 90 days future
+
+      // Get existing appointments and convert to calendar format
+      const appointments = await storage.getAppointments();
+      const calendarAppointments = appointments
+        .filter(appt => {
+          const apptDate = new Date(appt.datetime);
+          return apptDate >= start && apptDate <= end && appt.status !== 'cancelled';
+        })
+        .map(appt => ({
+          id: appt.id.toString(),
+          title: `${appt.serviceType} - ${appt.firstName} ${appt.lastName}`,
+          start: appt.datetime,
+          end: appt.endTime || new Date(new Date(appt.datetime).getTime() + (appt.duration * 60 * 1000)).toISOString(),
+          project_id: appt.projectId?.toString(),
+          company_id: appt.businessId?.toString(),
+          source: "acuity",
+          type: appt.serviceType?.toLowerCase().replace(/\s+/g, '-') || "appointment",
+          status: appt.status === 'scheduled' ? 'confirmed' : appt.status,
+          description: appt.notes,
+          attendees: [`${appt.firstName} ${appt.lastName}`],
+          location: "TBD",
+          acuity_id: appt.id,
+          created_at: appt.createdAt,
+          updated_at: appt.updatedAt,
+        }));
+
+      res.json({ items: calendarAppointments });
+    } catch (error) {
+      console.error("Failed to fetch calendar appointments:", error);
+      res.status(500).json({ error: "Failed to fetch calendar appointments" });
+    }
+  });
+
+  // Phase 3: Acuity/Squarespace Appointment Webhook (NEW - with proper validation)
+  console.log('🔗 Registering /api/acuity-webhook route');
+  app.post("/api/acuity-webhook", parseRawJson, async (req: any, res: Response) => {
+    try {
+      // Optional IP allow-list
+      if (!isTrustedIp(req.ip, process.env.ACUITY_TRUSTED_IPS)) {
+        return res.status(403).json({ error: "Untrusted source IP" });
+      }
+
+      // Optional HMAC verification
+      const ok = verifyHmacSha256(req.rawBody, req.header("X-Acuity-Signature"), process.env.ACUITY_WEBHOOK_SECRET);
+      if (!ok) return res.status(401).json({ error: "Invalid signature" });
+
+      const parsed = AcuityWebhook.safeParse(req.rawJson);
+      if (!parsed.success) {
+        return res.status(400).json({ error: parsed.error.flatten() });
+      }
+
+      const appointment = mapAcuityToAppointment(parsed.data);
+
+      // Try to link with existing company/project by email/phone/name
+      if (parsed.data.email) {
+        const existingCompany = await storage.findClientByEmail(parsed.data.email);
+        if (existingCompany) {
+          appointment.company_id = existingCompany.id;
+          console.log(`✅ Linked Acuity appointment to existing company: ${existingCompany.name}`);
+        }
+      }
+
+      // Store the appointment (you can implement this in storage.ts)
+      // For now, just emit WebSocket event
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("appointment.created", appointment);
+        io.to("admin-room").emit("appointment:new", appointment);
+      }
+
+      console.log("📅 New Acuity appointment processed:", appointment.title);
+      res.json({ success: true, appointment });
+    } catch (error) {
+      console.error("Failed to process Acuity webhook:", error);
+      res.status(500).json({ error: "Failed to process appointment" });
+    }
+  });
+
+  // Phase 3: Acuity/Squarespace Appointment Webhook (LEGACY - keeping for compatibility)
+  app.post("/api/acuity-appointment", async (req: Request, res: Response) => {
+    try {
+      const acuityData = req.body;
+
+      // Transform Acuity webhook data to our appointment format
+      const appointment = {
+        title: acuityData.title || `${acuityData.type} with ${acuityData.firstName} ${acuityData.lastName}`,
+        start: acuityData.datetime,
+        end: new Date(new Date(acuityData.datetime).getTime() + (acuityData.duration * 60 * 1000)).toISOString(),
+        source: "acuity",
+        type: acuityData.type?.toLowerCase() || "appointment",
+        status: "confirmed",
+        description: acuityData.notes || acuityData.forms?.[0]?.values?.find((v: any) => v.fieldID === 1)?.value || "",
+        attendees: [`${acuityData.firstName} ${acuityData.lastName}`],
+        location: acuityData.location || "TBD",
+        acuity_id: acuityData.id,
+        calendar_id: acuityData.calendarID,
+        // Try to match with existing companies/projects based on email or name
+        company_id: null, // Would need lookup logic here
+        project_id: null,  // Would need lookup logic here
+      };
+
+      // In real implementation, you'd save this to database
+      // For now, just emit WebSocket event to notify dashboard
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("activity:new", {
+          type: "appointment.created",
+          id: acuityData.id?.toString(),
+          title: appointment.title,
+          description: `New appointment from Acuity: ${appointment.title}`,
+          createdAt: new Date().toISOString(),
+        });
+
+        // Also emit to admin room for real-time dashboard updates
+        io.to("admin-room").emit("appointment:new", appointment);
+      }
+
+      console.log("📅 Acuity appointment webhook received:", acuityData);
+
+      res.json({ success: true, appointment });
+    } catch (error) {
+      console.error("Failed to process Acuity appointment:", error);
+      res.status(500).json({ error: "Failed to process appointment" });
+    }
+  });
+
+  // Phase 4: File Management System
+  app.get("/api/upload", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      // Generate signed upload URL for R2 or return local upload config
+      const { filename, contentType } = req.query as any;
+
+      if (!filename) {
+        return res.status(400).json({ error: "Filename is required" });
+      }
+
+      // For now, return local upload configuration
+      // In production, this would generate a signed URL for Cloudflare R2
+      const uploadConfig = {
+        method: "POST",
+        url: `${req.protocol}://${req.get('host')}/api/upload/direct`,
+        fields: {
+          filename: filename,
+          contentType: contentType || "application/octet-stream"
+        },
+        headers: {
+          "Authorization": req.headers.authorization,
+          "Content-Type": "multipart/form-data"
+        }
+      };
+
+      res.json(uploadConfig);
+    } catch (error) {
+      console.error("Failed to generate upload URL:", error);
+      res.status(500).json({ error: "Failed to generate upload URL" });
+    }
+  });
+
+  app.post("/api/upload/direct", requireAdmin, upload.single('file'), async (req: Request, res: Response) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+      }
+
+      const file = req.file as any;
+      const { projectId, companyId } = req.body;
+
+      // Create file record in database
+      const fileRecord = {
+        id: Date.now().toString(),
+        filename: file.originalname,
+        originalName: file.originalname,
+        mimeType: file.mimetype,
+        size: file.size,
+        path: file.path,
+        url: `/uploads/${file.filename}`,
+        projectId: projectId || null,
+        companyId: companyId || null,
+        uploadedBy: "admin", // In real app, get from auth
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+
+      // Store file metadata (in real app, save to database)
+      // For now, we'll store in memory
+      if (!global.uploadedFiles) {
+        global.uploadedFiles = [];
+      }
+      global.uploadedFiles.push(fileRecord);
+
+      // Emit WebSocket activity
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("activity:new", {
+          type: "file.uploaded",
+          id: fileRecord.id,
+          title: fileRecord.filename,
+          description: `File uploaded: ${fileRecord.filename}`,
+          createdAt: new Date().toISOString(),
+          projectId: projectId,
+          companyId: companyId,
+        });
+      }
+
+      res.json({
+        success: true,
+        file: {
+          id: fileRecord.id,
+          filename: fileRecord.filename,
+          size: fileRecord.size,
+          url: fileRecord.url,
+          uploadedAt: fileRecord.createdAt,
+        }
+      });
+    } catch (error) {
+      console.error("Failed to upload file:", error);
+      res.status(500).json({ error: "Failed to upload file" });
+    }
+  });
+
+  app.get("/api/projects/:id/files", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const projectId = req.params.id;
+
+      // Get files for project (in real app, query database)
+      const projectFiles = (global.uploadedFiles || []).filter(f => f.projectId === projectId);
+
+      res.json({ items: projectFiles });
+    } catch (error) {
+      console.error("Failed to fetch project files:", error);
+      res.status(500).json({ error: "Failed to fetch project files" });
+    }
+  });
+
+  // Public file access for clients (token-based)
+  app.get("/api/public/project/:token/files", async (req: Request, res: Response) => {
+    try {
+      const { token } = req.params;
+
+      // Find project by token
+      const project = await storage.getProjectByToken(token);
+      if (!project) {
+        return res.status(404).json({ error: "Project not found" });
+      }
+
+      // Get files for this project
+      const projectFiles = (global.uploadedFiles || []).filter(f => f.projectId === project.id.toString());
+
+      // Generate short-lived signed URLs (or direct URLs for local files)
+      const files = projectFiles.map(f => ({
+        id: f.id,
+        name: f.name,
+        size: f.size || 0,
+        type: f.type || 'application/octet-stream',
+        uploaded_at: f.uploadedAt || new Date().toISOString(),
+        // For local files, return direct URL. In production, use signed URLs
+        url: f.url || `${req.protocol}://${req.get('host')}/uploads/${f.filename}`
+      }));
+
+      res.json({ files });
+    } catch (error) {
+      console.error("Failed to get public project files:", error);
+      res.status(500).json({ error: "Failed to retrieve files" });
+    }
+  });
+
+  app.delete("/api/projects/:projectId/files/:fileId", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const { projectId, fileId } = req.params;
+
+      // Find and remove file (in real app, delete from database and storage)
+      const fileIndex = (global.uploadedFiles || []).findIndex(f => f.id === fileId && f.projectId === projectId);
+
+      if (fileIndex === -1) {
+        return res.status(404).json({ error: "File not found" });
+      }
+
+      const file = global.uploadedFiles[fileIndex];
+
+      // Remove from storage (in real app, delete from R2/local storage)
+      try {
+        if (fs.existsSync(file.path)) {
+          fs.unlinkSync(file.path);
+        }
+      } catch (storageError) {
+        console.warn("Failed to delete file from storage:", storageError);
+      }
+
+      // Remove from memory
+      global.uploadedFiles.splice(fileIndex, 1);
+
+      // Emit WebSocket activity
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("activity:new", {
+          type: "file.deleted",
+          id: fileId,
+          title: file.filename,
+          description: `File deleted: ${file.filename}`,
+          createdAt: new Date().toISOString(),
+          projectId: projectId,
+        });
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Failed to delete file:", error);
+      res.status(500).json({ error: "Failed to delete file" });
+    }
+  });
+
+  // Phase 4: Unified Activity Feed
+  app.get("/api/activities/unified", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const { projectId, companyId, limit = "50" } = req.query as any;
+      const limitNum = parseInt(limit);
+
+      // Collect activities from different sources
+      const activities: any[] = [];
+
+      // Get messages for project/company
+      if (projectId) {
+        const messages = await storage.getMessagesByProject(parseInt(projectId));
+        messages.forEach(msg => {
+          activities.push({
+            id: `message-${msg.id}`,
+            type: "message",
+            title: msg.sender_name || "System",
+            description: msg.content?.substring(0, 100) || "Message sent",
+            createdAt: msg.created_at,
+            projectId: projectId,
+            metadata: { messageId: msg.id, hasAttachments: msg.attachments?.length > 0 }
+          });
+        });
+      }
+
+      // Get appointments for project/company
+      const appointments = await storage.getAppointments();
+      appointments
+        .filter(appt =>
+          (projectId && appt.projectId === parseInt(projectId)) ||
+          (companyId && appt.businessId === parseInt(companyId))
+        )
+        .forEach(appt => {
+          activities.push({
+            id: `appointment-${appt.id}`,
+            type: "appointment",
+            title: appt.serviceType || "Appointment",
+            description: `${appt.firstName} ${appt.lastName} - ${appt.status}`,
+            createdAt: appt.createdAt,
+            projectId: projectId,
+            companyId: companyId,
+            metadata: { appointmentId: appt.id, status: appt.status }
+          });
+        });
+
+      // Get uploaded files
+      const files = (global.uploadedFiles || [])
+        .filter(f =>
+          (projectId && f.projectId === projectId) ||
+          (companyId && f.companyId === companyId)
+        )
+        .map(f => ({
+          id: `file-${f.id}`,
+          type: "file",
+          title: "File Upload",
+          description: `Uploaded: ${f.filename}`,
+          createdAt: f.createdAt,
+          projectId: projectId,
+          companyId: companyId,
+          metadata: { fileId: f.id, filename: f.filename, size: f.size }
+        }));
+
+      // Combine and sort by date (newest first)
+      const allActivities = [...activities, ...files]
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .slice(0, limitNum);
+
+      res.json({ items: allActivities });
+    } catch (error) {
+      console.error("Failed to fetch unified activities:", error);
+      res.status(500).json({ error: "Failed to fetch activities" });
+    }
+  });
+
   // Businesses/Leads (legacy system)
   app.get("/api/businesses", async (req: Request, res: Response) => {
     try {
@@ -2700,9 +3529,10 @@ export async function registerRoutes(app: Express, io: any) {
   app.get("/api/appointments", async (req: Request, res: Response) => {
     try {
       const { projectToken } = req.query;
-      
+
       // If projectToken is provided, return only appointments for that client (PUBLIC ACCESS)
       if (projectToken) {
+        console.log('📅 Using projectToken path');
         const appointments = await storage.getAppointmentsByProjectToken(projectToken as string);
         
         // Enhance with minimal client info for display
@@ -2727,6 +3557,7 @@ export async function registerRoutes(app: Express, io: any) {
       }
       
       // Admin access - return all appointments with full client information
+      console.log('📅 Using admin path');
       const appointments = await storage.getAppointments();
       const businesses = await storage.getBusinesses();
       const companies = await storage.getCompanies();
@@ -2972,6 +3803,158 @@ export async function registerRoutes(app: Express, io: any) {
     } catch (error) {
       console.error("Failed to delete appointment:", error);
       res.status(500).json({ error: "Failed to delete appointment" });
+    }
+  });
+
+  // Phase 3: Calendar CRUD Operations (Admin Only)
+  app.get("/api/appointments/:id", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const appointmentId = parseInt(req.params.id);
+      const appointment = await storage.getAppointmentById(appointmentId);
+
+      if (!appointment) {
+        return res.status(404).json({ error: "Appointment not found" });
+      }
+
+      // Convert to calendar format
+      const calendarAppointment = {
+        id: appointment.id.toString(),
+        title: `${appointment.serviceType} - ${appointment.firstName} ${appointment.lastName}`,
+        start: appointment.datetime,
+        end: appointment.endTime || new Date(new Date(appointment.datetime).getTime() + (appointment.duration * 60 * 1000)).toISOString(),
+        project_id: appointment.projectId?.toString(),
+        company_id: appointment.businessId?.toString(),
+        source: "acuity",
+        type: appointment.serviceType?.toLowerCase().replace(/\s+/g, '-') || "appointment",
+        status: appointment.status === 'scheduled' ? 'confirmed' : appointment.status,
+        description: appointment.notes,
+        attendees: [`${appointment.firstName} ${appointment.lastName}`],
+        location: "TBD",
+        acuity_id: appointment.id,
+        created_at: appointment.createdAt,
+        updated_at: appointment.updatedAt,
+      };
+
+      res.json(calendarAppointment);
+    } catch (error) {
+      console.error("Failed to fetch appointment:", error);
+      res.status(500).json({ error: "Failed to fetch appointment" });
+    }
+  });
+
+  app.post("/api/appointments", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const appointmentData = req.body;
+
+      // Basic validation
+      if (!appointmentData.title || !appointmentData.start || !appointmentData.end) {
+        return res.status(400).json({ error: "Title, start, and end are required" });
+      }
+
+      // For now, create a basic appointment record
+      // In a full implementation, this would integrate with Acuity or create internal appointments
+      const newAppointment = {
+        id: Date.now(),
+        datetime: appointmentData.start,
+        endTime: appointmentData.end,
+        duration: Math.round((new Date(appointmentData.end).getTime() - new Date(appointmentData.start).getTime()) / (60 * 1000)),
+        serviceType: appointmentData.type || "Meeting",
+        status: appointmentData.status === 'confirmed' ? 'scheduled' : appointmentData.status,
+        notes: appointmentData.description || appointmentData.title,
+        firstName: appointmentData.attendees?.[0] || "Internal",
+        lastName: "Meeting",
+        email: "internal@pleasantcove.com",
+        phone: "",
+        businessId: appointmentData.company_id ? parseInt(appointmentData.company_id) : null,
+        projectId: appointmentData.project_id ? parseInt(appointmentData.project_id) : null,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+
+      await storage.createAppointment(newAppointment);
+
+      // Emit WebSocket activity
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("activity:new", {
+          type: "appointment.created",
+          id: newAppointment.id.toString(),
+          title: appointmentData.title,
+          description: `New appointment scheduled: ${appointmentData.title}`,
+          createdAt: new Date().toISOString(),
+        });
+      }
+
+      // Convert to calendar format for response
+      const calendarAppointment = {
+        id: newAppointment.id.toString(),
+        title: appointmentData.title,
+        start: appointmentData.start,
+        end: appointmentData.end,
+        ...appointmentData,
+        created_at: newAppointment.createdAt,
+        updated_at: newAppointment.updatedAt,
+      };
+
+      res.status(201).json(calendarAppointment);
+    } catch (error) {
+      console.error("Failed to create appointment:", error);
+      res.status(500).json({ error: "Failed to create appointment" });
+    }
+  });
+
+  app.put("/api/appointments/:id", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const appointmentId = parseInt(req.params.id);
+      const updates = req.body;
+
+      const appointment = await storage.getAppointmentById(appointmentId);
+      if (!appointment) {
+        return res.status(404).json({ error: "Appointment not found" });
+      }
+
+      // Update the appointment
+      const updatedAppointment = {
+        ...appointment,
+        datetime: updates.start || appointment.datetime,
+        endTime: updates.end || appointment.endTime,
+        duration: updates.end && updates.start ?
+          Math.round((new Date(updates.end).getTime() - new Date(updates.start).getTime()) / (60 * 1000)) :
+          appointment.duration,
+        serviceType: updates.type || appointment.serviceType,
+        status: updates.status === 'confirmed' ? 'scheduled' : (updates.status || appointment.status),
+        notes: updates.description || appointment.notes,
+        updatedAt: new Date().toISOString(),
+      };
+
+      await storage.updateAppointment(appointmentId, updatedAppointment);
+
+      // Emit WebSocket activity
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("activity:new", {
+          type: "appointment.updated",
+          id: appointmentId.toString(),
+          title: updates.title || appointment.serviceType,
+          description: `Appointment updated: ${updates.title || appointment.serviceType}`,
+          createdAt: new Date().toISOString(),
+        });
+      }
+
+      // Convert to calendar format for response
+      const calendarAppointment = {
+        id: appointmentId.toString(),
+        title: updates.title || `${appointment.serviceType} - ${appointment.firstName} ${appointment.lastName}`,
+        start: updatedAppointment.datetime,
+        end: updatedAppointment.endTime,
+        ...updates,
+        updated_at: updatedAppointment.updatedAt,
+      };
+
+      res.json(calendarAppointment);
+    } catch (error) {
+      console.error("Failed to update appointment:", error);
+      res.status(500).json({ error: "Failed to update appointment" });
     }
   });
 
@@ -4606,6 +5589,13 @@ Booked via: ${source}
       console.error("❌ [ADMIN INBOX] Failed to fetch conversations:", error);
       res.status(500).json({ error: "Failed to fetch conversations" });
     }
+  });
+
+  // Debug endpoint for WebSocket testing
+  app.post("/api/debug/ws-ping", (req: Request, res: Response) => {
+    console.log("🔔 Debug WS ping triggered");
+    req.app.get("io")?.emit("activity:new", { type: "debug.ping", at: Date.now() });
+    res.json({ ok: true, message: "WebSocket ping sent" });
   });
 
   // Correctly closing the function

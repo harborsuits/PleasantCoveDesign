@@ -29,8 +29,8 @@ sleep 1
 
 # Start the Admin UI
 echo -e "${YELLOW}🚀 Starting Admin UI...${NC}"
-cd "$PROJECT_ROOT/pleasantcovedesign/admin-ui"
-npm run dev &
+cd "$PROJECT_ROOT/admin-ui"
+python3 server.py &
 UI_PID=$!
 
 # Wait for UI to start
@@ -52,10 +52,10 @@ if [[ $UI_READY -eq 1 ]]; then
     echo -e "${GREEN}🌐 Backend running 24/7 on Railway${NC}"
     echo ""
     
-    # Open Admin UI - it will automatically connect to production Railway
+    # Open Admin UI
     echo -e "${YELLOW}🌐 Opening your Admin Dashboard...${NC}"
     sleep 1
-    open "http://localhost:5173/inbox"
+    open "http://localhost:5173/"
     
     echo ""
     echo -e "${GREEN}🎉 Ready for your day!${NC}"

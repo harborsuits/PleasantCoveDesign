@@ -62,7 +62,7 @@ export function useMessages(businessId?: number) {
     }
 
     // Filter by business ID if specified
-    if (businessId && message.businessId && message.businessId.toString() !== businessId.toString()) {
+    if (businessId && message.businessId && message.businessId.toString() !== businessId?.toString()) {
       console.log('[MESSAGES] Message not for current business, ignoring');
       return;
     }

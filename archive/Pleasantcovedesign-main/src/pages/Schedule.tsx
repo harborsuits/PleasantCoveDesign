@@ -180,7 +180,7 @@ export default function Schedule() {
   useEffect(() => {
     if (clientIdFromUrl && pendingAppointments.length > 0) {
       const targetClient = pendingAppointments.find(
-        apt => apt.client_id.toString() === clientIdFromUrl
+        apt => apt.client_id?.toString() === clientIdFromUrl
       );
       
       if (targetClient) {
@@ -244,7 +244,7 @@ export default function Schedule() {
             : apt.client_name || apt.notes || 'Appointment';
 
           return {
-            id: apt.id.toString(),
+            id: apt.id?.toString() || '',
             title,
             start: new Date(apt.datetime),
             end: new Date(new Date(apt.datetime).getTime() + 25 * 60000),
@@ -656,7 +656,7 @@ export default function Schedule() {
     if (!modalData.id || typeof modalData.id !== 'number') return;
 
     const eventToMove = events.find((event) => 
-      event.resource?.appointmentId === modalData.id || event.id === modalData.id!.toString()
+      event.resource?.appointmentId === modalData.id || event.id === modalData.id?.toString()
     );
 
     if (!eventToMove) {

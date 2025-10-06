@@ -36,3 +36,5 @@ if git grep -nE "TRADIER_|ALPACA_|BROKER_|API_KEY.*trading|SECRET_KEY.*trading" 
 fi
 
 echo "✅ Repository is clean - no trading code contamination detected"
+
+

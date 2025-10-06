@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pleasant Cove Design Admin</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #5a6fd8;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .status.healthy {
+            background: #4CAF50;
+            color: white;
+        }
+        .status.warning {
+            background: #FF9800;
+            color: white;
+        }
+        .status.error {
+            background: #f44336;
+            color: white;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Pleasant Cove Design</h1>
+            <p>Your Web Design Business Management System</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="api-status">●</div>
+                <div class="stat-label">API Status</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="demo-count">-</div>
+                <div class="stat-label">Demo Websites</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="health-status">●</div>
+                <div class="stat-label">System Health</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>📊 Dashboard Overview</h3>
+                <p>View system status and key metrics</p>
+                <a href="#dashboard" class="btn">View Dashboard</a>
+            </div>
+
+            <div class="card">
+                <h3>🎨 Demo Gallery</h3>
+                <p>Browse generated demo websites</p>
+                <a href="http://localhost:8010/" target="_blank" class="btn">Open Gallery</a>
+            </div>
+
+            <div class="card">
+                <h3>📋 Lead Management</h3>
+                <p>Track and manage business leads</p>
+                <a href="#leads" class="btn">Manage Leads</a>
+            </div>
+
+            <div class="card">
+                <h3>💰 Billing & Payments</h3>
+                <p>Handle client payments and invoices</p>
+                <a href="#billing" class="btn">View Billing</a>
+            </div>
+
+            <div class="card">
+                <h3>⚙️ System Settings</h3>
+                <p>Configure system preferences</p>
+                <a href="#settings" class="btn">Open Settings</a>
+            </div>
+
+            <div class="card">
+                <h3>🔧 Developer Tools</h3>
+                <p>Health checks and diagnostics</p>
+                <a href="http://localhost:8003/" target="_blank" class="btn">System Health</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🚀 Quick Actions</h3>
+            <p>Common tasks and shortcuts</p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn" onclick="checkHealth()">Check System Health</button>
+                <button class="btn" onclick="viewDemos()">View Demo Websites</button>
+                <button class="btn" onclick="testAPI()">Test API Connection</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check system health on page load
+        window.addEventListener('load', function() {
+            checkHealth();
+            loadDemoCount();
+        });
+
+        async function checkHealth() {
+            try {
+                // Check API health
+                const apiResponse = await fetch('http://localhost:8080/health');
+                const apiData = await apiResponse.json();
+
+                document.getElementById('api-status').innerHTML = '●';
+                document.getElementById('api-status').style.color = apiData.status === 'healthy' ? '#4CAF50' : '#f44336';
+
+                // Check health dashboard
+                const healthResponse = await fetch('http://localhost:8003/health');
+                const healthData = await healthResponse.json();
+
+                document.getElementById('health-status').innerHTML = '●';
+                document.getElementById('health-status').style.color = healthData.status === 'healthy' ? '#4CAF50' : '#f44336';
+
+            } catch (error) {
+                console.error('Health check failed:', error);
+                document.getElementById('api-status').style.color = '#f44336';
+                document.getElementById('health-status').style.color = '#f44336';
+            }
+        }
+
+        async function loadDemoCount() {
+            try {
+                const response = await fetch('http://localhost:8010/api/demos');
+                const data = await response.json();
+                document.getElementById('demo-count').textContent = data.demos ? data.demos.length : '0';
+            } catch (error) {
+                console.error('Failed to load demo count:', error);
+                document.getElementById('demo-count').textContent = '0';
+            }
+        }
+
+        function viewDemos() {
+            window.open('http://localhost:8010/', '_blank');
+        }
+
+        async function testAPI() {
+            try {
+                const response = await fetch('http://localhost:8080/api/v1/test');
+                const data = await response.json();
+                alert('API Test Successful: ' + JSON.stringify(data, null, 2));
+            } catch (error) {
+                alert('API Test Failed: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
