@@ -805,104 +805,105 @@ export async function registerRoutes(app: Express, io: any) {
   // Enhanced new lead handler with better processing (PUBLIC - no auth required)
   // Squarespace Lead Webhook (NEW - with proper field mapping and member detection)
   console.log('🔗 Registering /api/squarespace-webhook route');
-  app.post("/api/squarespace-webhook", parseRawJson, async (req: any, res: Response) => {
-    try {
-      // Optional IP allow-list
-      if (!isTrustedIp(req.ip, process.env.SQUARESPACE_TRUSTED_IPS)) {
-        return res.status(403).json({ error: "Untrusted source IP" });
-      }
+  // TEMPORARILY DISABLED FOR TESTING
+  // app.post("/api/squarespace-webhook", parseRawJson, async (req: any, res: Response) => {
+  //   try {
+  //     // Optional IP allow-list
+  //     if (!isTrustedIp(req.ip, process.env.SQUARESPACE_TRUSTED_IPS)) {
+  //       return res.status(403).json({ error: "Untrusted source IP" });
+  //     }
 
-      // Optional HMAC verification (if you proxy through your own function)
-      const ok = verifyHmacSha256(req.rawBody, req.header("X-Signature"), process.env.SQUARESPACE_WEBHOOK_SECRET);
-      if (!ok) return res.status(401).json({ error: "Invalid signature" });
+  //     // Optional HMAC verification (if you proxy through your own function)
+  //     const ok = verifyHmacSha256(req.rawBody, req.header("X-Signature"), process.env.SQUARESPACE_WEBHOOK_SECRET);
+  //     if (!ok) return res.status(401).json({ error: "Invalid signature" });
 
-      const parsed = SquarespaceForm.safeParse(req.rawJson);
-      if (!parsed.success) {
-        return res.status(400).json({ error: parsed.error.flatten() });
-      }
+  //     const parsed = SquarespaceForm.safeParse(req.rawJson);
+  //     if (!parsed.success) {
+  //       return res.status(400).json({ error: parsed.error.flatten() });
+  //     }
 
-      const lead = mapSquarespaceToLead(parsed.data);
+  //     const lead = mapSquarespaceToLead(parsed.data);
 
-      // Smart matching: try email first, then phone, then name
-      let companyId = null;
-      let existingCompany = null;
+  //     // Smart matching: try email first, then phone, then name
+  //     let companyId = null;
+  //     let existingCompany = null;
 
-      if (lead.email) {
-        existingCompany = await storage.findClientByEmail(lead.email);
-      }
-      if (!existingCompany && lead.phone) {
-        // You'd need to add findClientByPhone to storage.ts
-        existingCompany = await storage.findClientByPhone?.(lead.phone);
-      }
-      if (!existingCompany && lead.first_name && lead.last_name) {
-        // Name matching is trickier, would need fuzzy matching
-      }
+  //     if (lead.email) {
+  //       existingCompany = await storage.findClientByEmail(lead.email);
+  //     }
+  //     if (!existingCompany && lead.phone) {
+  //       // You'd need to add findClientByPhone to storage.ts
+  //       existingCompany = await storage.findClientByPhone?.(lead.phone);
+  //     }
+  //     if (!existingCompany && lead.first_name && lead.last_name) {
+  //       // Name matching is trickier, would need fuzzy matching
+  //     }
 
-      if (existingCompany) {
-        companyId = existingCompany.id;
-        console.log(`✅ Found existing company for lead: ${existingCompany.name}`);
-      } else {
-        // Create new company
-        const newCompany = await storage.createCompany({
-          name: lead.company || `${lead.first_name} ${lead.last_name}`.trim() || "Unknown Client",
-          email: lead.email || undefined,
-          phone: lead.phone || undefined,
-          website: lead.website || undefined,
-          address: "",
-          city: "",
-          state: "",
-          industry: lead.service || "Web Design Client",
-          tags: ["squarespace", "lead"],
-          priority: "medium"
-        });
-        companyId = newCompany.id;
-        console.log(`✅ Created new company for lead: ${newCompany.name}`);
-      }
+  //     if (existingCompany) {
+  //       companyId = existingCompany.id;
+  //       console.log(`✅ Found existing company for lead: ${existingCompany.name}`);
+  //     } else {
+  //       // Create new company
+  //       const newCompany = await storage.createCompany({
+  //         name: lead.company || `${lead.first_name} ${lead.last_name}`.trim() || "Unknown Client",
+  //         email: lead.email || undefined,
+  //         phone: lead.phone || undefined,
+  //         website: lead.website || undefined,
+  //         address: "",
+  //         city: "",
+  //         state: "",
+  //         industry: lead.service || "Web Design Client",
+  //         tags: ["squarespace", "lead"],
+  //         priority: "medium"
+  //       });
+  //       companyId = newCompany.id;
+  //       console.log(`✅ Created new company for lead: ${newCompany.name}`);
+  //     }
 
-      // Create a new project for this lead (always create new conversation for privacy)
-      const secureToken = generateSecureProjectToken('squarespace_lead', lead.email);
-      const newProject = await storage.createProject({
-        companyId: parseInt(companyId),
-        title: `${lead.first_name} ${lead.last_name} - Lead ${Date.now()}`,
-        type: 'consultation',
-        stage: 'discovery',
-        status: 'active',
-        totalAmount: 0,
-        paidAmount: 0,
-        accessToken: secureToken.token
-      });
+  //     // Create a new project for this lead (always create new conversation for privacy)
+  //     const secureToken = generateSecureProjectToken('squarespace_lead', lead.email);
+  //     const newProject = await storage.createProject({
+  //       companyId: parseInt(companyId),
+  //         title: `${lead.first_name} ${lead.last_name} - Lead ${Date.now()}`,
+  //         type: 'consultation',
+  //         stage: 'discovery',
+  //         status: 'active',
+  //         totalAmount: 0,
+  //         paidAmount: 0,
+  //         accessToken: secureToken.token
+  //       });
 
-      const projectToken = newProject.accessToken;
+  //       const projectToken = newProject.accessToken;
 
-      // Add the lead message as an initial conversation
-      if (lead.message) {
-        await storage.addMessage({
-          projectId: newProject.id!,
-          senderType: 'client',
-          senderName: `${lead.first_name} ${lead.last_name}`.trim(),
-          content: `New lead from Squarespace form:\n\n${lead.message}`,
-          attachments: []
-        });
-      }
+  //       // Add the lead message as an initial conversation
+  //       if (lead.message) {
+  //         await storage.addMessage({
+  //           projectId: newProject.id!,
+  //           senderType: 'client',
+  //           senderName: `${lead.first_name} ${lead.last_name}`.trim(),
+  //           content: `New lead from Squarespace form:\n\n${lead.message}`,
+  //           attachments: []
+  //         });
+  //       }
 
-      // Emit WebSocket events
-      const io = req.app.get("io");
-      if (io) {
-        io.emit("lead.new", { company_id: companyId, lead });
-        io.to("admin-room").emit("activity:new", {
-          type: "lead.new",
-          company_id: companyId,
-          message: `New lead: ${lead.first_name} ${lead.last_name}`
-        });
-      }
+  //       // Emit WebSocket events
+  //       const io = req.app.get("io");
+  //       if (io) {
+  //         io.emit("lead.new", { company_id: companyId, lead });
+  //         io.to("admin-room").emit("activity:new", {
+  //           type: "lead.new",
+  //           company_id: companyId,
+  //           message: `New lead: ${lead.first_name} ${lead.last_name}`
+  //         });
+  //       }
 
-      console.log("🎯 Squarespace lead processed:", lead.email || lead.first_name);
-      res.json({ success: true, company_id: companyId, project_id: newProject.id, project_token: projectToken });
-    } catch (error) {
-      console.error("Failed to process Squarespace lead:", error);
-      res.status(500).json({ error: "Failed to process lead" });
-    }
-  });
+  //       console.log("🎯 Squarespace lead processed:", lead.email || lead.first_name);
+  //       res.json({ success: true, company_id: companyId, project_id: newProject.id, project_token: projectToken });
+  //     } catch (error) {
+  //       console.error("Failed to process Squarespace lead:", error);
+  //       res.status(500).json({ error: "Failed to process lead" });
+  //     }
+  //   });
 
   // Squarespace Lead Webhook (LEGACY - keeping for compatibility)
   app.post("/api/new-lead", rateLimitConversations, securityLoggingMiddleware, async (req: Request, res: Response) => {
@@ -3119,48 +3120,49 @@ export async function registerRoutes(app: Express, io: any) {
 
   // Phase 3: Acuity/Squarespace Appointment Webhook (NEW - with proper validation)
   console.log('🔗 Registering /api/acuity-webhook route');
-  app.post("/api/acuity-webhook", parseRawJson, async (req: any, res: Response) => {
-    try {
-      // Optional IP allow-list
-      if (!isTrustedIp(req.ip, process.env.ACUITY_TRUSTED_IPS)) {
-        return res.status(403).json({ error: "Untrusted source IP" });
-      }
+  // TEMPORARILY DISABLED FOR TESTING
+  // app.post("/api/acuity-webhook", parseRawJson, async (req: any, res: Response) => {
+  //   try {
+  //     // Optional IP allow-list
+  //     if (!isTrustedIp(req.ip, process.env.ACUITY_TRUSTED_IPS)) {
+  //       return res.status(403).json({ error: "Untrusted source IP" });
+  //     }
 
-      // Optional HMAC verification
-      const ok = verifyHmacSha256(req.rawBody, req.header("X-Acuity-Signature"), process.env.ACUITY_WEBHOOK_SECRET);
-      if (!ok) return res.status(401).json({ error: "Invalid signature" });
+  //     // Optional HMAC verification
+  //     const ok = verifyHmacSha256(req.rawBody, req.header("X-Acuity-Signature"), process.env.ACUITY_WEBHOOK_SECRET);
+  //     if (!ok) return res.status(401).json({ error: "Invalid signature" });
 
-      const parsed = AcuityWebhook.safeParse(req.rawJson);
-      if (!parsed.success) {
-        return res.status(400).json({ error: parsed.error.flatten() });
-      }
+  //     const parsed = AcuityWebhook.safeParse(req.rawJson);
+  //     if (!parsed.success) {
+  //       return res.status(400).json({ error: parsed.error.flatten() });
+  //     }
 
-      const appointment = mapAcuityToAppointment(parsed.data);
+  //     const appointment = mapAcuityToAppointment(parsed.data);
 
-      // Try to link with existing company/project by email/phone/name
-      if (parsed.data.email) {
-        const existingCompany = await storage.findClientByEmail(parsed.data.email);
-        if (existingCompany) {
-          appointment.company_id = existingCompany.id;
-          console.log(`✅ Linked Acuity appointment to existing company: ${existingCompany.name}`);
-        }
-      }
+  //     // Try to link with existing company/project by email/phone/name
+  //     if (parsed.data.email) {
+  //       const existingCompany = await storage.findClientByEmail(parsed.data.email);
+  //       if (existingCompany) {
+  //         appointment.company_id = existingCompany.id;
+  //         console.log(`✅ Linked Acuity appointment to existing company: ${existingCompany.name}`);
+  //       }
+  //     }
 
-      // Store the appointment (you can implement this in storage.ts)
-      // For now, just emit WebSocket event
-      const io = req.app.get("io");
-      if (io) {
-        io.emit("appointment.created", appointment);
-        io.to("admin-room").emit("appointment:new", appointment);
-      }
+  //     // Store the appointment (you can implement this in storage.ts)
+  //     // For now, just emit WebSocket event
+  //     const io = req.app.get("io");
+  //     if (io) {
+  //       io.emit("appointment.created", appointment);
+  //       io.to("admin-room").emit("appointment:new", appointment);
+  //     }
 
-      console.log("📅 New Acuity appointment processed:", appointment.title);
-      res.json({ success: true, appointment });
-    } catch (error) {
-      console.error("Failed to process Acuity webhook:", error);
-      res.status(500).json({ error: "Failed to process appointment" });
-    }
-  });
+  //     console.log("📅 New Acuity appointment processed:", appointment.title);
+  //     res.json({ success: true, appointment });
+  //   } catch (error) {
+  //     console.error("Failed to process Acuity webhook:", error);
+  //     res.status(500).json({ error: "Failed to process appointment" });
+  //   }
+  // });
 
   // Phase 3: Acuity/Squarespace Appointment Webhook (LEGACY - keeping for compatibility)
   app.post("/api/acuity-appointment", async (req: Request, res: Response) => {
@@ -5591,11 +5593,22 @@ Booked via: ${source}
     }
   });
 
-  // Debug endpoint for WebSocket testing
+  // Debug endpoint for WebSocket testing (simplified)
   app.post("/api/debug/ws-ping", (req: Request, res: Response) => {
     console.log("🔔 Debug WS ping triggered");
-    req.app.get("io")?.emit("activity:new", { type: "debug.ping", at: Date.now() });
-    res.json({ ok: true, message: "WebSocket ping sent" });
+    try {
+      const io = req.app.get("io");
+      if (io) {
+        io.emit("activity:new", { type: "debug.ping", at: Date.now() });
+        console.log("✅ WebSocket event emitted");
+      } else {
+        console.log("⚠️ WebSocket io not available");
+      }
+      res.json({ ok: true, message: "WebSocket ping sent", hasIo: !!io });
+    } catch (error) {
+      console.error("❌ WS ping error:", error);
+      res.status(500).json({ error: "WS ping failed", details: error.message });
+    }
   });
 
   // Correctly closing the function
