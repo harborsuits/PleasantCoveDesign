@@ -162,7 +162,7 @@ const buildPath = path.join(__dirname, '../dist/client');
 app.use(express.static(buildPath));
 
 // Serve Lovable UI at /admin/
-const lovableDist = path.join(__dirname, '../../lovable-dist');
+const lovableDist = path.join(__dirname, '../public/admin');
 app.use('/admin', express.static(lovableDist, { index: false }));
 app.get('/admin/*', (req, res) => {
   res.sendFile(path.join(lovableDist, 'index.html'));
