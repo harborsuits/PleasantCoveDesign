@@ -42,6 +42,8 @@ RUN npm run build
 FROM node:20-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
+# Ensure data directory exists for persistent storage
+RUN mkdir -p /data
 # copy package files for prod install
 COPY archive/Pleasantcovedesign-main/package*.json ./
 # install only prod deps

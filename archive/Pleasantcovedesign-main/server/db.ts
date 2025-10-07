@@ -6,7 +6,8 @@ import path from 'path';
 import { Company, Project, Message, ProjectFile, Activity } from '../shared/schema.js';
 
 // Persistent storage file paths
-const DATA_DIR = path.join(process.cwd(), 'data');
+// Use persistent data directory for production (Railway volumes)
+const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), 'data');
 const STORAGE_FILE = path.join(DATA_DIR, 'database.json');
 
 // Ensure data directory exists
