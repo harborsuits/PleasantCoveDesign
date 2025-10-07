@@ -4,41 +4,35 @@ WORKDIR /app
 # tools for node-gyp/native deps (bcrypt, sharp, sqlite3, etc)
 RUN apk add --no-cache python3 make g++
 
-# ---------- UI build ----------
+# ---------- UI (conditional) ----------
 FROM base AS ui
 WORKDIR /app/ui
-# copy only manifests first for better caching
-COPY archive/lovable-ui-integration/package*.json ./
-# install (use ci if lock present; otherwise fallback)
-RUN if [ -f package-lock.json ]; then \
-      npm ci --no-audit --no-fund; \
-    else \
-      npm install --no-audit --no-fund --legacy-peer-deps; \
-    fi
-# copy the rest and build
+# copy the whole UI dir (if it exists in the repo)
 COPY archive/lovable-ui-integration/ ./
-# (optional) pass build-time API endpoints
-ARG VITE_API_URL
-ARG VITE_WS_URL
-ENV VITE_API_URL=${VITE_API_URL}
-ENV VITE_WS_URL=${VITE_WS_URL}
-RUN npm run build
+# if package.json exists, build; otherwise create a tiny dist so server can serve /admin
+RUN if [ -f package.json ]; then \
+      echo "🔧 UI: package.json found -> installing & building" && \
+      if [ -f package-lock.json ]; then npm ci --no-audit --no-fund; \
+      else npm install --no-audit --no-fund --legacy-peer-deps; fi && \
+      npm run build; \
+    else \
+      echo "⚠️ UI: No package.json -> skipping UI build, creating placeholder dist" && \
+      mkdir -p dist && \
+      printf '<!doctype html><meta charset="utf-8"><title>Pleasant Cove Admin</title><h1>Admin UI not bundled in this build</h1>' > dist/index.html; \
+    fi
 
 # ---------- server build ----------
 FROM base AS server
 WORKDIR /app/server
-# copy only manifests for caching
-COPY archive/Pleasantcovedesign-main/package*.json ./
-# install dev deps for build
+# copy server source first
+COPY archive/Pleasantcovedesign-main/ ./
+# install server deps
 RUN if [ -f package-lock.json ]; then \
       npm ci --no-audit --no-fund; \
     else \
       npm install --no-audit --no-fund --legacy-peer-deps; \
     fi
-# copy server source
-COPY archive/Pleasantcovedesign-main/ ./
-# copy built UI into server's public path used by Express
-# adjust this path if your server serves /admin from a different folder
+# place built UI where Express serves it (adjust if your server uses a different path)
 RUN mkdir -p public/admin
 COPY --from=ui /app/ui/dist ./public/admin
 # build server (ts -> dist)
