@@ -83,7 +83,7 @@
     </style>
 </head>
 <body>
-    <div id="pcd-widget">
+    <div id="pcd-messaging-widget" class="pcd-messaging-widget" data-project-token="YOUR_PROJECT_TOKEN_HERE" data-backend-url="https://pleasantcovedesign-production.up.railway.app">
         <div class="pcd-header">
             <h3>Pleasant Cove Design</h3>
         </div>
@@ -100,13 +100,22 @@
 
     <script>
         (function () {
-            const API = "https://pcd-production-clean-production-e6f3.up.railway.app"; // Production API
-            const WS = "wss://pcd-production-clean-production-e6f3.up.railway.app";   // WSS in prod!
+            let API = "https://pleasantcovedesign-production.up.railway.app"; // Production API
+            let WS = "wss://pleasantcovedesign-production.up.railway.app";   // WSS in prod!
 
-            // Get project token from URL params or data attribute
+            // Get project token from container, script, URL params, or localStorage
+            const el = document.getElementById('pcd-messaging-widget');
+            const tokenFromContainer = el?.dataset?.projectToken;
             const tokenFromAttr = document.currentScript?.dataset?.projectToken;
             const tokenFromQS = new URLSearchParams(location.search).get("project_token");
-            const PROJECT_TOKEN = tokenFromAttr || tokenFromQS;
+            const PROJECT_TOKEN = tokenFromContainer || tokenFromAttr || tokenFromQS || localStorage.getItem('pcd_project_token');
+
+            // Allow manual backend URL override
+            const backendOverride = el?.dataset?.backendUrl;
+            if (backendOverride) {
+                API = backendOverride.replace(/\/$/, '');
+                WS = API.replace(/^http/, 'ws');
+            }
 
             if (!PROJECT_TOKEN) {
                 document.getElementById('pcd-messages').innerHTML = '<div class="pcd-status">Widget not configured</div>';
