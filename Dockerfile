@@ -1,51 +1,46 @@
-# ---------- base image with build tools ----------
-FROM node:20-alpine AS base
+# ---------------- base ----------------
+FROM node:20-alpine
+
 WORKDIR /app
-# tools for node-gyp/native deps (bcrypt, sharp, sqlite3, etc)
-RUN apk add --no-cache python3 make g++
+ENV NODE_ENV=production
+# toolchain for native modules (e.g. sqlite3)
+RUN apk add --no-cache python3 make g++ libc6-compat
 
-# ---------- UI (conditional) ----------
-FROM base AS ui
-WORKDIR /app/ui
-# copy the whole UI dir (if it exists in the repo)
-COPY archive/lovable-ui-integration/ ./
-# if package.json exists, build; otherwise create a tiny dist so server can serve /admin
-RUN if [ -f package.json ]; then \
-      echo "🔧 UI: package.json found -> installing & building" && \
-      if [ -f package-lock.json ]; then npm ci --no-audit --no-fund; \
-      else npm install --no-audit --no-fund --legacy-peer-deps; fi && \
-      npm run build; \
-    else \
-      echo "⚠️ UI: No package.json -> skipping UI build, creating placeholder dist" && \
-      mkdir -p dist && \
-      printf '<!doctype html><meta charset="utf-8"><title>Pleasant Cove Admin</title><h1>Admin UI not bundled in this build</h1>' > dist/index.html; \
-    fi
-
-# ---------- server (runtime with ts-node) ----------
-FROM node:20-alpine AS runtime
-WORKDIR /app
-RUN apk add --no-cache tini
-ENV NODE_ENV=production \
-    PORT=3000 \
-    TS_NODE_TRANSPILE_ONLY=1
-# Ensure data directory exists for persistent storage
-RUN mkdir -p /data
-
-# copy server
+# --- SERVER deps first (better caching) ---
+# copy ONLY manifests so npm install can cache
+COPY archive/Pleasantcovedesign-main/package*.json ./server/
 WORKDIR /app/server
+
+# noisy logs so we can see errors; tolerate peer dep issues
+ENV NPM_CONFIG_LOGLEVEL=verbose
+RUN --mount=type=cache,target=/root/.npm \
+    npm config set fund false && npm config set audit false && \
+    (if [ -f package-lock.json ]; then \
+        npm ci --no-audit --no-fund --legacy-peer-deps; \
+     else \
+        npm install --no-audit --no-fund --legacy-peer-deps; \
+     fi) || ( \
+       echo '---- npm debug log (if any) ----' && \
+       ls -la /root/.npm/_logs || true && \
+       cat /root/.npm/_logs/*-debug-0.log || true && \
+       exit 1 \
+    )
+
+# now copy the rest of the server source
 COPY archive/Pleasantcovedesign-main/ ./
 
-# install INCLUDING dev deps (needed for ts-node)
-RUN if [ -f package-lock.json ]; then \
-      npm ci --no-audit --no-fund; \
-    else \
-      npm install --no-audit --no-fund --legacy-peer-deps; \
-    fi
+# ensure /admin exists (you can replace with real UI later)
+RUN mkdir -p /app/server/public/admin && \
+    printf '<!doctype html><meta charset="utf-8"><title>Pleasant Cove Admin</title><h1>Admin UI deployed later</h1>' \
+    > /app/server/public/admin/index.html
 
-# wire admin UI if we built it
-RUN mkdir -p public/admin
-COPY --from=ui /app/ui/dist ./public/admin
+# runtime data path (your Railway volume mounts here)
+RUN mkdir -p /data
+ENV DATA_DIR=/data
+ENV DB_PATH=/data/pleasantcove.db
 
+# start with ts-node (no separate build step)
+# if your project isn't ESM, change to:  node -r ts-node/register src/index.ts
+# (needs ts-node & typescript in devDependencies)
 EXPOSE 3000
-ENTRYPOINT ["/sbin/tini","--"]
-CMD ["npm","run","start:ts"]
+CMD ["node","--loader","ts-node/esm","server/index.ts"]
