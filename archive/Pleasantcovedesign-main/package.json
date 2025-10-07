@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "NODE_ENV=production tsx server/index.ts",
+    "start:ts": "NODE_ENV=production node -r ts-node/register/transpile-only server/index.ts",
     "dev": "npm run clean && sleep 2 && concurrently \"npm run server\" \"npm run localbiz-pro\"",
     "server": "NODE_ENV=development tsx server/index.ts",
     "localbiz-pro": "vite --port 5173",
@@ -91,6 +92,7 @@
     "concurrently": "^8.2.2",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.3.6",
+    "ts-node": "^10.9.2",
     "vitest": "^1.1.3"
   }
 }

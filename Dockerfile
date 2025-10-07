@@ -21,42 +21,31 @@ RUN if [ -f package.json ]; then \
       printf '<!doctype html><meta charset="utf-8"><title>Pleasant Cove Admin</title><h1>Admin UI not bundled in this build</h1>' > dist/index.html; \
     fi
 
-# ---------- server build ----------
-FROM base AS server
+# ---------- server (runtime with ts-node) ----------
+FROM node:20-alpine AS runtime
+WORKDIR /app
+RUN apk add --no-cache tini
+ENV NODE_ENV=production \
+    PORT=3000 \
+    TS_NODE_TRANSPILE_ONLY=1
+# Ensure data directory exists for persistent storage
+RUN mkdir -p /data
+
+# copy server
 WORKDIR /app/server
-# copy server source first
 COPY archive/Pleasantcovedesign-main/ ./
-# install server deps
+
+# install INCLUDING dev deps (needed for ts-node)
 RUN if [ -f package-lock.json ]; then \
       npm ci --no-audit --no-fund; \
     else \
       npm install --no-audit --no-fund --legacy-peer-deps; \
     fi
-# place built UI where Express serves it (adjust if your server uses a different path)
+
+# wire admin UI if we built it
 RUN mkdir -p public/admin
 COPY --from=ui /app/ui/dist ./public/admin
-# build server (ts -> dist)
-RUN npm run build
 
-# ---------- runtime (slim) ----------
-FROM node:20-alpine AS runtime
-WORKDIR /app
-ENV NODE_ENV=production
-# Ensure data directory exists for persistent storage
-RUN mkdir -p /data
-# copy package files for prod install
-COPY archive/Pleasantcovedesign-main/package*.json ./
-# install only prod deps
-RUN if [ -f package-lock.json ]; then \
-      npm ci --omit=dev --no-audit --no-fund; \
-    else \
-      npm install --omit=dev --no-audit --no-fund --legacy-peer-deps; \
-    fi
-# copy built artifacts
-COPY --from=server /app/server/dist ./dist
-COPY --from=server /app/server/public ./public
-# non-root user (optional)
-RUN addgroup -S nodejs && adduser -S node -G nodejs
-USER node
 EXPOSE 3000
-CMD ["node", "dist/index.js"]
+ENTRYPOINT ["/sbin/tini","--"]
+CMD ["npm","run","start:ts"]
