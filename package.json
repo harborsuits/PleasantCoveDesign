@@ -2,18 +2,16 @@
   "name": "pleasant-cove-design-production",
   "version": "1.0.0",
   "description": "Pleasant Cove Design - Complete Development Environment",
-  "main": "pleasantcovedesign/server/dist/index.js",
+  "main": "archive/Pleasantcovedesign-main/dist/index.js",
   "scripts": {
-    "build": "npm run build:server && npm run build:ui",
-    "build:server": "cd archive/Pleasantcovedesign-main && npm ci || npm install && npm run build",
-    "build:ui": "cd archive/lovable-ui-integration && npm ci || npm install && npm run build",
-    "dev:server": "cd archive/Pleasantcovedesign-main && npm run dev",
-    "dev:ui": "cd archive/lovable-ui-integration && npm run dev",
-    "start": "cd archive/Pleasantcovedesign-main && npm run start",
-    "preview:ui": "cd archive/lovable-ui-integration && npm run preview"
+    "build": "npm --prefix archive/lovable-ui-integration ci && npm --prefix archive/lovable-ui-integration run build && npm --prefix archive/Pleasantcovedesign-main ci && npm --prefix archive/Pleasantcovedesign-main run build && node archive/Pleasantcovedesign-main/scripts/postbuild-copy-ui.js",
+    "dev:server": "npm --prefix archive/Pleasantcovedesign-main run dev",
+    "dev:ui": "npm --prefix archive/lovable-ui-integration run dev",
+    "start": "node archive/Pleasantcovedesign-main/dist/index.js",
+    "preview:ui": "npm --prefix archive/lovable-ui-integration run preview"
   },
   "engines": {
-    "node": ">=18 <23"
+    "node": "20"
   },
   "devDependencies": {
     "concurrently": "^7.6.0",
