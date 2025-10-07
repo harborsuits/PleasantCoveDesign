@@ -1308,6 +1308,35 @@ export async function registerRoutes(app: Express, io: any) {
     }
   });
 
+  // Get messages for project (PUBLIC - for widget history)
+  app.get("/api/public/project/:token/messages", async (req: Request, res: Response) => {
+    try {
+      const { token } = req.params;
+      const { cursor = 0, limit = 20 } = req.query;
+
+      // Verify project exists and get project ID
+      const projectData = await storage.getProjectByToken(token);
+      if (!projectData) {
+        return res.status(404).json({ error: "Project not found" });
+      }
+
+      // Get messages with pagination
+      const messages = await storage.getProjectMessages(projectData.id!, {
+        cursor: parseInt(cursor as string),
+        limit: parseInt(limit as string)
+      });
+
+      res.json({
+        items: messages.items,
+        nextCursor: messages.nextCursor,
+        hasMore: messages.hasMore
+      });
+    } catch (error) {
+      console.error("Failed to fetch public messages:", error);
+      res.status(500).json({ error: "Failed to fetch messages" });
+    }
+  });
+
   // Create message in project (PUBLIC - for client replies) - supports both multer and presigned URL uploads
   app.post("/api/public/project/:token/messages", (req: Request, res: Response, next: NextFunction) => {
     // Add CORS headers for widget access
@@ -1336,18 +1365,21 @@ export async function registerRoutes(app: Express, io: any) {
     
     try {
       const { token } = req.params;
-      const { content, senderName, senderType = 'client', attachments: attachmentKeys } = req.body;
-      
-      console.log('📤 Message send request:', { 
-        token, 
-        content, 
-        senderName, 
+      const { text, content, senderName, senderType = 'client', attachments: attachmentKeys } = req.body;
+
+      // Standardize on 'text' but accept both 'text' and 'content' for backward compatibility
+      const messageText = (text ?? content ?? "").toString().trim();
+
+      console.log('📤 Message send request:', {
+        token,
+        text: messageText,
+        senderName,
         attachmentKeys: attachmentKeys || [],
         hasFiles: !!req.files
       });
-      
-      if (!token || (!content && (!attachmentKeys || attachmentKeys.length === 0) && (!req.files || (req.files as any[]).length === 0))) {
-        return res.status(400).json({ error: "Token and either content or files are required" });
+
+      if (!token || (!messageText && (!attachmentKeys || attachmentKeys.length === 0) && (!req.files || (req.files as any[]).length === 0))) {
+        return res.status(400).json({ error: "Token and either text or files are required" });
       }
       
       if (!senderName) {
@@ -1419,7 +1451,7 @@ export async function registerRoutes(app: Express, io: any) {
         projectId: projectData.id!,
         senderType: senderType as 'admin' | 'client',
         senderName,
-        content: content || '',
+        content: messageText,
         attachments
       });
 

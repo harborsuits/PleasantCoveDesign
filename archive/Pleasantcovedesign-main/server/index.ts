@@ -19,11 +19,33 @@ import express, { type Express } from "express";
 import cors from "cors";
 import { createR2Storage } from './storage/r2-storage.js';
 
+// CORS allowlist for security
+const ALLOWED_ORIGINS = new Set([
+  "http://localhost:5173",
+  "https://pleasantcovedesign.com",
+  "https://pleasantcovedesign-production.up.railway.app",
+  "https://nectarine-sparrow-dwsp.squarespace.com", // Adjust to your Squarespace domain
+  "https://www.pleasantcovedesign.com", // If using custom domain
+]);
+
+const corsOptions = {
+  origin(origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+    // Allow requests with no origin (server-to-server, curl, etc.)
+    if (!origin) return callback(null, true);
+    callback(null, ALLOWED_ORIGINS.has(origin));
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: false,
+};
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const server = createServer(app);
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
 
 // Initialize Socket.io with robust configuration
 const io = attachSocket(server);

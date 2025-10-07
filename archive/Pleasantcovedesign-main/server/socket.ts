@@ -2,24 +2,27 @@ import { Server } from "socket.io";
 import jwt from "jsonwebtoken";
 import type { Server as HttpServer } from "http";
 
+// Import the CORS allowlist
+const ALLOWED_ORIGINS = new Set([
+  "http://localhost:5173",
+  "https://pleasantcovedesign.com",
+  "https://pleasantcovedesign-production.up.railway.app",
+  "https://nectarine-sparrow-dwsp.squarespace.com", // Adjust to your Squarespace domain
+  "https://www.pleasantcovedesign.com", // If using custom domain
+]);
+
 export function attachSocket(http: HttpServer) {
   const io = new Server(http, {
     path: "/socket.io",
     transports: ["websocket"],     // force ws to avoid long-poll quirks behind proxies
+    pingInterval: 20000,           // 20s ping for proxy-friendly connections
+    pingTimeout: 20000,            // 20s timeout
     cors: {
-      origin: [
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "http://localhost:3000",
-        "https://your-crm-ui-domain.com",
-        "https://your-squarespace-site.com",
-        "https://www.pleasantcovedesign.com",
-        "http://www.pleasantcovedesign.com",
-        "https://pleasantcovedesign.com",
-        "http://pleasantcovedesign.com",
-      ],
+      origin(origin, callback) {
+        if (!origin) return callback(null, true); // allow curl / server-to-server
+        callback(null, ALLOWED_ORIGINS.has(origin));
+      },
       methods: ["GET","POST"],
-      allowedHeaders: ["authorization"],
       credentials: false,
     },
   });
