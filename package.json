@@ -4,7 +4,7 @@
   "description": "Pleasant Cove Design - Complete Development Environment",
   "main": "archive/Pleasantcovedesign-main/dist/index.js",
   "scripts": {
-    "build": "npm --prefix archive/lovable-ui-integration ci && npm --prefix archive/lovable-ui-integration run build && npm --prefix archive/Pleasantcovedesign-main ci && npm --prefix archive/Pleasantcovedesign-main run build && node archive/Pleasantcovedesign-main/scripts/postbuild-copy-ui.js",
+    "build": "cd archive/lovable-ui-integration && npm ci && npm run build && cd ../Pleasantcovedesign-main && npm ci && npm run build && node scripts/postbuild-copy-ui.js",
     "dev:server": "npm --prefix archive/Pleasantcovedesign-main run dev",
     "dev:ui": "npm --prefix archive/lovable-ui-integration run dev",
     "start": "node archive/Pleasantcovedesign-main/dist/index.js",
