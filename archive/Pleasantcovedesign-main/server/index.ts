@@ -328,6 +328,7 @@ app.use('/api/new-lead', (req, res, next) => {
 async function startServer() {
   try {
     // Register public WebSocket exchange routes (no auth required)
+    console.log("🔗 [ROUTES] Mounting /api/public routes");
     app.use("/api/public", express.json(), publicWs);
 
     // Admin auth routes
