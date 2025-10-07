@@ -1,4 +1,5 @@
 import { Server } from "socket.io";
+import jwt from "jsonwebtoken";
 import type { Server as HttpServer } from "http";
 
 export function attachSocket(http: HttpServer) {
@@ -23,24 +24,38 @@ export function attachSocket(http: HttpServer) {
     },
   });
 
-  // Auth middleware (reads token from handshake.auth.token)
+  // Auth middleware: separate admin vs public connections
   io.use((socket, next) => {
-    const token = socket.handshake.auth?.token as string | undefined;
+    try {
+      const { token, wsToken } = (socket.handshake.auth || {}) as { token?: string; wsToken?: string };
 
-    // For admin dashboard connections, allow with any token or no token for now
-    // TODO: Implement proper admin authentication
-    if (!token) {
-      console.log('🔐 [WS AUTH] No token provided, allowing admin connection');
-    } else {
-      console.log('🔐 [WS AUTH] Token provided, allowing connection');
+      // Admin path: verify your admin token/JWT if present
+      if (token) {
+        // TODO: replace with your admin token/JWT verification
+        socket.data.scope = "admin";
+        return next();
+      }
+
+      // Public path: verify wsToken (required)
+      if (!wsToken) return next(new Error("Missing wsToken"));
+      const payload = jwt.verify(wsToken, process.env.JWT_SECRET || "fallback-secret-change-in-prod") as any;
+      if (payload.scope !== "public" || !payload.projectId) return next(new Error("Bad token"));
+      socket.data.scope = "public";
+      socket.data.projectId = payload.projectId;
+      return next();
+    } catch (e) {
+      return next(new Error("Unauthorized"));
     }
-
-    socket.data.user = { id: "admin", type: "admin" };
-    return next();
   });
 
   io.on("connection", (socket) => {
-    console.log(`🔌 Socket connected: ${socket.id}`);
+    console.log(`🔌 Socket connected: ${socket.id} (${socket.data.scope})`);
+
+    // Public sockets auto-join their project room
+    if (socket.data.scope === "public" && socket.data.projectId) {
+      socket.join(`project:${socket.data.projectId}`);
+      console.log(`📍 Public socket ${socket.id} auto-joined project:${socket.data.projectId}`);
+    }
 
     // optional heartbeat
     const ping = setInterval(() => socket.emit("sys:ping", Date.now()), 15000);
@@ -50,9 +65,9 @@ export function attachSocket(http: HttpServer) {
     });
 
     socket.on("join", ({ projectId }) => {
-      if (projectId) {
+      if (socket.data.scope === "admin" && projectId) {
         socket.join(`project:${projectId}`);
-        console.log(`📍 Socket ${socket.id} joined project:${projectId}`);
+        console.log(`📍 Admin socket ${socket.id} joined project:${projectId}`);
       }
     });
   });

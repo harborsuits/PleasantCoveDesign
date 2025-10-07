@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import { registerRoutes } from "./routes.js";
 import { storage } from './storage.js';
 import { attachSocket } from './socket.js';
+import publicWs from './routes/public-ws.js';
 
 // Load environment variables FIRST before importing anything else
 dotenv.config({ path: resolve(process.cwd(), '.env') });
@@ -320,6 +321,9 @@ app.use('/api/new-lead', (req, res, next) => {
 // Register all API routes
 async function startServer() {
   try {
+    // Register public WebSocket exchange routes
+    app.use("/api", express.json(), publicWs);
+
     // Register all routes
     await registerRoutes(app, io);
     

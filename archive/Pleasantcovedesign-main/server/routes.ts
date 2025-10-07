@@ -290,14 +290,24 @@ export async function registerRoutes(app: Express, io: any) {
   app.use('/uploads', express.static(uploadsDir));
   console.log('📁 Serving uploads from:', uploadsDir);
   
-  // Health check endpoint
+  // Health check endpoint (both root and api versions for compatibility)
   app.get('/health', (req: Request, res: Response) => {
-    res.json({ 
-      status: 'OK', 
+    res.json({
+      status: 'OK',
       timestamp: new Date().toISOString(),
       multerConfigured: !!upload,
       uploadsDir: uploadsDir,
       r2Storage: useR2Storage
+    });
+  });
+
+  // API health check endpoint (for Railway compatibility)
+  app.get('/api/health', (req: Request, res: Response) => {
+    res.json({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      service: 'Pleasant Cove Design API',
+      version: '1.1'
     });
   });
   
@@ -977,22 +987,35 @@ export async function registerRoutes(app: Express, io: any) {
           
           if (existingClient) {
             console.log(`✅ Found existing client: ${existingClient.name} (ID: ${existingClient.id})`);
-            
-            // ALWAYS create new conversation for privacy - use admin business ID 1
-            const secureToken = generateSecureProjectToken('squarespace_member', email);
-            const newProject = await storage.createProject({
-              companyId: 1, // Always use admin business for unified inbox
-              title: `${name || email.split('@')[0]} - Conversation ${Date.now()}`,
-              type: 'consultation',
-              stage: 'discovery',
-              status: 'active',
-              totalAmount: 0,
-              paidAmount: 0,
-              accessToken: secureToken.token
-            });
-            
-            projectToken = newProject.accessToken;
-            console.log(`✅ Created new project under admin business: ID ${newProject.id}, Token: ${projectToken}, Business: 1`);
+
+            // Check if there's already an active conversation for this client
+            const existingProjects = await storage.getProjectsByCompany(1); // Admin business projects
+            const activeProject = existingProjects.find(p =>
+              p.status === 'active' &&
+              p.title.includes(email.split('@')[0]) &&
+              p.type === 'consultation'
+            );
+
+            if (activeProject) {
+              console.log(`✅ Found existing active conversation: ${activeProject.title} (ID: ${activeProject.id})`);
+              projectToken = activeProject.accessToken;
+            } else {
+              // Create new conversation for privacy - use admin business ID 1
+              const secureToken = generateSecureProjectToken('squarespace_member', email);
+              const newProject = await storage.createProject({
+                companyId: 1, // Always use admin business for unified inbox
+                title: `${name || email.split('@')[0]} - Conversation ${Date.now()}`,
+                type: 'consultation',
+                stage: 'discovery',
+                status: 'active',
+                totalAmount: 0,
+                paidAmount: 0,
+                accessToken: secureToken.token
+              });
+
+              projectToken = newProject.accessToken;
+              console.log(`✅ Created new project under admin business: ID ${newProject.id}, Token: ${projectToken}, Business: 1`);
+            }
           } else {
             // Create new client under admin business
             const newCompany = await storage.createCompany({
