@@ -78,6 +78,32 @@
             font-weight: 600;
         }
 
+        .pcd-header-main {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pcd-admin-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            opacity: 0.8;
+        }
+
+        .pcd-admin-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
         .pcd-messages-container {
             flex: 1;
             overflow-y: auto;
@@ -510,7 +536,15 @@
 
         <!-- Header -->
         <div class="pcd-messaging-header">
-            <h2>Pleasant Cove Design</h2>
+            <div class="pcd-header-main">
+                <h2>Pleasant Cove Design</h2>
+                <a href="https://www.pleasantcovedesign.com/admin" target="_blank" class="pcd-admin-link" title="Admin Dashboard">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path d="M9 12a3 3 0 1 0 6 0"/>
+                    </svg>
+                </a>
+            </div>
             <div class="pcd-connection-status">
                 <div class="pcd-status-dot" id="connectionDot"></div>
                 <span id="connectionStatus">Detecting member...</span>
@@ -666,6 +700,13 @@
                     // Store for future use
                     localStorage.setItem('pcd_backend_url', paramBackendUrl);
                     return paramBackendUrl;
+                }
+
+                // PRIORITY 2.5: Check for ngrok URL in localStorage (for development)
+                const ngrokUrl = localStorage.getItem('pcd_ngrok_url');
+                if (ngrokUrl && forceDebug) {
+                    console.log('🚇 [CONFIG] Using ngrok URL for debug mode:', ngrokUrl);
+                    return ngrokUrl;
                 }
                 
                 // PRIORITY 3: Check for stored URL in local storage

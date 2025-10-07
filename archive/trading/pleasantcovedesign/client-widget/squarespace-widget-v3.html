@@ -1,0 +1,33 @@
+<script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.7.5/dist/socket.io.min.js" crossorigin="anonymous"></script>
+<script>
+(function () {
+  const API = "https://pleasantcovedesign-production.up.railway.app"; // or http://localhost:3000 (dev)
+  const WS  = "wss://pleasantcovedesign-production.up.railway.app";   // or ws://localhost:3000 (dev)
+  const PROJECT_TOKEN = "PUT_PUBLIC_PROJECT_TOKEN_HERE"; // or from data-attr/querystring
+
+  // 1) exchange project token → short-lived wsToken
+  fetch(API + "/api/public/ws-exchange", {
+    method:"POST", headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({ token: PROJECT_TOKEN })
+  })
+  .then(r=>r.json())
+  .then(({ wsToken }) => {
+    if (!wsToken) throw new Error("no wsToken");
+    const s = window.io(WS, { path:"/socket.io", transports:["websocket"], auth: { wsToken }});
+    s.on("connect", () => console.log("[SQ] WS connected", s.id));
+    s.on("message:new", (msg) => console.log("[SQ] msg", msg)); // render in DOM
+
+    // send message via REST (WS is for realtime receive)
+    window.PCD_send = async (text) => {
+      await fetch(API + "/api/public/project/" + PROJECT_TOKEN + "/messages", {
+        method:"POST", headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({ text })
+      });
+    };
+
+    // refresh before expiry
+    setTimeout(()=>location.reload(), 10*60*1000);
+  })
+  .catch(err => console.error("[SQ] bootstrap failed", err));
+})();
+</script>

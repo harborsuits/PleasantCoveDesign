@@ -4,15 +4,13 @@
   "description": "Pleasant Cove Design - Complete Development Environment",
   "main": "pleasantcovedesign/server/dist/index.js",
   "scripts": {
-    "start": "node pleasantcovedesign/server/dist/index.js",
-    "build": "cd pleasantcovedesign/server && npm ci || npm install && npm run build",
-    "build:prod": "bash scripts/build-prod.sh",
-    "install:all": "cd pleasantcovedesign/server && npm ci || npm install && cd ../admin-ui && npm ci || npm install",
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:ui\" \"npm run dev:widget\"",
-    "dev:server": "cd pleasantcovedesign/server && npm run dev",
-    "dev:ui": "cd pleasantcovedesign/admin-ui && npm run dev",
-    "dev:widget": "cd pleasantcovedesign/client-widget && npx serve -s . -l 8080",
-    "stop": "pkill -f 'npm run dev' || true"
+    "build": "npm run build:server && npm run build:ui",
+    "build:server": "cd archive/Pleasantcovedesign-main && npm ci || npm install && npm run build",
+    "build:ui": "cd archive/lovable-ui-integration && npm ci || npm install && npm run build",
+    "dev:server": "cd archive/Pleasantcovedesign-main && npm run dev",
+    "dev:ui": "cd archive/lovable-ui-integration && npm run dev",
+    "start": "cd archive/Pleasantcovedesign-main && npm run start",
+    "preview:ui": "cd archive/lovable-ui-integration && npm run preview"
   },
   "engines": {
     "node": ">=18 <23"

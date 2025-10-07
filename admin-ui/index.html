@@ -186,23 +186,29 @@
         async function checkHealth() {
             try {
                 // Check API health
-                const apiResponse = await fetch('http://localhost:8080/health');
+                const apiResponse = await fetch('http://localhost:3000/api/health');
                 const apiData = await apiResponse.json();
 
                 document.getElementById('api-status').innerHTML = '●';
                 document.getElementById('api-status').style.color = apiData.status === 'healthy' ? '#4CAF50' : '#f44336';
 
-                // Check health dashboard
-                const healthResponse = await fetch('http://localhost:8003/health');
-                const healthData = await healthResponse.json();
+                // Check health dashboard (optional - don't fail if not running)
+                try {
+                    const healthResponse = await fetch('http://localhost:8003/health');
+                    const healthData = await healthResponse.json();
 
-                document.getElementById('health-status').innerHTML = '●';
-                document.getElementById('health-status').style.color = healthData.status === 'healthy' ? '#4CAF50' : '#f44336';
+                    document.getElementById('health-status').innerHTML = '●';
+                    document.getElementById('health-status').style.color = healthData.status === 'healthy' ? '#4CAF50' : '#f44336';
+                } catch (healthError) {
+                    console.log('Health dashboard not available:', healthError.message);
+                    document.getElementById('health-status').innerHTML = '○';
+                    document.getElementById('health-status').style.color = '#ffa500'; // Orange for not available
+                }
 
             } catch (error) {
-                console.error('Health check failed:', error);
+                console.error('API health check failed:', error);
                 document.getElementById('api-status').style.color = '#f44336';
-                document.getElementById('health-status').style.color = '#f44336';
+                // Health dashboard error is already handled above
             }
         }
 
@@ -223,7 +229,7 @@
 
         async function testAPI() {
             try {
-                const response = await fetch('http://localhost:8080/api/v1/test');
+                const response = await fetch('http://localhost:3000/api/v1/test');
                 const data = await response.json();
                 alert('API Test Successful: ' + JSON.stringify(data, null, 2));
             } catch (error) {
