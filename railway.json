@@ -2,7 +2,14 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "set -eux; cd archive/lovable-ui-integration && rm -rf node_modules dist && npm ci && VITE_API_URL=/api VITE_WS_URL= npm run build && cd ../Pleasantcovedesign-main && rm -rf node_modules dist && npm install && npx tsc --skipLibCheck || true && node scripts/postbuild-copy-ui.js && echo '=== Lovable UI contents ===' && ls -la lovable-dist/ && test -f dist/index.js"
+    "buildCommand": [
+      "npm ci",
+      "npm --prefix archive/lovable-ui-integration ci",
+      "npm --prefix archive/lovable-ui-integration run build",
+      "npm --prefix archive/Pleasantcovedesign-main ci",
+      "npm --prefix archive/Pleasantcovedesign-main run build",
+      "node archive/Pleasantcovedesign-main/scripts/postbuild-copy-ui.js"
+    ].join(" && ")
   },
   "deploy": {
     "startCommand": "node archive/Pleasantcovedesign-main/dist/index.js",
