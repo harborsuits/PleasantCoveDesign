@@ -4,7 +4,7 @@ import { storage } from "../storage.js";
 
 const r = Router();
 
-r.post("/public/ws-exchange", async (req, res) => {
+r.post("/ws-exchange", async (req, res) => {
   try {
     const { token } = req.body || {};
     if (!token) return res.status(400).json({ error: "Missing token" });

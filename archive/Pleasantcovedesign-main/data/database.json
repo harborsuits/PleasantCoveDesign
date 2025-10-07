@@ -2486,6 +2486,33 @@
       "attachments": [],
       "createdAt": "2025-10-06T03:32:44.436Z",
       "id": 362
+    },
+    {
+      "projectId": 1,
+      "senderType": "client",
+      "senderName": "Test User",
+      "content": "hello from smoke test",
+      "attachments": [],
+      "id": 363,
+      "createdAt": "2025-10-07T18:41:45.571Z"
+    },
+    {
+      "projectId": 1,
+      "senderType": "admin",
+      "senderName": "Admin User",
+      "content": "admin test message",
+      "attachments": [],
+      "id": 365,
+      "createdAt": "2025-10-07T18:41:58.801Z"
+    },
+    {
+      "projectId": 1,
+      "senderType": "client",
+      "senderName": "Socket Test",
+      "content": "final socket test",
+      "attachments": [],
+      "id": 367,
+      "createdAt": "2025-10-07T18:42:50.420Z"
     }
   ],
   "projectFiles": [],
@@ -3569,6 +3596,30 @@
       "projectId": 1,
       "id": 335,
       "createdAt": "2025-10-05T04:32:10.715Z"
+    },
+    {
+      "type": "client_message",
+      "description": "New message from Test User: message sent",
+      "companyId": 1,
+      "projectId": 1,
+      "id": 364,
+      "createdAt": "2025-10-07T18:41:45.573Z"
+    },
+    {
+      "type": "admin_message",
+      "description": "Admin message sent: admin test message",
+      "companyId": 1,
+      "projectId": 1,
+      "id": 366,
+      "createdAt": "2025-10-07T18:41:58.803Z"
+    },
+    {
+      "type": "client_message",
+      "description": "New message from Socket Test: message sent",
+      "companyId": 1,
+      "projectId": 1,
+      "id": 368,
+      "createdAt": "2025-10-07T18:42:50.423Z"
     }
   ],
   "campaigns": [],
@@ -3605,5 +3656,5 @@
     "appointments": 0,
     "progressEntries": 0
   },
-  "nextId": 363
+  "nextId": 369
 }

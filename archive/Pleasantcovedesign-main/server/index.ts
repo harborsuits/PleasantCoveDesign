@@ -8,6 +8,7 @@ import { registerRoutes } from "./routes.js";
 import { storage } from './storage.js';
 import { attachSocket } from './socket.js';
 import publicWs from './routes/public-ws.js';
+import authRouter from './routes/auth.js';
 
 // Load environment variables FIRST before importing anything else
 dotenv.config({ path: resolve(process.cwd(), '.env') });
@@ -19,33 +20,13 @@ import express, { type Express } from "express";
 import cors from "cors";
 import { createR2Storage } from './storage/r2-storage.js';
 
-// CORS allowlist for security
-const ALLOWED_ORIGINS = new Set([
-  "http://localhost:5173",
-  "https://pleasantcovedesign.com",
-  "https://pleasantcovedesign-production.up.railway.app",
-  "https://nectarine-sparrow-dwsp.squarespace.com", // Adjust to your Squarespace domain
-  "https://www.pleasantcovedesign.com", // If using custom domain
-]);
-
-const corsOptions = {
-  origin(origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
-    // Allow requests with no origin (server-to-server, curl, etc.)
-    if (!origin) return callback(null, true);
-    callback(null, ALLOWED_ORIGINS.has(origin));
-  },
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: false,
-};
+// CORS allowlist for security - defined below with existing config
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const server = createServer(app);
-
-// Apply CORS middleware
-app.use(cors(corsOptions));
 
 // Initialize Socket.io with robust configuration
 const io = attachSocket(server);
@@ -145,34 +126,30 @@ io.on('connection', (socket) => {
 export { io };
 
 // --- CORS Configuration ---
-const allowedOrigins = [
-  'http://localhost:5173', // Admin UI
-  'http://localhost:3000', // Local server
-  'http://localhost:8080', // Test server for widget testing
-  'http://192.168.1.87:3000', // Local server via IP for mobile access
-  'https://pleasantcovedesign-production.up.railway.app', // Production frontend
-  'https://www.pleasantcovedesign.com', // Squarespace production
-  'https://nectarine-sparrow-dwsp.squarespace.com', // Squarespace test site
-  'https://1ce2-2603-7080-e501-3f6a-59ca-c294-1beb-ddfc.ngrok-free.app', // ngrok for HTTPS compatibility
-];
+// CORS allowlist for security - now function-based for Squarespace subdomains
+const ALLOWED_ORIGINS = new Set([
+  "http://localhost:5173",
+  "https://pleasantcovedesign.com",
+  "https://pleasantcovedesign-production.up.railway.app",
+  "https://nectarine-sparrow-dwsp.squarespace.com", // Adjust to your Squarespace domain
+  "https://www.pleasantcovedesign.com", // If using custom domain
+  "http://localhost:3000", // Local server
+  "http://localhost:8080", // Test server for widget testing
+  "http://192.168.1.87:3000", // Local server via IP for mobile access
+  "https://1ce2-2603-7080-e501-3f6a-59ca-c294-1beb-ddfc.ngrok-free.app", // ngrok for HTTPS compatibility
+]);
 
 const corsOptions: cors.CorsOptions = {
-  origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
+  origin(origin, callback) {
+    // Allow requests with no origin (server-to-server, curl, etc.)
     if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      console.warn(`🚫 CORS: Blocked origin: ${origin}`);
-      callback(new Error('Not allowed by CORS'));
-    }
+    callback(null, ALLOWED_ORIGINS.has(origin));
   },
-  credentials: true,
-  optionsSuccessStatus: 200
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: false,
 };
 
-console.log('🔧 CORS Allowed Origins:', allowedOrigins);
+console.log('🔧 CORS Allowed Origins:', Array.from(ALLOWED_ORIGINS));
 app.use(cors(corsOptions));
 // --- End of CORS Configuration ---
 
@@ -183,6 +160,13 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // Serve static files from React build (if they exist)
 const buildPath = path.join(__dirname, '../dist/client');
 app.use(express.static(buildPath));
+
+// Serve Lovable UI at /admin/
+const lovableDist = path.join(__dirname, '../../lovable-dist');
+app.use('/admin', express.static(lovableDist, { index: false }));
+app.get('/admin/*', (req, res) => {
+  res.sendFile(path.join(lovableDist, 'index.html'));
+});
 
 // Serve uploaded files from uploads directory with proper headers
 const uploadsPath = path.join(__dirname, '../uploads');
@@ -343,10 +327,13 @@ app.use('/api/new-lead', (req, res, next) => {
 // Register all API routes
 async function startServer() {
   try {
-    // Register public WebSocket exchange routes
-    app.use("/api", express.json(), publicWs);
+    // Register public WebSocket exchange routes (no auth required)
+    app.use("/api/public", express.json(), publicWs);
 
-    // Register all routes
+    // Admin auth routes
+    app.use("/api", authRouter);
+
+    // Register all other routes (includes admin routes with requireAdmin middleware)
     await registerRoutes(app, io);
     
     // Handle React Router - serve index.html for non-API routes
@@ -389,7 +376,8 @@ async function startServer() {
         `);
       }
     });
-    
+
+    console.log('🔄 About to start listening on port', PORT);
     server.listen(PORT, () => {
       console.log('✅ In-memory database initialized (empty - ready for real data)');
       console.log(`🚀 Pleasant Cove Design v1.1 server running on port ${PORT}`);
@@ -418,7 +406,10 @@ async function startServer() {
 }
 
 // Start the server
-startServer();
+startServer().catch(error => {
+  console.error('❌ Failed to start server:', error);
+  process.exit(1);
+});
 
 // Enhanced error handling
 process.on('uncaughtException', (error) => {

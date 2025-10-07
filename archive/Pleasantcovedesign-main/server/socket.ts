@@ -2,76 +2,61 @@ import { Server } from "socket.io";
 import jwt from "jsonwebtoken";
 import type { Server as HttpServer } from "http";
 
-// Import the CORS allowlist
-const ALLOWED_ORIGINS = new Set([
-  "http://localhost:5173",
-  "https://pleasantcovedesign.com",
-  "https://pleasantcovedesign-production.up.railway.app",
-  "https://nectarine-sparrow-dwsp.squarespace.com", // Adjust to your Squarespace domain
-  "https://www.pleasantcovedesign.com", // If using custom domain
-]);
-
-export function attachSocket(http: HttpServer) {
-  const io = new Server(http, {
+export function attachSocket(server: HttpServer) {
+  const io = new Server(server, {
     path: "/socket.io",
-    transports: ["websocket"],     // force ws to avoid long-poll quirks behind proxies
-    pingInterval: 20000,           // 20s ping for proxy-friendly connections
-    pingTimeout: 20000,            // 20s timeout
+    transports: ["websocket"],
     cors: {
-      origin(origin, callback) {
-        if (!origin) return callback(null, true); // allow curl / server-to-server
-        callback(null, ALLOWED_ORIGINS.has(origin));
-      },
+      origin: [
+        "http://localhost:5173",
+        "https://pleasantcovedesign.com",
+        "https://pleasantcovedesign-production.up.railway.app",
+        "https://pleasantcove.squarespace.com" // your SQ site (or custom)
+      ],
       methods: ["GET","POST"],
-      credentials: false,
     },
+    pingInterval: 20000,
+    pingTimeout: 20000,
   });
 
-  // Auth middleware: separate admin vs public connections
   io.use((socket, next) => {
+    const { token, wsToken } = (socket.handshake.auth || {}) as any;
     try {
-      const { token, wsToken } = (socket.handshake.auth || {}) as { token?: string; wsToken?: string };
-
-      // Admin path: verify your admin token/JWT if present
-      if (token) {
-        // TODO: replace with your admin token/JWT verification
+      if (wsToken) {
+        const p = jwt.verify(wsToken, process.env.JWT_SECRET!) as any;
+        socket.data.scope = "public";
+        socket.data.projectId = p.projectId;
+        return next();
+      }
+      if (token) { // admin JWT
+        jwt.verify(token, process.env.JWT_SECRET!);
         socket.data.scope = "admin";
         return next();
       }
-
-      // Public path: verify wsToken (required)
-      if (!wsToken) return next(new Error("Missing wsToken"));
-      const payload = jwt.verify(wsToken, process.env.JWT_SECRET || "fallback-secret-change-in-prod") as any;
-      if (payload.scope !== "public" || !payload.projectId) return next(new Error("Bad token"));
-      socket.data.scope = "public";
-      socket.data.projectId = payload.projectId;
-      return next();
+      return next(new Error("No auth"));
     } catch (e) {
       return next(new Error("Unauthorized"));
     }
   });
 
-  io.on("connection", (socket) => {
-    console.log(`🔌 Socket connected: ${socket.id} (${socket.data.scope})`);
-
-    // Public sockets auto-join their project room
-    if (socket.data.scope === "public" && socket.data.projectId) {
-      socket.join(`project:${socket.data.projectId}`);
-      console.log(`📍 Public socket ${socket.id} auto-joined project:${socket.data.projectId}`);
+  io.on("connection", (s) => {
+    if (s.data.scope === "public" && s.data.projectId) {
+      const room = `project:${s.data.projectId}`;
+      s.join(room);
+      console.log("[WS] public joined", room, s.id);
     }
 
-    // optional heartbeat
-    const ping = setInterval(() => socket.emit("sys:ping", Date.now()), 15000);
-    socket.on("disconnect", () => {
-      console.log(`🔌 Socket disconnected: ${socket.id}`);
-      clearInterval(ping);
+    s.on("join", ({ projectId }) => {
+      if (s.data.scope === "admin" && projectId) {
+        const room = `project:${projectId}`;
+        s.join(room);
+        console.log("[WS] admin joined", room, s.id);
+      }
     });
 
-    socket.on("join", ({ projectId }) => {
-      if (socket.data.scope === "admin" && projectId) {
-        socket.join(`project:${projectId}`);
-        console.log(`📍 Admin socket ${socket.id} joined project:${projectId}`);
-      }
+    s.on("leave", ({ projectId }) => {
+      const room = `project:${projectId}`;
+      s.leave(room);
     });
   });
 

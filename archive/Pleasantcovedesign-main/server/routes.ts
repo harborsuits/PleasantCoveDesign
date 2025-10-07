@@ -251,16 +251,8 @@ const PUBLIC_API_ROUTES = [
   "/health"
 ];
 
-// Admin auth middleware
-const requireAdmin = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.query.token || req.headers.authorization?.replace('Bearer ', '');
-  
-  if (token !== 'pleasantcove2024admin') {
-    return res.status(401).json({ error: 'Unauthorized. Admin access required.' });
-  }
-  
-  next();
-};
+// Import the proper admin auth middleware
+import { requireAdmin } from './middleware/requireAdmin.js';
 
 export async function registerRoutes(app: Express, io: any) {
   console.log('🔌 Socket.IO server initialized for routes');
@@ -1233,33 +1225,39 @@ export async function registerRoutes(app: Express, io: any) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    
+
     try {
       const { token } = req.params;
-      
+      const { cursor = 0, limit = 20 } = req.query;
+
       console.log(`🔍 Looking for project with token: ${token}`);
-      
+
       if (!token) {
         return res.status(400).json({ error: "Token is required" });
       }
-      
+
       // Find project by access token
       const project = await storage.getProjectByToken(token);
       console.log(`🔍 Project lookup result:`, project ? `Found project ID ${project.id}` : 'Project not found');
-      
+
       if (!project) {
         console.error(`❌ Project not found for token: ${token}`);
         return res.status(404).json({ error: "Project not found or invalid token" });
       }
-      
-      // Get messages for this project
-      const messages = await storage.getProjectMessages(project.id!);
-      console.log(`📨 Found ${messages?.length || 0} messages for project ${project.id}`);
-      
+
+      // Get messages and apply pagination
+      const allMessages = await storage.getProjectMessages(project.id!);
+      const startIndex = parseInt(cursor as string);
+      const limitNum = parseInt(limit as string);
+      const paginatedMessages = allMessages.slice(startIndex, startIndex + limitNum);
+      const hasMore = startIndex + limitNum < allMessages.length;
+
+      console.log(`📨 Returning ${paginatedMessages.length} messages (cursor: ${startIndex}, hasMore: ${hasMore}) for project ${project.id}`);
+
       res.json({
-        success: true,
-        messages: messages || [],
-        projectId: project.id
+        items: paginatedMessages,
+        nextCursor: hasMore ? startIndex + limitNum : null,
+        hasMore
       });
     } catch (error) {
       console.error("Failed to fetch project messages by token:", error);
@@ -1305,35 +1303,6 @@ export async function registerRoutes(app: Express, io: any) {
     } catch (error) {
       console.error("Failed to fetch project summary:", error);
       res.status(500).json({ error: "Failed to fetch project data" });
-    }
-  });
-
-  // Get messages for project (PUBLIC - for widget history)
-  app.get("/api/public/project/:token/messages", async (req: Request, res: Response) => {
-    try {
-      const { token } = req.params;
-      const { cursor = 0, limit = 20 } = req.query;
-
-      // Verify project exists and get project ID
-      const projectData = await storage.getProjectByToken(token);
-      if (!projectData) {
-        return res.status(404).json({ error: "Project not found" });
-      }
-
-      // Get messages with pagination
-      const messages = await storage.getProjectMessages(projectData.id!, {
-        cursor: parseInt(cursor as string),
-        limit: parseInt(limit as string)
-      });
-
-      res.json({
-        items: messages.items,
-        nextCursor: messages.nextCursor,
-        hasMore: messages.hasMore
-      });
-    } catch (error) {
-      console.error("Failed to fetch public messages:", error);
-      res.status(500).json({ error: "Failed to fetch messages" });
     }
   });
 
@@ -1461,21 +1430,17 @@ export async function registerRoutes(app: Express, io: any) {
       if (io) {
         const broadcastMessage = {
           id: message.id,
-          projectId: projectData.id,  // Add projectId for admin inbox
-          projectToken: token,
+          projectId: projectData.id,
           senderName: message.senderName,
           content: message.content,
           createdAt: message.createdAt,
-          senderType: senderType as 'client' | 'admin',  // Use actual senderType
+          senderType: senderType as 'client' | 'admin',
           attachments: message.attachments || []
         };
-        
-        console.log(`📤 [SERVER] Broadcasting to room: ${token}`);
-        io.to(token).emit('newMessage', broadcastMessage);
-        
-        // --- ADMIN BROADCAST ---
-        console.log(`📡 [SERVER] Broadcasting to admin-room with message:`, broadcastMessage);
-        io.to('admin-room').emit('newMessage', broadcastMessage);
+
+        const room = `project:${projectData.id}`;
+        console.log(`📤 [SERVER] Broadcasting to room: ${room}`);
+        io.to(room).emit('message:new', broadcastMessage);
       }
 
       // Log activity for admin
@@ -2143,20 +2108,17 @@ export async function registerRoutes(app: Express, io: any) {
       if (io) {
         const broadcastMessage = {
           id: message.id,
-          projectToken: project.accessToken,
+          projectId: projectId,
           senderName: message.senderName,
           content: message.content,
           createdAt: message.createdAt,
           senderType: 'admin',
           attachments: message.attachments || []
         };
-        
-        console.log(`📡 Broadcasting admin message to project room: ${project.accessToken}`);
-        io.to(project.accessToken).emit('newMessage', broadcastMessage);
-        
-        // --- ADMIN BROADCAST ---
-        console.log(`📡 [SERVER] Broadcasting admin message to admin-room`);
-        io.to('admin-room').emit('admin-new-message', broadcastMessage);
+
+        const room = `project:${projectId}`;
+        console.log(`📡 Broadcasting admin message to room: ${room}`);
+        io.to(room).emit('message:new', broadcastMessage);
       }
 
       // Log activity
@@ -5665,6 +5627,8 @@ Booked via: ${source}
       res.status(500).json({ error: "WS ping failed", details: error.message });
     }
   });
+
+  console.log('✅ [ROUTES] All routes registered successfully');
 
   // Correctly closing the function
 }
