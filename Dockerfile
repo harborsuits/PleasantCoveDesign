@@ -29,7 +29,8 @@ COPY archive/Pleasantcovedesign-main/package*.json ./
 
 ENV npm_config_legacy_peer_deps=true \
     NPM_CONFIG_AUDIT=false \
-    NPM_CONFIG_FUND=false
+    NPM_CONFIG_FUND=false \
+    npm_config_build_from_source=false
 
 # 2) install deps (show debug if it fails)
 RUN --mount=type=cache,target=/root/.npm \
