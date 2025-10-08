@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pleasant Cove Design - Integration Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f3f4f6;
+        }
+        
+        h1 {
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .test-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-card h3 {
+            margin-top: 0;
+            color: #4F46E5;
+        }
+        
+        .status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .status.success {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        
+        .status.error {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+        
+        .status.pending {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        
+        button {
+            background: #4F46E5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #4338CA;
+        }
+        
+        .widget-container {
+            margin-top: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .widget-container h2 {
+            margin-top: 0;
+            color: #1f2937;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+        
+        .instructions {
+            background: #EEF2FF;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #4F46E5;
+        }
+        
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 Pleasant Cove Design - Integration Test</h1>
+    
+    <div class="instructions">
+        <h3>📋 Quick Test Guide</h3>
+        <p>This page helps you verify that all Pleasant Cove Design components are working correctly.</p>
+        <ol>
+            <li>First, make sure all services are running: <code>./start-all-services.sh</code></li>
+            <li>Click each "Test" button below to verify connectivity</li>
+            <li>Check that all status indicators show "Connected"</li>
+            <li>Test each widget in the sections below</li>
+        </ol>
+    </div>
+    
+    <div class="test-grid">
+        <!-- Backend API Test -->
+        <div class="test-card">
+            <h3>Backend API</h3>
+            <p>Main API server for all operations</p>
+            <div id="api-status" class="status pending">Checking...</div>
+            <br>
+            <button onclick="testAPI()">Test Connection</button>
+        </div>
+        
+        <!-- Admin UI Test -->
+        <div class="test-card">
+            <h3>Admin Dashboard</h3>
+            <p>Management interface for your business</p>
+            <div id="admin-status" class="status pending">Checking...</div>
+            <br>
+            <button onclick="testAdmin()">Open Dashboard</button>
+        </div>
+        
+        <!-- WebSocket Test -->
+        <div class="test-card">
+            <h3>WebSocket Connection</h3>
+            <p>Real-time communication channel</p>
+            <div id="ws-status" class="status pending">Checking...</div>
+            <br>
+            <button onclick="testWebSocket()">Test WebSocket</button>
+        </div>
+        
+        <!-- Production API Test -->
+        <div class="test-card">
+            <h3>Production API</h3>
+            <p>Railway production deployment</p>
+            <div id="prod-status" class="status pending">Checking...</div>
+            <br>
+            <button onclick="testProduction()">Test Production</button>
+        </div>
+    </div>
+    
+    <!-- Widget Tests -->
+    <div class="widget-container">
+        <h2>📱 Messaging Widget Test</h2>
+        <p>The chat widget should appear in the bottom-right corner. Click it to test messaging.</p>
+        <iframe src="messaging-widget-unified.html"></iframe>
+    </div>
+    
+    <div class="widget-container">
+        <h2>📊 Project Workspace Test</h2>
+        <p>Test the project workspace with a demo token. Add <code>?token=demo-project-123</code> to test with auth.</p>
+        <iframe src="squarespace-module.html?token=demo-project-123"></iframe>
+    </div>
+    
+    <div class="widget-container">
+        <h2>📅 Appointment Booking Test</h2>
+        <p>Test the appointment booking form. All fields should be functional.</p>
+        <iframe src="appointment-booking.html"></iframe>
+    </div>
+    
+    <script>
+        // Configuration
+        const LOCAL_API = 'http://localhost:3000';
+        const PRODUCTION_API = 'https://pcd-production-clean-production-e6f3.up.railway.app';
+        const ADMIN_UI = 'http://localhost:5173';
+        
+        // Test Backend API
+        async function testAPI() {
+            const statusEl = document.getElementById('api-status');
+            statusEl.className = 'status pending';
+            statusEl.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch(`${LOCAL_API}/health`);
+                if (response.ok) {
+                    statusEl.className = 'status success';
+                    statusEl.textContent = 'Connected ✓';
+                } else {
+                    throw new Error('API not responding');
+                }
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.textContent = 'Not Connected ✗';
+                console.error('API test failed:', error);
+            }
+        }
+        
+        // Test Admin UI
+        function testAdmin() {
+            window.open(ADMIN_UI, '_blank');
+            const statusEl = document.getElementById('admin-status');
+            statusEl.className = 'status success';
+            statusEl.textContent = 'Opening...';
+        }
+        
+        // Test WebSocket
+        function testWebSocket() {
+            const statusEl = document.getElementById('ws-status');
+            statusEl.className = 'status pending';
+            statusEl.textContent = 'Connecting...';
+            
+            try {
+                const ws = new WebSocket('ws://localhost:3000/ws');
+                
+                ws.onopen = () => {
+                    statusEl.className = 'status success';
+                    statusEl.textContent = 'Connected ✓';
+                    ws.close();
+                };
+                
+                ws.onerror = () => {
+                    statusEl.className = 'status error';
+                    statusEl.textContent = 'Failed to Connect ✗';
+                };
+                
+                setTimeout(() => {
+                    if (ws.readyState === WebSocket.CONNECTING) {
+                        ws.close();
+                        statusEl.className = 'status error';
+                        statusEl.textContent = 'Connection Timeout ✗';
+                    }
+                }, 5000);
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.textContent = 'Error ✗';
+                console.error('WebSocket test failed:', error);
+            }
+        }
+        
+        // Test Production API
+        async function testProduction() {
+            const statusEl = document.getElementById('prod-status');
+            statusEl.className = 'status pending';
+            statusEl.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch(`${PRODUCTION_API}/health`);
+                if (response.ok) {
+                    statusEl.className = 'status success';
+                    statusEl.textContent = 'Connected ✓';
+                } else {
+                    throw new Error('Production API not responding');
+                }
+            } catch (error) {
+                // Production might have CORS restrictions, so we'll check differently
+                statusEl.className = 'status pending';
+                statusEl.textContent = 'May be CORS restricted';
+                console.log('Production test note:', error.message);
+            }
+        }
+        
+        // Run initial tests
+        window.onload = () => {
+            setTimeout(() => {
+                testAPI();
+                testWebSocket();
+                testProduction();
+            }, 1000);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pleasant Cove Design - Book Appointment</title>
+    <style>
+        /* Appointment Booking Widget Styles */
+        .pcd-booking-widget {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .pcd-booking-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .pcd-booking-header {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .pcd-booking-header h2 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+
+        .pcd-booking-header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* Form */
+        .pcd-booking-form {
+            padding: 30px;
+        }
+
+        .pcd-form-group {
+            margin-bottom: 24px;
+        }
+
+        .pcd-form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .pcd-form-input,
+        .pcd-form-select,
+        .pcd-form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .pcd-form-input:focus,
+        .pcd-form-select:focus,
+        .pcd-form-textarea:focus {
+            outline: none;
+            border-color: #4F46E5;
+        }
+
+        .pcd-form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Date/Time Grid */
+        .pcd-datetime-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Time Slots */
+        .pcd-time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .pcd-time-slot {
+            padding: 10px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .pcd-time-slot:hover {
+            border-color: #4F46E5;
+            background: #f3f4f6;
+        }
+
+        .pcd-time-slot.selected {
+            border-color: #4F46E5;
+            background: #EEF2FF;
+            color: #4F46E5;
+            font-weight: 600;
+        }
+
+        .pcd-time-slot.unavailable {
+            background: #f3f4f6;
+            color: #9ca3af;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Service Options */
+        .pcd-service-options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .pcd-service-option {
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pcd-service-option:hover {
+            border-color: #4F46E5;
+            background: #f3f4f6;
+        }
+
+        .pcd-service-option.selected {
+            border-color: #4F46E5;
+            background: #EEF2FF;
+        }
+
+        .pcd-service-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .pcd-service-duration {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Submit Button */
+        .pcd-submit-button {
+            width: 100%;
+            padding: 16px;
+            background: #4F46E5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .pcd-submit-button:hover {
+            background: #4338CA;
+        }
+
+        .pcd-submit-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        /* Success Message */
+        .pcd-success-message {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #15803d;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: none;
+        }
+
+        .pcd-success-message.show {
+            display: block;
+        }
+
+        /* Error Message */
+        .pcd-error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: none;
+        }
+
+        .pcd-error-message.show {
+            display: block;
+        }
+
+        /* Loading State */
+        .pcd-loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .pcd-loading.show {
+            display: block;
+        }
+
+        .pcd-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e5e7eb;
+            border-top-color: #4F46E5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .pcd-datetime-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pcd-time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pcd-booking-widget">
+        <div class="pcd-booking-container">
+            <!-- Header -->
+            <div class="pcd-booking-header">
+                <h2>Book a Consultation</h2>
+                <p>Schedule a free consultation to discuss your project</p>
+            </div>
+
+            <!-- Success/Error Messages -->
+            <div class="pcd-booking-form">
+                <div class="pcd-success-message" id="pcd-success-message">
+                    <strong>Success!</strong> Your appointment has been booked. We'll send you a confirmation email shortly.
+                </div>
+
+                <div class="pcd-error-message" id="pcd-error-message">
+                    <strong>Error!</strong> <span id="pcd-error-text">Something went wrong. Please try again.</span>
+                </div>
+
+                <!-- Booking Form -->
+                <form id="pcd-booking-form" onsubmit="PCDBooking.handleSubmit(event)">
+                    <!-- Service Selection -->
+                    <div class="pcd-form-group">
+                        <label class="pcd-form-label">Select Service</label>
+                        <div class="pcd-service-options">
+                            <div class="pcd-service-option" onclick="PCDBooking.selectService('consultation')">
+                                <div>
+                                    <div class="pcd-service-name">Free Consultation</div>
+                                    <div class="pcd-service-duration">30 minutes</div>
+                                </div>
+                                <input type="radio" name="service" value="consultation" style="display: none;">
+                            </div>
+                            <div class="pcd-service-option" onclick="PCDBooking.selectService('design-review')">
+                                <div>
+                                    <div class="pcd-service-name">Design Review</div>
+                                    <div class="pcd-service-duration">60 minutes</div>
+                                </div>
+                                <input type="radio" name="service" value="design-review" style="display: none;">
+                            </div>
+                            <div class="pcd-service-option" onclick="PCDBooking.selectService('project-planning')">
+                                <div>
+                                    <div class="pcd-service-name">Project Planning</div>
+                                    <div class="pcd-service-duration">90 minutes</div>
+                                </div>
+                                <input type="radio" name="service" value="project-planning" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date and Time -->
+                    <div class="pcd-form-group">
+                        <label class="pcd-form-label">Select Date & Time</label>
+                        <div class="pcd-datetime-grid">
+                            <div>
+                                <input type="date" class="pcd-form-input" id="pcd-date" name="date" 
+                                       min="" onchange="PCDBooking.updateTimeSlots()" required>
+                            </div>
+                            <div>
+                                <select class="pcd-form-select" id="pcd-timezone" name="timezone">
+                                    <option value="America/New_York">Eastern Time</option>
+                                    <option value="America/Chicago">Central Time</option>
+                                    <option value="America/Denver">Mountain Time</option>
+                                    <option value="America/Los_Angeles">Pacific Time</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="pcd-time-slots" id="pcd-time-slots">
+                            <!-- Time slots will be populated dynamically -->
+                        </div>
+                        <input type="hidden" id="pcd-time" name="time" required>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="pcd-form-group">
+                        <label class="pcd-form-label">Your Name</label>
+                        <input type="text" class="pcd-form-input" name="name" required>
+                    </div>
+
+                    <div class="pcd-form-group">
+                        <label class="pcd-form-label">Email Address</label>
+                        <input type="email" class="pcd-form-input" name="email" required>
+                    </div>
+
+                    <div class="pcd-form-group">
+                        <label class="pcd-form-label">Phone Number</label>
+                        <input type="tel" class="pcd-form-input" name="phone">
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="pcd-form-group">
+                        <label class="pcd-form-label">Tell us about your project (optional)</label>
+                        <textarea class="pcd-form-textarea" name="message" 
+                                  placeholder="Briefly describe your project or what you'd like to discuss..."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="pcd-submit-button" id="pcd-submit-button">
+                        Book Appointment
+                    </button>
+                </form>
+
+                <!-- Loading State -->
+                <div class="pcd-loading" id="pcd-loading">
+                    <div class="pcd-spinner"></div>
+                    <p>Booking your appointment...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PCDBooking = {
+            // Configuration
+            config: {
+                serverUrl: this.getServerUrl(),
+                selectedService: null,
+                selectedTime: null,
+                memberInfo: null
+            },
+
+            // Get appropriate server URL
+            getServerUrl() {
+                // Check for debug mode
+                if (localStorage.getItem('pcd_debug_mode') === 'true') {
+                    return 'http://localhost:3000';
+                }
+
+                // Check if running locally
+                if (window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1') {
+                    return 'http://localhost:3000';
+                }
+
+                // Production URL
+                return 'https://pcd-production-clean-production-e6f3.up.railway.app';
+            },
+
+            // Initialize
+            init() {
+                console.log('🚀 Initializing Pleasant Cove Booking Widget');
+                
+                // Set minimum date to today
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('pcd-date').min = today;
+                
+                // Detect Squarespace member
+                this.detectSquarespaceMember();
+                
+                // Pre-fill member info if available
+                if (this.config.memberInfo) {
+                    this.prefillMemberInfo();
+                }
+                
+                // Generate initial time slots
+                this.generateTimeSlots();
+            },
+
+            // Detect Squarespace member
+            detectSquarespaceMember() {
+                // Check Static.SQUARESPACE_CONTEXT
+                if (window.Static && window.Static.SQUARESPACE_CONTEXT) {
+                    const ctx = window.Static.SQUARESPACE_CONTEXT;
+                    if (ctx.authenticatedAccount) {
+                        this.config.memberInfo = {
+                            id: ctx.authenticatedAccount.id,
+                            email: ctx.authenticatedAccount.email,
+                            firstName: ctx.authenticatedAccount.firstName,
+                            lastName: ctx.authenticatedAccount.lastName
+                        };
+                        return;
+                    }
+                }
+
+                // Check SiteUserInfo cookie
+                const cookies = document.cookie.split(';');
+                for (let cookie of cookies) {
+                    if (cookie.trim().startsWith('SiteUserInfo=')) {
+                        try {
+                            const userInfo = JSON.parse(decodeURIComponent(cookie.split('=')[1]));
+                            if (userInfo.authenticated) {
+                                this.config.memberInfo = userInfo;
+                                return;
+                            }
+                        } catch (e) {
+                            console.error('Error parsing SiteUserInfo:', e);
+                        }
+                    }
+                }
+            },
+
+            // Prefill member information
+            prefillMemberInfo() {
+                const form = document.getElementById('pcd-booking-form');
+                if (this.config.memberInfo.email) {
+                    form.email.value = this.config.memberInfo.email;
+                }
+                if (this.config.memberInfo.firstName || this.config.memberInfo.lastName) {
+                    form.name.value = `${this.config.memberInfo.firstName || ''} ${this.config.memberInfo.lastName || ''}`.trim();
+                }
+            },
+
+            // Select service
+            selectService(service) {
+                this.config.selectedService = service;
+                
+                // Update UI
+                document.querySelectorAll('.pcd-service-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                event.currentTarget.classList.add('selected');
+                
+                // Update hidden radio
+                document.querySelector(`input[value="${service}"]`).checked = true;
+            },
+
+            // Generate time slots
+            generateTimeSlots() {
+                const container = document.getElementById('pcd-time-slots');
+                const slots = [
+                    '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
+                    '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM',
+                    '4:00 PM', '4:30 PM', '5:00 PM'
+                ];
+                
+                container.innerHTML = slots.map(time => `
+                    <div class="pcd-time-slot" onclick="PCDBooking.selectTime('${time}')">
+                        ${time}
+                    </div>
+                `).join('');
+            },
+
+            // Update time slots based on date
+            async updateTimeSlots() {
+                const date = document.getElementById('pcd-date').value;
+                if (!date) return;
+                
+                // In a real implementation, this would check availability from the server
+                // For now, we'll randomly mark some slots as unavailable
+                const slots = document.querySelectorAll('.pcd-time-slot');
+                slots.forEach(slot => {
+                    // Random availability for demo
+                    if (Math.random() > 0.8) {
+                        slot.classList.add('unavailable');
+                        slot.onclick = null;
+                    } else {
+                        slot.classList.remove('unavailable');
+                        slot.onclick = () => this.selectTime(slot.textContent.trim());
+                    }
+                });
+            },
+
+            // Select time
+            selectTime(time) {
+                if (event.currentTarget.classList.contains('unavailable')) return;
+                
+                this.config.selectedTime = time;
+                
+                // Update UI
+                document.querySelectorAll('.pcd-time-slot').forEach(slot => {
+                    slot.classList.remove('selected');
+                });
+                event.currentTarget.classList.add('selected');
+                
+                // Update hidden input
+                document.getElementById('pcd-time').value = time;
+            },
+
+            // Handle form submission
+            async handleSubmit(event) {
+                event.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(event.target);
+                const data = {
+                    service: this.config.selectedService,
+                    date: formData.get('date'),
+                    time: formData.get('time'),
+                    timezone: formData.get('timezone'),
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    message: formData.get('message'),
+                    squarespaceMemberId: this.config.memberInfo?.id
+                };
+                
+                // Validate
+                if (!data.service) {
+                    this.showError('Please select a service');
+                    return;
+                }
+                
+                if (!data.time) {
+                    this.showError('Please select a time slot');
+                    return;
+                }
+                
+                // Show loading
+                this.showLoading(true);
+                
+                try {
+                    const response = await fetch(`${this.config.serverUrl}/api/appointments`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok && result.success) {
+                        this.showSuccess();
+                        // Reset form
+                        event.target.reset();
+                        this.config.selectedService = null;
+                        this.config.selectedTime = null;
+                        document.querySelectorAll('.selected').forEach(el => {
+                            el.classList.remove('selected');
+                        });
+                    } else {
+                        this.showError(result.message || 'Failed to book appointment');
+                    }
+                } catch (error) {
+                    console.error('Booking error:', error);
+                    this.showError('An error occurred. Please try again.');
+                } finally {
+                    this.showLoading(false);
+                }
+            },
+
+            // Show loading state
+            showLoading(show) {
+                const form = document.getElementById('pcd-booking-form');
+                const loading = document.getElementById('pcd-loading');
+                const button = document.getElementById('pcd-submit-button');
+                
+                if (show) {
+                    form.style.display = 'none';
+                    loading.classList.add('show');
+                    button.disabled = true;
+                } else {
+                    form.style.display = 'block';
+                    loading.classList.remove('show');
+                    button.disabled = false;
+                }
+            },
+
+            // Show success message
+            showSuccess() {
+                const successMsg = document.getElementById('pcd-success-message');
+                const errorMsg = document.getElementById('pcd-error-message');
+                
+                errorMsg.classList.remove('show');
+                successMsg.classList.add('show');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Hide after 10 seconds
+                setTimeout(() => {
+                    successMsg.classList.remove('show');
+                }, 10000);
+            },
+
+            // Show error message
+            showError(message) {
+                const successMsg = document.getElementById('pcd-success-message');
+                const errorMsg = document.getElementById('pcd-error-message');
+                const errorText = document.getElementById('pcd-error-text');
+                
+                successMsg.classList.remove('show');
+                errorText.textContent = message;
+                errorMsg.classList.add('show');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Hide after 5 seconds
+                setTimeout(() => {
+                    errorMsg.classList.remove('show');
+                }, 5000);
+            }
+        };
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => PCDBooking.init());
+        } else {
+            PCDBooking.init();
+        }
+    </script>
+</body>
+</html>
