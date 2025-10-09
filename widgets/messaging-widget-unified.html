@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pleasant Cove Design - Messaging Widget</title>
+    
+    <!-- 
+    Configuration: Add this script tag BEFORE the widget to override defaults:
+    
+    <script>
+      window.PCD_CONFIG = {
+        apiBase: 'https://your-api.railway.app',
+        wsBase: 'wss://your-api.railway.app',
+        projectToken: 'YOUR_PROJECT_TOKEN' // Set per client
+      };
+    </script>
+    -->
     <style>
         /* Base widget styling */
         .pcd-messaging-widget {
@@ -282,6 +294,11 @@
 
             // Get appropriate server URL
             getServerUrl() {
+                // Check for window configuration first
+                if (window.PCD_CONFIG && window.PCD_CONFIG.apiBase) {
+                    return window.PCD_CONFIG.apiBase;
+                }
+
                 // Check for debug mode
                 if (localStorage.getItem('pcd_debug_mode') === 'true') {
                     return 'http://localhost:3000';

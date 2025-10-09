@@ -1,0 +1,9 @@
+# API Configuration
+VITE_API_URL=https://api.yourdomain.com
+VITE_WS_URL=wss://api.yourdomain.com
+
+# Public Origin for CORS (Squarespace domain)
+VITE_PUBLIC_ORIGIN=https://www.yoursquarespacesite.com
+
+# Optional: Enable debug logging
+VITE_DEBUG=true

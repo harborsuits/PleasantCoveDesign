@@ -1,0 +1,187 @@
+{
+  "info": {
+    "name": "Pleasant Cove Design - Phase 1 API Collection",
+    "description": "Core API endpoints validated in Phase 1 integration",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "pleasantcove2024admin",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Get Admin Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"admin\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/token",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "token"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "List All Projects",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects"]
+            }
+          }
+        },
+        {
+          "name": "Get Project Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Project Messages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/1/messages",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "1", "messages"]
+            }
+          }
+        },
+        {
+          "name": "Send Project Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"content\": \"Test message from Postman\", \"senderName\": \"API Test\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/1/messages",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "1", "messages"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Public Endpoints (Squarespace)",
+      "item": [
+        {
+          "name": "Get Public Project",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Origin",
+                "value": "https://www.pleasantcovedesign.com"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/public/project/Q_lXDL9XQ-Q8d-jay7W2a2ZU",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "public", "project", "Q_lXDL9XQ-Q8d-jay7W2a2ZU"]
+            }
+          }
+        },
+        {
+          "name": "Get Public Project Messages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Origin",
+                "value": "https://www.pleasantcovedesign.com"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/public/project/Q_lXDL9XQ-Q8d-jay7W2a2ZU/messages",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "public", "project", "Q_lXDL9XQ-Q8d-jay7W2a2ZU", "messages"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Checks",
+      "item": [
+        {
+          "name": "API Health",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

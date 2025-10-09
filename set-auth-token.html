@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Auth Token - Pleasant Cove Design</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; margin-bottom: 30px; }
+        .status { 
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+        .status.success { background: #d1fae5; color: #065f46; }
+        .status.error { background: #fee2e2; color: #dc2626; }
+        .status.info { background: #dbeafe; color: #1e40af; }
+        button {
+            background: #4F46E5;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover { background: #4338CA; }
+        .code {
+            background: #f3f4f6;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 12px;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        .current-tokens {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .token-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Set Authentication Token</h1>
+        
+        <div class="status info">
+            <strong>Current Issue:</strong> Your WebSocket is failing to authenticate because it doesn't have the correct JWT token.
+        </div>
+
+        <div class="current-tokens">
+            <h3>Current Tokens in Browser:</h3>
+            <div id="current-tokens-list"></div>
+        </div>
+
+        <div style="margin: 30px 0;">
+            <h3>Fix Authentication:</h3>
+            <p>Click the button below to set the correct authentication token that matches your server's JWT_SECRET:</p>
+            
+            <button onclick="setCorrectToken()">Set Correct Authentication Token</button>
+            <button onclick="clearAllTokens()">Clear All Tokens First</button>
+        </div>
+
+        <div id="result"></div>
+
+        <div style="margin-top: 30px;">
+            <h3>After Setting Token:</h3>
+            <ol>
+                <li>The token will be saved in your browser's localStorage</li>
+                <li>Click the button below to go to the admin dashboard</li>
+                <li>The WebSocket should connect successfully</li>
+            </ol>
+            
+            <button onclick="goToDashboard()" style="background: #10b981;">
+                Go to Admin Dashboard →
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const CORRECT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImJ1c2luZXNzSWQiOjEsInJvbGUiOiJhZG1pbiIsInNjb3BlIjoiYWRtaW4iLCJpYXQiOjE3NTk4OTY3MzAsImV4cCI6MTc1OTk4MzEzMH0.qS_rqx7eUqGrG7YuWmaHShAtsHbMnVGUqgEz_PLABQs';
+
+        function showCurrentTokens() {
+            const tokensList = document.getElementById('current-tokens-list');
+            const tokens = [
+                { key: 'auth_token', value: localStorage.getItem('auth_token') },
+                { key: 'pcd_token', value: localStorage.getItem('pcd_token') },
+                { key: 'token', value: localStorage.getItem('token') },
+                { key: 'adminToken', value: localStorage.getItem('adminToken') }
+            ];
+
+            let html = '';
+            tokens.forEach(token => {
+                if (token.value) {
+                    const isCorrect = token.value === CORRECT_TOKEN;
+                    html += `
+                        <div class="token-item">
+                            <strong>${token.key}:</strong>
+                            <div class="code">${token.value.substring(0, 50)}...</div>
+                            <span style="color: ${isCorrect ? '#10b981' : '#ef4444'}">
+                                ${isCorrect ? '✅ Valid' : '❌ Invalid/Old'}
+                            </span>
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div class="token-item">
+                            <strong>${token.key}:</strong> <span style="color: #6b7280">Not set</span>
+                        </div>
+                    `;
+                }
+            });
+
+            tokensList.innerHTML = html || '<p>No tokens found in localStorage</p>';
+        }
+
+        function clearAllTokens() {
+            // Clear all possible auth-related items
+            const keysToRemove = ['auth_token', 'pcd_token', 'token', 'adminToken', 'jwt', 'access_token'];
+            keysToRemove.forEach(key => localStorage.removeItem(key));
+            
+            // Also clear sessionStorage
+            sessionStorage.clear();
+            
+            document.getElementById('result').innerHTML = `
+                <div class="status success">
+                    ✅ All tokens cleared successfully!
+                </div>
+            `;
+            
+            showCurrentTokens();
+        }
+
+        function setCorrectToken() {
+            // Set the correct token in multiple keys to ensure compatibility
+            localStorage.setItem('auth_token', CORRECT_TOKEN);
+            localStorage.setItem('pcd_token', CORRECT_TOKEN);
+            
+            document.getElementById('result').innerHTML = `
+                <div class="status success">
+                    ✅ Authentication token set successfully!
+                    <div style="margin-top: 10px;">
+                        <strong>Token Details:</strong>
+                        <ul style="text-align: left; margin: 10px 0;">
+                            <li>User ID: 1</li>
+                            <li>Business ID: 1</li>
+                            <li>Role: admin</li>
+                            <li>Scope: admin</li>
+                            <li>Valid for: 24 hours</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            showCurrentTokens();
+        }
+
+        function goToDashboard() {
+            window.location.href = 'http://localhost:5173';
+        }
+
+        // Show current tokens on page load
+        showCurrentTokens();
+    </script>
+</body>
+</html>
+

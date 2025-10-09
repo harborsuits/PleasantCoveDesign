@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Connection Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        .success { color: #10b981; font-weight: bold; }
+        .error { color: #ef4444; font-weight: bold; }
+        .pending { color: #f59e0b; font-weight: bold; }
+        .log {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            max-height: 300px;
+            overflow-y: auto;
+            font-size: 12px;
+        }
+        button {
+            background: #4F46E5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #4338CA; }
+        button:disabled { background: #9ca3af; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔌 WebSocket Connection Test</h1>
+        
+        <div class="test-section">
+            <h3>1. Authentication Status</h3>
+            <div id="auth-status"></div>
+            <button onclick="setValidToken()">Set Valid Token</button>
+            <button onclick="clearTokens()">Clear All Tokens</button>
+        </div>
+
+        <div class="test-section">
+            <h3>2. WebSocket Connection Test</h3>
+            <div id="ws-status"></div>
+            <button onclick="testWebSocket()" id="test-btn">Test WebSocket Connection</button>
+            <button onclick="disconnect()" id="disconnect-btn" disabled>Disconnect</button>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Connection Log</h3>
+            <div class="log" id="log"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Send Test Messages</h3>
+            <div id="message-status"></div>
+            <button onclick="joinProject()" id="join-btn" disabled>Join Project Room</button>
+            <button onclick="sendTestMessage()" id="send-btn" disabled>Send Test Message</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script>
+        let socket = null;
+        const VALID_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImJ1c2luZXNzSWQiOjEsInJvbGUiOiJhZG1pbiIsInNjb3BlIjoiYWRtaW4iLCJpYXQiOjE3NTk4OTY3MzAsImV4cCI6MTc1OTk4MzEzMH0.qS_rqx7eUqGrG7YuWmaHShAtsHbMnVGUqgEz_PLABQs";
+
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            const colorClass = type === 'error' ? 'error' : type === 'success' ? 'success' : '';
+            logDiv.innerHTML += `<div><span class="${colorClass}">[${time}] ${message}</span></div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function updateAuthStatus() {
+            const authToken = localStorage.getItem('auth_token');
+            const pcdToken = localStorage.getItem('pcd_token');
+            const statusDiv = document.getElementById('auth-status');
+            
+            if (authToken === VALID_TOKEN) {
+                statusDiv.innerHTML = '<p class="success">✅ Valid authentication token found!</p>';
+            } else if (authToken) {
+                statusDiv.innerHTML = '<p class="error">❌ Invalid authentication token found</p>';
+            } else {
+                statusDiv.innerHTML = '<p class="error">❌ No authentication token found</p>';
+            }
+        }
+
+        function setValidToken() {
+            localStorage.setItem('auth_token', VALID_TOKEN);
+            localStorage.setItem('pcd_token', VALID_TOKEN);
+            updateAuthStatus();
+            log('Valid token set in localStorage', 'success');
+        }
+
+        function clearTokens() {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('pcd_token');
+            updateAuthStatus();
+            log('All tokens cleared', 'info');
+        }
+
+        function testWebSocket() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('pcd_token');
+            
+            if (!token) {
+                log('No authentication token found!', 'error');
+                document.getElementById('ws-status').innerHTML = '<p class="error">❌ No token - please set a valid token first</p>';
+                return;
+            }
+
+            log('Connecting to WebSocket server...', 'info');
+            document.getElementById('ws-status').innerHTML = '<p class="pending">⏳ Connecting...</p>';
+
+            socket = io('http://localhost:3000', {
+                path: '/socket.io',
+                transports: ['websocket'],
+                auth: { token },
+                reconnection: true,
+                reconnectionAttempts: 3,
+                reconnectionDelay: 1000,
+            });
+
+            socket.on('connect', () => {
+                log(`Connected successfully! Socket ID: ${socket.id}`, 'success');
+                document.getElementById('ws-status').innerHTML = '<p class="success">✅ Connected!</p>';
+                document.getElementById('test-btn').disabled = true;
+                document.getElementById('disconnect-btn').disabled = false;
+                document.getElementById('join-btn').disabled = false;
+                document.getElementById('send-btn').disabled = false;
+            });
+
+            socket.on('connect_error', (error) => {
+                log(`Connection error: ${error.message}`, 'error');
+                document.getElementById('ws-status').innerHTML = `<p class="error">❌ Connection failed: ${error.message}</p>`;
+                document.getElementById('test-btn').disabled = false;
+                document.getElementById('disconnect-btn').disabled = true;
+            });
+
+            socket.on('disconnect', (reason) => {
+                log(`Disconnected: ${reason}`, 'info');
+                document.getElementById('ws-status').innerHTML = '<p class="error">❌ Disconnected</p>';
+                document.getElementById('test-btn').disabled = false;
+                document.getElementById('disconnect-btn').disabled = true;
+                document.getElementById('join-btn').disabled = true;
+                document.getElementById('send-btn').disabled = true;
+            });
+
+            socket.on('error', (error) => {
+                log(`Socket error: ${error}`, 'error');
+            });
+
+            // Listen for any events
+            socket.onAny((eventName, ...args) => {
+                log(`Received event: ${eventName} - ${JSON.stringify(args)}`, 'info');
+            });
+        }
+
+        function disconnect() {
+            if (socket) {
+                socket.disconnect();
+                socket = null;
+            }
+        }
+
+        function joinProject() {
+            if (!socket || !socket.connected) {
+                log('Not connected to WebSocket!', 'error');
+                return;
+            }
+
+            const projectId = 1; // Test project ID
+            socket.emit('join', { projectId });
+            log(`Emitted join event for project ${projectId}`, 'info');
+            document.getElementById('message-status').innerHTML = '<p class="success">✅ Joined project room</p>';
+        }
+
+        function sendTestMessage() {
+            if (!socket || !socket.connected) {
+                log('Not connected to WebSocket!', 'error');
+                return;
+            }
+
+            const testMessage = {
+                type: 'test',
+                message: 'Hello from WebSocket test!',
+                timestamp: new Date().toISOString()
+            };
+
+            socket.emit('message', testMessage);
+            log(`Sent test message: ${JSON.stringify(testMessage)}`, 'info');
+        }
+
+        // Initialize on page load
+        updateAuthStatus();
+        log('WebSocket test page loaded', 'info');
+    </script>
+</body>
+</html>
+

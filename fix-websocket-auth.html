@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fix WebSocket Authentication</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .step {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #4F46E5;
+        }
+        .step h3 {
+            margin-top: 0;
+            color: #4F46E5;
+        }
+        button {
+            background: #4F46E5;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #4338CA;
+        }
+        .success {
+            color: #10b981;
+            font-weight: bold;
+        }
+        .error {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        .code {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Fix Pleasant Cove WebSocket Authentication</h1>
+        
+        <div class="step">
+            <h3>Step 1: Clear Old Authentication</h3>
+            <p>First, let's clear any old authentication tokens that might be interfering:</p>
+            <button onclick="clearAuth()">Clear Old Tokens</button>
+            <div id="clear-status"></div>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Set New Authentication Token</h3>
+            <p>This will set a valid JWT token that matches your server's JWT_SECRET:</p>
+            <button onclick="setAuthToken()">Set Authentication Token</button>
+            <div id="token-status"></div>
+        </div>
+
+        <div class="step">
+            <h3>Step 3: Open Admin Dashboard</h3>
+            <p>Once the token is set, open the admin dashboard. The WebSocket should connect successfully:</p>
+            <button onclick="openDashboard()">Open Admin Dashboard</button>
+        </div>
+
+        <div class="status" id="final-status">
+            <h4>Current Status:</h4>
+            <div id="current-tokens"></div>
+        </div>
+    </div>
+
+    <script>
+        // The JWT token that matches the server's JWT_SECRET
+        const VALID_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImJ1c2luZXNzSWQiOjEsInJvbGUiOiJhZG1pbiIsInNjb3BlIjoiYWRtaW4iLCJpYXQiOjE3NTk4OTY3MzAsImV4cCI6MTc1OTk4MzEzMH0.qS_rqx7eUqGrG7YuWmaHShAtsHbMnVGUqgEz_PLABQs";
+
+        function updateStatus() {
+            const authToken = localStorage.getItem('auth_token');
+            const pcdToken = localStorage.getItem('pcd_token');
+            const statusDiv = document.getElementById('current-tokens');
+            
+            let html = '<p>Authentication Tokens:</p><ul>';
+            html += '<li>auth_token: ' + (authToken ? '<span class="success">✓ Set</span>' : '<span class="error">✗ Not set</span>') + '</li>';
+            html += '<li>pcd_token: ' + (pcdToken ? '<span class="success">✓ Set</span>' : '<span class="error">✗ Not set</span>') + '</li>';
+            html += '</ul>';
+            
+            if (authToken === VALID_TOKEN) {
+                html += '<p class="success">✅ Valid authentication token is set!</p>';
+            }
+            
+            statusDiv.innerHTML = html;
+        }
+
+        function clearAuth() {
+            // Clear all possible auth tokens
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('pcd_token');
+            localStorage.removeItem('token');
+            localStorage.removeItem('adminToken');
+            
+            // Clear session storage too
+            sessionStorage.clear();
+            
+            document.getElementById('clear-status').innerHTML = '<p class="success">✓ All old tokens cleared!</p>';
+            updateStatus();
+        }
+
+        function setAuthToken() {
+            // Set the valid token
+            localStorage.setItem('auth_token', VALID_TOKEN);
+            localStorage.setItem('pcd_token', VALID_TOKEN);
+            
+            document.getElementById('token-status').innerHTML = 
+                '<p class="success">✓ Authentication token set!</p>' +
+                '<p>The following token has been set:</p>' +
+                '<div class="code">' + VALID_TOKEN + '</div>' +
+                '<p><strong>Note:</strong> This token is valid for 24 hours.</p>';
+            
+            updateStatus();
+        }
+
+        function openDashboard() {
+            // Open in same window to ensure localStorage is used
+            window.location.href = 'http://localhost:5173';
+        }
+
+        // Update status on page load
+        updateStatus();
+    </script>
+</body>
+</html>
+
