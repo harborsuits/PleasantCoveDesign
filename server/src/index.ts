@@ -20,7 +20,9 @@ console.log('🔧 Environment variables loaded');
 
 import express, { type Express } from "express";
 import cors from "cors";
-import { createR2Storage } from './storage/r2-storage.js';
+// Lazily use R2 only if enabled
+const STORAGE_BACKEND = process.env.STORAGE_BACKEND || 'local';
+// import { createR2Storage } from './storage/r2-storage.js';
 import { validateEnv } from './config/env.js';
 
 // Validate environment variables
