@@ -1417,12 +1417,11 @@ export async function registerRoutes(app: Express, io: any) {
       }
 
       const message = await storage.createProjectMessage({
-        projectId: projectData.id!,
-        senderType: senderType as 'admin' | 'client',
-        senderName,
+        projectToken: String(projectData.id!),
+        role: (senderType as 'admin' | 'client') === 'admin' ? 'assistant' : 'user',
         content: messageText,
         attachments
-      });
+      } as any);
 
       console.log('✅ Message created with attachments:', attachments);
 

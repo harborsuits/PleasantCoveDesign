@@ -5,6 +5,30 @@ import fs from 'fs';
 import path from 'path';
 import { Company, Project, Message, ProjectFile, Activity } from './shared/schema.js';
 
+// Map DB/in-memory rows to Message shape with role derived from senderType
+type DbMsgRow = {
+  id: number;
+  projectId: number;
+  projectToken?: string;
+  senderType: 'admin' | 'client';
+  senderName: string;
+  content: string;
+  attachments?: string[];
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+function rowToMessage(row: DbMsgRow): Message {
+  return {
+    id: String(row.id),
+    projectToken: row.projectToken ?? String(row.projectId ?? ''),
+    role: row.senderType === 'admin' ? 'assistant' : 'user',
+    content: row.content ?? '',
+    attachments: row.attachments ?? [],
+    createdAt: row.createdAt || new Date().toISOString(),
+  };
+}
+
 // Persistent storage file paths
 // Use persistent data directory for production (Railway volumes)
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), 'data');
@@ -655,10 +679,8 @@ class InMemoryDatabase {
 
   // Message and file operations using in-memory data
   async getProjectMessages(projectId: number): Promise<Message[]> {
-    return this.projectMessages.filter(m => m.projectId === projectId).map(pm => ({
-      ...pm,
-      createdAt: pm.createdAt || new Date().toISOString()
-    })) as Message[];
+    const rows = this.projectMessages.filter(m => m.projectId === projectId);
+    return rows.map(pm => rowToMessage(pm as any));
   }
 
   async getProjectsWithMessages(): Promise<Project[]> {
@@ -667,23 +689,23 @@ class InMemoryDatabase {
   }
 
   async createProjectMessage(message: Omit<Message, 'id' | 'createdAt' | 'attachments'> & { attachments?: string[] }): Promise<Message> {
-    const newMessage = {
-      ...message,
+    const newRow: DbMsgRow = {
       id: this.nextId++,
+      projectId: Number(message.projectToken) || 0, // fallback if token carries numeric id (legacy)
+      projectToken: message.projectToken,
+      senderType: message.role === 'assistant' ? 'admin' : 'client',
+      senderName: 'Pleasant Cove Design',
+      content: message.content,
+      attachments: message.attachments || [],
       createdAt: new Date().toISOString(),
-      attachments: message.attachments || []
-    } as Message;
-    
-    this.projectMessages.push(newMessage as any);
+    };
+    this.projectMessages.push(newRow as any);
     this.saveToDisk();
-    return newMessage;
+    return rowToMessage(newRow);
   }
 
   async getAllMessages(): Promise<Message[]> {
-    return this.projectMessages.map(pm => ({
-      ...pm,
-      createdAt: pm.createdAt || new Date().toISOString()
-    })) as Message[];
+    return this.projectMessages.map(pm => rowToMessage(pm as any));
   }
 
   async getProjectFiles(projectId: number): Promise<ProjectFile[]> {
