@@ -1,7 +1,7 @@
 // @ts-nocheck
 import express, { type Request, Response, NextFunction, Express } from "express";
 import { storage } from "./storage.js";
-import type { Business } from "../shared/schema.js";
+import type { Business } from "./shared/schema";
 import { nanoid } from "nanoid";
 import nodemailer from 'nodemailer';
 import path from 'path';

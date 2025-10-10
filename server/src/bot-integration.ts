@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { storage } from "./storage";
-import type { Business } from "@shared/schema";
+import type { Business } from "./shared/schema";
 
 // Mock bot integration service for development
 // In production, this would integrate with web scraping APIs, business data APIs, etc.

@@ -1,6 +1,6 @@
 import { db } from "./db.js";
 import { PostgreSQLStorage } from "./postgres-storage.js";
-import type { Business, NewBusiness, Activity, NewActivity, Company, NewCompany, Project, NewProject, ProjectMessage, ProjectFile } from "../shared/schema.js";
+import type { Business, NewBusiness, Activity, NewActivity, Company, NewCompany, Project, NewProject, ProjectMessage, ProjectFile } from "./shared/schema.js";
 
 // Mock schema objects for the in-memory database
 const businessesTable = { tableName: 'businesses' };

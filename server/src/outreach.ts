@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { storage } from "./storage";
-import type { Business } from "@shared/schema";
+import type { Business } from "./shared/schema";
 
 // Mock outreach service for development
 // In production, this would integrate with SMS/email APIs like Twilio, SendGrid, etc.

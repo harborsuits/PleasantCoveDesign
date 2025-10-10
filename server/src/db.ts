@@ -3,7 +3,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { Company, Project, Message, ProjectFile, Activity } from '../shared/schema.js';
+import { Company, Project, Message, ProjectFile, Activity } from './shared/schema.js';
 
 // Persistent storage file paths
 // Use persistent data directory for production (Railway volumes)
