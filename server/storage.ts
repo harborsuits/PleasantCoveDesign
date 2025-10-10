@@ -451,7 +451,7 @@ export class Storage {
     
     businesses.forEach(business => {
       if (business.tags && Array.isArray(business.tags)) {
-        business.tags.forEach(tag => allTags.add(tag));
+        business.tags.forEach((tag: string) => allTags.add(tag));
       }
     });
     
