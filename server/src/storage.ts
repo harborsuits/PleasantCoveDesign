@@ -384,24 +384,36 @@ export class Storage {
     const activities = await this.getActivities();
     
     // Calculate stage statistics
+    const STAGE_SCORES = {
+      lead: 0.2,
+      contacted: 0.4,
+      demo: 0.7,
+      won: 1.0,
+      lost: 0.0,
+      sold: 1.0,
+      delivered: 1.0,
+    } as const;
+    type StageKey = keyof typeof STAGE_SCORES;
+
     const stageStats = businesses.reduce((acc, business) => {
-      acc[business.stage] = (acc[business.stage] || 0) + 1;
+      const stageKey: StageKey = (business.stage ?? 'lead') as StageKey;
+      acc[stageKey] = (acc[stageKey] || 0) + 1;
       return acc;
     }, {} as Record<string, number>);
 
     // Calculate revenue metrics
-    const soldBusinesses = businesses.filter(b => b.stage === 'sold' || b.stage === 'delivered');
-    const totalRevenue = soldBusinesses.reduce((sum, b) => sum + (b.totalAmount || 0), 0);
-    const paidRevenue = soldBusinesses.reduce((sum, b) => sum + (b.paidAmount || 0), 0);
+    const soldBusinesses = businesses.filter(b => (b.stage ?? '') === 'sold' || (b.stage ?? '') === 'delivered');
+    const totalRevenue = soldBusinesses.reduce((sum, b) => sum + ((b.totalAmount as any) || 0), 0);
+    const paidRevenue = soldBusinesses.reduce((sum, b) => sum + ((b.paidAmount as any) || 0), 0);
 
     // Lead quality metrics
-    const highScoreLeads = businesses.filter(b => (b.score || 0) >= 80).length;
-    const averageScore = businesses.reduce((sum, b) => sum + (b.score || 0), 0) / businesses.length || 0;
+    const highScoreLeads = businesses.filter(b => ((b as any).score || 0) >= 80).length;
+    const averageScore = businesses.reduce((sum, b) => sum + (((b as any).score || 0) as number), 0) / (businesses.length || 1);
 
     // Activity metrics
     const recentActivities = activities.filter(a => {
       if (!a.createdAt) return false;
-      const activityDate = new Date(a.createdAt);
+      const activityDate = new Date(a.createdAt as any);
       const dayAgo = new Date();
       dayAgo.setDate(dayAgo.getDate() - 1);
       return activityDate > dayAgo;
@@ -409,14 +421,19 @@ export class Storage {
 
     return {
       totalLeads: businesses.length,
-      totalRevenue,
-      paidRevenue,
-      pendingRevenue: totalRevenue - paidRevenue,
-      averageScore: Math.round(averageScore),
-      highScoreLeads,
       stageStats,
-      recentActivityCount: recentActivities.length,
-      conversionRate: businesses.length > 0 ? (soldBusinesses.length / businesses.length * 100).toFixed(1) : 0
+      revenue: {
+        total: totalRevenue,
+        paid: paidRevenue,
+        outstanding: Math.max(0, totalRevenue - paidRevenue)
+      },
+      leadQuality: {
+        highScoreLeads,
+        averageScore
+      },
+      activity: {
+        recentCount: recentActivities.length
+      }
     };
   }
 
