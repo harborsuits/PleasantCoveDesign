@@ -510,7 +510,7 @@ class InMemoryDatabase {
         website: '',
         industry: 'Web Design Client',
         tags: [],
-        priority: 'medium'
+        priority: 'medium' as 'low' | 'medium' | 'high',
       });
 
       if (typeof newCompanyId !== 'number') {
@@ -566,7 +566,7 @@ class InMemoryDatabase {
   // Create new company
   async createCompany(data: any): Promise<number> {
     const newId = Math.max(...this.companies.map(c => c.id || 0), 0) + 1;
-    const company = {
+    const company: Company = {
       id: newId,
       name: data.name,
       email: data.email,
@@ -581,7 +581,7 @@ class InMemoryDatabase {
       notes: data.notes || '',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
-    };
+    } as Company;
     this.companies.push(company);
     
     // Save to disk after creating company
@@ -648,7 +648,7 @@ class InMemoryDatabase {
           website: '',
           industry: 'Testing',
           tags: [],
-          priority: 'high'
+          priority: 'high' as 'low' | 'medium' | 'high'
         });
         
         if (!companyId) {

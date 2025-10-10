@@ -29,7 +29,7 @@ async function seedProductionDatabase() {
       state: 'CA',
       industry: 'Technology',
       website: 'https://demo.example.com',
-      priority: 'high',
+      priority: 'high' as 'low' | 'medium' | 'high',
       tags: ['demo', 'test-client']
     } as any);
 

@@ -410,7 +410,7 @@ export async function registerRoutes(app: Express, io: any) {
           website: '',
           industry: 'Appointment Client',
           tags: [],
-          priority: 'medium'
+          priority: 'medium' as 'low' | 'medium' | 'high'
         });
       }
       
@@ -704,7 +704,7 @@ export async function registerRoutes(app: Express, io: any) {
             website: '',
             industry: 'Web Design Client',
             tags: [],
-            priority: 'medium'
+            priority: 'medium' as 'low' | 'medium' | 'high'
           });
           
           const secureToken = generateSecureProjectToken(source || 'squarespace_form', email);
@@ -856,7 +856,7 @@ export async function registerRoutes(app: Express, io: any) {
   //         state: "",
   //         industry: lead.service || "Web Design Client",
   //         tags: ["squarespace", "lead"],
-  //         priority: "medium"
+  //         priority: "medium" as 'low' | 'medium' | 'high'
   //       });
   //       companyId = newCompany.id;
   //       console.log(`✅ Created new company for lead: ${newCompany.name}`);
@@ -1020,7 +1020,7 @@ export async function registerRoutes(app: Express, io: any) {
               website: website || "",
               industry: "Web Design Client",
               tags: [],
-              priority: "medium"
+              priority: 'medium' as 'low' | 'medium' | 'high'
             });
             
             const secureToken = generateSecureProjectToken('squarespace_new_member', email);
@@ -3593,7 +3593,7 @@ export async function registerRoutes(app: Express, io: any) {
           businessType: 'unknown',
           clientStage: 'unknown',
           clientScore: 0,
-          clientPriority: 'medium'
+          clientPriority: 'medium' as 'low' | 'medium' | 'high'
         };
         
         // Try to get info from company first (new system)
@@ -3607,7 +3607,7 @@ export async function registerRoutes(app: Express, io: any) {
               businessType: company.industry || 'unknown',
               clientStage: 'unknown', // Companies don't have stages
               clientScore: 0,
-              clientPriority: company.priority || 'medium'
+              clientPriority: company.priority || 'medium' as 'low' | 'medium' | 'high'
             };
           }
         }
@@ -3623,7 +3623,7 @@ export async function registerRoutes(app: Express, io: any) {
               businessType: business.businessType || 'unknown',
               clientStage: business.stage || 'unknown',
               clientScore: business.score || 0,
-              clientPriority: business.priority || 'medium'
+              clientPriority: business.priority || 'medium' as 'low' | 'medium' | 'high'
             };
           }
         }

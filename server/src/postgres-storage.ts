@@ -455,7 +455,7 @@ export class PostgreSQLStorage {
         website: '',
         industry: 'Web Design Client',
         tags: [],
-        priority: 'medium'
+        priority: 'medium' as 'low' | 'medium' | 'high'
       });
       
       const project = await this.createProject({
