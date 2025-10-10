@@ -468,7 +468,9 @@ export class Storage {
   }
 
   async updateBusinessPriority(businessId: number, priority: string) {
-    return await this.updateBusiness(businessId, { priority });
+    const allowed = new Set(["low","medium","high"]);
+    const next = allowed.has(priority) ? (priority as any) : undefined;
+    return await this.updateBusiness(businessId, { priority: next } as any);
   }
 
   // ===================
@@ -503,10 +505,12 @@ export class Storage {
     attachments?: string[];
   }): Promise<ProjectMessage> {
     const messageData = {
-      ...data,
+      role: data.senderType === 'admin' ? 'assistant' : 'user',
+      projectToken: String(data.projectId),
+      content: data.content,
       attachments: data.attachments || [],
       createdAt: new Date().toISOString()
-    };
+    } as any;
     return this.createProjectMessage(messageData);
   }
 
@@ -641,6 +645,27 @@ export class Storage {
     
     console.log(`✅ [STORAGE] Returning ${conversations.length} formatted conversations.`);
     return conversations;
+  }
+
+  async getBusinessStats() {
+    const businesses = await this.getBusinesses();
+    const byStage: Record<string, number> = {};
+    const byPriority: Record<string, number> = {};
+
+    for (const business of businesses) {
+      const stageKey = business.stage || 'unknown';
+      byStage[stageKey] = (byStage[stageKey] || 0) + 1;
+
+      const priorityKey = business.priority || 'medium';
+      byPriority[priorityKey] = (byPriority[priorityKey] || 0) + 1;
+    }
+
+    const topScored = [...businesses]
+      .filter(b => typeof (b as any).score === 'number')
+      .sort((a, b) => ((b as any).score || 0) - ((a as any).score || 0))
+      .slice(0, 5);
+
+    return { byStage, byPriority, topScored };
   }
 }
 

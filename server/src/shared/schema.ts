@@ -19,6 +19,7 @@ export const CompanySchema = z.object({
   state: z.string().optional(),
   website: z.string().optional(),
   industry: z.string().optional(),
+  priority: PriorityEnum.optional(),
   /** totals the code accesses */
   totalAmount: z.number().optional(),
   paidAmount: z.number().optional(),
@@ -35,6 +36,7 @@ export const BusinessSchema = CompanySchema.extend({
   priority: PriorityEnum.optional(),
   score: z.number().optional(),
   stage: z.string().optional(),
+  businessType: z.string().optional(),
 });
 export type Business = z.infer<typeof BusinessSchema>;
 
@@ -49,7 +51,7 @@ export type Activity = z.infer<typeof ActivitySchema>;
 
 /** Message is imported in db.ts; make sure it's exported */
 export const MessageSchema = z.object({
-  id: z.number().optional(),
+  id: z.union([z.number(), z.string()]).optional(),
   projectId: z.number().optional(),
   projectToken: z.string().optional(),
   role: z.enum(["user","assistant","system"]).default("user"),
@@ -85,6 +87,7 @@ export const ProjectSchema = z.object({
   name: z.string().optional(),
   token: z.string().optional(),
   accessToken: z.string().optional(),
+  type: z.string().optional(),
   status: z.string().optional(),
   score: z.number().optional(),
   notes: z.string().optional(),

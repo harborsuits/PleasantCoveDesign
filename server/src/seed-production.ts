@@ -31,7 +31,7 @@ async function seedProductionDatabase() {
       website: 'https://demo.example.com',
       priority: 'high',
       tags: ['demo', 'test-client']
-    });
+    } as any);
 
     // Create demo project with stable token
     const demoProject = await storage.createProject({
@@ -44,16 +44,15 @@ async function seedProductionDatabase() {
       notes: 'Demo project for testing production messaging system',
       totalAmount: 5000,
       paidAmount: 2500
-    });
+    } as any);
 
     // Create initial welcome message
     await storage.createProjectMessage({
-      projectId: demoProject.id!,
-      senderType: 'admin',
-      senderName: 'Pleasant Cove Design',
+      projectToken: String(demoProject.id!),
+      role: 'assistant',
       content: 'Welcome to your project portal! This is where we\'ll communicate about your website project. Feel free to send messages and share files.',
       attachments: []
-    });
+    } as any);
 
     console.log('✅ Production database seeded successfully!');
     console.log(`📊 Created: 1 company, 1 project, 1 message`);

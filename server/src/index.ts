@@ -237,7 +237,9 @@ app.options('/api/image-proxy/:filename', (req, res) => {
 });
 
 // Initialize R2 storage for production
-const r2Storage = createR2Storage();
+const r2Storage = (STORAGE_BACKEND === 'r2' && (global as any).createR2Storage)
+  ? (global as any).createR2Storage()
+  : null as any;
 
 // Add a mobile-friendly image proxy endpoint with R2 support
 app.get('/api/image-proxy/:filename', async (req, res) => {
