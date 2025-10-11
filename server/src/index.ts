@@ -183,6 +183,15 @@ app.use(express.static(buildPath));
 // Serve Lovable UI at /admin/
 const lovableDist = path.join(__dirname, '../public/admin');
 app.use('/admin', express.static(lovableDist, { index: false }));
+// Serve assets (Vite outputs absolute /assets/* by default)
+app.use('/assets', express.static(path.join(lovableDist, 'assets')));
+app.use('/admin/assets', express.static(path.join(lovableDist, 'assets')));
+// Serve favicon from admin build
+app.get('/favicon.ico', (req, res) => {
+  const iconPath = path.join(lovableDist, 'favicon.ico');
+  if (fs.existsSync(iconPath)) return res.sendFile(iconPath);
+  res.status(404).end();
+});
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(lovableDist, 'index.html'));
 });
