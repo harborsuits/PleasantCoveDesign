@@ -38,6 +38,22 @@ const server = createServer(app);
 
 const PORT = process.env.PORT || 3000;
 
+// Tune HTTP server timeouts for WebSocket/proxy environments
+// Prevent premature disconnects behind proxies (e.g., Railway)
+//  - requestTimeout 0 disables the per-request inactivity timeout
+//  - keepAliveTimeout slightly above proxy idle thresholds
+//  - headersTimeout slightly above keepAliveTimeout
+// These do not affect WebSocket frames which are handled by Socket.IO.
+// Note: Only available on Node >= 18
+// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+(server as any).requestTimeout = 0;
+// @ts-ignore
+(server as any).keepAliveTimeout = 65000;
+// @ts-ignore
+(server as any).headersTimeout = 66000;
+
 // --- CORS Configuration ---
 // CORS allowlist for security - now function-based for Squarespace subdomains
 const ALLOWED_ORIGINS = new Set([
@@ -184,8 +200,10 @@ app.use(express.static(buildPath));
 const lovableDist = path.join(__dirname, '../public/admin');
 app.use('/admin', express.static(lovableDist, { index: false }));
 // Serve assets (Vite outputs absolute /assets/* by default)
-app.use('/assets', express.static(path.join(lovableDist, 'assets')));
-app.use('/admin/assets', express.static(path.join(lovableDist, 'assets')));
+app.use('/assets', express.static(path.join(lovableDist, 'assets'), { immutable: true, maxAge: '365d' }));
+app.use('/admin/assets', express.static(path.join(lovableDist, 'assets'), { immutable: true, maxAge: '365d' }));
+// Mirror assets under /admin2 to bypass any proxy caches
+app.use('/admin2/assets', express.static(path.join(lovableDist, 'assets'), { immutable: true, maxAge: '365d' }));
 // Serve favicon from admin build
 app.get('/favicon.ico', (req, res) => {
   const iconPath = path.join(lovableDist, 'favicon.ico');
@@ -193,10 +211,39 @@ app.get('/favicon.ico', (req, res) => {
   res.status(404).end();
 });
 app.get('/admin', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
   res.sendFile(path.join(lovableDist, 'index.html'));
 });
 app.get('/admin/*', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
   res.sendFile(path.join(lovableDist, 'index.html'));
+});
+// Temporary alternate mount to bypass caches
+app.get('/admin2', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
+  res.sendFile(path.join(lovableDist, 'index.html'));
+});
+app.get('/admin2/*', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
+  res.sendFile(path.join(lovableDist, 'index.html'));
+});
+
+// Mount full admin UI under /admin2 with cache headers
+const oneYearSeconds = 31536000;
+app.use('/admin2', express.static(lovableDist, {
+  index: false,
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-store');
+    } else if (filePath.includes(`${path.sep}assets${path.sep}`)) {
+      res.setHeader('Cache-Control', `public, max-age=${oneYearSeconds}, immutable`);
+    }
+  }
+}));
+
+// Root should serve admin shell; redirect to /admin2 for now
+app.get('/', (req, res) => {
+  res.redirect(302, '/admin2');
 });
 
 // Use environment variable for uploads directory

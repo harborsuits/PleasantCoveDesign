@@ -145,9 +145,9 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename="/admin">
+        <BrowserRouter basename={window.location.pathname.startsWith('/admin2') ? '/admin2' : '/admin'}>
           <Routes>
-            <Route element={<Layout>}>
+            <Route element={<Layout />}>
               <Route index element={<Dashboard />} />
               <Route path="leads" element={<Leads />} />
               <Route path="demos" element={<Demos />} />
@@ -161,7 +161,7 @@ function App() {
               <Route path="analytics" element={<Analytics />} />
               <Route path="settings" element={<Settings />} />
               <Route path="messages" element={<InboxRoute />} />
-              <Route path="inbox" element={<Navigate to="/messages" replace />} />
+              <Route path="inbox" element={<Navigate to="messages" replace />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

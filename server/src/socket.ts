@@ -15,8 +15,9 @@ export function attachSocket(server: HttpServer) {
       ],
       methods: ["GET","POST"],
     },
-    pingInterval: 20000,
-    pingTimeout: 20000,
+    // Keepalive settings tuned for Railway/HTTP proxies to avoid idle drops
+    pingInterval: 25000,
+    pingTimeout: 60000,
   });
 
   console.log("✅ Socket.IO initialized with auth middleware");
