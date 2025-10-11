@@ -5562,6 +5562,10 @@ Booked via: ${source}
       
       // Manually read the database to bypass the storage layer bugs
       const dbPath = path.join(process.cwd(), 'data', 'database.json');
+      if (!fs.existsSync(dbPath)) {
+        console.warn('⚠️ [ADMIN INBOX] database.json not found at', dbPath, '— returning empty inbox');
+        return res.json({ projectMessages: [] });
+      }
       const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
       
       const allProjects: Project[] = dbData.projects;
