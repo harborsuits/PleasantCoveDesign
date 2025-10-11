@@ -2,13 +2,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import Leads from "./pages/Leads";
 import Demos from "./pages/Demos";
 import Outreach from "./pages/Outreach";
-import Messages from "./pages/Messages";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/Projects/ProjectDetail";
 import CompaniesPage from "./pages/Companies/CompaniesPage";
@@ -32,7 +31,6 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedConversation, setSelectedConversation] = useState<string | null>(null);
 
   // Hooks must be called unconditionally at the top
   const { toast } = useToast();
@@ -45,20 +43,12 @@ function App() {
   async function initializeApp() {
     try {
       console.log('🚀 [APP] Starting initialization...');
-      
-      // Step 1: Authenticate and get JWT
       console.log('📍 [APP] Step 1: Getting JWT token...');
-      const token = await AuthService.ensureValidToken();
-      console.log('✅ [APP] JWT token obtained');
-      
-      // Step 2: Wait a moment for localStorage to be ready
+      await AuthService.ensureValidToken();
       await new Promise(resolve => setTimeout(resolve, 100));
-      
-      // Step 3: Connect WebSocket (it will read token from localStorage)
       console.log('📍 [APP] Step 2: Connecting WebSocket...');
       await socketService.connect();
       console.log('✅ [APP] WebSocket connected');
-      
       setIsAuthenticated(true);
       console.log('🎉 [APP] Initialization complete!');
     } catch (error) {
@@ -69,8 +59,6 @@ function App() {
       setIsLoading(false);
     }
   }
-
-  // All hooks already called above
 
   if (isLoading) {
     return (
@@ -157,26 +145,53 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <div style={{ display: 'flex', height: '100vh' }}>
-          <div style={{ width: '350px', borderRight: '1px solid #e5e7eb', background: 'white', overflowY: 'auto' }}>
-            <ConversationsList onSelectConversation={setSelectedConversation} />
-          </div>
-          <div style={{ flex: 1, background: 'white' }}>
-            {selectedConversation ? (
-              <MessagesThread projectToken={selectedConversation} />
-            ) : (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#6b7280' }}>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '64px', marginBottom: '16px' }}>👈</div>
-                  <h2>Select a conversation</h2>
-                  <p>Choose a client conversation to view and reply</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+        <BrowserRouter basename="/admin">
+          <Routes>
+            <Route element={<Layout>}>
+              <Route index element={<Dashboard />} />
+              <Route path="leads" element={<Leads />} />
+              <Route path="demos" element={<Demos />} />
+              <Route path="outreach" element={<Outreach />} />
+              <Route path="projects" element={<Projects />} />
+              <Route path="projects/:id" element={<ProjectDetail />} />
+              <Route path="companies" element={<CompaniesPage />} />
+              <Route path="appointments" element={<AppointmentsPage />} />
+              <Route path="sales" element={<Sales />} />
+              <Route path="schedule" element={<Schedule />} />
+              <Route path="analytics" element={<Analytics />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="messages" element={<InboxRoute />} />
+              <Route path="inbox" element={<Navigate to="/messages" replace />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
+  );
+}
+
+function InboxRoute() {
+  const [selectedConversation, setSelectedConversation] = useState<string | null>(null);
+  return (
+    <div style={{ display: 'flex', height: 'calc(100vh - 96px)' }}>
+      <div style={{ width: '350px', borderRight: '1px solid #e5e7eb', background: 'white', overflowY: 'auto' }}>
+        <ConversationsList onSelectConversation={setSelectedConversation} />
+      </div>
+      <div style={{ flex: 1, background: 'white' }}>
+        {selectedConversation ? (
+          <MessagesThread projectToken={selectedConversation} />
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#6b7280' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '64px', marginBottom: '16px' }}>👈</div>
+              <h2>Select a conversation</h2>
+              <p>Choose a client conversation to view and reply</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
