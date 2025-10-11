@@ -3,15 +3,17 @@ FROM node:20-alpine AS base
 WORKDIR /app
 
 # -----------------------------
-# Admin UI dependencies
+# Admin UI dependencies (copy lockfiles first)
 # -----------------------------
-COPY admin-ui/package*.json ./admin-ui/
+COPY admin-ui/package-lock.json ./admin-ui/package-lock.json
+COPY admin-ui/package.json ./admin-ui/package.json
 RUN cd admin-ui && npm ci --include=dev --no-fund --no-audit
 
 # -----------------------------
-# Server dependencies
+# Server dependencies (copy lockfiles first)
 # -----------------------------
-COPY server/package*.json ./server/
+COPY server/package-lock.json ./server/package-lock.json
+COPY server/package.json ./server/package.json
 RUN cd server && npm ci --include=dev --no-fund --no-audit
 
 # -----------------------------
@@ -37,8 +39,6 @@ RUN cp -r admin-ui/dist/* server/public/admin/
 # Build server
 # -----------------------------
 WORKDIR /app/server
-# If peer deps are messy, uncomment legacy flag
-# RUN npm ci --legacy-peer-deps --include=dev --no-fund --no-audit
 RUN npm run build --loglevel=verbose || (echo '--- NPM DEBUG LOG ---' && ls -la /root/.npm/_logs/ || true && exit 1)
 
 # -----------------------------
@@ -53,7 +53,8 @@ COPY --from=base /app/server/dist ./dist
 COPY --from=base /app/server/public ./public
 
 # Install only prod deps for server runtime
-COPY server/package*.json ./
+COPY server/package-lock.json ./package-lock.json
+COPY server/package.json ./package.json
 RUN npm ci --omit=dev --no-fund --no-audit
 
 EXPOSE 3000
