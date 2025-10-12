@@ -242,8 +242,8 @@ app.use('/admin2', express.static(lovableDist, {
   }
 }));
 
-// Serve embed bundle
-const embedDist = path.join(__dirname, '../../packages/embed/dist');
+// Serve embed bundle (staged into server/public/embed at build time)
+const embedDist = path.join(__dirname, '../public/embed');
 app.use('/embed', express.static(embedDist, {
   setHeaders: (_res, fp) => {
     if (fp.endsWith('.js') || fp.endsWith('.cjs')) _res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');

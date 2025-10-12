@@ -1,7 +1,7 @@
 import { Server } from "socket.io";
 import jwt from "jsonwebtoken";
 import type { Server as HttpServer } from "http";
-import type { MessagingEvents, AppointmentEvents, SocketAuthPayload } from "./ws/contracts.js";
+import type { SocketAuthPayload } from "./ws/contracts.js";
 import { setIO } from './socketRef.js';
 
 export function attachSocket(server: HttpServer) {
@@ -58,7 +58,7 @@ export function attachSocket(server: HttpServer) {
   });
 
   // Namespaces
-  const messaging = io.of<MessagingEvents>("/messaging");
+  const messaging = io.of("/messaging");
   messaging.on("connection", (s) => {
     const { orgId, visitorId } = s.data || {};
     if (orgId) s.join(`org:${orgId}`);
@@ -75,7 +75,7 @@ export function attachSocket(server: HttpServer) {
     s.on("typing", (p) => messaging.to(`convo:${p.convoId}`).emit("typing", p));
   });
 
-  const appts = io.of<AppointmentEvents>("/appointments");
+  const appts = io.of("/appointments");
   appts.on("connection", (s) => {
     const { orgId, visitorId } = s.data || {};
     if (orgId) s.join(`org:${orgId}`);
