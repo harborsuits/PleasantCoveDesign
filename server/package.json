@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "tsx watch index.ts"
+    "dev": "tsx watch index.ts",
+    "db:flush": "tsx ../scripts/db/flush.ts",
+    "db:backup": "bash ../scripts/db/backup.sh"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.350.0",

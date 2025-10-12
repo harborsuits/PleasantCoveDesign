@@ -8,7 +8,8 @@
     "dev:server": "npm --prefix archive/Pleasantcovedesign-main run dev",
     "dev:ui": "npm --prefix archive/lovable-ui-integration run dev",
     "start": "node archive/Pleasantcovedesign-main/dist/index.js",
-    "preview:ui": "npm --prefix archive/lovable-ui-integration run preview"
+    "preview:ui": "npm --prefix archive/lovable-ui-integration run preview",
+    "build:embed": "npm --prefix packages/embed run build"
   },
   "engines": {
     "node": "20"

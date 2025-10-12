@@ -10,6 +10,7 @@ import { attachSocket } from './socket.js';
 import publicWs from './routes/public-ws.js';
 import authRouter from './routes/auth.js';
 import healthRouter from './routes/health.js';
+import { webhooksRouter } from './routes/webhooks.js';
 import { setupMonitoring } from './monitoring.js';
 
 // Load environment variables FIRST before importing anything else
@@ -241,6 +242,15 @@ app.use('/admin2', express.static(lovableDist, {
   }
 }));
 
+// Serve embed bundle
+const embedDist = path.join(__dirname, '../../packages/embed/dist');
+app.use('/embed', express.static(embedDist, {
+  setHeaders: (_res, fp) => {
+    if (fp.endsWith('.js') || fp.endsWith('.cjs')) _res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    else _res.setHeader('Cache-Control', 'public, max-age=86400');
+  }
+}));
+
 // Root should serve admin shell; redirect to /admin2 for now
 app.get('/', (req, res) => {
   res.redirect(302, '/admin2');
@@ -420,6 +430,8 @@ async function startServer() {
 
     // Admin auth routes
     app.use("/api", authRouter);
+    // Webhooks
+    app.use('/webhooks', webhooksRouter());
     
     // Health check endpoint
     app.use("/api", healthRouter);

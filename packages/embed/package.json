@@ -1,0 +1,20 @@
+{
+  "name": "@pcd/embed",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/pcd-embed.umd.cjs",
+  "module": "dist/pcd-embed.es.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vite": "^5.4.0"
+  }
+}
+

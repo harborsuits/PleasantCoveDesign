@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS companies (
     priority VARCHAR(20) DEFAULT 'medium',
     tags TEXT[], -- PostgreSQL array type
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    seeded BOOLEAN DEFAULT FALSE
 );
 
 -- Projects table (linked to companies)
@@ -39,7 +40,8 @@ CREATE TABLE IF NOT EXISTS projects (
     payment_notes TEXT,
     access_token VARCHAR(255) UNIQUE, -- For client portal access
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    seeded BOOLEAN DEFAULT FALSE
 );
 
 -- Project messages table (messaging system)
@@ -50,7 +52,8 @@ CREATE TABLE IF NOT EXISTS project_messages (
     sender_name VARCHAR(255) NOT NULL,
     content TEXT,
     attachments TEXT[], -- Array of file URLs
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    seeded BOOLEAN DEFAULT FALSE
 );
 
 -- Project files table (file attachments)
@@ -62,7 +65,8 @@ CREATE TABLE IF NOT EXISTS project_files (
     file_size INTEGER,
     mime_type VARCHAR(100),
     uploaded_by VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    seeded BOOLEAN DEFAULT FALSE
 );
 
 -- Activities table (audit log)
@@ -73,7 +77,8 @@ CREATE TABLE IF NOT EXISTS activities (
     company_id INTEGER REFERENCES companies(id) ON DELETE CASCADE,
     project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE,
     business_id INTEGER, -- Legacy compatibility
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    seeded BOOLEAN DEFAULT FALSE
 );
 
 -- Appointments table
@@ -90,7 +95,8 @@ CREATE TABLE IF NOT EXISTS appointments (
     duration INTEGER DEFAULT 30,
     squarespace_id VARCHAR(255),
     project_token VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    seeded BOOLEAN DEFAULT FALSE
 );
 
 -- Businesses table (legacy compatibility)
@@ -109,7 +115,8 @@ CREATE TABLE IF NOT EXISTS businesses (
     score INTEGER DEFAULT 0,
     website VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    seeded BOOLEAN DEFAULT FALSE
 );
 
 -- Campaigns table

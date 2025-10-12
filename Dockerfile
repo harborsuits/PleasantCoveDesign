@@ -13,14 +13,17 @@ ARG BUILD_ID
 ENV VITE_BUILD_ID=$BUILD_ID
 COPY admin-ui/package*.json ./admin-ui/
 COPY server/package*.json ./server/
+COPY packages/embed/package*.json ./packages/embed/
 
 # install deps
 RUN cd admin-ui && npm ci --no-fund --no-audit
 RUN cd server && npm ci --no-fund --no-audit
+RUN cd packages/embed && npm ci --no-fund --no-audit
 
 # copy sources
 COPY admin-ui ./admin-ui
 COPY server ./server
+COPY packages/embed ./packages/embed
 
 # ---------- build admin ----------
 WORKDIR /app/admin-ui
@@ -30,10 +33,17 @@ RUN node -v && npm -v
 RUN npm run build --loglevel=verbose \
  || (echo '---- NPM LOGS ----' && ls -la /root/.npm/_logs/ && cat /root/.npm/_logs/* || true && exit 1)
 
+# ---------- build embed ----------
+WORKDIR /app/packages/embed
+RUN node -v && npm -v
+RUN npm run build --loglevel=verbose \
+ || (echo '---- NPM LOGS ----' && ls -la /root/.npm/_logs/ && cat /root/.npm/_logs/* || true && exit 1)
+
 # ---------- stage assets into server ----------
 WORKDIR /app
 RUN rm -rf server/public/admin && mkdir -p server/public/admin
 RUN cp -a admin-ui/dist/. server/public/admin/
+RUN rm -rf server/public/embed && mkdir -p server/public/embed && cp -a packages/embed/dist/. server/public/embed/
 
 # ---------- build server ----------
 WORKDIR /app/server
