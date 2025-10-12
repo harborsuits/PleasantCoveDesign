@@ -5,17 +5,30 @@ import type { SocketAuthPayload } from "./ws/contracts.js";
 import { setIO } from './socketRef.js';
 
 export function attachSocket(server: HttpServer) {
+  // Build a Socket.IO CORS allowlist aligned with HTTP CORS
+  const ALLOWED_ORIGINS = new Set<string>([
+    "http://localhost:5173",
+    "https://pleasantcovedesign.com",
+    "https://www.pleasantcovedesign.com",
+    "https://pleasantcovedesign-production.up.railway.app",
+  ]);
+  const EXTRA_ORIGINS = (process.env.CORS_ORIGINS || "")
+    .split(",")
+    .map(s => s.trim())
+    .filter(Boolean);
+  for (const origin of EXTRA_ORIGINS) ALLOWED_ORIGINS.add(origin);
+
   const io = new Server(server, {
     path: "/socket.io",
     transports: ["websocket"],
     cors: {
-      origin: [
-        "http://localhost:5173",
-        "https://pleasantcovedesign.com",
-        "https://pleasantcovedesign-production.up.railway.app",
-        "https://pleasantcove.squarespace.com"
-      ],
+      origin(origin, callback) {
+        // Allow same-origin/no-origin (server-to-server, curl, etc.)
+        if (!origin) return callback(null, true);
+        return callback(null, ALLOWED_ORIGINS.has(origin));
+      },
       methods: ["GET","POST"],
+      credentials: true,
     },
     pingInterval: 25000,
     pingTimeout: 60000,
@@ -25,7 +38,11 @@ export function attachSocket(server: HttpServer) {
 
   // Top-level auth middleware (allows limited unauth for Squarespace if configured)
   io.use((socket, next) => {
-    const { token, wsToken, orgId, visitorId } = (socket.handshake.auth || {}) as SocketAuthPayload;
+    const { token, wsToken, orgId, visitorId, userId } = (socket.handshake.auth || {}) as SocketAuthPayload & { userId?: string };
+    // Always copy minimal identity for room joins/logs
+    if (orgId) socket.data.orgId = socket.data.orgId || orgId;
+    if (visitorId) socket.data.visitorId = socket.data.visitorId || visitorId;
+    if (userId) socket.data.userId = socket.data.userId || userId;
     try {
       if (wsToken) {
         const p = jwt.verify(wsToken, process.env.JWT_SECRET!) as any;
@@ -61,18 +78,28 @@ export function attachSocket(server: HttpServer) {
   const messaging = io.of("/messaging");
   messaging.on("connection", (s) => {
     const { orgId, visitorId } = s.data || {};
+    const origin = (s.handshake.headers.origin as string | undefined) || "";
+    console.log('[WS:messaging] connect', { id: s.id, origin, orgId, visitorId });
     if (orgId) s.join(`org:${orgId}`);
     if (visitorId) s.join(`visitor:${visitorId}`);
 
-    s.on("convo:join", ({ convoId }) => s.join(`convo:${convoId}`));
+    s.on("convo:join", ({ convoId }) => {
+      console.log('[WS:messaging] join', { id: s.id, convo: `convo:${convoId}` });
+      s.join(`convo:${convoId}`);
+    });
     s.on("convo:leave", ({ convoId }) => s.leave(`convo:${convoId}`));
 
     s.on("message:new", (payload) => {
+      console.log('[WS:messaging] message:new', { id: s.id, orgId: s.data?.orgId, convoId: payload?.convoId, len: (payload?.text || '').length });
       messaging.to(`convo:${payload.convoId}`).emit("message:new", payload);
       if (s.data?.orgId) messaging.to(`org:${s.data.orgId}`).emit("message:new", payload);
     });
 
     s.on("typing", (p) => messaging.to(`convo:${p.convoId}`).emit("typing", p));
+
+    s.on("disconnect", (reason) => {
+      console.log('[WS:messaging] disconnect', { id: s.id, reason });
+    });
   });
 
   const appts = io.of("/appointments");
